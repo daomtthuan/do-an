@@ -1,8 +1,12 @@
 -- create database
 use master
-if exists (select name from sysdatabases where name = 'milktea_shop') 
-	drop database milktea_shop
+go
 
+if (select count(name) from sysdatabases where name = 'milktea_shop') > 0 
+	drop database milktea_shop
+go
+
+use master
 create database milktea_shop
 go
 
