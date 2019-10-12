@@ -46,9 +46,9 @@ create table category ( id int identity primary key,
 )
 
 create table food ( id int identity primary key,
-	name varchar(50) not null,
-	status bit not null default 1, -- 0: disable, -- enable
+	name varchar(50) not null,	
 	category int not null references category(id),
+	status bit not null default 1, -- 0: disable, -- enable
 )
 
 create table discount(id int identity primary key,
