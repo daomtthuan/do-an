@@ -18,10 +18,10 @@ go
 -- create table
 create table information ( id int identity primary key,
 	fullname varchar(50) not null,
-	gender bit not null,
+	gender bit not null, -- 0: female, -- male
 	birthday date not null,
-	address varchar(100),
-	phone varchar(15),
+	address varchar(100) not null,
+	phone varchar(15) not null,
 	email varchar(50)
 )
 
@@ -42,12 +42,13 @@ create table account_roll ( id int identity primary key,
 go
 
 create table table_food ( id int identity primary key,
-	name varchar(50) not null,
 	status bit not null default 1, -- 0: disable, -- enable
+	x int not null default 0,
+	y int not null default 0
 )
 
 create table category ( id int identity primary key,
-	name varchar(50) not null
+	name varchar(50) not null unique
 )
 
 create table food ( id int identity primary key,
@@ -64,13 +65,13 @@ create table discount(id int identity primary key,
 create table bill ( id int identity primary key,
 	table_food int not null references table_food(id),
 	account int references account(id),
+	discount int not null default null references discount(id), 
 	checkin datetime not null default getdate(),
-	checkout datetime default null,
-	discount int not null references discount(id), 
+	checkout datetime not null default null,
 )
 
 create table bill_details( id int identity primary key,
 	bill int not null references bill(id),
 	food int not null references food(id),
-	quantity int not null default 1,
+	quantity int not null,
 )
