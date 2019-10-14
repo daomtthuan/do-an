@@ -1,16 +1,17 @@
--- create database
 use master
 go
 
+-- drop database if exists
 if (select count(name) from sysdatabases where name = 'milktea_shop') > 0 
 	drop database milktea_shop
 go
 
+-- create database
 use master
 create database milktea_shop
 go
 
--- use table
+-- use database
 use milktea_shop
 go
 
