@@ -1,18 +1,23 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.awt.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class Login {
 
     @FXML
-    private String account;
+    private TextField account;
 
     @FXML
-    private String password;
+    private TextField password;
 
+    @FXML
+    private Button button;
+
+    @FXML
     public void show(ActionEvent event) {
-        System.out.println(account +" " + password);
+        System.out.println(account.getText() +" " + password.getText());
     }
 }
