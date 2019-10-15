@@ -15,6 +15,12 @@ public class table_food {
         this.x = x;
         this.y = y;
     }
+    public table_food(table_food table_food){
+        this.id = id;
+        this.status = status;
+        this.x = x;
+        this.y = y;
+    }
 
     public int getId() {
         return id;

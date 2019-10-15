@@ -13,6 +13,11 @@ public class discount {
         this.name = name;
         this.sale = sale;
     }
+    public discount(discount discount){
+        this.id = id;
+        this.name = name;
+        this.sale = sale;
+    }
 
     public int getId() {
         return id;

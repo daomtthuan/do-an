@@ -22,6 +22,15 @@ public class bill {
         this.checkout = checkout;
     }
 
+    public bill(bill bill){
+        this.id = id;
+        this.table_food = table_food;
+        this.account = account;
+        this.discount = discount;
+        this.checkin = checkin;
+        this.checkout = checkout;
+    }
+
     public int getId() {
         return id;
     }

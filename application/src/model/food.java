@@ -15,6 +15,12 @@ public class food {
         this.category = category;
         this.status = status;
     }
+    public food(food food){
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.status = status;
+    }
 
     public int getId() {
         return id;

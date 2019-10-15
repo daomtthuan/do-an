@@ -13,6 +13,15 @@ public class bill_details {
         this.quantity = quantity;
     }
 
+    public bill_details() {
+    }
+    public bill_details(bill_details bill_details){
+        this.id = id;
+        this.bill = bill;
+        this.food = food;
+        this.quantity = quantity;
+    }
+
     public int getId() {
         return id;
     }
