@@ -19,9 +19,20 @@ public class Main extends Application {
         Parent parent = viewLogin.load();
         Scene scene = new Scene(parent);
 
+<<<<<<< HEAD
+            Parent main = FXMLLoader.load(getClass().getResource("view/Login.fxml"));
+            Scene scene = new Scene(main);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+=======
         primaryStage.setTitle("Milktea Shop");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+>>>>>>> aa4d5b73da534bda2a69c0a85ddad6fcabf2e930
     }
 }
