@@ -1,5 +1,9 @@
 package controller.shared;
 
-public abstract class Register {
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
+public abstract class Register {
+    @FXML
+    private TextField fullname;
 }

@@ -1,69 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="483.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8">
-    <children>
-        <Text fill="#994900" fontSmoothingType="GRAY" layoutX="220.0" layoutY="55.0" strikethrough="false"
-              strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="LEFT" underline="false">
-            <font>
-                <Font name="Arial Bold" size="40.0"/>
-            </font>
-        </Text>
-        <TextField layoutX="300.0" layoutY="110.0" prefWidth="200.0"/>
-        <TextField layoutX="300.0" layoutY="209.0" prefWidth="200.0"/>
-        <TextField layoutX="300.0" layoutY="257.0" prefWidth="200.0"/>
-        <TextField layoutX="300.0" layoutY="305.0" prefWidth="200.0"/>
-        <TextField layoutX="300.0" layoutY="355.0" prefWidth="200.0"/>
-        <Text layoutX="70.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FullName">
-            <font>
-                <Font name="Arial" size="20.0" fx:id="x1"/>
-            </font>
-        </Text>
-        <Text font="$x1" layoutX="70.0" layoutY="181.0" scaleX="1.0" scaleY="0.9999954111600587" strokeType="OUTSIDE"
-              strokeWidth="0.0" text="Gender"/>
-        <Text font="$x1" layoutX="70.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday"/>
-        <Text font="$x1" layoutX="70.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address"/>
-        <Text font="$x1" layoutX="70.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number"/>
-        <Text font="$x1" layoutX="69.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email"/>
-        <CheckBox layoutX="300.0" layoutY="165.0" mnemonicParsing="false" text="Male"/>
-        <CheckBox layoutX="400.0" layoutY="165.0" mnemonicParsing="false" text="Female"/>
-        <Button layoutX="220.0" layoutY="408.0" mnemonicParsing="false" onAction="#Submit" prefWidth="160.05859375"
-                text="Submit" textFill="BLACK">
-            <font>
-                <Font name="Arial Bold" size="25.0"/>
-            </font>
-        </Button>
-        <Text layoutX="253.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-            <font>
-                <Font name="Arial" size="20.0"/>
-            </font>
-        </Text>
-        <Text layoutX="253.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-            <font>
-                <Font name="Arial" size="20.0"/>
-            </font>
-        </Text>
-        <Text layoutX="253.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-            <font>
-                <Font name="Arial" size="20.0"/>
-            </font>
-        </Text>
-        <Text layoutX="253.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-            <font>
-                <Font name="Arial" size="20.0"/>
-            </font>
-        </Text>
-        <Text layoutX="253.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-            <font>
-                <Font name="Arial" size="20.0"/>
-            </font>
-        </Text>
-        <Text layoutX="253.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-            <font>
-                <Font name="Arial" size="20.0"/>
-            </font>
-        </Text>
-    </children>
+
+<AnchorPane prefHeight="390.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="250.0" layoutY="74.0" prefHeight="483.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label contentDisplay="CENTER" text="Register" textFill="#2e6681">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <GridPane hgap="10.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="71.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="331.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label text="Fullname">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Gender" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Birthday" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Address" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Email" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label text="Phone" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField prefHeight="30.0" prefWidth="329.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker prefHeight="55.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+            <Button mnemonicParsing="false" text="Submit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
 </AnchorPane>
