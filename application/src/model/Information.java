@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Date;
 
 public class Information {
@@ -13,7 +15,7 @@ public class Information {
     public Information() {
     }
 
-    public Information(int id, String fullName, boolean gender, String birthday, String address, int phone, String email) {
+    public Information(int id, String fullName, boolean gender, Date birthday, String address, int phone, String email) {
         this.id = id;
         this.fullName = fullName;
         this.gender = gender;
@@ -47,11 +49,11 @@ public class Information {
         this.gender = gender;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
