@@ -9,11 +9,11 @@
 
 <AnchorPane prefHeight="181.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <VBox alignment="CENTER" prefHeight="196.0" prefWidth="376.0" spacing="10.0">
+        <VBox alignment="CENTER" prefHeight="224.0" prefWidth="393.0" spacing="10.0">
             <children>
-                <Label alignment="CENTER" text="LOGIN">
+                <Label alignment="CENTER" text="LOGIN" textAlignment="CENTER" textFill="#2e6681">
                     <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
                 <GridPane hgap="10.0" prefHeight="51.0" prefWidth="356.0" vgap="10.0">
@@ -26,16 +26,31 @@
                         <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label alignment="CENTER" text="Account" />
-                        <Label text="Password" GridPane.rowIndex="1" />
-                        <TextField fx:id="account" prefHeight="25.0" prefWidth="268.0" GridPane.columnIndex="1" />
-                        <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" text="Account">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                        <Label text="Password" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                        <TextField fx:id="account" prefHeight="25.0" prefWidth="268.0" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                        <TextField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>
                 </GridPane>
-                <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="108.0" text="Login" />
+                <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="108.0" text="Login">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
             </children>
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
