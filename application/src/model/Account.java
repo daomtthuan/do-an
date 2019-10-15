@@ -18,7 +18,7 @@ public class Account {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.information = information;
+        this.information = new Information(information);
     }
 
     @Contract(pure = true)

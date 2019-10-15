@@ -1,4 +1,4 @@
-use milktea_shop
+use MilkTeaShop
 go
 
 insert into category values('Milk Tea')
