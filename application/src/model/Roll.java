@@ -1,3 +1,5 @@
+package model;
+
 public class Roll {
     private int id;
     private String name;
