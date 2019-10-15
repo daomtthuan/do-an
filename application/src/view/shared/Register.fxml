@@ -11,7 +11,7 @@
    <children>
       <VBox alignment="CENTER" layoutX="250.0" layoutY="74.0" prefHeight="483.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label contentDisplay="CENTER" text="Register" textFill="#2e6681">
+            <Label fx:id="title" contentDisplay="CENTER" text="Register" textFill="#2e6681">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -63,30 +63,44 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="30.0" prefWidth="329.0" GridPane.columnIndex="1">
+                  <TextField fx:id="fullname" prefHeight="30.0" prefWidth="329.0" GridPane.columnIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="address" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <DatePicker prefHeight="55.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <DatePicker fx:id="birthday" prefHeight="55.0" prefWidth="331.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <RadioButton fx:id="male" contentDisplay="CENTER" mnemonicParsing="false" text="Male" textOverrun="CENTER_ELLIPSIS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="female" contentDisplay="CENTER" mnemonicParsing="false" text="Female" textOverrun="CENTER_ELLIPSIS">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" text="Submit">
+            <Button mnemonicParsing="false" onAction="#submit" text="Submit">
                <font>
                   <Font size="14.0" />
                </font>
