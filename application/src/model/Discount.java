@@ -3,25 +3,26 @@ package model;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public class Category {
-
+public class Discount {
     private int id;
     private String name;
+    private double sale;
 
     @Contract(pure = true)
-    public Category() {
+    public Discount() {
     }
 
     @Contract(pure = true)
-    public Category(int id, String name) {
+    public Discount(int id, String name, double sale) {
         this.id = id;
         this.name = name;
+        this.sale = sale;
     }
-
     @Contract(pure = true)
-    public Category(@NotNull Category category) {
-        this.id = category.id;
-        this.name = category.name;
+    public Discount(@NotNull Discount discount){
+        this.id = discount.id;
+        this.name = discount.name;
+        this.sale = discount.sale;
     }
 
     public int getId() {
@@ -30,5 +31,9 @@ public class Category {
 
     public String getName() {
         return name;
+    }
+
+    public double getSale() {
+        return sale;
     }
 }
