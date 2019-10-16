@@ -3,6 +3,9 @@ package model;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Bill {
     private int id;
     private int idTableFood;
@@ -19,6 +22,15 @@ public class Bill {
         this.idDiscount = idDiscount;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+    }
+
+    public Bill(ResultSet data) throws SQLException {
+        this.id = data.getInt("id");
+        this.idTableFood = data.getInt("idTableFood");
+        this.idAccount = data.getInt("idAccount");
+        this.idDiscount = data.getInt("idDiscount");
+        this.checkIn = data.getString("checkIn");
+        this.checkOut = data.getString("checkOut");
     }
 
     public int getId() {

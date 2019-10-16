@@ -3,6 +3,9 @@ package model;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Discount {
     private int id;
     private String name;
@@ -13,6 +16,12 @@ public class Discount {
         this.id = id;
         this.name = name;
         this.sale = sale;
+    }
+
+    public Discount(ResultSet data) throws SQLException {
+        this.id = data.getInt("id");
+        this.name = data.getString("name");
+        this.sale = data.getDouble("sale");
     }
 
     public int getId() {

@@ -3,6 +3,9 @@ package model;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Category {
 
     private int id;
@@ -12,6 +15,11 @@ public class Category {
     public Category(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Category(ResultSet data) throws SQLException {
+        this.id = data.getInt("id");
+        this.name = data.getString("name");
     }
 
     public int getId() {

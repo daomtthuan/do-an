@@ -3,6 +3,9 @@ package model;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class TableFood {
     private int id;
     private boolean status;
@@ -15,6 +18,13 @@ public class TableFood {
         this.status = status;
         this.x = x;
         this.y = y;
+    }
+
+    public TableFood(ResultSet data) throws SQLException {
+        this.id = data.getInt("id");
+        this.status = data.getBoolean("status");
+        this.x = data.getInt("x");
+        this.y = data.getInt("y");
     }
 
     public int getId() {

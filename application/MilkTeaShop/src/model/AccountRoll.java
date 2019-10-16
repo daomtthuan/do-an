@@ -3,6 +3,9 @@ package model;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class AccountRoll {
     private int id;
     private int idAccount;
@@ -13,6 +16,12 @@ public class AccountRoll {
         this.id = id;
         this.idAccount = idAccount;
         this.idRoll = idRoll;
+    }
+
+    public AccountRoll(ResultSet data) throws SQLException {
+        this.id = data.getInt("id");
+        this.idAccount = data.getInt("idAccount");
+        this.idRoll = data.getInt("idRoll");
     }
 
     public int getId() {

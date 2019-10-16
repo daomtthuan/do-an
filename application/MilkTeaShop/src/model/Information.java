@@ -3,6 +3,8 @@ package model;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Information {
@@ -23,6 +25,16 @@ public class Information {
         this.address = address;
         this.phone = phone;
         this.email = email;
+    }
+
+    public Information(ResultSet data) throws SQLException {
+        this.id = data.getInt("id");
+        this.name = data.getString("name");
+        this.gender = data.getBoolean("gender");
+        this.birthday = data.getString("birthday");
+        this.address = data.getString("address");
+        this.phone = data.getInt("phone");
+        this.email = data.getString("email");
     }
 
     public int getId() {
