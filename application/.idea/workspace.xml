@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ca1b260-0268-4417-9eca-129355859266" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/view/employee/manager/InsertCategory.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/employee/manager/InsertCategory.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/employee/manager/InsertFood.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/employee/manager/InsertFood.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../document/~$Doc.docx" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +24,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1SBv0V7lGMUwBLPN8nWj74I0WuL" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
