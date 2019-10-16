@@ -17,12 +17,12 @@ public class Account {
         this.idInformation = idInformation;
     }
 
-    public Account(ResultSet data) {
-        this.id = data.getInt("id");
-        this.name = name;
-        this.password = password;
-        this.idInformation = idInformation;
-    }
+//    public Account(ResultSet data) {
+//        this.id = data.getInt("id");
+//        this.name = name;
+//        this.password = password;
+//        this.idInformation = idInformation;
+//    }
 
 
     public int getId() {

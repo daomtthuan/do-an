@@ -23,6 +23,7 @@ public class DataProvider {
             connection = DriverManager.getConnection("" +
                     properties.getProperty("driver") + ":" + properties.getProperty("server") + "://" +
                     properties.getProperty("host") + ":" + properties.getProperty("port") + ";" +
+                    "databaseName=" + properties.getProperty("user") + ";" +
                     "user=" + properties.getProperty("user") + ";" +
                     "password=" + properties.getProperty("user"));
         } catch (IOException | SQLException e) {
