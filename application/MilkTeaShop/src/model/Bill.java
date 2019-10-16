@@ -5,48 +5,36 @@ import org.jetbrains.annotations.NotNull;
 
 public class Bill {
     private int id;
-    private TableFood tableFood;
-    private Account account;
-    private Discount discount;
+    private int idTableFood;
+    private int idAccount;
+    private int idDiscount;
     private String checkIn;
     private String checkOut;
 
     @Contract(pure = true)
-    public Bill() {
-    }
-
-    public Bill(int id, TableFood tableFood, Account account, Discount discount, String checkIn, String checkOut) {
+    public Bill(int id, int idTableFood, int idAccount, int idDiscount, String checkIn, String checkOut) {
         this.id = id;
-        this.tableFood = new TableFood(tableFood);
-        this.account = new Account(account);
-        this.discount = new Discount(discount);
+        this.idTableFood = idTableFood;
+        this.idAccount = idAccount;
+        this.idDiscount = idDiscount;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-    }
-
-    public Bill(@NotNull Bill bill) {
-        this.id = bill.id;
-        this.tableFood = new TableFood(bill.tableFood);
-        this.account = new Account(bill.account);
-        this.discount = new Discount(bill.discount);
-        this.checkIn = bill.checkIn;
-        this.checkOut = bill.checkOut;
     }
 
     public int getId() {
         return id;
     }
 
-    public TableFood getTableFood() {
-        return tableFood;
+    public int getIdTableFood() {
+        return idTableFood;
     }
 
-    public Account getAccount() {
-        return account;
+    public int getIdAccount() {
+        return idAccount;
     }
 
-    public Discount getDiscount() {
-        return discount;
+    public int getIdDiscount() {
+        return idDiscount;
     }
 
     public String getCheckIn() {

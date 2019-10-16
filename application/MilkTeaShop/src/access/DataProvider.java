@@ -21,12 +21,10 @@ public class DataProvider {
             Properties properties = new Properties();
             properties.load(reader);
             connection = DriverManager.getConnection("" +
-                    properties.getProperty("driver") + ":" +
-                    properties.getProperty("server") + "://" +
-                    properties.getProperty("host") + ":" +
-                    properties.getProperty("port") + ";databaseName=" +
-                    properties.getProperty("database") + ";" +
-                    "user=sa;password=sa;");
+                    properties.getProperty("driver") + ":" + properties.getProperty("server") + "://" +
+                    properties.getProperty("host") + ":" + properties.getProperty("port") + ";" +
+                    "user=" + properties.getProperty("user") + ";" +
+                    "password=" + properties.getProperty("user"));
         } catch (IOException | SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }

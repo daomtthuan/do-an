@@ -1,18 +1,16 @@
 use master
-declare @database varchar(11) = 'MilkTeaShop'
-exec(
-	-- drop database if exists
-	'if (select count(name) from sysdatabases where name = @database) > 0 
-		drop database ' + @database + '
-	go '+
-	-- create database
-	'create database '+ @database + '
-	go '+
 
-	-- use database
-	'use '+ @database + '
-	go'
-)
+-- drop database if exists
+if (select count(name) from sysdatabases where name = 'MilkTeaShop') <> 0 
+	drop database MilkTeaShop
+go
+
+-- create database
+create database MilkTeaShop
+go
+
+-- use database
+use MilkTeaShop
 
 -- create table
 create table Information ( id int identity primary key,
@@ -23,42 +21,50 @@ create table Information ( id int identity primary key,
 	phone varchar(15) not null,
 	email varchar(50)
 )
+go
 
 create table Account ( id int identity primary key,
 	name varchar(50) not null,
 	password varchar(500) not null,
 	information int not null references information(id),
 )
+go
 
 create table Roll ( id int identity primary key,
 	name varchar(50) not null,
 )
+go
 
 create table AccountRoll ( id int identity primary key,
 	account int not null references account(id),
 	roll int not null references roll(id),
 )
+go
 
 create table TableFood ( id int identity primary key,
 	status bit not null default 1, -- 0: disable, -- enable
 	x int not null default 0,
 	y int not null default 0
 )
+go
 
 create table Category ( id int identity primary key,
 	name varchar(50) not null unique
 )
+go
 
 create table Food ( id int identity primary key,
 	name varchar(50) not null,	
 	category int not null references category(id),
 	status bit not null default 1, -- 0: disable, -- enable
 )
+go
 
 create table Discount(id int identity primary key,
 	name varchar(50) not null unique,
 	sale float not null
 )
+go
 
 create table Bill ( id int identity primary key,
 	table_food int not null references TableFood(id),
@@ -67,11 +73,31 @@ create table Bill ( id int identity primary key,
 	checkin datetime not null default getdate(),
 	checkout datetime not null default null,
 )
+go
 
 create table BillDetail( id int identity primary key,
 	bill int not null references bill(id),
 	food int not null references food(id),
 	quantity int not null,
 )
+go
 
---create login MilkTeaShop with password = 'sa' default_database = ''
+-- drop login if exists
+use master
+If (select count(*) from syslogins where name = 'MilkTeaShop') <> 0
+	drop login MilkTeaShop
+go
+
+-- create login
+use MilkTeaShop
+create login MilkTeaShop with 
+	password = 'MilkTeaShop',
+	default_database = MilkTeaShop,
+	check_expiration = off,
+	check_policy = off
+go
+
+use master
+deny view any database to MilkTeaShop
+alter authorization on database::MilkTeaShop to MilkTeaShop
+go

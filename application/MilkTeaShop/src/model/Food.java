@@ -6,27 +6,15 @@ import org.jetbrains.annotations.NotNull;
 public class Food {
     private int id;
     private String name;
-    private Category category;
+    private int idCategory;
     private boolean status;
 
     @Contract(pure = true)
-    public Food() {
-    }
-
-    @Contract(pure = true)
-    public Food(int id, String name, Category category, boolean status) {
+    public Food(int id, String name, int idCategory, boolean status) {
         this.id = id;
         this.name = name;
-        this.category = new Category(category);
+        this.idCategory = idCategory;
         this.status = status;
-    }
-
-    @Contract(pure = true)
-    public Food(@NotNull Food food) {
-        this.id = food.id;
-        this.name = food.name;
-        this.category = new Category(food.category);
-        this.status = food.status;
     }
 
     public int getId() {
@@ -37,8 +25,8 @@ public class Food {
         return name;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getIdCategory() {
+        return idCategory;
     }
 
     public boolean isStatus() {
