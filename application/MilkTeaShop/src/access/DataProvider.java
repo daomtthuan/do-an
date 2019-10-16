@@ -20,12 +20,7 @@ public class DataProvider {
         try (FileReader reader = new FileReader(file)) {
             Properties properties = new Properties();
             properties.load(reader);
-            connection = DriverManager.getConnection("" +
-                    properties.getProperty("driver") + ":" + properties.getProperty("server") + "://" +
-                    properties.getProperty("host") + ":" + properties.getProperty("port") + ";" +
-                    "databaseName=" + properties.getProperty("database") + ";" +
-                    "user=" + properties.getProperty("user") + ";" +
-                    "password=" + properties.getProperty("password"));
+            connection = DriverManager.getConnection(properties.getProperty("url"));
         } catch (IOException | SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
