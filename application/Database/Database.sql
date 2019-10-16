@@ -1,19 +1,18 @@
 use master
-go
+declare @database varchar(11) = 'MilkTeaShop'
+exec(
+	-- drop database if exists
+	'if (select count(name) from sysdatabases where name = @database) > 0 
+		drop database ' + @database + '
+	go '+
+	-- create database
+	'create database '+ @database + '
+	go '+
 
--- drop database if exists
-if (select count(name) from sysdatabases where name = 'MilkTeaShop') > 0 
-	drop database MilkTeaShop
-go
-
--- create database
-use master
-create database MilkTeaShop
-go
-
--- use database
-use MilkTeaShop
-go
+	-- use database
+	'use '+ @database + '
+	go'
+)
 
 -- create table
 create table Information ( id int identity primary key,
@@ -39,7 +38,6 @@ create table AccountRoll ( id int identity primary key,
 	account int not null references account(id),
 	roll int not null references roll(id),
 )
-go
 
 create table TableFood ( id int identity primary key,
 	status bit not null default 1, -- 0: disable, -- enable
@@ -75,3 +73,5 @@ create table BillDetail( id int identity primary key,
 	food int not null references food(id),
 	quantity int not null,
 )
+
+--create login MilkTeaShop with password = 'sa' default_database = ''

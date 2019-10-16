@@ -11,6 +11,7 @@ import java.io.StringWriter;
 
 public class ErrorAlert {
     private static ErrorAlert instance;
+
     private Alert alert;
     private StringWriter stringWriter;
     private PrintWriter printWriter;

@@ -16,11 +16,17 @@ public class DataProvider {
 
     @Contract(pure = true)
     private DataProvider() {
-        File file = new File("config.properties");
+        File file = new File("Config.properties");
         try (FileReader reader = new FileReader(file)) {
             Properties properties = new Properties();
             properties.load(reader);
-            connection = DriverManager.getConnection(properties.getProperty("connectString"));
+            connection = DriverManager.getConnection("" +
+                    properties.getProperty("driver") + ":" +
+                    properties.getProperty("server") + "://" +
+                    properties.getProperty("host") + ":" +
+                    properties.getProperty("port") + ";databaseName=" +
+                    properties.getProperty("database") + ";" +
+                    "user=sa;password=sa;");
         } catch (IOException | SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
