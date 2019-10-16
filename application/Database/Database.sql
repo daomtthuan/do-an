@@ -81,23 +81,3 @@ create table BillDetail( id int identity primary key,
 	quantity int not null,
 )
 go
-
--- drop login if exists
-use master
-If (select count(*) from syslogins where name = 'MilkTeaShop') <> 0
-	drop login MilkTeaShop
-go
-
--- create login
-use MilkTeaShop
-create login MilkTeaShop with 
-	password = 'MilkTeaShop',
-	default_database = MilkTeaShop,
-	check_expiration = off,
-	check_policy = off
-go
-
-use master
-deny view any database to MilkTeaShop
-alter authorization on database::MilkTeaShop to MilkTeaShop
-go

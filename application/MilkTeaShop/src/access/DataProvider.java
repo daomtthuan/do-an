@@ -23,9 +23,9 @@ public class DataProvider {
             connection = DriverManager.getConnection("" +
                     properties.getProperty("driver") + ":" + properties.getProperty("server") + "://" +
                     properties.getProperty("host") + ":" + properties.getProperty("port") + ";" +
-                    "databaseName=" + properties.getProperty("user") + ";" +
+                    "databaseName=" + properties.getProperty("database") + ";" +
                     "user=" + properties.getProperty("user") + ";" +
-                    "password=" + properties.getProperty("user"));
+                    "password=" + properties.getProperty("password"));
         } catch (IOException | SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
