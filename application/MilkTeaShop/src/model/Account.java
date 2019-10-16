@@ -17,6 +17,9 @@ public class Account {
         this.idInformation = idInformation;
     }
 
+
+
+
     public int getId() {
         return id;
     }
