@@ -8,19 +8,9 @@ public class Roll {
     private String name;
 
     @Contract(pure = true)
-    public Roll() {
-    }
-
-    @Contract(pure = true)
     public Roll(int id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    @Contract(pure = true)
-    public Roll(@NotNull Roll roll) {
-        this.id = roll.id;
-        this.name = roll.name;
     }
 
     public int getId() {

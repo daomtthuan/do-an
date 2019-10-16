@@ -1,42 +1,31 @@
 package model;
 
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 public class BillDetail {
     private int id;
-    private Bill bill;
-    private Food food;
+    private int idBill;
+    private int idFood;
     private int quantity;
 
     @Contract(pure = true)
-    public BillDetail() {
-    }
-
-    public BillDetail(int id, Bill bill, Food food, int quantity) {
+    public BillDetail(int id, int idBill, int idFood, int quantity) {
         this.id = id;
-        this.bill = new Bill(bill);
-        this.food = new Food(food);
+        this.idBill = idBill;
+        this.idFood = idFood;
         this.quantity = quantity;
-    }
-
-    public BillDetail(@NotNull BillDetail billDetail) {
-        this.id = billDetail.id;
-        this.bill = new Bill(billDetail.bill);
-        this.food = new Food(billDetail.food);
-        this.quantity = billDetail.quantity;
     }
 
     public int getId() {
         return id;
     }
 
-    public Bill getBill() {
-        return bill;
+    public int getIdBill() {
+        return idBill;
     }
 
-    public Food getFood() {
-        return food;
+    public int getIdFood() {
+        return idFood;
     }
 
     public int getQuantity() {

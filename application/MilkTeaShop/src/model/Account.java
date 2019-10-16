@@ -7,26 +7,14 @@ public class Account {
     private int id;
     private String name;
     private String password;
-    private Information information;
+    private int idInformation;
 
     @Contract(pure = true)
-    public Account() {
-    }
-
-    @Contract(pure = true)
-    public Account(int id, String name, String password, Information information) {
+    public Account(int id, String name, String password, int idInformation) {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.information = new Information(information);
-    }
-
-    @Contract(pure = true)
-    public Account(@NotNull Account account) {
-        this.id = account.id;
-        this.name = account.name;
-        this.password = account.password;
-        this.information = new Information(account.information);
+        this.idInformation = idInformation;
     }
 
     public int getId() {
@@ -41,7 +29,7 @@ public class Account {
         return password;
     }
 
-    public Information getInformation() {
-        return information;
+    public int getIdInformation() {
+        return idInformation;
     }
 }
