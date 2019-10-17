@@ -1,12 +1,11 @@
 package access;
 
-import library.ErrorAlert;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import ui.ErrorAlert;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -16,12 +15,11 @@ public class DataProvider {
 
     @Contract(pure = true)
     private DataProvider() {
-        File file = new File("Config.properties");
-        try (FileReader reader = new FileReader(file)) {
+        try (FileReader reader = new FileReader(new File("Config.properties"))) {
             Properties properties = new Properties();
             properties.load(reader);
             connection = DriverManager.getConnection(properties.getProperty("url"));
-        } catch (IOException | SQLException e) {
+        } catch (Exception e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
     }
@@ -31,7 +29,7 @@ public class DataProvider {
         return instance == null ? new DataProvider() : instance;
     }
 
-    public ResultSet execute(String query) {
+    ResultSet execute(String query) {
         try {
             Statement statement = connection.createStatement();
             return statement.executeQuery(query);
@@ -41,13 +39,12 @@ public class DataProvider {
         }
     }
 
-    public ResultSet execute(@NotNull String query, Object[] parameters) {
+    ResultSet execute(@NotNull String query, @NotNull Object[] parameters) {
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setEscapeProcessing(true);
-            int index = 1;
-            for (Object parameter : parameters)
-                statement.setObject(index++, parameter);
+            for (int i = 0; i < parameters.length; i++)
+                statement.setObject(i + 1, parameters[i]);
             return statement.executeQuery();
         } catch (SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);

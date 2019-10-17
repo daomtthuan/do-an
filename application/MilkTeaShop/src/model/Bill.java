@@ -2,6 +2,7 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import ui.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,13 +25,17 @@ public class Bill {
         this.checkOut = checkOut;
     }
 
-    public Bill(ResultSet data) throws SQLException {
-        this.id = data.getInt("id");
-        this.idTableFood = data.getInt("idTableFood");
-        this.idAccount = data.getInt("idAccount");
-        this.idDiscount = data.getInt("idDiscount");
-        this.checkIn = data.getString("checkIn");
-        this.checkOut = data.getString("checkOut");
+    public Bill(@NotNull ResultSet data) {
+        try {
+            this.id = data.getInt("id");
+            this.idTableFood = data.getInt("idTableFood");
+            this.idAccount = data.getInt("idAccount");
+            this.idDiscount = data.getInt("idDiscount");
+            this.checkIn = data.getString("checkIn");
+            this.checkOut = data.getString("checkOut");
+        } catch (SQLException e) {
+            ErrorAlert.getInstance().showAndWait(e);
+        }
     }
 
     public int getId() {

@@ -2,6 +2,7 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import ui.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +19,14 @@ public class AccountRoll {
         this.idRoll = idRoll;
     }
 
-    public AccountRoll(ResultSet data) throws SQLException {
-        this.id = data.getInt("id");
-        this.idAccount = data.getInt("idAccount");
-        this.idRoll = data.getInt("idRoll");
+    public AccountRoll(@NotNull ResultSet data) {
+        try {
+            this.id = data.getInt("id");
+            this.idAccount = data.getInt("idAccount");
+            this.idRoll = data.getInt("idRoll");
+        } catch (SQLException e) {
+            ErrorAlert.getInstance().showAndWait(e);
+        }
     }
 
     public int getId() {

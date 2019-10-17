@@ -71,9 +71,19 @@ create table BillDetail( id int identity primary key,
 )
 go
 ---------------------------------------------------------------------------------------
+-- create procedure
+create proc ProcedureLogin
+	@name varchar(50),
+	@password varchar(500)
+as begin
+	select * from Account where name = @name and password = @password
+end
+go
 
+exec ProcedureLogin 'dmtt1' , '1'
 
 ---------------------------------------------------------------------------------------
+-- insert data
 use MilkTeaShop
 go
 
@@ -249,5 +259,4 @@ insert into Account values ('dmtt1', '1', 1, 3)
 insert into Account values ('htht2', '1', 2, 3)
 insert into Account values ('ttl3', '1', 3, 2)
 insert into Account values ('tqc4', '1', 4, 2)
-
-select * from Account
+go

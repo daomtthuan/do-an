@@ -2,6 +2,7 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import ui.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,13 +21,16 @@ public class Account {
         this.idInformation = idInformation;
     }
 
-    public Account(ResultSet data) throws SQLException {
-        this.id = data.getInt("id");
-        this.name = data.getString("name");
-        this.password = data.getString("password");
-        this.idInformation = data.getInt("idInformation");
+    public Account(@NotNull ResultSet data) {
+        try {
+            this.id = data.getInt("id");
+            this.name = data.getString("name");
+            this.password = data.getString("password");
+            this.idInformation = data.getInt("idInformation");
+        } catch (SQLException e) {
+            ErrorAlert.getInstance().showAndWait(e);
+        }
     }
-
 
     public int getId() {
         return id;

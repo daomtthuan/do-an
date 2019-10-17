@@ -2,10 +2,10 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import ui.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class Information {
     private int id;
@@ -27,14 +27,18 @@ public class Information {
         this.email = email;
     }
 
-    public Information(ResultSet data) throws SQLException {
-        this.id = data.getInt("id");
-        this.name = data.getString("name");
-        this.gender = data.getBoolean("gender");
-        this.birthday = data.getString("birthday");
-        this.address = data.getString("address");
-        this.phone = data.getInt("phone");
-        this.email = data.getString("email");
+    public Information(@NotNull ResultSet data) {
+        try {
+            this.id = data.getInt("id");
+            this.name = data.getString("name");
+            this.gender = data.getBoolean("gender");
+            this.birthday = data.getString("birthday");
+            this.address = data.getString("address");
+            this.phone = data.getInt("phone");
+            this.email = data.getString("email");
+        } catch (SQLException e) {
+            ErrorAlert.getInstance().showAndWait(e);
+        }
     }
 
     public int getId() {
