@@ -150,8 +150,8 @@ insert into food values ('Hantien Jelly', 5)
 go
 
 insert into information values ('Dao Minh Trung Thuan', 1, '1999-09-18', 'Can Tho', '0939908568', 'DmtthuanA18088@cusc.ctu.edu.vn')
-insert into information values ('Ha Thi Hong Tham', 0, '2000-11-01', 'An Giang', '0918992934', 'Htham@cusc.ctu.edu.vn')
-insert into information values ('Tan Tan Lap', 1, '2000-01-01', 'Can Tho', '0xxxxxxxxx', 'TtlapA18081@cusc.ctu.edu.vn')
+insert into information values ('Ha Thi Hong Tham', 0, '2000-11-01', 'An Giang', '0981118447', 'Htham@cusc.ctu.edu.vn')
+insert into information values ('Tan Tan Lap', 1, '2000-09-19', 'Can Tho', '0373200876', 'TtlapA18081@cusc.ctu.edu.vn')
 insert into information values ('Tran Quoc Cuong', 1, '1995-01-01', 'Can Tho', '0xxxxxxxxx', 'TqcuongA18080@cusc.ctu.edu.vn')
 insert into information values ('Maria Anders', 0, '1988-01-21', 'Obere Str. 57', '0845625627', 'MariaAnders@gmail.com')
 insert into information values ('Ana Trujillo', 1, '1988-12-15', 'Avda. de la Constitucien 2222', '0955321544', 'AnaTrujillo@gmail.com')

@@ -2,6 +2,7 @@ package controller.employee;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Account;
@@ -26,13 +27,13 @@ public class Login extends controller.Login {
                 secondaryStage.setScene(new Scene(view.load()));
                 secondaryStage.setResizable(false);
                 secondaryStage.show();
+
+
+                //Change Scene viewEmployee on stageEmployee
+                Stage stageEmployee = (Stage) (((Node) event.getSource()).getScene().getWindow());
             } catch (IOException e) {
                 ErrorAlert.getInstance().showAndWait(e);
             }
         }
-
-//
-//        // Change Scene viewEmployee on stageEmployee
-//        //   Stage stageEmployee = (Stage) (((Node) event.getSource()).getScene().getWindow());
     }
 }
