@@ -1,5 +1,3 @@
-package main;
-
 import access.DataProvider;
 import controller.employee.Login;
 import javafx.application.Application;
