@@ -15,8 +15,9 @@ public class WarningAlert {
         return instance == null ? new WarningAlert() : instance;
     }
 
-    public void showAndWait(String message) {
-        alert.setContentText(message);
+    public void showAndWait(String header, String content) {
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.showAndWait();
     }
 }
