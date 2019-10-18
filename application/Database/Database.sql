@@ -23,15 +23,15 @@ create table Information ( id int identity primary key,
 )
 go
 
-create table Roll ( id int identity primary key,
+create table Roll ( id int identity(0,1) primary key,
 	name varchar(50) not null,	
 )
 go
 
-create table Account ( id int identity primary key,
+create table Account ( id int identity(0,1) primary key,
 	name varchar(50) not null,
 	password varchar(500) not null,
-	idInformation int not null references information(id),
+	idInformation int references information(id),
 	idRoll int not null references Roll(id)
 )
 go
@@ -82,6 +82,40 @@ create proc ProcedureLogin
 	@password varchar(500)
 as begin
 	select * from Account where name = @name and password = @password
+end
+go
+
+create proc ProcedureInsertInformation
+	@name varchar(50),
+	@gender bit,
+	@birthday date,
+	@address varchar(100),
+	@phone varchar(15),
+	@email varchar(50)
+as begin
+	insert into information values (@name, @gender, @birthday, @address, @phone, @email)	
+end
+go
+
+create proc ProcedureInsertAccount
+	@account varchar(50),
+	@password varchar(500),
+	@idInformation int,
+	@idRoll int
+as begin
+	insert into account values (@account, @password, @idInformation, @idRoll)	
+end
+go
+
+exec ProcedureInsertInformation 'Ha Thi Hong Tham', 0, '2000-11-01', 'An Giang', '0981118447', 'Htham@cusc.ctu.edu.vn'
+
+exec ProcedureInsertAccount 
+
+---------------------------------------------------------------------------------------
+create trigger TriggerInsertInformation 
+	on Information after insert
+as begin
+	select id from inserted
 end
 go
 
@@ -264,18 +298,19 @@ insert into information values ('Miguel Angel Paolino', 0, '2000-10-02', 'Avda. 
 insert into information values ('Anabela Domingues', 1, '1994-12-16', 'Av. Ines de Castro, 414', '0790191118', 'AnabelaDomingues@gmail.com')
 go
 
-insert into Account values ('dmtt1', '1', 1, 4)
-insert into Account values ('htht2', '1', 2, 4)
-insert into Account values ('ttl3', '1', 3, 3)
-insert into Account values ('tqc4', '1', 4, 3)
+insert into Account values ('guest','1',null,0)
+insert into Account values ('dmtt1', '1', 1, 3)
+insert into Account values ('htht2', '1', 2, 3)
+insert into Account values ('ttl3', '1', 3, 2)
+insert into Account values ('tqc4', '1', 4, 2)
 go
 
-insert into Account values ('Maria Anders', '1', 5, 2)
-insert into Account values ('Ana Trujillo', '1', 6, 2)
-insert into Account values ('Antonio Moreno', '1', 7, 2)
-insert into Account values ('Thomas Hardy', '1', 8, 2)
-insert into Account values ('Christina Berglund', '1', 9, 2)
-insert into Account values ('Hanna Moos', '1', 10, 2)
+insert into Account values ('Maria Anders', '1', 5, 1)
+insert into Account values ('Ana Trujillo', '1', 6, 1)
+insert into Account values ('Antonio Moreno', '1', 7, 1)
+insert into Account values ('Thomas Hardy', '1', 8, 1)
+insert into Account values ('Christina Berglund', '1', 9, 1)
+insert into Account values ('Hanna Moos', '1', 10, 1)
 go
 
 insert into Discount values ('MA0011',0.1)
