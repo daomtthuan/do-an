@@ -33,6 +33,8 @@ public final class Account {
         Account.instance = instance;
     }
 
+    
+
     /**
      * Checking Login.
      *
