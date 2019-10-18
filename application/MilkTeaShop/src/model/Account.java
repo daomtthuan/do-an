@@ -12,13 +12,15 @@ public class Account {
     private String name;
     private String password;
     private int idInformation;
+    private int idRoll;
 
     @Contract(pure = true)
-    public Account(int id, String name, String password, int idInformation) {
+    public Account(int id, String name, String password, int idInformation, int idRoll) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.idInformation = idInformation;
+        this.idRoll = idRoll;
     }
 
     public Account(@NotNull ResultSet data) {
@@ -27,6 +29,7 @@ public class Account {
             this.name = data.getString("name");
             this.password = data.getString("password");
             this.idInformation = data.getInt("idInformation");
+            this.idRoll = data.getInt("idRoll");
         } catch (SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
@@ -46,5 +49,9 @@ public class Account {
 
     public int getIdInformation() {
         return idInformation;
+    }
+
+    public int getIdRoll() {
+        return idRoll;
     }
 }

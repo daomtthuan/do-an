@@ -23,11 +23,16 @@ create table Information ( id int identity primary key,
 )
 go
 
+create table Roll ( id int identity primary key,
+	name varchar(50) not null,	
+)
+go
+
 create table Account ( id int identity primary key,
 	name varchar(50) not null,
 	password varchar(500) not null,
 	idInformation int not null references information(id),
-	roll int not null -- 0: guest | 1: customer | 2: employee | 3: manager
+	idRoll int not null references Roll(id)
 )
 go
 
@@ -80,11 +85,15 @@ as begin
 end
 go
 
-exec ProcedureLogin 'dmtt1' , '1'
-
 ---------------------------------------------------------------------------------------
 -- insert data
 use MilkTeaShop
+go
+
+insert into Roll values('Guest')
+insert into Roll values('Customer')
+insert into Roll values('Employee')
+insert into Roll values('Manager')
 go
 
 insert into category values('Milk Tea')
@@ -255,8 +264,8 @@ insert into information values ('Miguel Angel Paolino', 0, '2000-10-02', 'Avda. 
 insert into information values ('Anabela Domingues', 1, '1994-12-16', 'Av. Ines de Castro, 414', '0790191118', 'AnabelaDomingues@gmail.com')
 go
 
-insert into Account values ('dmtt1', '1', 1, 3)
-insert into Account values ('htht2', '1', 2, 3)
-insert into Account values ('ttl3', '1', 3, 2)
-insert into Account values ('tqc4', '1', 4, 2)
+insert into Account values ('dmtt1', '1', 1, 4)
+insert into Account values ('htht2', '1', 2, 4)
+insert into Account values ('ttl3', '1', 3, 3)
+insert into Account values ('tqc4', '1', 4, 3)
 go
