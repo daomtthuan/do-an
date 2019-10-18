@@ -7,12 +7,23 @@ import ui.ErrorAlert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * The type Table food.
+ */
 public class TableFood {
     private int id;
     private boolean status;
     private int x;
     private int y;
 
+    /**
+     * Instantiates a new Table food.
+     *
+     * @param id     the id
+     * @param status the status
+     * @param x      the x
+     * @param y      the y
+     */
     @Contract(pure = true)
     public TableFood(int id, boolean status, int x, int y) {
         this.id = id;
@@ -21,6 +32,11 @@ public class TableFood {
         this.y = y;
     }
 
+    /**
+     * Instantiates a new Table food.
+     *
+     * @param data the data
+     */
     public TableFood(@NotNull ResultSet data) {
         try {
             this.id = data.getInt("id");
@@ -32,18 +48,38 @@ public class TableFood {
         }
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Is status boolean.
+     *
+     * @return the boolean
+     */
     public boolean isStatus() {
         return status;
     }
 
+    /**
+     * Gets x.
+     *
+     * @return the x
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
     public int getY() {
         return y;
     }

@@ -17,24 +17,23 @@ import java.io.IOException;
 public final class Login extends controller.Login {
     @Override
     protected void login(ActionEvent event) {
-        // Check input account name and password
+        // Check validate input account name and password
         if (getName().matches("^\\w{2,50}$") && getPassword().matches("^\\w{1,50}$")) {
             Account account = access.Account.getInstance().login(getName(), getPassword());
             // If login success
             if (account != null) {
                 try {
-                    // Set primary stage for employee
+                    // Setup primary stage for employee
                     FXMLLoader primaryView = new FXMLLoader(this.getClass().getResource("/view/employee/Main.fxml"));
-                    PrimaryStage.getInstance().setScene(new Scene(primaryView.load()));
-                    PrimaryStage.getInstance().s
+                    PrimaryStage.getInstance().getStage().setScene(new Scene(primaryView.load()));
+                    PrimaryStage.getInstance().setAccount(account);
+                    // PrimaryStage.getInstance().s
 
-                    // Set secondary stage for customer
+                    // Setup secondary stage for customer and show it
                     FXMLLoader secondaryView = new FXMLLoader(this.getClass().getResource("/view/customer/Welcome.fxml"));
-                    SecondaryStage.getInstance().setScene(new Scene(secondaryView.load()));
-
-                    // Show Secondary stage
-                    //  Stage.getInstance().getSecondary().setFullScreen(true);
-                    SecondaryStage.getInstance().show();
+                    SecondaryStage.getInstance().getStage().setScene(new Scene(secondaryView.load()));
+                    SecondaryStage.getInstance().getStage().show();
+                    SecondaryStage.getInstance().setAccount(new Account());
                 } catch (IOException e) {
                     ErrorAlert.getInstance().showAndWait(e);
                 }

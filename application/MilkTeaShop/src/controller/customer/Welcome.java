@@ -23,8 +23,8 @@ public final class Welcome {
             // Set up view Register for customer on dialog Stage and show it
             FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/Information.fxml"));
             view.setController(new Register());
-            DialogStage.getInstance().setScene(new Scene(view.load()));
-            DialogStage.getInstance().show();
+            DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+            DialogStage.getInstance().getStage().show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public final class Welcome {
         try {
             // Set up view Order for customer on secondary Stage
             FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/customer/Order.fxml"));
-            SecondaryStage.getInstance().setScene(new Scene(view.load()));
+            SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
         } catch (IOException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }

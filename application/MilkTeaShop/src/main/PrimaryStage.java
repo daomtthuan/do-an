@@ -5,7 +5,7 @@ import model.Account;
 import org.jetbrains.annotations.Contract;
 
 /**
- * Primary stage.
+ * The type Primary stage.
  */
 public final class PrimaryStage {
     private static PrimaryStage instance;
@@ -17,28 +17,42 @@ public final class PrimaryStage {
     }
 
     /**
-     * Gets instance Primary Stage.
+     * Gets instance Primary stage.
      *
      * @return the instance
      */
-    @Contract(pure = true)
     public static PrimaryStage getInstance() {
+        if (instance == null) {
+            setInstance(new PrimaryStage());
+        }
         return instance;
     }
 
-    /**
-     * Sets instance Primary Stage.
-     *
-     * @param instance the instance
-     */
-    static void setInstance(PrimaryStage instance) {
+    private static void setInstance(PrimaryStage instance) {
         PrimaryStage.instance = instance;
-        PrimaryStage.instance.setTitle("Milk Tea Shop");
-        PrimaryStage.instance.setResizable(false);
     }
 
     /**
-     * Gets account login on Primary Stage.
+     * Gets stage.
+     *
+     * @return the stage
+     */
+    @Contract(pure = true)
+    public Stage getStage() {
+        return stage;
+    }
+
+    /**
+     * Sets stage.
+     *
+     * @param stage the stage
+     */
+    void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    /**
+     * Gets account.
      *
      * @return the account
      */
@@ -48,7 +62,7 @@ public final class PrimaryStage {
     }
 
     /**
-     * Sets account login on Primary Stage.
+     * Sets account.
      *
      * @param account the account
      */

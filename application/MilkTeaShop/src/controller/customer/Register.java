@@ -22,11 +22,11 @@ public class Register extends Information implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTitle("REGISTER");
-        SecondaryStage.getInstance().hide();
-        DialogStage.getInstance().setOnCloseRequest(windowEvent -> {
+        SecondaryStage.getInstance().getStage().hide();
+        DialogStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
-            DialogStage.getInstance().hide();
-            SecondaryStage.getInstance().show();
+            DialogStage.getInstance().getStage().hide();
+            SecondaryStage.getInstance().getStage().show();
         });
     }
 }
