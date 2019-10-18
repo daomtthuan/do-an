@@ -3,7 +3,8 @@ package controller.customer;
 import controller.Information;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import main.Stage;
+import main.DialogStage;
+import main.SecondaryStage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,11 +22,11 @@ public class Register extends Information implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTitle("REGISTER");
-        Stage.getInstance().getSecondary().hide();
-        Stage.getInstance().getDialog().setOnCloseRequest(windowEvent -> {
+        SecondaryStage.getInstance().hide();
+        DialogStage.getInstance().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
-            Stage.getInstance().getDialog().hide();
-            Stage.getInstance().getSecondary().show();
+            DialogStage.getInstance().hide();
+            SecondaryStage.getInstance().show();
         });
     }
 }

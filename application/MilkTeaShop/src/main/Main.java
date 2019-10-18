@@ -26,19 +26,19 @@ public final class Main extends javafx.application.Application {
     public void start(@NotNull javafx.stage.Stage stage) {
         try {
             // Setup primary Stage show view Login with controller Login for customer
-            Stage.getInstance().setPrimary(stage);
+            PrimaryStage.setInstance(stage);
             FXMLLoader primaryView = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
             primaryView.setController(new Login());
-            Stage.getInstance().getPrimary().setScene(new Scene(primaryView.load()));
+            PrimaryStage.getInstance().setScene(new Scene(primaryView.load()));
 
             // Platform exit and close database connection when primary Stage close
-            Stage.getInstance().getPrimary().setOnCloseRequest(windowEvent -> {
+            PrimaryStage.getInstance().setOnCloseRequest(windowEvent -> {
                 DataProvider.getInstance().close();
                 Platform.exit();
             });
 
             // Show primary Stage
-            Stage.getInstance().getPrimary().show();
+            PrimaryStage.getInstance().show();
         } catch (Exception e) {
             ErrorAlert.getInstance().showAndWait(e);
         }

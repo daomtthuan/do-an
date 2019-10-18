@@ -4,7 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import main.Stage;
+import main.DialogStage;
+import main.SecondaryStage;
 import ui.ErrorAlert;
 
 import java.io.IOException;
@@ -22,8 +23,8 @@ public final class Welcome {
             // Set up view Register for customer on dialog Stage and show it
             FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/Information.fxml"));
             view.setController(new Register());
-            Stage.getInstance().getDialog().setScene(new Scene(view.load()));
-            Stage.getInstance().getDialog().show();
+            DialogStage.getInstance().setScene(new Scene(view.load()));
+            DialogStage.getInstance().show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,7 +35,7 @@ public final class Welcome {
         try {
             // Set up view Order for customer on secondary Stage
             FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/customer/Order.fxml"));
-            Stage.getInstance().getSecondary().setScene(new Scene(view.load()));
+            SecondaryStage.getInstance().setScene(new Scene(view.load()));
         } catch (IOException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
