@@ -76,50 +76,6 @@ create table BillDetail( id int identity primary key,
 )
 go
 ---------------------------------------------------------------------------------------
--- create procedure
-create proc ProcedureLogin
-	@name varchar(50),
-	@password varchar(500)
-as begin
-	select * from Account where name = @name and password = @password
-end
-go
-
-create proc ProcedureInsertInformation
-	@name varchar(50),
-	@gender bit,
-	@birthday date,
-	@address varchar(100),
-	@phone varchar(15),
-	@email varchar(50)
-as begin
-	insert into information values (@name, @gender, @birthday, @address, @phone, @email)	
-end
-go
-
-create proc ProcedureInsertAccount
-	@account varchar(50),
-	@password varchar(500),
-	@idInformation int,
-	@idRoll int
-as begin
-	insert into account values (@account, @password, @idInformation, @idRoll)	
-end
-go
-
-exec ProcedureInsertInformation 'Ha Thi Hong Tham', 0, '2000-11-01', 'An Giang', '0981118447', 'Htham@cusc.ctu.edu.vn'
-
-exec ProcedureInsertAccount 
-
----------------------------------------------------------------------------------------
-create trigger TriggerInsertInformation 
-	on Information after insert
-as begin
-	select id from inserted
-end
-go
-
----------------------------------------------------------------------------------------
 -- insert data
 use MilkTeaShop
 go
@@ -298,6 +254,8 @@ insert into information values ('Miguel Angel Paolino', 0, '2000-10-02', 'Avda. 
 insert into information values ('Anabela Domingues', 1, '1994-12-16', 'Av. Ines de Castro, 414', '0790191118', 'AnabelaDomingues@gmail.com')
 go
 
+--ProcedureInsertAccount 'dmtt1', '1', 1, 3
+
 insert into Account values ('guest','1',null,0)
 insert into Account values ('dmtt1', '1', 1, 3)
 insert into Account values ('htht2', '1', 2, 3)
@@ -321,4 +279,82 @@ insert into Discount values ('MA0051',0.1)
 insert into Discount values ('MA0061',0.1)
 insert into Discount values ('MA0071',0.1)
 insert into Discount values ('MA0081',0.1)
+go
+
+
+---------------------------------------------------------------------------------------
+-- create procedure
+
+create proc ProcedureLogin
+	@name varchar(50),
+	@password varchar(500)
+as begin
+	select * from Account where name = @name and password = @password
+end
+go
+
+create proc ProcedureInsertInformation
+	@name varchar(50),
+	@gender bit,
+	@birthday date,
+	@address varchar(100),
+	@phone varchar(15),
+	@email varchar(50)
+as begin
+	insert into information values (@name, @gender, @birthday, @address, @phone, @email)	
+end
+go
+
+create proc ProcedureInsertAccount
+	@account varchar(50),
+	@password varchar(500),
+	@idInformation int,
+	@idRoll int
+as begin
+	insert into account values (@account, @password, @idInformation, @idRoll);
+	select result = 1;
+end
+go
+
+---------------------------------------------------------------------------------------
+-- create trigger
+create trigger TriggerInsertInformation 
+	on Information after insert
+as begin
+	select id from inserted
+end
+go
+---------------------------------------------------------------------------------------
+-- create view
+
+create view ViewCustomer as (
+select r.id as roll, a.name as account,
+		i.name,i.birthday,i.gender,
+		i.address,i.phone,i.email
+from Account as a
+	join Information as i on a.idInformation = i.id
+	join Roll as r on a.idRoll = r.id
+where r.id = 2
+)
+go
+
+create view ViewEmployee as(
+select r.id as roll, a.name as account,
+		i.name,i.birthday,i.gender,
+		i.address,i.phone,i.email
+from Account as a
+	join Information as i on a.idInformation = i.id
+	join Roll as r on a.idRoll = r.id
+where r.id = 3)
+go
+
+create view ViewManage as (
+select r.id as roll, a.name as account,
+		i.name,i.birthday,i.gender,
+		i.address,i.phone,i.email
+from Account as a
+	join Information as i on a.idInformation = i.id
+	join Roll as r on a.idRoll = r.id
+where r.id = 4
+)
 go

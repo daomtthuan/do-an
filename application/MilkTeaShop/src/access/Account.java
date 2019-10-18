@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import ui.ErrorAlert;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * The type Data Access Account.
@@ -33,7 +34,16 @@ public final class Account {
         Account.instance = instance;
     }
 
-    
+    public int insert(int id, String name, int idInformation, int idRoll)  {
+        try(ResultSet resultSet = DataProvider.getInstance().execute("result", new Object[]{id,name,idInformation,idRoll})){
+            assert resultSet != null;
+            return  resultSet.next() ? resultSet.getInt("result") : -1;
+        } catch (SQLException e) {
+            ErrorAlert.getInstance().showAndWait(e);
+            return -1;
+        }
+
+    }
 
     /**
      * Checking Login.
