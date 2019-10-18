@@ -84,10 +84,8 @@ as begin
 	select * from Account where name = @name and password = @password
 end
 go
-/*
-create proc ProcedureRegister
-	@account varchar(50),
-	@password varchar(500),
+
+create proc ProcedureInsertInformation
 	@name varchar(50),
 	@gender bit,
 	@birthday date,
@@ -95,11 +93,31 @@ create proc ProcedureRegister
 	@phone varchar(15),
 	@email varchar(50)
 as begin
-	insert into Account values(select id 
-	from (insert into information values ('Liu Wong', 1, '1992-12-13', '55 Grizzly Peak Rd.', '0849184161', 'LiuWong@gmail.com')))
+	insert into information values (@name, @gender, @birthday, @address, @phone, @email)	
 end
 go
-*/
+
+create proc ProcedureInsertAccount
+	@account varchar(50),
+	@password varchar(500),
+	@idInformation int,
+	@idRoll int
+as begin
+	insert into account values (@account, @password, @idInformation, @idRoll)	
+end
+go
+
+exec ProcedureInsertInformation 'Ha Thi Hong Tham', 0, '2000-11-01', 'An Giang', '0981118447', 'Htham@cusc.ctu.edu.vn'
+
+exec ProcedureInsertAccount 
+
+---------------------------------------------------------------------------------------
+create trigger TriggerInsertInformation 
+	on Information after insert
+as begin
+	select id from inserted
+end
+go
 
 ---------------------------------------------------------------------------------------
 -- insert data
