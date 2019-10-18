@@ -269,3 +269,21 @@ insert into Account values ('htht2', '1', 2, 4)
 insert into Account values ('ttl3', '1', 3, 3)
 insert into Account values ('tqc4', '1', 4, 3)
 go
+
+insert into Account values ('Maria Anders', '1', 5, 2)
+insert into Account values ('Ana Trujillo', '1', 6, 2)
+insert into Account values ('Antonio Moreno', '1', 7, 2)
+insert into Account values ('Thomas Hardy', '1', 8, 2)
+insert into Account values ('Christina Berglund', '1', 9, 2)
+insert into Account values ('Hanna Moos', '1', 10, 2)
+go
+
+insert into Discount values ('MA0011',0.1)
+insert into Discount values ('MA0021',0.1)
+insert into Discount values ('MA0031',0.1)
+insert into Discount values ('MA0041',0.1)
+insert into Discount values ('MA0051',0.1)
+insert into Discount values ('MA0061',0.1)
+insert into Discount values ('MA0071',0.1)
+insert into Discount values ('MA0081',0.1)
+go
