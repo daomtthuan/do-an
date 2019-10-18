@@ -1,4 +1,4 @@
 package controller.employee;
 
-public class Main {
+public final class Main {
 }

@@ -2,6 +2,7 @@ package access;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ui.ErrorAlert;
 
 import java.io.File;
@@ -9,7 +10,10 @@ import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
 
-public class DataProvider {
+/**
+ * The type Data provider.
+ */
+public final class DataProvider {
     private static DataProvider instance;
     private Connection connection;
 
@@ -24,11 +28,30 @@ public class DataProvider {
         }
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return {@link DataProvider} the instance
+     */
     @Contract(pure = true)
     public static DataProvider getInstance() {
-        return instance == null ? new DataProvider() : instance;
+        if (instance == null) {
+            setInstance(new DataProvider());
+        }
+        return instance;
     }
 
+    private static void setInstance(DataProvider instance) {
+        DataProvider.instance = instance;
+    }
+
+    /**
+     * Execute query.
+     *
+     * @param query the query
+     * @return {@link ResultSet} the result set
+     */
+    @Nullable
     ResultSet execute(String query) {
         try {
             Statement statement = connection.createStatement();
@@ -39,12 +62,21 @@ public class DataProvider {
         }
     }
 
+    /**
+     * Execute query with {@link Object}[ ] parameters.
+     *
+     * @param query      the query
+     * @param parameters the parameters
+     * @return {@link ResultSet} the result set
+     */
+    @Nullable
     ResultSet execute(@NotNull String query, @NotNull Object[] parameters) {
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setEscapeProcessing(true);
-            for (int i = 0; i < parameters.length; i++)
+            for (int i = 0; i < parameters.length; i++) {
                 statement.setObject(i + 1, parameters[i]);
+            }
             return statement.executeQuery();
         } catch (SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
@@ -52,6 +84,9 @@ public class DataProvider {
         }
     }
 
+    /**
+     * Close database connection.
+     */
     public void close() {
         try {
             connection.close();

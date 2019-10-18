@@ -2,61 +2,43 @@ package main;
 
 import access.DataProvider;
 import controller.employee.Login;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import ui.ErrorAlert;
 
-public class Main extends Application {
-    private static Stage primaryStage;
-    private static Stage secondaryStage;
+/**
+ * Main application.
+ */
+public final class Main extends javafx.application.Application {
 
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    private static void setPrimaryStage(Stage primaryStage) {
-        Main.primaryStage = primaryStage;
-    }
-
-    public static Stage getSecondaryStage() {
-        return secondaryStage;
-    }
-
-    public static void setSecondaryStage(Stage secondaryStage) {
-        Main.secondaryStage = secondaryStage;
-    }
-
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(@NotNull Stage stage) {
-        setPrimaryStage(stage);
+    public void start(@NotNull javafx.stage.Stage stage) {
         try {
-            // Load view and set controller
+            // Setup primary Stage show view Login with controller Login for customer
+            Stage.getInstance().setPrimary(stage);
             FXMLLoader primaryView = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
             primaryView.setController(new Login());
+            Stage.getInstance().getPrimary().setScene(new Scene(primaryView.load()));
 
-            // Set scene for primaryStage
-            primaryStage.setTitle("Milk Tea Shop");
-            primaryStage.setScene(new Scene(primaryView.load()));
-            primaryStage.setResizable(false);
-
-            // Set event OnCloseRequest for primaryStage
-            primaryStage.setOnCloseRequest(event -> {
-                try {
-                    DataProvider.getInstance().close();
-                } catch (Exception e) {
-                    ErrorAlert.getInstance().showAndWait(e);
-                }
+            // Platform exit and close database connection when primary Stage close
+            Stage.getInstance().getPrimary().setOnCloseRequest(windowEvent -> {
+                DataProvider.getInstance().close();
                 Platform.exit();
             });
-            primaryStage.show();
+
+            // Show primary Stage
+            Stage.getInstance().getPrimary().show();
         } catch (Exception e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
