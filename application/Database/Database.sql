@@ -316,6 +316,12 @@ as begin
 end
 go
 
+create proc ProcedureInsertCategory
+	@name varchar(50)
+as begin
+	insert into Category values (@name)
+end
+go
 ---------------------------------------------------------------------------------------
 -- create trigger
 create trigger TriggerInsertInformation 
