@@ -42,7 +42,6 @@ public final class Account {
             ErrorAlert.getInstance().showAndWait(e);
             return -1;
         }
-
     }
 
     /**
