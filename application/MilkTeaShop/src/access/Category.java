@@ -28,6 +28,6 @@ public final class Category {
     }
 
     public void insert(int id, String name){
-        ResultSet resultSet = DataProvider.getInstance().execute("exec ProcedureInsertCategory ?",new Object[]{id,name})
+        ResultSet resultSet = DataProvider.getInstance().execute("exec ProcedureInsertCategory ?",new Object[]{id,name});
     }
 }
