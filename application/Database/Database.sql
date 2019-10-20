@@ -354,4 +354,11 @@ as begin
 end
 go
 
-select * from ViewCustomer
+create proc InsertDiscount
+	@name varchar(50),
+	@sale float 
+as begin
+	insert into Discount values(@name, @sale)
+	select 1
+end
+go
