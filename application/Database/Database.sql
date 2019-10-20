@@ -353,3 +353,12 @@ as begin
 	insert into Category values (@name)
 end
 go
+
+create proc InsertDiscount
+	@name varchar(50),
+	@sale float 
+as begin
+	insert into Discount values(@name, @sale)
+	select 1
+end
+go
