@@ -2,13 +2,13 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import ui.ErrorAlert;
+import library.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * The type Category.
+ * The type AccessCategory.
  */
 public class Category {
 
@@ -16,7 +16,7 @@ public class Category {
     private String name;
 
     /**
-     * Instantiates a new Category.
+     * Instantiates a new AccessCategory.
      *
      * @param id   the id
      * @param name the name
@@ -28,7 +28,7 @@ public class Category {
     }
 
     /**
-     * Instantiates a new Category.
+     * Instantiates a new AccessCategory.
      *
      * @param data the data
      */

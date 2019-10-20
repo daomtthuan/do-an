@@ -2,13 +2,13 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import ui.ErrorAlert;
+import library.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * The type Account.
+ * The type AccessAccount.
  */
 public class Account {
     private int id;
@@ -17,7 +17,7 @@ public class Account {
     private int idRoll;
 
     /**
-     * Instantiates a new Account.
+     * Instantiates a new AccessAccount.
      *
      * @param id            the id
      * @param name          the name
@@ -33,7 +33,7 @@ public class Account {
     }
 
     /**
-     * Instantiates a new Account.
+     * Instantiates a new AccessAccount.
      *
      * @param data the data
      */

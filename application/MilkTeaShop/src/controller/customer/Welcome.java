@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import main.DialogStage;
 import main.SecondaryStage;
-import ui.ErrorAlert;
+import library.ErrorAlert;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public final class Welcome {
     private void login(ActionEvent event) {
         try {
             FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/Login.fxml"));
-            view.setController(new Login());
+            view.setController(new CustomerLogin());
             DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
             DialogStage.getInstance().getStage().show();
         } catch (IOException e) {
