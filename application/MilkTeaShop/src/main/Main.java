@@ -1,14 +1,14 @@
 package main;
 
 import access.DataProvider;
-import controller.employee.Login;
+import controller.Login;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
-import ui.ErrorAlert;
+import library.ErrorAlert;
 
 /**
  * Main application.

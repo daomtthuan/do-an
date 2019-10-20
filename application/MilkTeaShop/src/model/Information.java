@@ -2,7 +2,7 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import ui.ErrorAlert;
+import library.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ public class Information {
     private boolean gender;
     private String birthday;
     private String address;
-    private int phone;
+    private String phone;
     private String email;
 
     /**
@@ -31,7 +31,7 @@ public class Information {
      * @param email    the email
      */
     @Contract(pure = true)
-    public Information(int id, String name, boolean gender, String birthday, String address, int phone, String email) {
+    public Information(int id, String name, boolean gender, String birthday, String address, String phone, String email) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -53,7 +53,7 @@ public class Information {
             this.gender = data.getBoolean("gender");
             this.birthday = data.getString("birthday");
             this.address = data.getString("address");
-            this.phone = data.getInt("phone");
+            this.phone = data.getString("phone");
             this.email = data.getString("email");
         } catch (SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
@@ -110,7 +110,7 @@ public class Information {
      *
      * @return the phone
      */
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
