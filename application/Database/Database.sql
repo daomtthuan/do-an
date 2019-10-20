@@ -149,7 +149,7 @@ insert into food values ('Hantien Jelly', 5)
 go
 
 insert into information values ('Dao Minh Trung Thuan', 1, '1999-09-18', 'Can Tho', '0939908568', 'DmtthuanA18088@cusc.ctu.edu.vn')
-insert into information values ('Ha Thi Hong Tham', 0, '2000-11-01', 'An Giang', '0981118447', 'HthamA18124@cusc.ctu.edu.vn')
+insert into information values ('Ha Thi Hong Tham', 0, '2000-11-01', 'An Giang', '0981118447', 'Htham@cusc.ctu.edu.vn')
 insert into information values ('Tan Tan Lap', 1, '2000-09-19', 'Can Tho', '0373200876', 'TtlapA18081@cusc.ctu.edu.vn')
 insert into information values ('Tran Quoc Cuong', 1, '1995-01-01', 'Can Tho', '0xxxxxxxxx', 'TqcuongA18080@cusc.ctu.edu.vn')
 insert into information values ('Maria Anders', 0, '1988-01-21', 'Obere Str. 57', '0845625627', 'MariaAnders@gmail.com')
@@ -254,6 +254,8 @@ insert into information values ('Miguel Angel Paolino', 0, '2000-10-02', 'Avda. 
 insert into information values ('Anabela Domingues', 1, '1994-12-16', 'Av. Ines de Castro, 414', '0790191118', 'AnabelaDomingues@gmail.com')
 go
 
+--ProcedureInsertAccount 'dmtt1', '1', 1, 3
+
 insert into Account values ('guest','1',null,0)
 insert into Account values ('dmtt1', '1', 1, 3)
 insert into Account values ('htht2', '1', 2, 3)
@@ -261,12 +263,12 @@ insert into Account values ('ttl3', '1', 3, 2)
 insert into Account values ('tqc4', '1', 4, 2)
 go
 
-insert into Account values ('ma5', '1', 5, 1)
-insert into Account values ('at6', '1', 6, 1)
-insert into Account values ('am7', '1', 7, 1)
-insert into Account values ('th8', '1', 8, 1)
-insert into Account values ('cb9', '1', 9, 1)
-insert into Account values ('hm10', '1', 10, 1)
+insert into Account values ('Maria Anders', '1', 5, 1)
+insert into Account values ('Ana Trujillo', '1', 6, 1)
+insert into Account values ('Antonio Moreno', '1', 7, 1)
+insert into Account values ('Thomas Hardy', '1', 8, 1)
+insert into Account values ('Christina Berglund', '1', 9, 1)
+insert into Account values ('Hanna Moos', '1', 10, 1)
 go
 
 insert into Discount values ('MA0011',0.1)
@@ -279,67 +281,15 @@ insert into Discount values ('MA0071',0.1)
 insert into Discount values ('MA0081',0.1)
 go
 
----------------------------------------------------------------------------------------
--- create trigger
-create trigger TriggerInsertInformation 
-	on Information after insert
-as begin
-	select id from inserted
-end
-go
----------------------------------------------------------------------------------------
--- create view
 
-create view ViewCustomer as (
-	select r.name as roll, a.name as account,
-			i.name,i.birthday,i.gender,
-			i.address,i.phone,i.email
-	from Account as a
-		join Information as i on a.idInformation = i.id
-		join Roll as r on a.idRoll = r.id
-	where r.name = 'Customer'
-)
-go
-
-create view ViewEmployee as(
-	select r.name as roll, a.name as account,
-			i.name,i.birthday,i.gender,
-			i.address,i.phone,i.email
-	from Account as a
-		join Information as i on a.idInformation = i.id
-		join Roll as r on a.idRoll = r.id
-	where r.name = 'Employee'
-)
-go
-
-create view ViewManager as (
-	select r.name as roll, a.name as account,
-			i.name,i.birthday,i.gender,
-			i.address,i.phone,i.email
-	from Account as a
-		join Information as i on a.idInformation = i.id
-		join Roll as r on a.idRoll = r.id
-	where r.name = 'Manager'
-)
-go
 ---------------------------------------------------------------------------------------
 -- create procedure
 
-create proc ProcedureLoginAdmin
+create proc ProcedureLogin
 	@name varchar(50),
 	@password varchar(500)
 as begin
-	select * from Account	
-	where name = @name and password = @password and idRoll > 1
-end
-go
-
-create proc ProcedureLoginCustomer
-	@name varchar(50),
-	@password varchar(500)
-as begin
-	select * from Account	
-	where name = @name and password = @password and idRoll = 1
+	select * from Account where name = @name and password = @password
 end
 go
 
@@ -372,5 +322,45 @@ as begin
 	insert into Category values (@name)
 end
 go
+---------------------------------------------------------------------------------------
+-- create trigger
+create trigger TriggerInsertInformation 
+	on Information after insert
+as begin
+	select id from inserted
+end
+go
+---------------------------------------------------------------------------------------
+-- create view
 
-select * from information where id = 105
+create view ViewCustomer as (
+select r.id as roll, a.name as account,
+		i.name,i.birthday,i.gender,
+		i.address,i.phone,i.email
+from Account as a
+	join Information as i on a.idInformation = i.id
+	join Roll as r on a.idRoll = r.id
+where r.id = 2
+)
+go
+
+create view ViewEmployee as(
+select r.id as roll, a.name as account,
+		i.name,i.birthday,i.gender,
+		i.address,i.phone,i.email
+from Account as a
+	join Information as i on a.idInformation = i.id
+	join Roll as r on a.idRoll = r.id
+where r.id = 3)
+go
+
+create view ViewManage as (
+select r.id as roll, a.name as account,
+		i.name,i.birthday,i.gender,
+		i.address,i.phone,i.email
+from Account as a
+	join Information as i on a.idInformation = i.id
+	join Roll as r on a.idRoll = r.id
+where r.id = 4
+)
+go

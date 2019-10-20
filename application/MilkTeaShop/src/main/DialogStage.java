@@ -1,6 +1,5 @@
 package main;
 
-import javafx.scene.Cursor;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
 
@@ -50,14 +49,5 @@ public final class DialogStage {
      */
     public void setStage(Stage stage) {
         this.stage = stage;
-    }
-
-    /**
-     * Sets cursor.
-     *
-     * @param cursor the cursor
-     */
-    public void setCursor(Cursor cursor) {
-        this.stage.getScene().setCursor(cursor);
     }
 }
