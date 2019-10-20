@@ -2,7 +2,7 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import ui.ErrorAlert;
+import library.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

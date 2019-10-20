@@ -1,5 +1,6 @@
 package main;
 
+import javafx.scene.Cursor;
 import javafx.stage.Stage;
 import model.Account;
 import org.jetbrains.annotations.Contract;
@@ -68,5 +69,14 @@ public final class PrimaryStage {
      */
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    /**
+     * Sets cursor.
+     *
+     * @param cursor the cursor
+     */
+    public void setCursor(Cursor cursor) {
+        this.stage.getScene().setCursor(cursor);
     }
 }
