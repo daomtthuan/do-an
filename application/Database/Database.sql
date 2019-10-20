@@ -342,8 +342,8 @@ create proc InsertAccount
 as begin
 	insert into Information values (@name, @gender, @birthday, @address, @phone, @email)	
 	declare @idInformation int = scope_identity();
-	insert into Account values (@account, '1', @idInformation, @idRoll);
-	select name = @account, idInformation = @idInformation, idRoll = @idRoll;
+	insert into Account values (@account + cast(@idInformation as varchar), '1', @idInformation, @idRoll);
+	select id = scope_identity(), name = @account, idInformation = @idInformation, idRoll = @idRoll;
 end
 go
 

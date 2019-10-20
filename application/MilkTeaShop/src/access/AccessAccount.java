@@ -73,7 +73,7 @@ public final class AccessAccount {
     @Nullable
     public Account login(String who, String name, String password) {
         try {
-            ResultSet resultSet = DataProvider.getInstance().execute("exec AdminLogin" + who + " ? , ?", new Object[]{name, password});
+            ResultSet resultSet = DataProvider.getInstance().execute("exec Login" + who + " ? , ?", new Object[]{name, password});
             assert resultSet != null;
             return resultSet.next() ? new Account(resultSet) : null;
         } catch (SQLException e) {

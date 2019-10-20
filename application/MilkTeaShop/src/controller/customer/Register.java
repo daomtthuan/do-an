@@ -4,6 +4,7 @@ import access.AccessAccount;
 import controller.Information;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import library.Tool;
 import library.WarningAlert;
 import main.DialogStage;
 import main.SecondaryStage;
@@ -19,11 +20,12 @@ public final class Register extends Information implements Initializable {
     @Override
     protected void submit(ActionEvent event) {
         StringBuilder name = new StringBuilder();
-        for (String word : getName().split(" ")) {
-            name.append(word.charAt(0));
+        for (String s : Tool.fixString(getName()).split(" ")) {
+            name.append(s.charAt(0));
         }
         Account account = AccessAccount.getInstance().insert(
-                name.toString().toLowerCase(), getName(), getMale(), getBirthday(), getAddress(), getPhone(), getEmail(), 1);
+                name.toString().toLowerCase(), Tool.fixString(getName()), getMale(), getBirthday(),
+                Tool.fixString(getAddress()), getPhone(), getEmail(), 1);
         if (account != null) {
             SecondaryStage.getInstance().setAccount(account);
             DialogStage.getInstance().getStage().close();

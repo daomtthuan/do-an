@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 /**
  * The type Customer login.
  */
-public final class CustomerAdminLogin extends AdminLogin implements Initializable {
+public final class CustomerLogin extends AdminLogin implements Initializable {
     @Override
     protected void login(ActionEvent event) {
         // Check validate input account name and password
@@ -24,11 +24,12 @@ public final class CustomerAdminLogin extends AdminLogin implements Initializabl
             // If login success
             if (account != null) {
                 SecondaryStage.getInstance().setAccount(account);
+                DialogStage.getInstance().getStage().close();
             } else {
-                WarningAlert.getInstance().showAndWait("AdminLogin failed", "AccessAccount or password is incorrect");
+                WarningAlert.getInstance().showAndWait("Login failed", "Account or password is incorrect");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("AdminLogin failed", "Invalid account");
+            WarningAlert.getInstance().showAndWait("Login failed", "Invalid account");
         }
     }
 

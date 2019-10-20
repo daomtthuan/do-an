@@ -58,7 +58,6 @@ public class AdminLogin {
                     FXMLLoader primaryView = new FXMLLoader(this.getClass().getResource("/view/employee/Main.fxml"));
                     PrimaryStage.getInstance().getStage().setScene(new Scene(primaryView.load()));
                     PrimaryStage.getInstance().setAccount(account);
-                    // PrimaryStage.getInstance().s
 
                     // Setup secondary stage for customer and show it
                     FXMLLoader secondaryView = new FXMLLoader(this.getClass().getResource("/view/customer/Welcome.fxml"));
@@ -69,10 +68,10 @@ public class AdminLogin {
                     ErrorAlert.getInstance().showAndWait(e);
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("AdminLogin failed", "AccessAccount or password is incorrect");
+                WarningAlert.getInstance().showAndWait("Login failed", "Account or password is incorrect");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("AdminLogin failed", "Invalid account");
+            WarningAlert.getInstance().showAndWait("Login failed", "Invalid account");
         }
 
     }
