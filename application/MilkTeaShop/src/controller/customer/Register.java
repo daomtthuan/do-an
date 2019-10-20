@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 public final class Register extends Information implements Initializable {
     @Override
     protected void submit(ActionEvent event) {
-        DialogStage.getInstance().setCursor(Cursor.WAIT);
         StringBuilder name = new StringBuilder();
         for (String word : getName().split(" ")) {
             name.append(word.charAt(0));
@@ -32,7 +31,6 @@ public final class Register extends Information implements Initializable {
             WarningAlert.getInstance().showAndWait(
                     "Register failed", "Can not insert Customer's Information");
         }
-        DialogStage.getInstance().setCursor(Cursor.DEFAULT);
     }
 
     @Override

@@ -115,7 +115,6 @@ insert into food values ('Mochaccino', 1)
 insert into food values ('Black Forest', 1)
 insert into food values ('Double Dutch', 1)
 insert into food values ('Choco Oats', 1)
-
 insert into food values ('Green Apple', 2)
 insert into food values ('Wintermelon', 2)
 insert into food values ('Peach', 2)
@@ -124,11 +123,9 @@ insert into food values ('Lychee', 2)
 insert into food values ('Mango', 2)
 insert into food values ('Passionfruit', 2)
 insert into food values ('Peach Mango', 2)
-
 insert into food values ('Lychee', 3)
 insert into food values ('Strawberry', 3)
 insert into food values ('Mango', 3)
-
 insert into food values ('Chocolate', 4)
 insert into food values ('Coffee', 4)
 insert into food values ('Wintermelon', 4)
@@ -138,7 +135,6 @@ insert into food values ('Royal', 4)
 insert into food values ('Cookies & Cream', 4)
 insert into food values ('Mochaccino', 4)
 insert into food values ('Double Dutch', 4)
-
 insert into food values ('Tapioca Pearls', 5)
 insert into food values ('Nata De Coco', 5)
 insert into food values ('Egg Pudding', 5)
@@ -278,15 +274,6 @@ insert into Discount values ('MA0061',0.1)
 insert into Discount values ('MA0071',0.1)
 insert into Discount values ('MA0081',0.1)
 go
-
----------------------------------------------------------------------------------------
--- create trigger
-create trigger TriggerInsertInformation 
-	on Information after insert
-as begin
-	select id from inserted
-end
-go
 ---------------------------------------------------------------------------------------
 -- create view
 
@@ -325,7 +312,7 @@ go
 ---------------------------------------------------------------------------------------
 -- create procedure
 
-create proc ProcedureLoginAdmin
+create proc LoginAdmin
 	@name varchar(50),
 	@password varchar(500)
 as begin
@@ -334,7 +321,7 @@ as begin
 end
 go
 
-create proc ProcedureLoginCustomer
+create proc LoginCustomer
 	@name varchar(50),
 	@password varchar(500)
 as begin
@@ -343,34 +330,26 @@ as begin
 end
 go
 
-create proc ProcedureInsertInformation
+create proc InsertAccount
+	@account varchar(50),
 	@name varchar(50),
 	@gender bit,
 	@birthday date,
 	@address varchar(100),
 	@phone varchar(15),
-	@email varchar(50)
-as begin
-	insert into information values (@name, @gender, @birthday, @address, @phone, @email)	
-end
-go
-
-create proc ProcedureInsertAccount
-	@account varchar(50),
-	@password varchar(500),
-	@idInformation int,
+	@email varchar(50),
 	@idRoll int
 as begin
-	insert into account values (@account, @password, @idInformation, @idRoll);
-	select result = 1;
+	insert into Information values (@name, @gender, @birthday, @address, @phone, @email)	
+	declare @idInformation int = scope_identity();
+	insert into Account values (@account, '1', @idInformation, @idRoll);
+	select name = @account, idInformation = @idInformation, idRoll = @idRoll;
 end
 go
 
-create proc ProcedureInsertCategory
+create proc InsertCategory
 	@name varchar(50)
 as begin
 	insert into Category values (@name)
 end
 go
-
-select * from information where id = 105
