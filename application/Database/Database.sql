@@ -362,3 +362,5 @@ as begin
 	select 1
 end
 go
+
+select * from ViewCustomer
