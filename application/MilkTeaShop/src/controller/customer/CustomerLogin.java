@@ -3,12 +3,16 @@ package controller.customer;
 import access.AccessAccount;
 import controller.AdminLogin;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import library.ErrorAlert;
 import library.WarningAlert;
 import main.DialogStage;
 import main.SecondaryStage;
 import model.Account;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,7 +28,15 @@ public final class CustomerLogin extends AdminLogin implements Initializable {
             // If login success
             if (account != null) {
                 SecondaryStage.getInstance().setAccount(account);
-                DialogStage.getInstance().getStage().close();
+                try {
+                    // Set up view Order for customer on secondary Stage
+                    FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/customer/Order.fxml"));
+                    SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().hide();
+                    SecondaryStage.getInstance().getStage().show();
+                } catch (IOException e) {
+                    ErrorAlert.getInstance().showAndWait(e);
+                }
             } else {
                 WarningAlert.getInstance().showAndWait("Login failed", "Account or password is incorrect");
             }

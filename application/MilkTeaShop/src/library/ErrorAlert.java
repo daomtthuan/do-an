@@ -9,6 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+/**
+ * The type Error alert.
+ */
 public final class ErrorAlert {
     private static ErrorAlert instance;
 
@@ -29,10 +32,27 @@ public final class ErrorAlert {
         alert.getDialogPane().setContent(dialogPaneContent);
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ErrorAlert getInstance() {
-        return instance == null ? new ErrorAlert() : instance;
+        if (instance == null) {
+            setInstance(new ErrorAlert());
+        }
+        return instance;
     }
 
+    private static void setInstance(ErrorAlert instance) {
+        ErrorAlert.instance = instance;
+    }
+
+    /**
+     * Show and wait.
+     *
+     * @param e the e
+     */
     public void showAndWait(@NotNull Exception e) {
         e.printStackTrace(printWriter);
         textArea.setText(stringWriter.toString());

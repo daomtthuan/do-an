@@ -16,6 +16,6 @@ public final class Discount {
     @FXML
     private void submit(ActionEvent event){
         StringBuilder name = new StringBuilder();
-        for()
+      //  for()
     }
 }
