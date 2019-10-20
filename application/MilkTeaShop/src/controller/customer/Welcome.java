@@ -16,7 +16,7 @@ public final class Welcome {
     private void login(ActionEvent event) {
         try {
             FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/Login.fxml"));
-            view.setController(new CustomerLogin());
+            view.setController(new CustomerAdminLogin());
             DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
             DialogStage.getInstance().getStage().show();
         } catch (IOException e) {

@@ -4,10 +4,10 @@ import access.AccessAccount;
 import controller.Information;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
+import library.WarningAlert;
 import main.DialogStage;
 import main.SecondaryStage;
-import library.WarningAlert;
+import model.Account;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +22,7 @@ public final class Register extends Information implements Initializable {
         for (String word : getName().split(" ")) {
             name.append(word.charAt(0));
         }
-        model.Account account = AccessAccount.getInstance().insert(
+        Account account = AccessAccount.getInstance().insert(
                 name.toString().toLowerCase(), getName(), getMale(), getBirthday(), getAddress(), getPhone(), getEmail(), 1);
         if (account != null) {
             SecondaryStage.getInstance().setAccount(account);

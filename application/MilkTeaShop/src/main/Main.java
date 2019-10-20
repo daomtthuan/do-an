@@ -1,7 +1,7 @@
 package main;
 
 import access.DataProvider;
-import controller.Login;
+import controller.AdminLogin;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -30,10 +30,10 @@ public final class Main extends Application {
             stage.setTitle("Milk Tea Shop");
             stage.setResizable(false);
 
-            // Setup primary Stage show view Login with controller Login for customer
+            // Setup primary Stage show view AdminLogin with controller AdminLogin for customer
             PrimaryStage.getInstance().setStage(stage);
             FXMLLoader primaryView = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
-            primaryView.setController(new Login());
+            primaryView.setController(new AdminLogin());
             PrimaryStage.getInstance().getStage().setScene(new Scene(primaryView.load()));
 
             // Platform exit and close database connection when primary Stage close

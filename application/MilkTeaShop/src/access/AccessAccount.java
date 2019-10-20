@@ -52,9 +52,8 @@ public final class AccessAccount {
     public Account insert(
             String account, String name, boolean gender, String birthday,
             String address, String phone, String email, int idRoll) {
-        try (ResultSet resultSet = DataProvider.getInstance().execute(
-                "exec InsertAccount ? , ? , ? , ? , ? , ? , ? , ?",
-                new Object[]{account, name, gender, birthday, address, phone, email, idRoll})) {
+        try {
+            ResultSet resultSet = DataProvider.getInstance().execute("exec InsertAccount ? , ? , ? , ? , ? , ? , ? , ?", new Object[]{account, name, gender, birthday, address, phone, email, idRoll});
             assert resultSet != null;
             return resultSet.next() ? new Account(resultSet) : null;
         } catch (SQLException e) {
@@ -64,7 +63,7 @@ public final class AccessAccount {
     }
 
     /**
-     * Checking Login.
+     * Checking AdminLogin.
      *
      * @param who      the who login
      * @param name     the account name
@@ -74,7 +73,7 @@ public final class AccessAccount {
     @Nullable
     public Account login(String who, String name, String password) {
         try {
-            ResultSet resultSet = DataProvider.getInstance().execute("exec Login" + who + " ? , ?", new Object[]{name, password});
+            ResultSet resultSet = DataProvider.getInstance().execute("exec AdminLogin" + who + " ? , ?", new Object[]{name, password});
             assert resultSet != null;
             return resultSet.next() ? new Account(resultSet) : null;
         } catch (SQLException e) {

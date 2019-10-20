@@ -4,20 +4,20 @@ import access.AccessAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import main.PrimaryStage;
-import main.SecondaryStage;
 import library.ErrorAlert;
 import library.WarningAlert;
+import main.PrimaryStage;
+import main.SecondaryStage;
+import model.Account;
 
 import java.io.IOException;
 
 /**
- * Abstract controller for view Login.
+ * Abstract controller for view AdminLogin.
  */
-public class Login {
+public class AdminLogin {
     @FXML
     private TextField name;
     @FXML
@@ -42,7 +42,7 @@ public class Login {
     }
 
     /**
-     * Login. Event click button Login
+     * AdminLogin. Event click button AdminLogin
      *
      * @param event the event
      */
@@ -50,9 +50,7 @@ public class Login {
     protected void login(ActionEvent event) {
         // Check validate input account name and password
         if (getName().matches("^\\w{2,50}$") && getPassword().matches("^\\w{1,50}$")) {
-            PrimaryStage.getInstance().setCursor(Cursor.WAIT);
-            model.Account account = AccessAccount.getInstance().login("Admin", getName(), getPassword());
-            PrimaryStage.getInstance().setCursor(Cursor.DEFAULT);
+            Account account = AccessAccount.getInstance().login("Admin", getName(), getPassword());
             // If login success
             if (account != null) {
                 try {
@@ -66,15 +64,15 @@ public class Login {
                     FXMLLoader secondaryView = new FXMLLoader(this.getClass().getResource("/view/customer/Welcome.fxml"));
                     SecondaryStage.getInstance().getStage().setScene(new Scene(secondaryView.load()));
                     SecondaryStage.getInstance().getStage().show();
-                    SecondaryStage.getInstance().setAccount(new model.Account());
+                    SecondaryStage.getInstance().setAccount(new Account());
                 } catch (IOException e) {
                     ErrorAlert.getInstance().showAndWait(e);
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Login failed", "AccessAccount or password is incorrect");
+                WarningAlert.getInstance().showAndWait("AdminLogin failed", "AccessAccount or password is incorrect");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("Login failed", "Invalid account");
+            WarningAlert.getInstance().showAndWait("AdminLogin failed", "Invalid account");
         }
 
     }

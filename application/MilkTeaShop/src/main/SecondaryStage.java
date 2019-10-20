@@ -72,13 +72,4 @@ public final class SecondaryStage {
     public void setAccount(Account account) {
         this.account = account;
     }
-
-    /**
-     * Sets cursor.
-     *
-     * @param cursor the cursor
-     */
-    public void setCursor(Cursor cursor) {
-        this.stage.getScene().setCursor(cursor);
-    }
 }
