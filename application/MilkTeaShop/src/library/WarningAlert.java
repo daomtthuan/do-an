@@ -2,7 +2,7 @@ package library;
 
 import javafx.scene.control.Alert;
 
-public class WarningAlert {
+public final class WarningAlert {
     private static WarningAlert instance;
     private Alert alert;
 
