@@ -19,20 +19,25 @@ import java.util.ResourceBundle;
 public final class Register extends Information implements Initializable {
     @Override
     protected void submit(ActionEvent event) {
-        StringBuilder name = new StringBuilder();
-        for (String s : Tool.fixString(getName()).split(" ")) {
-            name.append(s.charAt(0));
-        }
-        Account account = AccessAccount.getInstance().insert(
-                name.toString().toLowerCase(), Tool.fixString(getName()), getMale(), getBirthday(),
-                Tool.fixString(getAddress()), getPhone(), getEmail(), 1);
-        if (account != null) {
-            SecondaryStage.getInstance().setAccount(account);
-            DialogStage.getInstance().getStage().close();
-        } else {
-            WarningAlert.getInstance().showAndWait(
-                    "Register failed", "Can not insert Customer's Information");
-        }
+
+
+//        StringBuilder name = new StringBuilder();
+//        for (String s : Tool.fixString(getName()).split(" ")) {
+//            name.append(s.charAt(0));
+//        }
+// System.out.println(name.toString().toLowerCase());
+        System.out.println(Tool.fixString(getName()));
+//
+//        Account account = AccessAccount.getInstance().insert(
+//                name.toString().toLowerCase(), Tool.fixString(getName()), getMale(), getBirthday(),
+//                Tool.fixString(getAddress()), getPhone(), getEmail(), 1);
+//        if (account != null) {
+//            SecondaryStage.getInstance().setAccount(account);
+//            DialogStage.getInstance().getStage().close();
+//        } else {
+//            WarningAlert.getInstance().showAndWait(
+//                    "Register failed", "Can not insert Customer's Information");
+//        }
     }
 
     @Override

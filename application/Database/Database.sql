@@ -353,3 +353,5 @@ as begin
 	insert into Category values (@name)
 end
 go
+
+select * from ViewCustomer
