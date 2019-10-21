@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Abstract controller for view Information.
+ * The type Information.
  */
 public abstract class Information {
     @FXML
@@ -39,7 +39,7 @@ public abstract class Information {
     private TextField email;
 
     /**
-     * Submit. Event click button Submit
+     * Submit.
      *
      * @param event the event
      */

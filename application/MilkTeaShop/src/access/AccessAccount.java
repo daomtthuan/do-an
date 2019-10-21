@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * The type Data Access AccessAccount.
+ * The type Access account.
  */
 public final class AccessAccount {
     private static AccessAccount instance;
@@ -21,7 +21,7 @@ public final class AccessAccount {
     /**
      * Gets instance.
      *
-     * @return {@link AccessAccount} the instance
+     * @return the instance
      */
     @Contract(pure = true)
     public static AccessAccount getInstance() {
@@ -36,7 +36,7 @@ public final class AccessAccount {
     }
 
     /**
-     * Insert int.
+     * Insert account.
      *
      * @param account  the account
      * @param name     the name
@@ -46,7 +46,7 @@ public final class AccessAccount {
      * @param phone    the phone
      * @param email    the email
      * @param idRoll   the id roll
-     * @return the int
+     * @return the account
      */
     @Nullable
     public Account insert(
@@ -63,12 +63,12 @@ public final class AccessAccount {
     }
 
     /**
-     * Checking AdminLogin.
+     * Login account.
      *
-     * @param who      the who login
-     * @param name     the account name
+     * @param who      the who
+     * @param name     the name
      * @param password the password
-     * @return {@link Account} if success, otherwise null.
+     * @return the account
      */
     @Nullable
     public Account login(String who, String name, String password) {

@@ -1,7 +1,7 @@
 package controller.customer;
 
 import access.AccessAccount;
-import controller.AdminLogin;
+import controller.ControllerAdminLogin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,9 +17,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * The type Customer login.
+ * The type Controller customer login.
  */
-public final class CustomerLogin extends AdminLogin implements Initializable {
+public final class ControllerCustomerLogin extends ControllerAdminLogin implements Initializable {
     @Override
     protected void login(ActionEvent event) {
         // Check validate input account name and password
@@ -29,8 +29,8 @@ public final class CustomerLogin extends AdminLogin implements Initializable {
             if (account != null) {
                 SecondaryStage.getInstance().setAccount(account);
                 try {
-                    // Set up view Order for customer on secondary Stage
-                    FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/customer/Order.fxml"));
+                    // Set up view ControllerOrder for customer on secondary Stage
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
                     SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                     DialogStage.getInstance().getStage().hide();
                     SecondaryStage.getInstance().getStage().show();

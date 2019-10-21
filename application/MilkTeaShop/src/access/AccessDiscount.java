@@ -34,6 +34,13 @@ public final class AccessDiscount {
         AccessDiscount.instance = instance;
     }
 
+    /**
+     * Insert discount.
+     *
+     * @param name the name
+     * @param sale the sale
+     * @return the discount
+     */
     @Nullable
     public Discount insert(String name, double sale) {
         try (ResultSet resultSet = DataProvider.getInstance().execute("exec InsertDiscount ?,?", new Object[]{name, sale})) {

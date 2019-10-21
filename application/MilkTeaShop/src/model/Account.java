@@ -2,7 +2,6 @@ package model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import library.ErrorAlert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,46 +11,37 @@ import java.sql.SQLException;
  */
 public class Account {
     private int id;
+    private String account;
+    private String password;
+    private int roll;
     private String name;
-    private int idInformation;
-    private int idRoll;
+    private boolean gender;
+    private String birthday;
+    private String address;
+    private String phone;
+    private String email;
 
     /**
-     * Instantiates a new AccessAccount.
+     * Instantiates a new Account.
      *
-     * @param id            the id
-     * @param name          the name
-     * @param idInformation the id information
-     * @param idRoll        the id roll
+     * @param resultSet the result set
      */
     @Contract(pure = true)
-    public Account(int id, String name, int idInformation, int idRoll) {
-        this.id = id;
-        this.name = name;
-        this.idInformation = idInformation;
-        this.idRoll = idRoll;
-    }
-
-    /**
-     * Instantiates a new AccessAccount.
-     *
-     * @param data the data
-     */
-    public Account(@NotNull ResultSet data) {
+    public Account(@NotNull ResultSet resultSet) {
         try {
-            this.id = data.getInt("id");
-            this.name = data.getString("name");
-            this.idInformation = data.getInt("idInformation");
-            this.idRoll = data.getInt("idRoll");
+            id = resultSet.getInt("id");
+            account = resultSet.getString("account");
+            password = resultSet.getString("password");
+            roll = resultSet.getInt("roll");
+            name = resultSet.getString("name");
+            gender = resultSet.getBoolean("gender");
+            birthday = resultSet.getString("birthday");
+            address = resultSet.getString("address");
+            phone = resultSet.getString("phone");
+            email = resultSet.getString("email");
         } catch (SQLException e) {
-            ErrorAlert.getInstance().showAndWait(e);
+            e.printStackTrace();
         }
-    }
-
-    public Account() {
-        this.idRoll = 0;
-        this.name = "guest";
-        idRoll = 0;
     }
 
     /**
@@ -64,6 +54,33 @@ public class Account {
     }
 
     /**
+     * Gets account.
+     *
+     * @return the account
+     */
+    public String getAccount() {
+        return account;
+    }
+
+    /**
+     * Gets password.
+     *
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Gets roll.
+     *
+     * @return the roll
+     */
+    public int getRoll() {
+        return roll;
+    }
+
+    /**
      * Gets name.
      *
      * @return the name
@@ -73,20 +90,47 @@ public class Account {
     }
 
     /**
-     * Gets id information.
+     * Is gender boolean.
      *
-     * @return the id information
+     * @return the boolean
      */
-    public int getIdInformation() {
-        return idInformation;
+    public boolean isGender() {
+        return gender;
     }
 
     /**
-     * Gets id roll.
+     * Gets birthday.
      *
-     * @return the id roll
+     * @return the birthday
      */
-    public int getIdRoll() {
-        return idRoll;
+    public String getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * Gets address.
+     *
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Gets phone.
+     *
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * Gets email.
+     *
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
     }
 }

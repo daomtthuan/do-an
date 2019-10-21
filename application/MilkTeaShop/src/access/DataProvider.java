@@ -31,7 +31,7 @@ public final class DataProvider {
     /**
      * Gets instance.
      *
-     * @return {@link DataProvider} the instance
+     * @return the instance
      */
     @Contract(pure = true)
     public static DataProvider getInstance() {
@@ -46,10 +46,10 @@ public final class DataProvider {
     }
 
     /**
-     * Execute query.
+     * Execute result set.
      *
      * @param query the query
-     * @return {@link ResultSet} the result set
+     * @return the result set
      */
     @Nullable
     ResultSet execute(String query) {
@@ -63,11 +63,11 @@ public final class DataProvider {
     }
 
     /**
-     * Execute query with {@link Object}[ ] parameters.
+     * Execute result set.
      *
      * @param query      the query
      * @param parameters the parameters
-     * @return {@link ResultSet} the result set
+     * @return the result set
      */
     @Nullable
     ResultSet execute(@NotNull String query, @NotNull Object[] parameters) {
@@ -85,7 +85,7 @@ public final class DataProvider {
     }
 
     /**
-     * Close database connection.
+     * Close.
      */
     public void close() {
         try {
