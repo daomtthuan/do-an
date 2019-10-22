@@ -80,8 +80,11 @@
                                 <font>
                                     <Font size="14.0" />
                                 </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gender" />
+                           </toggleGroup>
                             </RadioButton>
-                            <RadioButton fx:id="female" contentDisplay="CENTER" mnemonicParsing="false" text="Female" textOverrun="CENTER_ELLIPSIS">
+                            <RadioButton fx:id="female" contentDisplay="CENTER" mnemonicParsing="false" text="Female" textOverrun="CENTER_ELLIPSIS" toggleGroup="$gender">
                                 <font>
                                     <Font size="14.0" />
                                 </font>
@@ -106,7 +109,7 @@
                      </TextField>
                  </children>
               </GridPane>
-              <Button defaultButton="true" mnemonicParsing="false" onAction="#submit" text="Submit">
+              <Button fx:id="button" defaultButton="true" mnemonicParsing="false" text="Submit">
                   <font>
                       <Font size="14.0" />
                   </font>

@@ -90,12 +90,21 @@ public class Account {
     }
 
     /**
-     * Is gender boolean.
+     * Is male boolean.
      *
      * @return the boolean
      */
-    public boolean isGender() {
+    public boolean isMale() {
         return gender;
+    }
+
+    /**
+     * Is fem male boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isFemMale() {
+        return !gender;
     }
 
     /**

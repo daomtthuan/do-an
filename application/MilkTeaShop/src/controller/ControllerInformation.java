@@ -1,48 +1,57 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import main.DialogStage;
+import model.Account;
 
+import java.net.URL;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
 /**
- * The type Information.
+ * The type Controller information.
  */
-public abstract class Information {
+public class ControllerInformation implements Initializable {
+    private Account account;
+    @FXML
+    private Button button;
     @FXML
     private Label title;
-
     @FXML
     private TextField name;
-
     @FXML
     private RadioButton male;
-
     @FXML
     private RadioButton female;
-
     @FXML
     private DatePicker birthday;
-
     @FXML
     private TextField address;
-
     @FXML
     private TextField phone;
-
     @FXML
     private TextField email;
 
+    /**
+     * Sets account.
+     *
+     * @param account the account
+     */
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     /**
-     * Submit.
+     * Gets button.
+     *
+     * @return the button
      */
-    @FXML
-    protected abstract void submit();
+    protected Button getButton() {
+        return button;
+    }
 
     /**
      * Sets title.
@@ -114,5 +123,24 @@ public abstract class Information {
      */
     protected String getEmail() {
         return email.getText();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setTitle("ACCOUNT INFORMATION");
+
+        name.setText(account.getName());
+        male.setSelected(account.isMale());
+        female.setSelected(account.isFemMale());
+        String[] elements = account.getBirthday().split("-");
+        birthday.setValue(LocalDate.of(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]), Integer.parseInt(elements[2])));
+        address.setText(account.getAddress());
+        phone.setText(account.getPhone());
+        email.setText(account.getEmail());
+
+        button.setText("Edit Information");
+        button.setOnAction(event -> {
+
+        });
     }
 }

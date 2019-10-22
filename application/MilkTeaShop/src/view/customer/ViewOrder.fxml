@@ -25,7 +25,7 @@
                              <Font size="14.0" />
                          </font>
                      </Button>
-                     <Button fx:id="information" alignment="CENTER" mnemonicParsing="false" onAction="#register" prefHeight="70.0" prefWidth="200.0" textAlignment="CENTER">
+                     <Button fx:id="information" alignment="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" textAlignment="CENTER">
                          <font>
                              <Font size="14.0" />
                          </font>
