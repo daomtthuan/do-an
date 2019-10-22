@@ -1,10 +1,12 @@
 package controller.manager;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 
+/**
+ * The type Discount.
+ */
 public final class Discount {
 
     @FXML
@@ -14,8 +16,8 @@ public final class Discount {
     private TextField sale;
 
     @FXML
-    private void submit(ActionEvent event){
+    private void submit() {
         StringBuilder name = new StringBuilder();
-      //  for()
+        //  for()
     }
 }

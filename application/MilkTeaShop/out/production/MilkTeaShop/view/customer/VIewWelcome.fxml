@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ControllerWelcome">
-   <children>
-       <Label alignment="CENTER" layoutX="1.0" layoutY="101.0" prefHeight="51.0" prefWidth="952.0" text="WELCOME TO" AnchorPane.bottomAnchor="409.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
-           <font>
-               <Font size="36.0" />
-           </font>
-       </Label>
-       <Label alignment="CENTER" layoutX="1.0" layoutY="127.0" text="MILK TEA SHOP" textFill="#2e6681" AnchorPane.bottomAnchor="293.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="127.0">
-           <font>
-               <Font name="System Bold" size="96.0" />
-           </font>
-       </Label>
-       <VBox alignment="CENTER" layoutX="230.0" layoutY="281.0" prefHeight="200.0" prefWidth="493.0" spacing="10.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="229.0" AnchorPane.topAnchor="281.0">
-          <children>
-              <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#controllerOrder" prefWidth="200.0" text="Order Food">
-                  <font>
-                      <Font size="24.0" />
-                  </font>
-              </Button>
-              <Button mnemonicParsing="false" onAction="#login" prefWidth="200.0" text="Login">
-                  <font>
-                      <Font size="24.0" />
-                  </font>
-              </Button>
-              <Button mnemonicParsing="false" onAction="#register" prefWidth="200.0" text="Register">
-                  <font>
-                      <Font size="24.0" />
-                  </font>
-              </Button>
-          </children>
-       </VBox>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="561.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="controller.customer.ControllerWelcome">
+    <Label alignment="CENTER" layoutX="1.0" layoutY="101.0" prefHeight="51.0" prefWidth="952.0" text="WELCOME TO"
+           AnchorPane.bottomAnchor="409.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+           AnchorPane.topAnchor="101.0">
+        <font>
+            <Font size="36.0"/>
+        </font>
+    </Label>
+    <Label alignment="CENTER" layoutX="1.0" layoutY="127.0" text="MILK TEA SHOP" textFill="#2e6681"
+           AnchorPane.bottomAnchor="293.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+           AnchorPane.topAnchor="127.0">
+        <font>
+            <Font name="System Bold" size="96.0"/>
+        </font>
+    </Label>
+    <VBox alignment="CENTER" layoutX="230.0" layoutY="281.0" prefHeight="200.0" prefWidth="493.0" spacing="10.0"
+          AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="229.0"
+          AnchorPane.topAnchor="281.0">
+        <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#order"
+                prefWidth="200.0" text="Order Food">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#login" prefWidth="200.0" text="Login">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Button>
+        <Button mnemonicParsing="false" onAction="#register" prefWidth="200.0" text="Register">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Button>
+    </VBox>
 </AnchorPane>

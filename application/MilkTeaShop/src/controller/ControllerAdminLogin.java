@@ -43,11 +43,9 @@ public class ControllerAdminLogin {
 
     /**
      * Login.
-     *
-     * @param event the event
      */
     @FXML
-    protected void login(ActionEvent event) {
+    protected void login() {
         // Check validate input account name and password
         if (getName().matches("^\\w{2,50}$") && getPassword().matches("^\\w{1,50}$")) {
             Account account = AccessAccount.getInstance().login("Admin", getName(), getPassword());
@@ -63,7 +61,7 @@ public class ControllerAdminLogin {
                     FXMLLoader secondaryView = new FXMLLoader(getClass().getResource("/view/customer/ViewWelcome.fxml"));
                     SecondaryStage.getInstance().getStage().setScene(new Scene(secondaryView.load()));
                     SecondaryStage.getInstance().getStage().show();
-                 //   SecondaryStage.getInstance().setAccount(null);
+                    SecondaryStage.getInstance().setAccount(null);
                 } catch (IOException e) {
                     ErrorAlert.getInstance().showAndWait(e);
                 }

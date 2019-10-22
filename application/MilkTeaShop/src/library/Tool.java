@@ -12,6 +12,7 @@ public final class Tool {
      * @param string the string
      * @return the string
      */
+    @NotNull
     public static String fixString(@NotNull String string) {
         StringBuilder result = new StringBuilder();
         for (String s : string.trim().replaceAll(" +", " ").split(" ")) {

@@ -1,12 +1,11 @@
 package controller.customer;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import library.ErrorAlert;
 import main.DialogStage;
 import main.SecondaryStage;
-import library.ErrorAlert;
 
 import java.io.IOException;
 
@@ -16,7 +15,7 @@ import java.io.IOException;
 public final class ControllerWelcome {
 
     @FXML
-    private void login(ActionEvent event) {
+    private void login() {
         try {
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
             view.setController(new ControllerCustomerLogin());
@@ -28,7 +27,7 @@ public final class ControllerWelcome {
     }
 
     @FXML
-    private void register(ActionEvent event) {
+    private void register() {
         try {
             // Set up view Register for customer on dialog Stage and show it
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
@@ -41,12 +40,10 @@ public final class ControllerWelcome {
     }
 
     @FXML
-    private void order(ActionEvent event) {
+    private void order() {
         try {
             // Set up view ControllerOrder for customer on secondary Stage
-            ControllerOrder controllerOrder = new ControllerOrder();
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
-            view.setController(controllerOrder);
             SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
         } catch (IOException e) {
             ErrorAlert.getInstance().showAndWait(e);

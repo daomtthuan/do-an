@@ -2,7 +2,6 @@ package controller.customer;
 
 import access.AccessAccount;
 import controller.ControllerAdminLogin;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -21,7 +20,7 @@ import java.util.ResourceBundle;
  */
 public final class ControllerCustomerLogin extends ControllerAdminLogin implements Initializable {
     @Override
-    protected void login(ActionEvent event) {
+    protected void login() {
         // Check validate input account name and password
         if (getName().matches("^\\w{2,50}$") && getPassword().matches("^\\w{1,50}$")) {
             Account account = AccessAccount.getInstance().login("Customer", getName(), getPassword());

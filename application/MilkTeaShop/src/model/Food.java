@@ -1,8 +1,7 @@
 package model;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import library.ErrorAlert;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,30 +18,14 @@ public class Food {
     /**
      * Instantiates a new Food.
      *
-     * @param id         the id
-     * @param name       the name
-     * @param idCategory the id category
-     * @param status     the status
-     */
-    @Contract(pure = true)
-    public Food(int id, String name, int idCategory, boolean status) {
-        this.id = id;
-        this.name = name;
-        this.idCategory = idCategory;
-        this.status = status;
-    }
-
-    /**
-     * Instantiates a new Food.
-     *
      * @param data the data
      */
     public Food(@NotNull ResultSet data) {
         try {
-            this.id = data.getInt("id");
-            this.name = data.getString("name");
-            this.idCategory = data.getInt("idCategory");
-            this.status = data.getBoolean("status");
+            id = data.getInt("id");
+            name = data.getString("name");
+            idCategory = data.getInt("idCategory");
+            status = data.getBoolean("status");
         } catch (SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }

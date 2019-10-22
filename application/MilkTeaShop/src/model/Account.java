@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * The type AccessAccount.
+ * The type Account.
  */
 public class Account {
     private int id;

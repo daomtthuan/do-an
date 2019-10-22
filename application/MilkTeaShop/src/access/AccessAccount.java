@@ -66,14 +66,14 @@ public final class AccessAccount {
      * Login account.
      *
      * @param who      the who
-     * @param name     the name
+     * @param account  the account
      * @param password the password
      * @return the account
      */
     @Nullable
-    public Account login(String who, String name, String password) {
+    public Account login(String who, String account, String password) {
         try {
-            ResultSet resultSet = DataProvider.getInstance().execute("exec Login" + who + " ? , ?", new Object[]{name, password});
+            ResultSet resultSet = DataProvider.getInstance().execute("exec Login" + who + " ? , ?", new Object[]{account, password});
             assert resultSet != null;
             return resultSet.next() ? new Account(resultSet) : null;
         } catch (SQLException e) {

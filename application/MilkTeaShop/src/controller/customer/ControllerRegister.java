@@ -2,7 +2,6 @@ package controller.customer;
 
 import access.AccessAccount;
 import controller.Information;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public final class ControllerRegister extends Information implements Initializable {
     @Override
-    protected void submit(ActionEvent event) {
+    protected void submit() {
         String name = Tool.fixString(getName());
         StringBuilder accountName = new StringBuilder();
         for (String s : name.split(" ")) {
