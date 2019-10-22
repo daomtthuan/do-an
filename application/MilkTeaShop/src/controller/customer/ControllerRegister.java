@@ -18,9 +18,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Controller Register for Customer.
+ * The type Controller register.
  */
-public final class Register extends Information implements Initializable {
+public final class ControllerRegister extends Information implements Initializable {
     @Override
     protected void submit(ActionEvent event) {
         String name = Tool.fixString(getName());
@@ -35,8 +35,8 @@ public final class Register extends Information implements Initializable {
             SecondaryStage.getInstance().setAccount(account);
             DialogStage.getInstance().getStage().hide();
             try {
-                // Set up view Order for customer on secondary Stage
-                FXMLLoader view = new FXMLLoader(this.getClass().getResource("/view/customer/Order.fxml"));
+                // Set up view ControllerOrder for customer on secondary Stage
+                FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
                 SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                 DialogStage.getInstance().getStage().hide();
                 SecondaryStage.getInstance().getStage().show();

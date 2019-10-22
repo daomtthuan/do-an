@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Welcome">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="952.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ControllerWelcome">
    <children>
        <Label alignment="CENTER" layoutX="1.0" layoutY="101.0" prefHeight="51.0" prefWidth="952.0" text="WELCOME TO" AnchorPane.bottomAnchor="409.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
            <font>
@@ -21,7 +21,7 @@
        </Label>
        <VBox alignment="CENTER" layoutX="230.0" layoutY="281.0" prefHeight="200.0" prefWidth="493.0" spacing="10.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="229.0" AnchorPane.topAnchor="281.0">
           <children>
-              <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#order" prefWidth="200.0" text="Order Food">
+              <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#controllerOrder" prefWidth="200.0" text="Order Food">
                   <font>
                       <Font size="24.0" />
                   </font>

@@ -5,20 +5,17 @@ import org.jetbrains.annotations.Contract;
 import java.sql.ResultSet;
 
 /**
- * The type AccessCategory.
+ * The type Access category.
  */
 public final class AccessCategory {
     private AccessCategory instance;
 
-    /**
-     * Instantiates a new AccessCategory.
-     */
     @Contract(pure = true)
     private AccessCategory() {
     }
 
     /**
-     * Instantiates a new AccessCategory.
+     * Instantiates a new Access category.
      *
      * @param instance the instance
      */

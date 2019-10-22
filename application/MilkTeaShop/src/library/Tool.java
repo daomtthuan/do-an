@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class Tool {
     /**
-     * Fix string.
+     * Fix string string.
      *
      * @param string the string
      * @return the string
