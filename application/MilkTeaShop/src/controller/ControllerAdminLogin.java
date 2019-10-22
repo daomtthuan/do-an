@@ -66,10 +66,10 @@ public class ControllerAdminLogin {
                     ErrorAlert.getInstance().showAndWait(e);
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Login failed", "Account or password is incorrect");
+                WarningAlert.getInstance().showAndWait("Login failed", "Account or password is incorrect.\nPlease check again.");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("Login failed", "Invalid account");
+            WarningAlert.getInstance().showAndWait("Login failed", "Invalid account.\nPlease check again.");
         }
 
     }

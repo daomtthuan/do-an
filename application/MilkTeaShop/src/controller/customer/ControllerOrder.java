@@ -44,6 +44,8 @@ public final class ControllerOrder implements Initializable {
         }
     }
 
+
+
     private void setup() {
         if (SecondaryStage.getInstance().getAccount() == null) {
             information.setText("Register");
@@ -58,5 +60,8 @@ public final class ControllerOrder implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setup();
         SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> setup());
+        SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+
+        });
     }
 }

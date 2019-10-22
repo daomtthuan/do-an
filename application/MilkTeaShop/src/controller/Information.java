@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -35,6 +36,7 @@ public abstract class Information {
 
     @FXML
     private TextField email;
+
 
     /**
      * Submit.
@@ -84,7 +86,7 @@ public abstract class Information {
      * @return the birthday
      */
     protected String getBirthday() {
-        return birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return birthday.getValue() == null ? "" : birthday.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     /**

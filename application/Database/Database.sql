@@ -17,7 +17,7 @@ go
 -- create table
 
 create table Account ( id int identity primary key,
-	account varchar(50),
+	account varchar(50) not null,
 	password varchar(200) not null,
 	roll int not null, -- 1: customer, 2: employee, 3: manager
 	name varchar(50) not null,
@@ -278,7 +278,7 @@ create proc InsertAccount
 	@phone varchar(15),
 	@email varchar(50)
 as begin
-	insert into Account values (@account, '1', @roll, @name, @gender, @birthday, @address, @phone, @email);
+	insert into Account values (@account + cast(ident_current('Account') as varchar), '1', @roll, @name, @gender, @birthday, @address, @phone, @email);
 	select * from Account where id = scope_identity();
 end
 go

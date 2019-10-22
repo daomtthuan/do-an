@@ -4,7 +4,7 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{BF087EDC-83C8-454C-BC0C-FCA4E1251DAC}" Name="Milktea Shop" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="Milktea Shop.prj"/>
+		<Model Expanded="Yes" ID="{BF087EDC-83C8-454C-BC0C-FCA4E1251DAC}" Name="Milk Tea Shop" Selected="Yes" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="Milktea Shop.prj"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>

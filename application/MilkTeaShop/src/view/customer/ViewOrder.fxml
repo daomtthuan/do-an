@@ -35,11 +35,6 @@
                              <Font size="14.0" />
                          </font>
                      </Button>
-                     <Button alignment="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Cancel Order" textAlignment="CENTER">
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Button>
                </children>
                <VBox.margin>
                   <Insets />
