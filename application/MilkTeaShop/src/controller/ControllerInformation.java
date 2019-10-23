@@ -84,15 +84,6 @@ public class ControllerInformation implements Initializable {
     }
 
     /**
-     * Gets female.
-     *
-     * @return the female
-     */
-    protected boolean getFemale() {
-        return female.isSelected();
-    }
-
-    /**
      * Gets birthday.
      *
      * @return the birthday
@@ -129,6 +120,7 @@ public class ControllerInformation implements Initializable {
     }
 
     private void edit() {
+        setTitle("EDIT INFORMATION");
         button.setText("Submit");
         name.setDisable(false);
         male.setDisable(false);
@@ -172,6 +164,7 @@ public class ControllerInformation implements Initializable {
     }
 
     private void view() {
+        setTitle("ACCOUNT INFORMATION");
         button.setText("Edit Information");
         name.setDisable(true);
         male.setDisable(true);
@@ -193,8 +186,6 @@ public class ControllerInformation implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setTitle("ACCOUNT INFORMATION");
-
         name.setText(account.getName());
         male.setSelected(account.isMale());
         female.setSelected(account.isFemMale());

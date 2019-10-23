@@ -1,4 +1,4 @@
 package controller.customer;
 
-public class ControllerPassword {
+public final class ControllerPassword {
 }

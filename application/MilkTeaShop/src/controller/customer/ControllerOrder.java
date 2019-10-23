@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import main.DialogStage;
 import main.SecondaryStage;
+import model.Bill;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
  * The type Controller order.
  */
 public final class ControllerOrder implements Initializable {
+    private Bill bill;
+
     @FXML
     private VBox viewFood;
 
@@ -26,15 +29,18 @@ public final class ControllerOrder implements Initializable {
     private VBox viewBill;
 
     @FXML
-    private Button information;
+    private Button discountButton;
 
     @FXML
-    private Button account;
+    private Button informationButton;
+
+    @FXML
+    private Button accountButton;
 
     private void setup() {
         if (SecondaryStage.getInstance().getAccount() == null) {
-            information.setText("Register");
-            information.setOnAction(event -> {
+            informationButton.setText("Register");
+            informationButton.setOnAction(event -> {
                 try {
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
                     view.setController(new ControllerRegister());
@@ -45,8 +51,8 @@ public final class ControllerOrder implements Initializable {
                 }
             });
 
-            account.setText("Login");
-            account.setOnAction(event -> {
+            accountButton.setText("Login");
+            accountButton.setOnAction(event -> {
                 try {
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
                     view.setController(new ControllerCustomerLogin());
@@ -58,8 +64,8 @@ public final class ControllerOrder implements Initializable {
             });
 
         } else {
-            information.setText("Customer Information");
-            information.setOnAction(event -> {
+            informationButton.setText("Customer Information");
+            informationButton.setOnAction(event -> {
                 try {
                     ControllerInformation controllerInformation = new ControllerInformation();
                     controllerInformation.setAccount(SecondaryStage.getInstance().getAccount());
@@ -79,8 +85,8 @@ public final class ControllerOrder implements Initializable {
                 }
             });
 
-            account.setText("Change Password");
-            account.setOnAction(event -> {
+            accountButton.setText("Change Password");
+            accountButton.setOnAction(event -> {
                 try {
                     ControllerChangePassword controllerChangePassword = new ControllerChangePassword();
                     controllerChangePassword.setAccount(SecondaryStage.getInstance().getAccount());
@@ -95,6 +101,10 @@ public final class ControllerOrder implements Initializable {
                 }
             });
         }
+
+        if (discountButton == null) {
+
+        }
     }
 
     @Override
@@ -102,7 +112,15 @@ public final class ControllerOrder implements Initializable {
         setup();
         SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> setup());
         SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
-
+            windowEvent.consume();
+            try {
+                FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewWelcome.fxml"));
+                SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                SecondaryStage.getInstance().getStage().show();
+                SecondaryStage.getInstance().setAccount(null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 }
