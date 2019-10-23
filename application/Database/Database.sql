@@ -283,6 +283,45 @@ as begin
 end
 go
 
+create proc UpdateAccount
+	@id int,
+	@name varchar(50),
+	@gender bit,
+	@birthday date,
+	@address varchar(100),
+	@phone varchar(15),
+	@email varchar(50)
+as begin
+	update Account set
+		name = @name,
+		gender = @gender,
+		birthday = @birthday,
+		address = @address,
+		phone = @phone,
+		email = @email
+	where id = @id;
+	select * from Account where id = @id;
+end
+go
+
+create proc UpdatePassword
+	@id int,
+	@password varchar(200)
+as begin
+	update Account set password = @password	where id = @id;
+	select * from Account where id = @id;
+end
+go
+
+create proc UpdateRoll
+	@id int,
+	@roll int
+as begin
+	update Account set roll = @roll	where id = @id;
+	select * from Account where id = @id;
+end
+go
+
 create proc InsertCategory
 	@name varchar(50)
 as begin
@@ -298,3 +337,5 @@ as begin
 	select 1
 end
 go
+
+select * from Account

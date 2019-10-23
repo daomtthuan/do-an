@@ -36,7 +36,7 @@ public final class ControllerRegister extends ControllerInformation {
             String birthday = getBirthday();
             String address = Tool.fixString(getAddress());
             String phone = getPhone();
-            String email = getEmail();
+            String email = getEmail().toLowerCase();
             if (name.matches("^[a-zA-Z ]{1,50}$") &&
                     address.matches("^.{1,100}$") &&
                     phone.matches("^(([+]{1}[0-9]{2}|0)[0-9]{9,12})$") &&

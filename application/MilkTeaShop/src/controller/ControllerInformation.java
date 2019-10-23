@@ -1,9 +1,12 @@
 package controller;
 
+import access.AccessAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import main.DialogStage;
+import library.Tool;
+import library.WarningAlert;
+import main.SecondaryStage;
 import model.Account;
 
 import java.net.URL;
@@ -125,6 +128,69 @@ public class ControllerInformation implements Initializable {
         return email.getText();
     }
 
+    private void edit() {
+        button.setText("Submit");
+        name.setDisable(false);
+        male.setDisable(false);
+        female.setDisable(false);
+        birthday.setDisable(false);
+        address.setDisable(false);
+        phone.setDisable(false);
+        email.setDisable(false);
+        name.setStyle("-fx-opacity: 100");
+        male.setStyle("-fx-opacity: 100");
+        female.setStyle("-fx-opacity: 100");
+        birthday.setStyle("-fx-opacity: 100");
+        birthday.getEditor().setStyle("-fx-opacity: 100");
+        address.setStyle("-fx-opacity: 100");
+        phone.setStyle("-fx-opacity: 100");
+        email.setStyle("-fx-opacity: 100");
+        button.setOnAction(event -> {
+            String name = Tool.fixString(getName());
+            boolean gender = getMale();
+            String birthday = getBirthday();
+            String address = Tool.fixString(getAddress());
+            String phone = getPhone();
+            String email = getEmail().toLowerCase();
+            if (name.matches("^[a-zA-Z ]{1,50}$") &&
+                    address.matches("^.{1,100}$") &&
+                    phone.matches("^(([+]{1}[0-9]{2}|0)[0-9]{9,12})$") &&
+                    email.matches("^([a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,})?$")) {
+                Account account = AccessAccount.getInstance().update(this.account.getId(), name, gender, birthday, address, phone, email);
+
+                if (account != null) {
+                    this.account = account;
+                    SecondaryStage.getInstance().setAccount(account);
+                    view();
+                } else {
+                    WarningAlert.getInstance().showAndWait("Edit Information failed", "Can not edit Account Information.\nPlease notify staff.");
+                }
+            } else {
+                WarningAlert.getInstance().showAndWait("Edit Information failed", "Invalid information.\nPlease check again.");
+            }
+        });
+    }
+
+    private void view() {
+        button.setText("Edit Information");
+        name.setDisable(true);
+        male.setDisable(true);
+        female.setDisable(true);
+        birthday.setDisable(true);
+        address.setDisable(true);
+        phone.setDisable(true);
+        email.setDisable(true);
+        name.setStyle("-fx-opacity: 1");
+        male.setStyle("-fx-opacity: 1");
+        female.setStyle("-fx-opacity: 1");
+        birthday.setStyle("-fx-opacity: 1");
+        birthday.getEditor().setStyle("-fx-opacity: 1");
+        address.setStyle("-fx-opacity: 1");
+        phone.setStyle("-fx-opacity: 1");
+        email.setStyle("-fx-opacity: 1");
+        button.setOnAction(event -> edit());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTitle("ACCOUNT INFORMATION");
@@ -138,9 +204,6 @@ public class ControllerInformation implements Initializable {
         phone.setText(account.getPhone());
         email.setText(account.getEmail());
 
-        button.setText("Edit Information");
-        button.setOnAction(event -> {
-
-        });
+        view();
     }
 }

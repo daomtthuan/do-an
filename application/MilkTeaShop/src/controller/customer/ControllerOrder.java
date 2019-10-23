@@ -45,9 +45,21 @@ public final class ControllerOrder implements Initializable {
                     e.printStackTrace();
                 }
             });
+
+            account.setOnAction(event -> {
+                try {
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
+                    view.setController(new ControllerCustomerLogin());
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
         } else {
             information.setText("Customer Information");
-            account.setText("Logout");
+            account.setText("Change Password");
 
             information.setOnAction(event -> {
                 try {
