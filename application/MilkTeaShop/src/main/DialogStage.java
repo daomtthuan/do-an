@@ -1,6 +1,5 @@
 package main;
 
-import javafx.scene.Cursor;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
 
@@ -18,7 +17,7 @@ public final class DialogStage {
     }
 
     /**
-     * Gets instance Dialog stage.
+     * Gets instance.
      *
      * @return the instance
      */

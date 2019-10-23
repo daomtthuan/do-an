@@ -52,9 +52,11 @@ public final class ControllerRegister extends ControllerInformation {
                     SecondaryStage.getInstance().setAccount(newAccount);
                     DialogStage.getInstance().getStage().hide();
                     try {
-                        // Set up view ControllerOrder for customer on secondary Stage
-                        FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
-                        SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                        if (!SecondaryStage.getInstance().isOrdering()) {
+                            // Set up view ControllerOrder for customer on secondary Stage
+                            FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
+                            SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                        }
                         DialogStage.getInstance().getStage().hide();
                         SecondaryStage.getInstance().getStage().show();
                     } catch (IOException e) {

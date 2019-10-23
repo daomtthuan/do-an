@@ -3,7 +3,7 @@ package library;
 import javafx.scene.control.Alert;
 
 /**
- * The type Warning alert.
+ * The type Confirm yes no alert.
  */
 public final class ConfirmYesNoAlert {
     private static ConfirmYesNoAlert instance;

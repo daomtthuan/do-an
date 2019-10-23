@@ -1,17 +1,17 @@
 package main;
 
-import javafx.scene.Cursor;
 import javafx.stage.Stage;
 import model.Account;
 import org.jetbrains.annotations.Contract;
 
 /**
- * The Secondary stage.
+ * The type Secondary stage.
  */
 public final class SecondaryStage {
     private static SecondaryStage instance;
     private Stage stage;
     private Account account;
+    private boolean ordering;
 
     private SecondaryStage() {
         stage = new Stage();
@@ -20,7 +20,7 @@ public final class SecondaryStage {
     }
 
     /**
-     * Gets instance Secondary stage.
+     * Gets instance.
      *
      * @return the instance
      */
@@ -33,6 +33,25 @@ public final class SecondaryStage {
 
     private static void setInstance(SecondaryStage instance) {
         SecondaryStage.instance = instance;
+    }
+
+    /**
+     * Is ordering boolean.
+     *
+     * @return the boolean
+     */
+    @Contract(pure = true)
+    public boolean isOrdering() {
+        return ordering;
+    }
+
+    /**
+     * Sets ordering.
+     *
+     * @param ordering the ordering
+     */
+    public void setOrdering(boolean ordering) {
+        this.ordering = ordering;
     }
 
     /**
