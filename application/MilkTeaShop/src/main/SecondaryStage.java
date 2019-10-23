@@ -2,6 +2,7 @@ package main;
 
 import javafx.stage.Stage;
 import model.Account;
+import model.Bill;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -11,6 +12,7 @@ public final class SecondaryStage {
     private static SecondaryStage instance;
     private Stage stage;
     private Account account;
+    private Bill bill;
     private boolean ordering;
 
     private SecondaryStage() {
@@ -33,6 +35,24 @@ public final class SecondaryStage {
 
     private static void setInstance(SecondaryStage instance) {
         SecondaryStage.instance = instance;
+    }
+
+    /**
+     * Gets bill.
+     *
+     * @return the bill
+     */
+    public Bill getBill() {
+        return bill;
+    }
+
+    /**
+     * Sets bill.
+     *
+     * @param bill the bill
+     */
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
     /**

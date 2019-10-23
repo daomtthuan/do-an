@@ -49,6 +49,7 @@ public final class ControllerWelcome implements Initializable {
             // Set up view ControllerOrder for customer on secondary Stage
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
             SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+            SecondaryStage.getInstance().setOrdering(true);
         } catch (IOException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }

@@ -11,16 +11,18 @@ import javafx.scene.layout.VBox;
 import main.DialogStage;
 import main.SecondaryStage;
 import model.Bill;
+import model.Discount;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PseudoColumnUsage;
 import java.util.ResourceBundle;
 
 /**
  * The type Controller order.
  */
 public final class ControllerOrder implements Initializable {
-    private Bill bill;
+    private Discount discount;
 
     @FXML
     private VBox viewFood;
@@ -102,8 +104,18 @@ public final class ControllerOrder implements Initializable {
             });
         }
 
-        if (discountButton == null) {
-
+        if (discount == null) {
+            discountButton.setText("Enter Discount Code");
+            discountButton.setOnAction(event -> {
+                try {
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewEnterDiscount.fxml"));
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().show();
+                    SecondaryStage.getInstance().getStage().hide();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 
@@ -118,6 +130,7 @@ public final class ControllerOrder implements Initializable {
                 SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                 SecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().setAccount(null);
+                SecondaryStage.getInstance().setOrdering(false);
             } catch (IOException e) {
                 e.printStackTrace();
             }
