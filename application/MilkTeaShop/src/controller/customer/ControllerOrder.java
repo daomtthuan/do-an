@@ -1,5 +1,7 @@
 package controller.customer;
 
+import controller.ControllerChangePassword;
+import controller.ControllerInformation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,15 +10,20 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import main.DialogStage;
 import main.SecondaryStage;
+import model.Bill;
+import model.Discount;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.PseudoColumnUsage;
 import java.util.ResourceBundle;
 
 /**
  * The type Controller order.
  */
 public final class ControllerOrder implements Initializable {
+    private Discount discount;
+
     @FXML
     private VBox viewFood;
 
@@ -24,35 +31,91 @@ public final class ControllerOrder implements Initializable {
     private VBox viewBill;
 
     @FXML
-    private Button information;
+    private Button discountButton;
 
     @FXML
-    private Button account;
+    private Button informationButton;
 
     @FXML
-    private void register() {
-
-        if (SecondaryStage.getInstance().getAccount() == null) {
-            try {
-                FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
-                view.setController(new ControllerRegister());
-                DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-                DialogStage.getInstance().getStage().show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
+    private Button accountButton;
 
     private void setup() {
         if (SecondaryStage.getInstance().getAccount() == null) {
-            information.setText("Register");
-            account.setText("Login");
+            informationButton.setText("Register");
+            informationButton.setOnAction(event -> {
+                try {
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
+                    view.setController(new ControllerRegister());
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            accountButton.setText("Login");
+            accountButton.setOnAction(event -> {
+                try {
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
+                    view.setController(new ControllerCustomerLogin());
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
         } else {
-            information.setText("Customer Information");
-            account.setText("Logout");
+            informationButton.setText("Customer Information");
+            informationButton.setOnAction(event -> {
+                try {
+                    ControllerInformation controllerInformation = new ControllerInformation();
+                    controllerInformation.setAccount(SecondaryStage.getInstance().getAccount());
+
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
+                    view.setController(controllerInformation);
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+                        windowEvent.consume();
+                        DialogStage.getInstance().getStage().hide();
+                        SecondaryStage.getInstance().getStage().show();
+                    });
+                    DialogStage.getInstance().getStage().show();
+                    SecondaryStage.getInstance().getStage().hide();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            accountButton.setText("Change Password");
+            accountButton.setOnAction(event -> {
+                try {
+                    ControllerChangePassword controllerChangePassword = new ControllerChangePassword();
+                    controllerChangePassword.setAccount(SecondaryStage.getInstance().getAccount());
+
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewChangePassword.fxml"));
+                    view.setController(controllerChangePassword);
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().show();
+                    SecondaryStage.getInstance().getStage().hide();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        if (discount == null) {
+            discountButton.setText("Enter Discount Code");
+            discountButton.setOnAction(event -> {
+                try {
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewEnterDiscount.fxml"));
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogStage.getInstance().getStage().show();
+                    SecondaryStage.getInstance().getStage().hide();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 
@@ -61,7 +124,16 @@ public final class ControllerOrder implements Initializable {
         setup();
         SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> setup());
         SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
-
+            windowEvent.consume();
+            try {
+                FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewWelcome.fxml"));
+                SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                SecondaryStage.getInstance().getStage().show();
+                SecondaryStage.getInstance().setAccount(null);
+                SecondaryStage.getInstance().setOrdering(false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 }

@@ -1,6 +1,5 @@
 package main;
 
-import javafx.scene.Cursor;
 import javafx.stage.Stage;
 import model.Account;
 import org.jetbrains.annotations.Contract;
@@ -18,7 +17,7 @@ public final class PrimaryStage {
     }
 
     /**
-     * Gets instance Primary stage.
+     * Gets instance.
      *
      * @return the instance
      */

@@ -6,13 +6,14 @@ import org.jetbrains.annotations.NotNull;
  * The type Tool.
  */
 public final class Tool {
+
     /**
      * Fix string string.
      *
      * @param string the string
+     *
      * @return the string
      */
-
     @NotNull
     public static String fixString(@NotNull String string) {
         if (string.equals("")) return "";

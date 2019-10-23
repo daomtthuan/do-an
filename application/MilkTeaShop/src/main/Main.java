@@ -7,11 +7,11 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
 import library.ErrorAlert;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Main application.
+ * The type Main.
  */
 public final class Main extends Application {
 

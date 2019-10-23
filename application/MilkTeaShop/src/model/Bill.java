@@ -12,7 +12,8 @@ import java.sql.SQLException;
 public class Bill {
     private int id;
     private int idTableFood;
-    private int idAccount;
+    private int idCustomer;
+    private int idEmployee;
     private int idDiscount;
     private String checkIn;
     private String checkOut;
@@ -26,7 +27,8 @@ public class Bill {
         try {
             id = data.getInt("id");
             idTableFood = data.getInt("idTableFood");
-            idAccount = data.getInt("idAccount");
+            idCustomer = data.getInt("idAccount");
+            idEmployee = data.getInt("idEmployee");
             idDiscount = data.getInt("idDiscount");
             checkIn = data.getString("checkIn");
             checkOut = data.getString("checkOut");
@@ -54,12 +56,21 @@ public class Bill {
     }
 
     /**
-     * Gets id account.
+     * Gets id customer.
      *
-     * @return the id account
+     * @return the id customer
      */
-    public int getIdAccount() {
-        return idAccount;
+    public int getIdCustomer() {
+        return idCustomer;
+    }
+
+    /**
+     * Gets id employee.
+     *
+     * @return the id employee
+     */
+    public int getIdEmployee() {
+        return idEmployee;
     }
 
     /**
