@@ -1,6 +1,9 @@
 package model;
 
 import library.ErrorAlert;
+import main.PrimaryStage;
+import main.SecondaryStage;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;

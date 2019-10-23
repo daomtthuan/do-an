@@ -39,6 +39,7 @@ public final class AccessDiscount {
      *
      * @param name the name
      * @param sale the sale
+     *
      * @return the discount
      */
     @Nullable
@@ -48,6 +49,18 @@ public final class AccessDiscount {
             return resultSet.next() ? new Discount(resultSet) : null;
         } catch (SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
+            return null;
+        }
+    }
+
+    @Nullable
+    public Discount check(String name) {
+        try {
+            ResultSet resultSet = DataProvider.getInstance().execute("exec CheckDiscount ?", new Object[]{name});
+            assert resultSet != null;
+            return resultSet.next() ? new Discount(resultSet) : null;
+        } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
