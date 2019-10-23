@@ -1,5 +1,6 @@
 package controller.customer;
 
+import controller.ControllerChangePassword;
 import controller.ControllerInformation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,8 +34,6 @@ public final class ControllerOrder implements Initializable {
     private void setup() {
         if (SecondaryStage.getInstance().getAccount() == null) {
             information.setText("Register");
-            account.setText("Login");
-
             information.setOnAction(event -> {
                 try {
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
@@ -46,6 +45,7 @@ public final class ControllerOrder implements Initializable {
                 }
             });
 
+            account.setText("Login");
             account.setOnAction(event -> {
                 try {
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
@@ -59,8 +59,6 @@ public final class ControllerOrder implements Initializable {
 
         } else {
             information.setText("Customer Information");
-            account.setText("Change Password");
-
             information.setOnAction(event -> {
                 try {
                     ControllerInformation controllerInformation = new ControllerInformation();
@@ -74,6 +72,22 @@ public final class ControllerOrder implements Initializable {
                         DialogStage.getInstance().getStage().hide();
                         SecondaryStage.getInstance().getStage().show();
                     });
+                    DialogStage.getInstance().getStage().show();
+                    SecondaryStage.getInstance().getStage().hide();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+
+            account.setText("Change Password");
+            account.setOnAction(event -> {
+                try {
+                    ControllerChangePassword controllerChangePassword = new ControllerChangePassword();
+                    controllerChangePassword.setAccount(SecondaryStage.getInstance().getAccount());
+
+                    FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewChangePassword.fxml"));
+                    view.setController(controllerChangePassword);
+                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
                     DialogStage.getInstance().getStage().show();
                     SecondaryStage.getInstance().getStage().hide();
                 } catch (IOException e) {
