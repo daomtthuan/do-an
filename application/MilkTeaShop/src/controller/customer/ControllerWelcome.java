@@ -7,7 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import library.ErrorAlert;
 import main.DialogStage;
+import main.PrimaryStage;
 import main.SecondaryStage;
+import model.Bill;
 
 import java.io.IOException;
 import java.net.URL;

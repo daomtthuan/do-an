@@ -2,7 +2,7 @@ package main;
 
 import javafx.stage.Stage;
 import model.Account;
-import model.Bill;
+import model.Discount;
 import org.jetbrains.annotations.Contract;
 
 /**
@@ -12,13 +12,14 @@ public final class SecondaryStage {
     private static SecondaryStage instance;
     private Stage stage;
     private Account account;
-    private Bill bill;
     private boolean ordering;
+    private Discount discount;
 
     private SecondaryStage() {
         stage = new Stage();
         stage.setTitle("Milk Tea Shop - Customer");
         stage.setResizable(false);
+        ordering = false;
     }
 
     /**
@@ -38,21 +39,22 @@ public final class SecondaryStage {
     }
 
     /**
-     * Gets bill.
+     * Gets discount.
      *
-     * @return the bill
+     * @return the discount
      */
-    public Bill getBill() {
-        return bill;
+    @Contract(pure = true)
+    public Discount getDiscount() {
+        return discount;
     }
 
     /**
-     * Sets bill.
+     * Sets discount.
      *
-     * @param bill the bill
+     * @param discount the discount
      */
-    public void setBill(Bill bill) {
-        this.bill = bill;
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 
     /**
