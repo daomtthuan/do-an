@@ -64,7 +64,7 @@ public final class ControllerRegister extends ControllerInformation {
                         SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                     }
 
-                    InformationAlert.getInstance().showAndWait("Register succeeded!",
+                    InformationAlert.getInstance().showAndWait("Success!",
                             "Your Customer Account: " + newAccount.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n"+
                             "Thanks for coming to our shop!");
 
@@ -74,10 +74,10 @@ public final class ControllerRegister extends ControllerInformation {
                     ErrorAlert.getInstance().showAndWait(e);
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Register failed!", "Can not register.\nPlease notify staff.");
+                WarningAlert.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("Register failed!", "Invalid information.\nPlease check again.");
+            WarningAlert.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
         }
     }
 }

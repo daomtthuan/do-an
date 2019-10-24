@@ -1,33 +1,31 @@
 package controller.customer;
 
-import access.AccessCategory;
 import controller.ControllerChangePassword;
+import controller.ControllerFood;
 import controller.ControllerInformation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import library.ErrorAlert;
 import main.DialogSecondaryStage;
 import main.SecondaryStage;
-import model.Category;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
  * The type Controller order.
  */
 public final class ControllerOrder implements Initializable {
-    private ArrayList<Category> categories;
-
     @FXML
-    private VBox viewFood;
+    private AnchorPane viewFood;
     @FXML
-    private VBox viewBill;
+    private AnchorPane viewBill;
     @FXML
     private Button discountButton;
     @FXML
@@ -45,7 +43,7 @@ public final class ControllerOrder implements Initializable {
                     DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                     DialogSecondaryStage.getInstance().getStage().show();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ErrorAlert.getInstance().showAndWait(e);
                 }
             });
 
@@ -57,7 +55,7 @@ public final class ControllerOrder implements Initializable {
                     DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                     DialogSecondaryStage.getInstance().getStage().show();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ErrorAlert.getInstance().showAndWait(e);
                 }
             });
 
@@ -79,7 +77,7 @@ public final class ControllerOrder implements Initializable {
                     DialogSecondaryStage.getInstance().getStage().show();
                     SecondaryStage.getInstance().getStage().hide();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ErrorAlert.getInstance().showAndWait(e);
                 }
             });
 
@@ -97,7 +95,7 @@ public final class ControllerOrder implements Initializable {
                     });
                     SecondaryStage.getInstance().getStage().hide();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    ErrorAlert.getInstance().showAndWait(e);
                 }
             });
         }
@@ -114,10 +112,8 @@ public final class ControllerOrder implements Initializable {
                 DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                 DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
-
-
             } catch (IOException e) {
-                e.printStackTrace();
+                ErrorAlert.getInstance().showAndWait(e);
             }
         });
     }
@@ -136,13 +132,17 @@ public final class ControllerOrder implements Initializable {
                 SecondaryStage.getInstance().setDiscount(null);
                 SecondaryStage.getInstance().setOrdering(false);
             } catch (IOException e) {
-                e.printStackTrace();
+                ErrorAlert.getInstance().showAndWait(e);
             }
         });
 
-        categories = AccessCategory.getInstance().load();
-        categories.forEach(category -> {
-            System.out.println(category.getName());
-        });
+        try {
+            ControllerFood controllerFood = new ControllerFood();
+            FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewFood.fxml"));
+            view.setController(controllerFood);
+            viewFood.getChildren().add(view.load());
+        } catch (IOException e) {
+            ErrorAlert.getInstance().showAndWait(e);
+        }
     }
 }

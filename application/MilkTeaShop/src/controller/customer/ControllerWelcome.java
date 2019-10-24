@@ -1,11 +1,11 @@
 package controller.customer;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import library.ErrorAlert;
+import library.WarningAlert;
 import main.DialogSecondaryStage;
 import main.SecondaryStage;
 
@@ -26,7 +26,7 @@ public final class ControllerWelcome implements Initializable {
             DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
             DialogSecondaryStage.getInstance().getStage().show();
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorAlert.getInstance().showAndWait(e);
         }
     }
 
@@ -39,7 +39,7 @@ public final class ControllerWelcome implements Initializable {
             DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
             DialogSecondaryStage.getInstance().getStage().show();
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorAlert.getInstance().showAndWait(e);
         }
     }
 
@@ -57,6 +57,9 @@ public final class ControllerWelcome implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SecondaryStage.getInstance().getStage().setOnCloseRequest(Event::consume);
+        SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+            windowEvent.consume();
+            WarningAlert.getInstance().showAndWait("Fail!", "You do not have permission to do this action!");
+        });
     }
 }

@@ -1,5 +1,6 @@
 package access;
 
+import library.ErrorAlert;
 import model.Category;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -13,10 +14,6 @@ import java.util.ArrayList;
  */
 public final class AccessCategory {
     private static AccessCategory instance;
-
-    @Contract(pure = true)
-    private AccessCategory() {
-    }
 
     /**
      * Gets instance.
@@ -50,7 +47,7 @@ public final class AccessCategory {
                 categories.add(new Category(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorAlert.getInstance().showAndWait(e);
         }
         return categories;
     }

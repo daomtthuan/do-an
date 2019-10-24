@@ -43,7 +43,7 @@ public final class ControllerChangePassword {
                 if (newPassword.getText().equals(repeatNewPassword.getText())) {
                     Account newAccount = AccessAccount.getInstance().update(account.getId(), newPassword.getText());
                     if (newAccount != null) {
-                        InformationAlert.getInstance().showAndWait("Change Password succeeded!", "Please remember your new password carefully.");
+                        InformationAlert.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
                         if (account.getRoll() == 1) {
                             SecondaryStage.getInstance().setAccount(newAccount);
                             DialogSecondaryStage.getInstance().getStage().hide();
@@ -54,16 +54,16 @@ public final class ControllerChangePassword {
                             PrimaryStage.getInstance().getStage().show();
                         }
                     } else {
-                        WarningAlert.getInstance().showAndWait("Change Password failed!", "Can not change Password.\nPlease notify staff.");
+                        WarningAlert.getInstance().showAndWait("Fail!", "Can not change Password.\nPlease notify staff.");
                     }
                 } else {
-                    WarningAlert.getInstance().showAndWait("Change Password failed!", "Repeat Password does not match.");
+                    WarningAlert.getInstance().showAndWait("Fail!", "Repeat Password does not match.");
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Change Password failed!", "Password is incorrect.");
+                WarningAlert.getInstance().showAndWait("Fail!", "Password is incorrect.");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("Change Password failed!", "Password is incorrect.");
+            WarningAlert.getInstance().showAndWait("Fail!", "Password is incorrect.");
         }
     }
 }

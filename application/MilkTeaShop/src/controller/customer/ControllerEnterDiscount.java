@@ -13,6 +13,9 @@ import model.Discount;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The type Controller enter discount.
+ */
 public final class ControllerEnterDiscount implements Initializable {
     @FXML
     private TextField name;
@@ -23,15 +26,14 @@ public final class ControllerEnterDiscount implements Initializable {
             Discount discount = AccessDiscount.getInstance().check(name.getText());
             if (discount != null) {
                 SecondaryStage.getInstance().setDiscount(discount);
-                InformationAlert.getInstance().showAndWait("Enter Discount Code succeeded!", "Your bill will be discounted " + discount.getSale() + "%.");
+                InformationAlert.getInstance().showAndWait("Success!", "Your bill will be discounted " + discount.getSale() + "%.");
                 DialogSecondaryStage.getInstance().getStage().hide();
                 SecondaryStage.getInstance().getStage().show();
             } else {
-                WarningAlert.getInstance().showAndWait("Enter Discount Code failed!", "Discount Code is incorrect.\nPlease check again.");
+                WarningAlert.getInstance().showAndWait("Fail!", "Discount Code is incorrect.\nPlease check again.");
             }
-        }
-        else {
-            WarningAlert.getInstance().showAndWait("Enter Discount Code failed!", "Discount Code is incorrect.\nPlease check again.");
+        } else {
+            WarningAlert.getInstance().showAndWait("Fail!", "Discount Code is incorrect.\nPlease check again.");
         }
     }
 

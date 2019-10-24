@@ -2,7 +2,6 @@ package access;
 
 import library.ErrorAlert;
 import model.Discount;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
@@ -13,10 +12,6 @@ import java.sql.SQLException;
  */
 public final class AccessDiscount {
     private static AccessDiscount instance;
-
-    @Contract(pure = true)
-    private AccessDiscount() {
-    }
 
     /**
      * Gets instance.
@@ -53,6 +48,13 @@ public final class AccessDiscount {
         }
     }
 
+    /**
+     * Check discount.
+     *
+     * @param name the name
+     *
+     * @return the discount
+     */
     @Nullable
     public Discount check(String name) {
         try {
@@ -60,7 +62,7 @@ public final class AccessDiscount {
             assert resultSet != null;
             return resultSet.next() ? new Discount(resultSet) : null;
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorAlert.getInstance().showAndWait(e);
             return null;
         }
     }

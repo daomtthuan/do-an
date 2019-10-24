@@ -156,17 +156,16 @@ public class ControllerInformation implements Initializable {
                     this.account = account;
                     if (account.getRoll() == 1) {
                         SecondaryStage.getInstance().setAccount(account);
-                    }
-                    else {
+                    } else {
                         PrimaryStage.getInstance().setAccount(account);
                     }
-                    InformationAlert.getInstance().showAndWait("Edit Information succeeded!", "Your Information Account has been edited.");
+                    InformationAlert.getInstance().showAndWait("Success!", "Your Information Account has been edited.");
                     view();
                 } else {
-                    WarningAlert.getInstance().showAndWait("Edit Information failed!", "Can not edit Account Information.\nPlease notify staff.");
+                    WarningAlert.getInstance().showAndWait("Fail!", "Can not edit Account Information.\nPlease notify staff.");
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Edit Information failed!", "Invalid information.\nPlease check again.");
+                WarningAlert.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
             }
         });
     }

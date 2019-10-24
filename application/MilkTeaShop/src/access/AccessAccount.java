@@ -14,10 +14,6 @@ import java.sql.SQLException;
 public final class AccessAccount {
     private static AccessAccount instance;
 
-    @Contract(pure = true)
-    private AccessAccount() {
-    }
-
     /**
      * Gets instance.
      *
@@ -146,7 +142,7 @@ public final class AccessAccount {
             assert resultSet != null;
             return resultSet.next() ? new Account(resultSet) : null;
         } catch (SQLException e) {
-            e.printStackTrace();
+            ErrorAlert.getInstance().showAndWait(e);
             return null;
         }
     }

@@ -1,19 +1,10 @@
 package access;
 
-import model.TableFood;
-import org.jetbrains.annotations.Contract;
-
-import java.util.ArrayList;
-
 /**
  * The type Access table food.
  */
 public final class AccessTableFood {
     private static AccessTableFood instance;
-
-    @Contract(pure = true)
-    private AccessTableFood() {
-    }
 
     /**
      * Gets instance.
