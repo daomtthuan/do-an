@@ -39,10 +39,10 @@ public final class ControllerCustomerLogin extends ControllerAdminLogin implemen
                     ErrorAlert.getInstance().showAndWait(e);
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Login failed", "Account or password is incorrect.\nPlease check again.");
+                WarningAlert.getInstance().showAndWait("Login failed!", "Account or password is incorrect.\nPlease check again.");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("Login failed", "Invalid account.\nPlease check again.");
+            WarningAlert.getInstance().showAndWait("Login failed!", "Invalid account.\nPlease check again.");
         }
     }
 

@@ -25,11 +25,11 @@ public final class ControllerEnterDiscount implements Initializable {
                 DialogStage.getInstance().getStage().hide();
                 SecondaryStage.getInstance().getStage().show();
             } else {
-                WarningAlert.getInstance().showAndWait("Enter Discount Code failed", "Discount Code is incorrect.\nPlease check again.");
+                WarningAlert.getInstance().showAndWait("Enter Discount Code failed!", "Discount Code is incorrect.\nPlease check again.");
             }
         }
         else {
-            WarningAlert.getInstance().showAndWait("Enter Discount Code failed", "Discount Code is incorrect.\nPlease check again.");
+            WarningAlert.getInstance().showAndWait("Enter Discount Code failed!", "Discount Code is incorrect.\nPlease check again.");
         }
     }
 

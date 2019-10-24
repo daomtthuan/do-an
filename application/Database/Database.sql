@@ -338,4 +338,9 @@ as begin
 end
 go
 
-select * from Account
+create proc CheckDiscount
+	@name varchar(50)
+as begin
+	select * from Discount where name = @name
+end
+go

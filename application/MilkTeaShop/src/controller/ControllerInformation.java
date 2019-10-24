@@ -155,10 +155,10 @@ public class ControllerInformation implements Initializable {
                     SecondaryStage.getInstance().setAccount(account);
                     view();
                 } else {
-                    WarningAlert.getInstance().showAndWait("Edit Information failed", "Can not edit Account Information.\nPlease notify staff.");
+                    WarningAlert.getInstance().showAndWait("Edit Information failed!", "Can not edit Account Information.\nPlease notify staff.");
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Edit Information failed", "Invalid information.\nPlease check again.");
+                WarningAlert.getInstance().showAndWait("Edit Information failed!", "Invalid information.\nPlease check again.");
             }
         });
     }

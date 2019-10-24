@@ -63,10 +63,10 @@ public final class ControllerRegister extends ControllerInformation {
                         ErrorAlert.getInstance().showAndWait(e);
                     }
                 } else {
-                    WarningAlert.getInstance().showAndWait("Register failed", "Can not register.\nPlease notify staff.");
+                    WarningAlert.getInstance().showAndWait("Register failed!", "Can not register.\nPlease notify staff.");
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Register failed", "Invalid information.\nPlease check again.");
+                WarningAlert.getInstance().showAndWait("Register failed!", "Invalid information.\nPlease check again.");
             }
         });
     }

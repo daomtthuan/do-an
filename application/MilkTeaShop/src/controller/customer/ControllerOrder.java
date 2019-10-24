@@ -10,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import main.DialogStage;
 import main.SecondaryStage;
-import model.Discount;
-import org.jetbrains.annotations.Contract;
 
 import java.io.IOException;
 import java.net.URL;
@@ -83,13 +81,15 @@ public final class ControllerOrder implements Initializable {
             accountButton.setText("Change Password");
             accountButton.setOnAction(event -> {
                 try {
-                    ControllerChangePassword controllerChangePassword = new ControllerChangePassword();
-                    controllerChangePassword.setAccount(SecondaryStage.getInstance().getAccount());
-
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewChangePassword.fxml"));
-                    view.setController(controllerChangePassword);
+                    view.setController(new ControllerChangePassword(SecondaryStage.getInstance().getAccount()));
                     DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
                     DialogStage.getInstance().getStage().show();
+                    DialogStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+                        windowEvent.consume();
+                        DialogStage.getInstance().getStage().hide();
+                        SecondaryStage.getInstance().getStage().show();
+                    });
                     SecondaryStage.getInstance().getStage().hide();
                 } catch (IOException e) {
                     e.printStackTrace();

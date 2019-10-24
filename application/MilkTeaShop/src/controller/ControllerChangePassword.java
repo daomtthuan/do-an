@@ -2,66 +2,65 @@ package controller;
 
 import access.AccessAccount;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import library.WarningAlert;
+import main.DialogStage;
+import main.PrimaryStage;
 import main.SecondaryStage;
 import model.Account;
+import org.jetbrains.annotations.Contract;
 
 /**
  * The type Controller change password.
  */
-public class ControllerChangePassword {
+public final class ControllerChangePassword {
     private Account account;
-
-    // setter account
-
-    @FXML
-    private Label title;
     @FXML
     private PasswordField oldPassword;
-
     @FXML
     private PasswordField newPassword;
-
     @FXML
     private PasswordField repeatNewPassword;
 
-
     /**
-     * Sets account.
+     * Instantiates a new Controller change password.
      *
      * @param account the account
      */
-
-    public void setAccount(Account account) {
+    @Contract(pure = true)
+    public ControllerChangePassword(Account account) {
         this.account = account;
     }
 
-    /**
-     *
-     * ChangePassword
-     */
     @FXML
-    protected void changePassword(){
-        // Check validate input oldPassword ,newPassword and repeatNewPassword
-        if (oldPassword.getText().matches("^\\w{1,50}$") && newPassword.getText().matches("^\\w{1,50}$") && repeatNewPassword.getText().matches("^\\w{1,50}$")){
-            // oldPassword == account.getPassword() ???
-            // newPassword == repeat ??
-            if (oldPassword.getText().equals(account.getAccount())) {
-                if (newPassword.getText().equals(repeatNewPassword)) {
-                    Account account = AccessAccount.getInstance().update(this.account.getId(), newPassword.getText());
+    private void submit() {
+        if (oldPassword.getText().matches("^\\w{1,50}$") &&
+                newPassword.getText().matches("^\\w{1,50}$") &&
+                repeatNewPassword.getText().matches("^\\w{1,50}$")) {
+            if (oldPassword.getText().equals(account.getPassword())) {
+                if (newPassword.getText().equals(repeatNewPassword.getText())) {
+                    Account newAccount = AccessAccount.getInstance().update(account.getId(), newPassword.getText());
+                    if (newAccount != null) {
+                        if (account.getRoll() == 1) {
+                            SecondaryStage.getInstance().setAccount(newAccount);
+                            DialogStage.getInstance().getStage().hide();
+                            SecondaryStage.getInstance().getStage().show();
+                        } else {
+                            PrimaryStage.getInstance().setAccount(newAccount);
+                            DialogStage.getInstance().getStage().hide();
+                            PrimaryStage.getInstance().getStage().show();
+                        }
+                    } else {
+                        WarningAlert.getInstance().showAndWait("Change Password failed!", "Can not change Password.\nPlease notify staff.");
+                    }
+                } else {
+                    WarningAlert.getInstance().showAndWait("Change Password failed!", "Repeat Password does not match.");
                 }
+            } else {
+                WarningAlert.getInstance().showAndWait("Change Password failed!", "Password is incorrect.");
             }
-            // if change password success
-            if (account != null){
-                this.account = account;
-            }
-            else{
-                WarningAlert.getInstance().showAndWait("New password and repeat new password not similar","Can not change new password \n Please notify staff");
-            }
-            WarningAlert.getInstance().showAndWait("New password and repeat new password not similar","Old password not to exist \n Please check again");
+        } else {
+            WarningAlert.getInstance().showAndWait("Change Password failed!", "Password is incorrect.");
         }
     }
-
 }
