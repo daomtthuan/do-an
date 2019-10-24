@@ -344,3 +344,6 @@ as begin
 	select * from Discount where name = @name
 end
 go
+
+
+select * from Category
