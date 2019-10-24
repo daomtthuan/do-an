@@ -3,8 +3,10 @@ package controller;
 import access.AccessAccount;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
+import library.InformationAlert;
 import library.WarningAlert;
-import main.DialogStage;
+import main.DialogPrimaryStage;
+import main.DialogSecondaryStage;
 import main.PrimaryStage;
 import main.SecondaryStage;
 import model.Account;
@@ -41,13 +43,14 @@ public final class ControllerChangePassword {
                 if (newPassword.getText().equals(repeatNewPassword.getText())) {
                     Account newAccount = AccessAccount.getInstance().update(account.getId(), newPassword.getText());
                     if (newAccount != null) {
+                        InformationAlert.getInstance().showAndWait("Change Password succeeded!", "Please remember your new password carefully.");
                         if (account.getRoll() == 1) {
                             SecondaryStage.getInstance().setAccount(newAccount);
-                            DialogStage.getInstance().getStage().hide();
+                            DialogSecondaryStage.getInstance().getStage().hide();
                             SecondaryStage.getInstance().getStage().show();
                         } else {
                             PrimaryStage.getInstance().setAccount(newAccount);
-                            DialogStage.getInstance().getStage().hide();
+                            DialogPrimaryStage.getInstance().getStage().hide();
                             PrimaryStage.getInstance().getStage().show();
                         }
                     } else {

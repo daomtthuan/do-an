@@ -238,14 +238,14 @@ insert Account values ('map103', '1', 1, 'Miguel Angel Paolino', 0, '2000-10-02'
 insert Account values ('ad104', '1', 1, 'Anabela Domingues', 1, '1994-12-16', 'Av. Ines de Castro, 414', '0790191118', 'AnabelaDomingues@gmail.com')
 go
 
-insert into Discount values ('MA0011',0.1)
-insert into Discount values ('MA0021',0.1)
-insert into Discount values ('MA0031',0.1)
-insert into Discount values ('MA0041',0.1)
-insert into Discount values ('MA0051',0.1)
-insert into Discount values ('MA0061',0.1)
-insert into Discount values ('MA0071',0.1)
-insert into Discount values ('MA0081',0.1)
+insert into Discount values ('MA0011',10)
+insert into Discount values ('MA0021',5)
+insert into Discount values ('MA0031',3)
+insert into Discount values ('MA0041',7)
+insert into Discount values ('MA0051',10)
+insert into Discount values ('MA0061',11)
+insert into Discount values ('MA0071',5)
+insert into Discount values ('MA0081',2)
 go
 ---------------------------------------------------------------------------------------
 -- create procedure

@@ -1,19 +1,21 @@
 package main;
 
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.Contract;
 
 /**
- * The type Dialog stage.
+ * The type Dialog primary stage.
  */
-public final class DialogStage {
-    private static DialogStage instance;
+public final class DialogPrimaryStage {
+    private static DialogPrimaryStage instance;
     private Stage stage;
 
-    private DialogStage() {
+    private DialogPrimaryStage() {
         stage = new Stage();
         stage.setTitle("Milk Tea Shop - Dialog");
         stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
     }
 
     /**
@@ -21,15 +23,15 @@ public final class DialogStage {
      *
      * @return the instance
      */
-    public static DialogStage getInstance() {
+    public static DialogPrimaryStage getInstance() {
         if (instance == null) {
-            setInstance(new DialogStage());
+            setInstance(new DialogPrimaryStage());
         }
         return instance;
     }
 
-    private static void setInstance(DialogStage instance) {
-        DialogStage.instance = instance;
+    private static void setInstance(DialogPrimaryStage instance) {
+        DialogPrimaryStage.instance = instance;
     }
 
     /**

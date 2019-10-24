@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import library.ErrorAlert;
-import main.DialogStage;
-import main.PrimaryStage;
+import main.DialogSecondaryStage;
 import main.SecondaryStage;
-import model.Bill;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,8 +23,8 @@ public final class ControllerWelcome implements Initializable {
         try {
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
             view.setController(new ControllerCustomerLogin());
-            DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-            DialogStage.getInstance().getStage().show();
+            DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+            DialogSecondaryStage.getInstance().getStage().show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,8 +36,8 @@ public final class ControllerWelcome implements Initializable {
             // Set up view Register for customer on dialog Stage and show it
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
             view.setController(new ControllerRegister());
-            DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-            DialogStage.getInstance().getStage().show();
+            DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+            DialogSecondaryStage.getInstance().getStage().show();
         } catch (IOException e) {
             e.printStackTrace();
         }

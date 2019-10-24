@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import library.ErrorAlert;
 import library.WarningAlert;
-import main.DialogStage;
+import main.DialogSecondaryStage;
 import main.SecondaryStage;
 import model.Account;
 
@@ -33,7 +33,7 @@ public final class ControllerCustomerLogin extends ControllerAdminLogin implemen
                         FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
                         SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
                     }
-                    DialogStage.getInstance().getStage().hide();
+                    DialogSecondaryStage.getInstance().getStage().hide();
                     SecondaryStage.getInstance().getStage().show();
                 } catch (IOException e) {
                     ErrorAlert.getInstance().showAndWait(e);
@@ -49,9 +49,9 @@ public final class ControllerCustomerLogin extends ControllerAdminLogin implemen
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SecondaryStage.getInstance().getStage().hide();
-        DialogStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+        DialogSecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
-            DialogStage.getInstance().getStage().hide();
+            DialogSecondaryStage.getInstance().getStage().hide();
             SecondaryStage.getInstance().getStage().show();
         });
     }

@@ -4,8 +4,10 @@ import access.AccessAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import library.InformationAlert;
 import library.Tool;
 import library.WarningAlert;
+import main.PrimaryStage;
 import main.SecondaryStage;
 import model.Account;
 
@@ -152,7 +154,13 @@ public class ControllerInformation implements Initializable {
 
                 if (account != null) {
                     this.account = account;
-                    SecondaryStage.getInstance().setAccount(account);
+                    if (account.getRoll() == 1) {
+                        SecondaryStage.getInstance().setAccount(account);
+                    }
+                    else {
+                        PrimaryStage.getInstance().setAccount(account);
+                    }
+                    InformationAlert.getInstance().showAndWait("Edit Information succeeded!", "Your Information Account has been edited.");
                     view();
                 } else {
                     WarningAlert.getInstance().showAndWait("Edit Information failed!", "Can not edit Account Information.\nPlease notify staff.");

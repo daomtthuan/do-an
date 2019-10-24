@@ -1,5 +1,6 @@
 package controller.customer;
 
+import access.AccessCategory;
 import controller.ControllerChangePassword;
 import controller.ControllerInformation;
 import javafx.fxml.FXML;
@@ -8,17 +9,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import main.DialogStage;
+import main.DialogSecondaryStage;
 import main.SecondaryStage;
+import model.Category;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
  * The type Controller order.
  */
 public final class ControllerOrder implements Initializable {
+    private ArrayList<Category> categories;
+
     @FXML
     private VBox viewFood;
     @FXML
@@ -37,8 +42,8 @@ public final class ControllerOrder implements Initializable {
                 try {
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
                     view.setController(new ControllerRegister());
-                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-                    DialogStage.getInstance().getStage().show();
+                    DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogSecondaryStage.getInstance().getStage().show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -49,8 +54,8 @@ public final class ControllerOrder implements Initializable {
                 try {
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
                     view.setController(new ControllerCustomerLogin());
-                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-                    DialogStage.getInstance().getStage().show();
+                    DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogSecondaryStage.getInstance().getStage().show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -65,13 +70,13 @@ public final class ControllerOrder implements Initializable {
 
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewInformation.fxml"));
                     view.setController(controllerInformation);
-                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-                    DialogStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+                    DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogSecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
                         windowEvent.consume();
-                        DialogStage.getInstance().getStage().hide();
+                        DialogSecondaryStage.getInstance().getStage().hide();
                         SecondaryStage.getInstance().getStage().show();
                     });
-                    DialogStage.getInstance().getStage().show();
+                    DialogSecondaryStage.getInstance().getStage().show();
                     SecondaryStage.getInstance().getStage().hide();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -83,11 +88,11 @@ public final class ControllerOrder implements Initializable {
                 try {
                     FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewChangePassword.fxml"));
                     view.setController(new ControllerChangePassword(SecondaryStage.getInstance().getAccount()));
-                    DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-                    DialogStage.getInstance().getStage().show();
-                    DialogStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+                    DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                    DialogSecondaryStage.getInstance().getStage().show();
+                    DialogSecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
                         windowEvent.consume();
-                        DialogStage.getInstance().getStage().hide();
+                        DialogSecondaryStage.getInstance().getStage().hide();
                         SecondaryStage.getInstance().getStage().show();
                     });
                     SecondaryStage.getInstance().getStage().hide();
@@ -106,8 +111,8 @@ public final class ControllerOrder implements Initializable {
         discountButton.setOnAction(event -> {
             try {
                 FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewEnterDiscount.fxml"));
-                DialogStage.getInstance().getStage().setScene(new Scene(view.load()));
-                DialogStage.getInstance().getStage().show();
+                DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
+                DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
 
 
@@ -133,6 +138,11 @@ public final class ControllerOrder implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        });
+
+        categories = AccessCategory.getInstance().load();
+        categories.forEach(category -> {
+            System.out.println(category.getName());
         });
     }
 }
