@@ -4,7 +4,6 @@ import access.AccessCategory;
 import access.AccessFood;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.ImageView;
@@ -14,7 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import main.SecondaryStage;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
@@ -33,6 +31,9 @@ public final class ControllerFood implements Initializable {
     @FXML
     private FlowPane foodPane;
 
+    /**
+     * create button
+     */
     @NotNull
     private Button createButton(String name, String urlImage) {
         ImageView imageView = new ImageView(urlImage);
@@ -55,16 +56,19 @@ public final class ControllerFood implements Initializable {
         AnchorPane.setBottomAnchor(container, (double) 0);
         AnchorPane.setLeftAnchor(container, (double) 0);
 
+        // Load categories list
         AccessCategory.getInstance().getList().forEach(category -> {
-            Button categoryButton = createButton(category.getName(), "/asset/food/1.png");
+            Button categoryButton = createButton(category.getName(), "/asset/food/" + category.getId() + ".png");
+
+            // event click on category -> load foods list
             categoryButton.setOnAction(event -> {
-                SecondaryStage.getInstance().getStage().getScene().setCursor(Cursor.WAIT);
                 foodPane.getChildren().clear();
+
+                // load foods list
                 AccessFood.getInstance().getList(category.getId()).forEach(food -> {
                     Button foodButton = createButton(food.getName(), "/asset/food/" + food.getId() + ".png");
                     foodPane.getChildren().add(foodButton);
                 });
-                SecondaryStage.getInstance().getStage().getScene().setCursor(Cursor.DEFAULT);
             });
             categoryPane.getChildren().add(categoryButton);
         });

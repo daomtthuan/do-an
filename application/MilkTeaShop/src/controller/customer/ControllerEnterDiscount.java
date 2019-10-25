@@ -40,6 +40,7 @@ public final class ControllerEnterDiscount implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SecondaryStage.getInstance().getStage().hide();
+        // Event On Close stage
         DialogSecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
             DialogSecondaryStage.getInstance().getStage().hide();

@@ -122,6 +122,7 @@ public final class ControllerOrder implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setup();
         SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> setup());
+        // Event On Close stage
         SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
             try {
@@ -136,6 +137,7 @@ public final class ControllerOrder implements Initializable {
             }
         });
 
+        // Load view Food into AnchorPane viewFood
         try {
             ControllerFood controllerFood = new ControllerFood();
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewFood.fxml"));

@@ -21,6 +21,7 @@ public final class ControllerWelcome implements Initializable {
     @FXML
     private void login() {
         try {
+            // Set up view Login for customer on dialog Stage and show it
             FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
             view.setController(new ControllerCustomerLogin());
             DialogSecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
@@ -57,6 +58,7 @@ public final class ControllerWelcome implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Event on close stage
         SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
             WarningAlert.getInstance().showAndWait("Fail!", "You do not have permission to do this action!");

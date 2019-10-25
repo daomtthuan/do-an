@@ -121,6 +121,9 @@ public class ControllerInformation implements Initializable {
         return email.getText();
     }
 
+    /**
+     * Set up for mode edit
+     */
     private void edit() {
         setTitle("EDIT INFORMATION");
         button.setText("Submit");
@@ -139,6 +142,8 @@ public class ControllerInformation implements Initializable {
         address.setStyle("-fx-opacity: 100");
         phone.setStyle("-fx-opacity: 100");
         email.setStyle("-fx-opacity: 100");
+
+        // setup event for button
         button.setOnAction(event -> {
             String name = Tool.fixString(getName());
             boolean gender = getMale();
@@ -170,6 +175,9 @@ public class ControllerInformation implements Initializable {
         });
     }
 
+    /**
+     * Set up for mode view
+     */
     private void view() {
         setTitle("ACCOUNT INFORMATION");
         button.setText("Edit Information");
@@ -202,6 +210,7 @@ public class ControllerInformation implements Initializable {
         phone.setText(account.getPhone());
         email.setText(account.getEmail());
 
+        // mode view
         view();
     }
 }
