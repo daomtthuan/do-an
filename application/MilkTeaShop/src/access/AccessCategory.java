@@ -38,7 +38,7 @@ public final class AccessCategory {
      */
     @NotNull
     @Contract(pure = true)
-    public ArrayList<Category> load() {
+    public ArrayList<Category> getList() {
         ArrayList<Category> categories = new ArrayList<>();
         try {
             ResultSet resultSet = DataProvider.getInstance().execute("select * from Category");

@@ -49,7 +49,8 @@ go
 
 create table Discount(id int identity primary key,
 	name varchar(50) not null unique,
-	sale float not null
+	sale float not null,
+	status bit not null default 1, -- 0: disable, -- enable
 )
 go
 
@@ -238,14 +239,14 @@ insert Account values ('map103', '1', 1, 'Miguel Angel Paolino', 0, '2000-10-02'
 insert Account values ('ad104', '1', 1, 'Anabela Domingues', 1, '1994-12-16', 'Av. Ines de Castro, 414', '0790191118', 'AnabelaDomingues@gmail.com')
 go
 
-insert into Discount values ('MA0011',10)
-insert into Discount values ('MA0021',5)
-insert into Discount values ('MA0031',3)
-insert into Discount values ('MA0041',7)
-insert into Discount values ('MA0051',10)
-insert into Discount values ('MA0061',11)
-insert into Discount values ('MA0071',5)
-insert into Discount values ('MA0081',2)
+insert into Discount values ('MA0011',10, 1)
+insert into Discount values ('MA0021',5, 1)
+insert into Discount values ('MA0031',3, 1)
+insert into Discount values ('MA0041',7, 1)
+insert into Discount values ('MA0051',10, 1)
+insert into Discount values ('MA0061',11, 1)
+insert into Discount values ('MA0071',5, 1)
+insert into Discount values ('MA0081',2, 1)
 go
 ---------------------------------------------------------------------------------------
 -- create procedure
@@ -326,6 +327,7 @@ create proc InsertCategory
 	@name varchar(50)
 as begin
 	insert into Category values (@name)
+	select * from Category where id = scope_identity();
 end
 go
 
@@ -333,17 +335,21 @@ create proc InsertDiscount
 	@name varchar(50),
 	@sale float
 as begin
-	insert into Discount values(@name, @sale)
-	select 1
+	insert into Discount values(@name, @sale, 1);
+	select * from Discount where id = scope_identity();
 end
 go
 
 create proc CheckDiscount
 	@name varchar(50)
 as begin
-	select * from Discount where name = @name
+	select * from Discount where name = @name and status = 1;
 end
 go
 
-
-select * from Category
+create proc GetFood
+	@idCategory int
+as begin
+	select * from Food where idCategory = @idCategory;
+end
+go

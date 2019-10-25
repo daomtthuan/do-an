@@ -13,7 +13,6 @@ public class Food {
     private int id;
     private String name;
     private int idCategory;
-    private boolean status;
 
     /**
      * Instantiates a new Food.
@@ -25,7 +24,6 @@ public class Food {
             id = data.getInt("id");
             name = data.getString("name");
             idCategory = data.getInt("idCategory");
-            status = data.getBoolean("status");
         } catch (SQLException e) {
             ErrorAlert.getInstance().showAndWait(e);
         }
@@ -56,14 +54,5 @@ public class Food {
      */
     public int getIdCategory() {
         return idCategory;
-    }
-
-    /**
-     * Is status boolean.
-     *
-     * @return the boolean
-     */
-    public boolean isStatus() {
-        return status;
     }
 }
