@@ -7,6 +7,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import library.ErrorAlert;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,6 +37,7 @@ public final class Main extends Application {
             FXMLLoader primaryView = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
             primaryView.setController(new ControllerAdminLogin());
             PrimaryStage.getInstance().getStage().setScene(new Scene(primaryView.load()));
+            //PrimaryStage.getInstance().getStage().setScene(new JMetro(new Scene(primaryView.load()), Style.LIGHT).getScene());
 
             // Platform exit and close database connection when primary Stage close
             PrimaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
