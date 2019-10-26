@@ -34,10 +34,7 @@ public final class Main extends Application {
 
             // Setup primary Stage show view AdminLogin with controller AdminLogin for customer
             PrimaryStage.getInstance().setStage(stage);
-            FXMLLoader primaryView = new FXMLLoader(getClass().getResource("/view/ViewLogin.fxml"));
-            primaryView.setController(new ControllerAdminLogin());
-            PrimaryStage.getInstance().getStage().setScene(new Scene(primaryView.load()));
-            //PrimaryStage.getInstance().getStage().setScene(new JMetro(new Scene(primaryView.load()), Style.LIGHT).getScene());
+            PrimaryStage.getInstance().setScene("/view/ViewLogin.fxml", new ControllerAdminLogin());
 
             // Platform exit and close database connection when primary Stage close
             PrimaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {

@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * The type Controller admin login.
  */
-public class ControllerAdminLogin {
+public class ControllerAdminLogin implements Controller {
     @FXML
     private TextField name;
     @FXML
@@ -50,20 +50,14 @@ public class ControllerAdminLogin {
             Account account = AccessAccount.getInstance().login("Admin", getName(), getPassword());
             // If login success
             if (account != null) {
-                try {
-                    // Setup primary stage for employee
-                    FXMLLoader primaryView = new FXMLLoader(getClass().getResource("/view/employee/ViewEmployee.fxml"));
-                    PrimaryStage.getInstance().getStage().setScene(new Scene(primaryView.load()));
-                    PrimaryStage.getInstance().setAccount(account);
+                // Setup primary stage for employee
+                PrimaryStage.getInstance().setScene("/view/employee/ViewEmployee.fxml");
+                PrimaryStage.getInstance().setAccount(account);
 
-                    // Setup secondary stage for customer and show it
-                    FXMLLoader secondaryView = new FXMLLoader(getClass().getResource("/view/customer/ViewWelcome.fxml"));
-                    SecondaryStage.getInstance().getStage().setScene(new Scene(secondaryView.load()));
-                    SecondaryStage.getInstance().getStage().show();
-                    SecondaryStage.getInstance().setAccount(null);
-                } catch (IOException e) {
-                    ErrorAlert.getInstance().showAndWait(e);
-                }
+                // Setup secondary stage for customer and show it
+                SecondaryStage.getInstance().setScene("/view/customer/ViewWelcome.fxml");
+                SecondaryStage.getInstance().getStage().show();
+                SecondaryStage.getInstance().setAccount(null);
             } else {
                 WarningAlert.getInstance().showAndWait("Fail!", "Account or password is incorrect.\nPlease check again.");
             }

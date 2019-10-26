@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Contract;
 /**
  * The type Controller change password.
  */
-public final class ControllerChangePassword {
+public final class ControllerChangePassword implements Controller {
     private Account account;
     @FXML
     private PasswordField oldPassword;

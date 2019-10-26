@@ -1,6 +1,7 @@
 package controller.manager;
 
 import access.AccessDiscount;
+import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -12,7 +13,7 @@ import static library.Tool.*;
 /**
  * The type Discount.
  */
-public final class Discount {
+public final class Discount implements Controller {
 
     @FXML
     private TextField name;

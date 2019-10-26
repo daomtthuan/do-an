@@ -1,6 +1,7 @@
 package controller.customer;
 
 import access.AccessAccount;
+import controller.Controller;
 import controller.ControllerAdminLogin;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
 /**
  * The type Controller customer login.
  */
-public final class ControllerCustomerLogin extends ControllerAdminLogin implements Initializable {
+public final class ControllerCustomerLogin extends ControllerAdminLogin implements Controller, Initializable {
     @Override
     protected void login() {
         // Check validate input account name and password
@@ -27,17 +28,12 @@ public final class ControllerCustomerLogin extends ControllerAdminLogin implemen
             // If login success
             if (account != null) {
                 SecondaryStage.getInstance().setAccount(account);
-                try {
-                    // Set up view ControllerOrder for customer on secondary Stage
-                    if (!SecondaryStage.getInstance().isOrdering()) {
-                        FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
-                        SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
-                    }
-                    DialogSecondaryStage.getInstance().getStage().hide();
-                    SecondaryStage.getInstance().getStage().show();
-                } catch (IOException e) {
-                    ErrorAlert.getInstance().showAndWait(e);
+                // Set up view ControllerOrder for customer on secondary Stage
+                if (!SecondaryStage.getInstance().isOrdering()) {
+                    SecondaryStage.getInstance().setScene("/view/customer/ViewOrder.fxml");
                 }
+                DialogSecondaryStage.getInstance().getStage().hide();
+                SecondaryStage.getInstance().getStage().show();
             } else {
                 WarningAlert.getInstance().showAndWait("Fail!", "Account or password is incorrect.\nPlease check again.");
             }

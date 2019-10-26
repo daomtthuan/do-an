@@ -1,8 +1,15 @@
 package main;
 
+import controller.Controller;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import model.Account;
 import org.jetbrains.annotations.Contract;
+
+import java.io.IOException;
 
 /**
  * The type Primary stage.
@@ -49,6 +56,42 @@ public final class PrimaryStage {
      */
     void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    /**
+     * Sets scene.
+     *
+     * @param viewPath   the view path
+     * @param controller the controller
+     */
+    public void setScene(String viewPath, Controller controller) {
+        try {
+            FXMLLoader view = new FXMLLoader(getClass().getResource(viewPath));
+            view.setController(controller);
+            Scene scene = new Scene(view.load());
+            new JMetro(scene, Style.LIGHT);
+            scene.getStylesheets().add("/view/style.css");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Sets scene.
+     *
+     * @param viewPath the view path
+     */
+    public void setScene(String viewPath) {
+        try {
+            FXMLLoader view = new FXMLLoader(getClass().getResource(viewPath));
+            Scene scene = new Scene(view.load());
+            new JMetro(scene, Style.LIGHT);
+            scene.getStylesheets().add("/view/style.css");
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

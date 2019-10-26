@@ -2,6 +2,8 @@
   <dictionary name="daomtthuan">
     <words>
       <w>jdbc</w>
+      <w>segoe</w>
+      <w>semibold</w>
       <w>sqlserver</w>
     </words>
   </dictionary>

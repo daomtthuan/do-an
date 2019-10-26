@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 /**
  * The type Controller food.
  */
-public final class ControllerFood implements Initializable {
+public final class ControllerFood implements Controller, Initializable {
     @FXML
     private VBox container;
 

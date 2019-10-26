@@ -1,6 +1,7 @@
 package controller.customer;
 
 import access.AccessDiscount;
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -16,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * The type Controller enter discount.
  */
-public final class ControllerEnterDiscount implements Initializable {
+public final class ControllerEnterDiscount implements Controller, Initializable {
     @FXML
     private TextField name;
 

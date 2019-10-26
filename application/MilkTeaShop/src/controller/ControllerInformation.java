@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 /**
  * The type Controller information.
  */
-public class ControllerInformation implements Initializable {
+public class ControllerInformation implements Controller, Initializable {
     private Account account;
     @FXML
     private Button button;

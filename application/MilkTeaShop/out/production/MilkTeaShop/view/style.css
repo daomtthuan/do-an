@@ -1,0 +1,25 @@
+.root,
+.label {
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: black;
+}
+
+.background {
+    -fx-background-color: white;
+}
+
+.button {
+    -fx-border-color: black;
+    -fx-font-family: "Segoe UI Semibold";
+    -shrink-animate-on-press: true;
+}
+.button:focused {
+    -fx-border-color: black;
+}
+
+#title {
+    -fx-font-size: 24px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #0078D7;
+}

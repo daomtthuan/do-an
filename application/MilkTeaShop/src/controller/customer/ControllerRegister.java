@@ -1,6 +1,7 @@
 package controller.customer;
 
 import access.AccessAccount;
+import controller.Controller;
 import controller.ControllerInformation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
 /**
  * The type Controller register.
  */
-public final class ControllerRegister extends ControllerInformation {
+public final class ControllerRegister extends ControllerInformation implements Controller {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTitle("REGISTER");
@@ -58,26 +59,21 @@ public final class ControllerRegister extends ControllerInformation {
                 // Check insert success
                 if (newAccount != null) {
                     // Set up view ControllerOrder for customer on secondary Stage
-                    try {
-                        SecondaryStage.getInstance().setAccount(newAccount);
+                    SecondaryStage.getInstance().setAccount(newAccount);
 
-                        // if customer is ordering, back to order view, otherwise create view order
-                        if (!SecondaryStage.getInstance().isOrdering()) {
-                            FXMLLoader view = new FXMLLoader(getClass().getResource("/view/customer/ViewOrder.fxml"));
-                            SecondaryStage.getInstance().getStage().setScene(new Scene(view.load()));
-                        }
-
-                        // Alert insert success
-                        InformationAlert.getInstance().showAndWait("Success!",
-                                "Your Customer Account: " + newAccount.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n" +
-                                        "Thanks for coming to our shop!");
-
-                        // Show stage order
-                        DialogSecondaryStage.getInstance().getStage().hide();
-                        SecondaryStage.getInstance().getStage().show();
-                    } catch (IOException e) {
-                        ErrorAlert.getInstance().showAndWait(e);
+                    // if customer is ordering, back to order view, otherwise create view order
+                    if (!SecondaryStage.getInstance().isOrdering()) {
+                        SecondaryStage.getInstance().setScene("/view/customer/ViewOrder.fxml");
                     }
+
+                    // Alert insert success
+                    InformationAlert.getInstance().showAndWait("Success!",
+                            "Your Customer Account: " + newAccount.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n" +
+                                    "Thanks for coming to our shop!");
+
+                    // Show stage order
+                    DialogSecondaryStage.getInstance().getStage().hide();
+                    SecondaryStage.getInstance().getStage().show();
                 } else {
                     WarningAlert.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
                 }

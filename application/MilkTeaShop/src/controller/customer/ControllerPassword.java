@@ -1,4 +1,6 @@
 package controller.customer;
 
-public final class ControllerPassword {
+import controller.Controller;
+
+public final class ControllerPassword implements Controller {
 }
