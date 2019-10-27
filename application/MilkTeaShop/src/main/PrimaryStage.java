@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
+import library.ErrorAlert;
 import model.Account;
 import org.jetbrains.annotations.Contract;
 
@@ -73,7 +74,7 @@ public final class PrimaryStage {
             scene.getStylesheets().add("/view/style.css");
             stage.setScene(scene);
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorAlert.getInstance().showAndWait(e);
         }
     }
 
@@ -90,7 +91,7 @@ public final class PrimaryStage {
             scene.getStylesheets().add("/view/style.css");
             stage.setScene(scene);
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorAlert.getInstance().showAndWait(e);
         }
     }
 

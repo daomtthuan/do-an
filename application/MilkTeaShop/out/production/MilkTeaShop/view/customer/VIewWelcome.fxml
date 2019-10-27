@@ -11,21 +11,13 @@
 
 <AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ControllerWelcome">
    <children>
-       <VBox alignment="CENTER" layoutX="230.0" layoutY="281.0" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+       <VBox layoutX="230.0" layoutY="281.0" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
-             <Label styleClass="customTitle" text="WELCOME TO">
-                 <font>
-                     <Font size="36.0" />
-                 </font>
-             </Label>
-             <Label styleClass="customTitle" text="MILK TEA SHOP" textAlignment="CENTER" textFill="#2e6681">
-                 <font>
-                     <Font name="System Bold" size="96.0" />
-                 </font>
-             </Label>
-            <HBox alignment="CENTER" styleClass="customHBox">
+             <Label styleClass="customTitle" text="WELCOME TO" />
+             <Label styleClass="customTitle" text="MILK TEA SHOP" />
+            <HBox styleClass="customHBox">
                <children>
-                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#register" styleClass="customButton" text="Register">
+                    <Button mnemonicParsing="false" onAction="#register" styleClass="customButton" text="Register">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
@@ -34,7 +26,7 @@
                         </ImageView>
                      </graphic>
                     </Button>
-                    <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#order" styleClass="customButton" text="Order Food">
+                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#order" styleClass="customButton" text="Order Food">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
@@ -43,7 +35,7 @@
                         </ImageView>
                      </graphic>
                     </Button>
-                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#login" styleClass="customButton" text="Login">
+                    <Button mnemonicParsing="false" onAction="#login" styleClass="customButton" text="Login">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
