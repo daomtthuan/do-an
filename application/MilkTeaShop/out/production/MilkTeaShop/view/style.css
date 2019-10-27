@@ -12,7 +12,6 @@
     -fx-font-size: 24px;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #007bff;
-    -fx-alignment: left;
 }
 
 .customButton {
@@ -24,6 +23,8 @@
     -fx-border-style: solid !important;
     -fx-border-width: 1px !important;
     -fx-padding: 5px 20px !important;
+    -fx-content-display: top;
+    -fx-alignment: center;
 }
 
 .customButton:hover {
