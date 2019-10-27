@@ -6,16 +6,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="429.0" styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Discount">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Discount">
    <children>
-      <VBox alignment="CENTER" prefHeight="198.0" prefWidth="429.0" spacing="10.0" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" styleClass="customVBox">
          <children>
-            <Label alignment="CENTER" styleClass="customTitle" text="DISCOUNT" textFill="#2e6681">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <GridPane alignment="CENTER" hgap="10.0" styleClass="customGridPane" vgap="10.0">
+            <Label alignment="CENTER" styleClass="customTitle" text="DISCOUNT" />
+            <GridPane styleClass="customGridPane">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="64.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="315.0" />
@@ -24,41 +20,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
                <children>
-                  <Label alignment="CENTER" styleClass="customLable" text="Name">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" styleClass="customLable" text="Sale" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField alignment="CENTER" styleClass="customTextField" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <TextField alignment="CENTER" styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
+                  <Label styleClass="customLable" text="Name" />
+                  <Label styleClass="customLable" text="Sale" GridPane.rowIndex="1" />
+                  <TextField styleClass="customTextField" GridPane.columnIndex="1" />
+                  <TextField styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" styleClass="customButton" text="Submit">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
+            <Button defaultButton="true" mnemonicParsing="false" styleClass="customButton" text="Submit" />
          </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
       </VBox>
    </children>
 </AnchorPane>

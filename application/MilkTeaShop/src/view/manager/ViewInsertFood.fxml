@@ -8,19 +8,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="196.0" prefWidth="396.0" styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-       <VBox alignment="CENTER" prefHeight="228.0" prefWidth="396.0" spacing="10.0" styleClass="customVBox">
-           <padding>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-           </padding>
+       <VBox styleClass="customVBox">
           <children>
-              <Label alignment="CENTER" styleClass="customTitle" text="ADD FOOD" textFill="#2e6681">
-                  <font>
-                      <Font name="System Bold" size="24.0" />
-                  </font>
-              </Label>
-              <GridPane alignment="CENTER" hgap="10.0" styleClass="customGridPane" vgap="10.0">
+              <Label styleClass="customTitle" text="ADD FOOD" />
+              <GridPane styleClass="customGridPane">
                   <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="71.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="295.0" />
@@ -29,33 +22,14 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
-                  <padding>
-                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </padding>
                  <children>
-                     <Label alignment="CENTER" prefHeight="20.0" prefWidth="57.0" styleClass="customLable" text="Name">
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Label>
-                     <Label alignment="CENTER" styleClass="customLable" text="Catergory" textAlignment="CENTER" GridPane.rowIndex="1">
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Label>
-                     <TextField alignment="CENTER" prefHeight="31.0" prefWidth="203.0" styleClass="customTextField" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                     <ComboBox prefHeight="30.0" prefWidth="316.0" styleClass="customComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     <Label prefHeight="20.0" prefWidth="57.0" styleClass="customLable" text="Name" />
+                     <Label styleClass="customLable" text="Catergory" textAlignment="CENTER" GridPane.rowIndex="1" />
+                     <TextField styleClass="customTextField" GridPane.columnIndex="1" />
+                     <ComboBox styleClass="customComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                  </children>
               </GridPane>
-              <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" styleClass="customButton" text="Submit">
-                  <font>
-                      <Font size="14.0" />
-                  </font>
-              </Button>
+              <Button mnemonicParsing="false" styleClass="customButton" text="Submit" />
           </children>
        </VBox>
    </children>

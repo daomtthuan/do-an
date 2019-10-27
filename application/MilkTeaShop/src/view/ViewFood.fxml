@@ -8,26 +8,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="container" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="938.0" prefHeight="595.0" prefWidth="938.0" spacing="10.0" styleClass="customVBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" styleClass="customVBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="185.0" styleClass="customScrollPane">
+        <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
             <content>
-                <HBox fx:id="categoryPane" spacing="10.0" styleClass="customHBox" />
+                <HBox fx:id="categoryPane" styleClass="customHBox" />
             </content>
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
         </ScrollPane>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" styleClass="customScrollPane" VBox.vgrow="ALWAYS">
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
+      <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
          <content>
-            <FlowPane fx:id="foodPane" hgap="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="customFlowPane" vgap="10.0" />
+            <FlowPane fx:id="foodPane" styleClass="customFlowPane" />
          </content>
       </ScrollPane>
     </children>
-    <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-    </padding>
 </VBox>
