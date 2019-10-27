@@ -9,26 +9,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="952.0" styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ControllerWelcome">
+<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ControllerWelcome">
    <children>
        <VBox alignment="CENTER" layoutX="230.0" layoutY="281.0" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
-             <Label alignment="TOP_CENTER" styleClass="customTitle" text="WELCOME TO" wrapText="true">
+             <Label styleClass="customTitle" text="WELCOME TO">
                  <font>
                      <Font size="36.0" />
                  </font>
              </Label>
-             <Label alignment="TOP_CENTER" styleClass="customTitle" text="MILK TEA SHOP" textAlignment="CENTER" textFill="#2e6681" wrapText="true">
+             <Label styleClass="customTitle" text="MILK TEA SHOP" textAlignment="CENTER" textFill="#2e6681">
                  <font>
                      <Font name="System Bold" size="96.0" />
                  </font>
              </Label>
-            <HBox alignment="CENTER" spacing="50.0" styleClass="customHBox">
+            <HBox alignment="CENTER" styleClass="customHBox">
                <children>
-                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#register" prefHeight="100.0" prefWidth="200.0" styleClass="customButton" text="Register" textAlignment="CENTER">
-                        <font>
-                            <Font size="18.0" />
-                        </font>
+                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#register" styleClass="customButton" text="Register">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
@@ -37,10 +34,7 @@
                         </ImageView>
                      </graphic>
                     </Button>
-                    <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#order" prefHeight="100.0" prefWidth="200.0" styleClass="customButton" text="Order Food" textAlignment="CENTER">
-                        <font>
-                            <Font size="18.0" />
-                        </font>
+                    <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#order" styleClass="customButton" text="Order Food">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
@@ -49,10 +43,7 @@
                         </ImageView>
                      </graphic>
                     </Button>
-                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#login" prefHeight="100.0" prefWidth="200.0" styleClass="customButton" text="Login" textAlignment="CENTER">
-                        <font>
-                            <Font size="18.0" />
-                        </font>
+                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#login" styleClass="customButton" text="Login">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
@@ -65,17 +56,8 @@
                      </graphic>
                     </Button>
                </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
             </HBox>
           </children>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
        </VBox>
    </children>
 </AnchorPane>
