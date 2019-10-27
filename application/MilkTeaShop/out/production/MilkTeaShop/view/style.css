@@ -1,25 +1,18 @@
-.root,
-.label {
-    -fx-font-size: 14px;
+.root {
+    -fx-font-size: 16px;
     -fx-font-family: "Segoe UI";
-    -fx-text-fill: black;
+    -fx-background-color: white !important;
 }
 
-.background {
-    -fx-background-color: white;
-}
-
-.button {
-    -fx-border-color: black;
-    -fx-font-family: "Segoe UI Semibold";
-    -shrink-animate-on-press: true;
-}
-.button:focused {
-    -fx-border-color: black;
-}
-
-#title {
+.customTitle {
     -fx-font-size: 24px;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #0078D7;
 }
+
+.customButton {
+    -fx-border-color: #00508F !important;
+    -fx-background-color: #0078D7 !important;
+    -fx-text-fill: white !important;
+}
+
