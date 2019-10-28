@@ -1,5 +1,7 @@
 package controller.customer;
 
+import app.DialogSecondaryStage;
+import app.SecondaryStage;
 import controller.Controller;
 import controller.ControllerChangePassword;
 import controller.ControllerFood;
@@ -7,21 +9,14 @@ import controller.ControllerInformation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import library.ErrorAlert;
-import main.DialogSecondaryStage;
-import main.SecondaryStage;
+import plugin.alert.AlertError;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * The type Controller order.
- */
 public final class ControllerOrder implements Controller, Initializable {
     @FXML
     private AnchorPane viewFood;
@@ -110,7 +105,7 @@ public final class ControllerOrder implements Controller, Initializable {
             view.setController(controllerFood);
             viewFood.getChildren().add(view.load());
         } catch (IOException e) {
-            ErrorAlert.getInstance().showAndWait(e);
+            AlertError.getInstance().showAndWait(e);
         }
     }
 }

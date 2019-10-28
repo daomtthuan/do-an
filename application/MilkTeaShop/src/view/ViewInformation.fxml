@@ -5,62 +5,54 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <VBox styleClass="customVBox">
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-            <children>
-                <Label fx:id="title" styleClass="customTitle" />
-                <GridPane styleClass="customGridPane">
-                    <columnConstraints>
-                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="60.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="343.0" minWidth="10.0" prefWidth="342.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <Label styleClass="customLable" text="Name" />
-                        <Label styleClass="customLable" text="Gender" GridPane.rowIndex="1" />
-                        <Label styleClass="customLable" text="Birthday" GridPane.rowIndex="2" />
-                        <Label styleClass="customLable" text="Address" GridPane.rowIndex="3" />
-                        <Label styleClass="customLable" text="Email" GridPane.rowIndex="5" />
-                        <Label styleClass="customLable" text="Phone" GridPane.rowIndex="4" />
-                        <TextField fx:id="name" styleClass="customTextField" GridPane.columnIndex="1" />
-                        <HBox spacing="10.0" styleClass="customHBox" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                            <children>
-                                <RadioButton fx:id="male" contentDisplay="CENTER" mnemonicParsing="false" text="Male" textOverrun="CENTER_ELLIPSIS">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                    <toggleGroup>
-                                        <ToggleGroup fx:id="gender" />
-                                    </toggleGroup>
-                                </RadioButton>
-                                <RadioButton fx:id="female" contentDisplay="CENTER" mnemonicParsing="false" text="Female" textOverrun="CENTER_ELLIPSIS" toggleGroup="$gender">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                </RadioButton>
-                            </children>
-                        </HBox>
-                        <DatePicker fx:id="birthday" editable="false" styleClass="customDatePicker" />
-                        <TextField fx:id="address" prefHeight="25.0" prefWidth="300.0" styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="phone" styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="email" styleClass="customTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    </children>
-                </GridPane>
-                <Button fx:id="button" defaultButton="true" mnemonicParsing="false" styleClass="customButton" text="Submit" />
-            </children>
-        </VBox>
-    </children>
+   <children>
+       <VBox styleClass="customVBox">
+           <opaqueInsets>
+               <Insets />
+           </opaqueInsets>
+          <children>
+              <Label fx:id="title" />
+              <GridPane styleClass="customGridPane">
+                  <columnConstraints>
+                      <ColumnConstraints />
+                      <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                      <RowConstraints />
+                  </rowConstraints>
+                 <children>
+                     <Label text="Name" />
+                     <Label text="Gender" GridPane.rowIndex="1" />
+                     <Label text="Birthday" GridPane.rowIndex="2" />
+                     <Label text="Address" GridPane.rowIndex="3" />
+                     <Label text="Phone" GridPane.rowIndex="4" />
+                     <Label text="Email" GridPane.rowIndex="5" />
+                     <TextField fx:id="name" styleClass="customField" GridPane.columnIndex="1" />
+                     <HBox styleClass="customHBox" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <children>
+                            <RadioButton fx:id="male" mnemonicParsing="false" text="Male">
+                                <toggleGroup>
+                                    <ToggleGroup fx:id="gender" />
+                                </toggleGroup>
+                            </RadioButton>
+                            <RadioButton fx:id="female" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+                        </children>
+                     </HBox>
+                     <DatePicker fx:id="birthday" editable="false" styleClass="customDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     <TextField fx:id="address" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                     <TextField fx:id="phone" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     <TextField fx:id="email" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                 </children>
+              </GridPane>
+              <Button fx:id="button" mnemonicParsing="false" styleClass="customButton" text="Submit" />
+          </children>
+       </VBox>
+   </children>
 </AnchorPane>

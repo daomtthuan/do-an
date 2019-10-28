@@ -1,20 +1,17 @@
 package controller;
 
-import access.AccessAccount;
+import api.ApiAccount;
+import app.DialogPrimaryStage;
+import app.DialogSecondaryStage;
+import app.PrimaryStage;
+import app.SecondaryStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
-import library.InformationAlert;
-import library.WarningAlert;
-import main.DialogPrimaryStage;
-import main.DialogSecondaryStage;
-import main.PrimaryStage;
-import main.SecondaryStage;
 import model.Account;
 import org.jetbrains.annotations.Contract;
+import plugin.alert.AlertInformation;
+import plugin.alert.AlertWarning;
 
-/**
- * The type Controller change password.
- */
 public final class ControllerChangePassword implements Controller {
     private Account account;
     @FXML
@@ -24,11 +21,6 @@ public final class ControllerChangePassword implements Controller {
     @FXML
     private PasswordField repeatNewPassword;
 
-    /**
-     * Instantiates a new Controller change password.
-     *
-     * @param account the account
-     */
     @Contract(pure = true)
     public ControllerChangePassword(Account account) {
         this.account = account;
@@ -47,11 +39,11 @@ public final class ControllerChangePassword implements Controller {
                 // check matched password
                 if (newPassword.getText().equals(repeatNewPassword.getText())) {
                     // update password
-                    Account newAccount = AccessAccount.getInstance().update(account.getId(), newPassword.getText());
+                    Account newAccount = ApiAccount.getInstance().update(account.getId(), newPassword.getText());
 
                     // check update success
                     if (newAccount != null) {
-                        InformationAlert.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
+                        AlertInformation.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
 
                         // check roll to update account for which stage?
                         if (account.getRoll() == 1) {
@@ -64,16 +56,16 @@ public final class ControllerChangePassword implements Controller {
                             PrimaryStage.getInstance().getStage().show();
                         }
                     } else {
-                        WarningAlert.getInstance().showAndWait("Fail!", "Can not change Password.\nPlease notify staff.");
+                        AlertWarning.getInstance().showAndWait("Fail!", "Can not change Password.\nPlease notify staff.");
                     }
                 } else {
-                    WarningAlert.getInstance().showAndWait("Fail!", "Repeat Password does not match.");
+                    AlertWarning.getInstance().showAndWait("Fail!", "Repeat Password does not match.");
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Fail!", "Password is incorrect.");
+                AlertWarning.getInstance().showAndWait("Fail!", "Password is incorrect.");
             }
         } else {
-            WarningAlert.getInstance().showAndWait("Fail!", "Password is incorrect.");
+            AlertWarning.getInstance().showAndWait("Fail!", "Password is incorrect.");
         }
     }
 }

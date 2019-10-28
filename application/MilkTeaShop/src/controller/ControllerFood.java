@@ -1,7 +1,7 @@
 package controller;
 
-import access.AccessCategory;
-import access.AccessFood;
+import api.ApiCategory;
+import api.ApiFood;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,9 +18,6 @@ import org.jetbrains.annotations.NotNull;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * The type Controller food.
- */
 public final class ControllerFood implements Controller, Initializable {
     @FXML
     private VBox container;
@@ -31,9 +28,6 @@ public final class ControllerFood implements Controller, Initializable {
     @FXML
     private FlowPane foodPane;
 
-    /**
-     * create button
-     */
     @NotNull
     private Button createButton(String name, String urlImage) {
         ImageView imageView = new ImageView(urlImage);
@@ -57,7 +51,7 @@ public final class ControllerFood implements Controller, Initializable {
         AnchorPane.setLeftAnchor(container, (double) 0);
 
         // Load categories list
-        AccessCategory.getInstance().getList().forEach(category -> {
+        ApiCategory.getInstance().getList().forEach(category -> {
             Button categoryButton = createButton(category.getName(), "/asset/food/" + category.getId() + ".png");
 
             // event click on category -> load foods list
@@ -65,7 +59,7 @@ public final class ControllerFood implements Controller, Initializable {
                 foodPane.getChildren().clear();
 
                 // load foods list
-                AccessFood.getInstance().getList(category.getId()).forEach(food -> {
+                ApiFood.getInstance().getList(category.getId()).forEach(food -> {
                     Button foodButton = createButton(food.getName(), "/asset/food/" + food.getId() + ".png");
                     foodPane.getChildren().add(foodButton);
                 });

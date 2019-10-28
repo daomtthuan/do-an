@@ -1,6 +1,6 @@
 package model;
 
-import library.ErrorAlert;
+import plugin.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -25,7 +25,7 @@ public class Food {
             name = data.getString("name");
             idCategory = data.getInt("idCategory");
         } catch (SQLException e) {
-            ErrorAlert.getInstance().showAndWait(e);
+            AlertError.getInstance().showAndWait(e);
         }
     }
 

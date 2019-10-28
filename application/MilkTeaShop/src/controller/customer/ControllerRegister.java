@@ -1,25 +1,18 @@
 package controller.customer;
 
-import access.AccessAccount;
+import api.ApiAccount;
+import app.DialogSecondaryStage;
+import app.SecondaryStage;
 import controller.Controller;
 import controller.ControllerInformation;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import library.ErrorAlert;
-import library.InformationAlert;
-import library.Tool;
-import library.WarningAlert;
-import main.DialogSecondaryStage;
-import main.SecondaryStage;
 import model.Account;
+import plugin.StringTool;
+import plugin.alert.AlertInformation;
+import plugin.alert.AlertWarning;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * The type Controller register.
- */
 public final class ControllerRegister extends ControllerInformation implements Controller {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -35,10 +28,10 @@ public final class ControllerRegister extends ControllerInformation implements C
         getButton().setOnAction(event -> {
             // Get value from input
             StringBuilder account = new StringBuilder();
-            String name = Tool.fixString(getName());
+            String name = StringTool.fixString(getName());
             boolean gender = getMale();
             String birthday = getBirthday();
-            String address = Tool.fixString(getAddress());
+            String address = StringTool.fixString(getAddress());
             String phone = getPhone();
             String email = getEmail().toLowerCase();
 
@@ -54,7 +47,7 @@ public final class ControllerRegister extends ControllerInformation implements C
                 }
 
                 // Insert account into database
-                Account newAccount = AccessAccount.getInstance().insert(account.toString(), 1, name, gender, birthday, address, phone, email);
+                Account newAccount = ApiAccount.getInstance().insert(account.toString(), 1, name, gender, birthday, address, phone, email);
 
                 // Check insert success
                 if (newAccount != null) {
@@ -67,7 +60,7 @@ public final class ControllerRegister extends ControllerInformation implements C
                     }
 
                     // Alert insert success
-                    InformationAlert.getInstance().showAndWait("Success!",
+                    AlertInformation.getInstance().showAndWait("Success!",
                             "Your Customer Account: " + newAccount.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n" +
                                     "Thanks for coming to our shop!");
 
@@ -75,10 +68,10 @@ public final class ControllerRegister extends ControllerInformation implements C
                     DialogSecondaryStage.getInstance().getStage().hide();
                     SecondaryStage.getInstance().getStage().show();
                 } else {
-                    WarningAlert.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
+                    AlertWarning.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
                 }
             } else {
-                WarningAlert.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
+                AlertWarning.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
             }
         });
     }

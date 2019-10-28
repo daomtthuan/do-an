@@ -1,13 +1,9 @@
 package controller.manager;
 
-import access.AccessDiscount;
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import library.Tool;
-
-import static library.Tool.*;
 
 
 /**

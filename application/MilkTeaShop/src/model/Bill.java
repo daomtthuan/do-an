@@ -1,9 +1,6 @@
 package model;
 
-import library.ErrorAlert;
-import main.PrimaryStage;
-import main.SecondaryStage;
-import org.jetbrains.annotations.Contract;
+import plugin.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -36,7 +33,7 @@ public class Bill {
             checkIn = data.getString("checkIn");
             checkOut = data.getString("checkOut");
         } catch (SQLException e) {
-            ErrorAlert.getInstance().showAndWait(e);
+            AlertError.getInstance().showAndWait(e);
         }
     }
 

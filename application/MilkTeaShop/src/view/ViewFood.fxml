@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
-<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" styleClass="customVBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
-            <content>
-                <HBox fx:id="categoryPane" styleClass="customHBox" />
-            </content>
-        </ScrollPane>
-      <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
-         <content>
-            <FlowPane fx:id="foodPane" styleClass="customFlowPane" />
-         </content>
-      </ScrollPane>
-    </children>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity"
+      styleClass="customVBox" xmlns="http://javafx.com/javafx/8">
+    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
+        <HBox fx:id="categoryPane" styleClass="customHBox"/>
+    </ScrollPane>
+    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
+        <content>
+            <FlowPane fx:id="foodPane" styleClass="customFlowPane"/>
+        </content>
+    </ScrollPane>
 </VBox>

@@ -25,7 +25,7 @@
                  <children>
                      <Label prefHeight="20.0" prefWidth="57.0" styleClass="customLable" text="Name" />
                      <Label styleClass="customLable" text="Catergory" textAlignment="CENTER" GridPane.rowIndex="1" />
-                     <TextField styleClass="customTextField" GridPane.columnIndex="1" />
+                     <TextField styleClass="customField" GridPane.columnIndex="1" />
                      <ComboBox styleClass="customComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                  </children>
               </GridPane>

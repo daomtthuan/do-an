@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="wrapper" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-       <VBox styleClass="customVBox">
+       <AnchorPane id="container">
           <children>
-              <Label styleClass="customTitle" text="LOGIN" />
-              <GridPane styleClass="customGridPane">
-                  <columnConstraints>
-                      <ColumnConstraints halignment="LEFT" />
-                      <ColumnConstraints halignment="LEFT" />
-                  </columnConstraints>
-                  <rowConstraints>
-                      <RowConstraints valignment="CENTER" />
-                      <RowConstraints valignment="CENTER" />
-                  </rowConstraints>
+              <VBox styleClass="customVBox">
                  <children>
-                     <Label styleClass="customLabel" text="Account" />
-                     <Label styleClass="customLabel" text="Password" GridPane.rowIndex="1" />
-                     <TextField fx:id="name" styleClass="customTextField" GridPane.columnIndex="1" />
-                     <PasswordField fx:id="password" styleClass="customPasswordField" />
+                     <Label id="title" text="LOGIN" />
+                     <GridPane styleClass="customGridPane">
+                         <columnConstraints>
+                             <ColumnConstraints />
+                             <ColumnConstraints />
+                         </columnConstraints>
+                         <rowConstraints>
+                             <RowConstraints />
+                             <RowConstraints />
+                         </rowConstraints>
+                        <children>
+                            <Label text="Account" />
+                            <Label text="Password" GridPane.rowIndex="1" />
+                            <TextField fx:id="name" styleClass="customField" GridPane.columnIndex="1" />
+                            <PasswordField fx:id="password" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        </children>
+                     </GridPane>
+                     <Button fx:id="submit" alignment="CENTER" mnemonicParsing="false" styleClass="customButton" text="Login" />
                  </children>
-              </GridPane>
-              <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#login" styleClass="customButton" text="Login" />
+              </VBox>
           </children>
-       </VBox>
+       </AnchorPane>
    </children>
 </AnchorPane>

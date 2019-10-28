@@ -1,22 +1,15 @@
 package controller.customer;
 
+import app.DialogSecondaryStage;
+import app.SecondaryStage;
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import library.ErrorAlert;
-import library.WarningAlert;
-import main.DialogSecondaryStage;
-import main.SecondaryStage;
+import plugin.alert.AlertWarning;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * The type Controller welcome.
- */
 public final class ControllerWelcome implements Controller, Initializable {
 
     @FXML
@@ -45,7 +38,7 @@ public final class ControllerWelcome implements Controller, Initializable {
         // Event on close stage
         SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
-            WarningAlert.getInstance().showAndWait("Fail!", "You do not have permission to do this action!");
+            AlertWarning.getInstance().showAndWait("Fail!", "You do not have permission to do this action!");
         });
     }
 }

@@ -1,6 +1,6 @@
 package model;
 
-import library.ErrorAlert;
+import plugin.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -23,7 +23,7 @@ public class Category {
             id = data.getInt("id");
             name = data.getString("name");
         } catch (SQLException e) {
-            ErrorAlert.getInstance().showAndWait(e);
+            AlertError.getInstance().showAndWait(e);
         }
     }
 

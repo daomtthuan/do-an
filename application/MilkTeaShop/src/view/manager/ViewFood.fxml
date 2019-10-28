@@ -12,15 +12,7 @@
       <Label styleClass="customLable" text="Category" />
       <ScrollPane styleClass="customScrollPane">
          <content>
-            <HBox styleClass="customHBox">
-               <children>
-                  <Button mnemonicParsing="false" styleClass="customButton" text="Button">
-                     <graphic>
-                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView" />
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
+            <HBox styleClass="customHBox" />
          </content>
       </ScrollPane>
    </children>

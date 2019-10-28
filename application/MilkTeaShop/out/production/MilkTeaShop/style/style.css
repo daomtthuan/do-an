@@ -1,0 +1,69 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-start-margin: 0;
+    -fx-end-margin: 0;
+    -fx-font-size: 16px;
+    -fx-text-fill: #181818;
+    -fx-background-color: #FFFFFF;
+}
+
+.customAnchorPane,
+.customVBox,
+.customHBox,
+.customGridPane,
+.customScrollPane {
+    -fx-padding: 5px;
+    -fx-background-color: transparent;
+}
+
+.customVBox,
+.customHBox,
+.customGridPane {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+
+}
+
+.customGridPane {
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}
+
+/* Button ***********************************/
+
+.customButton {
+    -fx-text-fill: #D9EBF9;
+    -fx-background-color: #55A5E4;
+    -fx-border-color: #0078D7;
+    -fx-text-alignment: center;
+    -fx-row-valignment: middle;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-padding: 5px 20px;
+    -fx-content-display: top;
+    -fx-alignment: center;
+}
+
+.customButton:hover {
+    -fx-background-color: #00508F;
+}
+
+/* Field ************************************/
+
+.customField {
+    -fx-pref-width: 300;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 16px;
+}
+
+.customDatePicker {
+    -fx-pref-width: 300;
+}
+
+/********************************************/
+
+#title {
+    -fx-font-size: 24px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #007bff;
+}

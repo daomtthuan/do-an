@@ -11,15 +11,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="181.0" prefWidth="376.0" styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ControllerEnterDiscount">
+<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.ControllerEnterDiscount">
     <children>
-        <VBox prefHeight="181.0" prefWidth="377.0" spacing="10.0" styleClass="customVBox">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
+        <VBox styleClass="customVBox">
             <children>
                 <Label styleClass="customTitle" text="ENTER DISCOUNT" />
-                <GridPane hgap="10.0" styleClass="customGridPane" vgap="10.0">
+                <GridPane styleClass="customGridPane">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="50.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="277.0" />
@@ -27,15 +24,12 @@
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                    <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </padding>
                     <children>
                         <Label styleClass="customLable" text="Name" />
                         <TextField fx:id="name" onAction="#submit" prefHeight="30.0" prefWidth="269.0" styleClass="customTextField" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
-                <Button defaultButton="true" mnemonicParsing="false" onAction="#submit" styleClass="customButton" text="Submit" />
+                <Button mnemonicParsing="false" onAction="#submit" styleClass="customButton" text="Submit" />
             </children>
         </VBox>
     </children>
