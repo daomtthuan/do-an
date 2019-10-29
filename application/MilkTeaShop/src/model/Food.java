@@ -1,6 +1,6 @@
 package model;
 
-import plugin.alert.AlertError;
+import app.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;

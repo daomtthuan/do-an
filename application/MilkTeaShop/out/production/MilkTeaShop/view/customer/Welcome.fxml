@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Customer">
+   <children>
+       <VBox layoutX="230.0" layoutY="281.0" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <children>
+             <Label styleClass="customTitle" text="WELCOME TO" />
+             <Label styleClass="customTitle" text="MILK TEA SHOP" />
+            <HBox styleClass="customHBox">
+               <children>
+                    <Button mnemonicParsing="false" onAction="#register" styleClass="customButton" text="Register">
+                     <graphic>
+                        <ImageView styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/icon/welcome/user-plus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                    </Button>
+                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#order" styleClass="customButton" text="Order Food">
+                     <graphic>
+                        <ImageView styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/icon/welcome/utensils.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                    </Button>
+                    <Button mnemonicParsing="false" onAction="#login" styleClass="customButton" text="Login">
+                     <graphic>
+                        <ImageView styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/icon/welcome/sign-in-alt.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                    </Button>
+               </children>
+            </HBox>
+          </children>
+       </VBox>
+   </children>
+</AnchorPane>

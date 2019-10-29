@@ -1,23 +1,16 @@
 package app;
 
 import api.DataProvider;
-import controller.ControllerLogin;
+import app.stage.PrimaryStage;
+import controller.Login;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import plugin.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
+import app.alert.AlertError;
 
-/**
- * The type Main.
- */
 public final class Main extends Application {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -26,19 +19,15 @@ public final class Main extends Application {
     public void start(@NotNull Stage stage) {
         try {
             stage.setTitle("Milk Tea Shop");
-            stage.setResizable(false);
 
-            // Setup primary Stage show view AdminLogin with controller AdminLogin for customer
             PrimaryStage.getInstance().setStage(stage);
-            PrimaryStage.getInstance().setScene("/view/ViewLogin.fxml", new ControllerLogin());
+            PrimaryStage.getInstance().setScene("/view/Login.fxml", new Login());
 
-            // Platform exit and close database connection when primary Stage close
             PrimaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
-                DataProvider.getInstance().close();
+                DataProvider.getInstance().closeConnection();
                 Platform.exit();
             });
 
-            // Show primary Stage
             PrimaryStage.getInstance().getStage().show();
         } catch (Exception e) {
             AlertError.getInstance().showAndWait(e);

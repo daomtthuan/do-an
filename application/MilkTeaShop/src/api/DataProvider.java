@@ -1,6 +1,6 @@
 package api;
 
-import plugin.alert.AlertError;
+import app.alert.AlertError;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -10,9 +10,6 @@ import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
 
-/**
- * The type Data provider.
- */
 public final class DataProvider {
     private static DataProvider instance;
     private Connection connection;
@@ -28,11 +25,6 @@ public final class DataProvider {
         }
     }
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     @Contract(pure = true)
     public static DataProvider getInstance() {
         if (instance == null) {
@@ -45,12 +37,6 @@ public final class DataProvider {
         DataProvider.instance = instance;
     }
 
-    /**
-     * Execute result set.
-     *
-     * @param query the query
-     * @return the result set
-     */
     @Nullable
     ResultSet execute(String query) {
         try {
@@ -62,13 +48,6 @@ public final class DataProvider {
         }
     }
 
-    /**
-     * Execute result set.
-     *
-     * @param query      the query
-     * @param parameters the parameters
-     * @return the result set
-     */
     @Nullable
     ResultSet execute(@NotNull String query, @NotNull Object[] parameters) {
         try {
@@ -84,10 +63,7 @@ public final class DataProvider {
         }
     }
 
-    /**
-     * Close.
-     */
-    public void close() {
+    public void closeConnection() {
         try {
             connection.close();
         } catch (SQLException e) {
