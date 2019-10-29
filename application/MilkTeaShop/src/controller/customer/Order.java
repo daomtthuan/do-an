@@ -90,7 +90,7 @@ public final class Order implements Controller, Initializable {
         SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> setup());
         SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
-            SecondaryStage.getInstance().setScene("/view/customer/Welcome.fxml");
+            SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml");
             SecondaryStage.getInstance().getStage().show();
             SecondaryStage.getInstance().setAccount(null);
             SecondaryStage.getInstance().setDiscount(null);

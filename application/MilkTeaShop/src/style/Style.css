@@ -1,5 +1,5 @@
 .root {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Segoe UI Semibold";
     -fx-start-margin: 0;
     -fx-end-margin: 0;
     -fx-font-size: 16;
@@ -35,6 +35,8 @@
 .customButton {
     -fx-text-fill: #F2F8FD;
     -fx-background-color: #0078D7;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16;
     -fx-text-alignment: center;
     -fx-row-valignment: middle;
     -fx-border-style: solid;
@@ -63,20 +65,19 @@
 /********************************************/
 
 #wrapper {
-    -fx-background-image: url("/asset/brand/background.png");
+    -fx-background-image: url("/asset/brand/Background.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
     -fx-background-position: center;
 }
 
 #container {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: rgba(225,225,225,0.6);
     -fx-border-color: #00508F;
     -fx-padding: 15;
 }
 
 #title {
     -fx-font-size: 24;
-    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #00508F;
 }

@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Customer">
+<HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Customer">
    <children>
-       <VBox layoutX="230.0" layoutY="281.0" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+       <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
           <children>
-             <Label styleClass="customTitle" text="WELCOME TO" />
-             <Label styleClass="customTitle" text="MILK TEA SHOP" />
-            <HBox styleClass="customHBox">
+             <Label id="welcomeLabel" text="WELCOME TO" />
+             <Label id="brandLabel" text="MILK TEA SHOP" />
+            <HBox id="functionHBox" styleClass="customHBox">
                <children>
                     <Button mnemonicParsing="false" onAction="#register" styleClass="customButton" text="Register">
                      <graphic>
                         <ImageView styleClass="customImageView">
                            <image>
-                              <Image url="@../../asset/icon/welcome/user-plus.png" />
+                              <Image url="@../../asset/icon/welcome/Register.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -30,7 +30,7 @@
                      <graphic>
                         <ImageView styleClass="customImageView">
                            <image>
-                              <Image url="@../../asset/icon/welcome/utensils.png" />
+                              <Image url="@../../asset/icon/welcome/Order.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -39,7 +39,7 @@
                      <graphic>
                         <ImageView styleClass="customImageView">
                            <image>
-                              <Image url="@../../asset/icon/welcome/sign-in-alt.png" />
+                              <Image url="@../../asset/icon/welcome/Login.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -49,4 +49,4 @@
           </children>
        </VBox>
    </children>
-</AnchorPane>
+</HBox>

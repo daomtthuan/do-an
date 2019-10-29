@@ -44,7 +44,7 @@ public class Login implements Controller, Initializable {
                     PrimaryStage.getInstance().setScene("/view/employee/Employee.fxml");
                     PrimaryStage.getInstance().setAccount(account);
 
-                    SecondaryStage.getInstance().setScene("/view/customer/Welcome.fxml");
+                    SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css");
                     SecondaryStage.getInstance().getStage().show();
                 } else {
                     AlertWarning.getInstance().showAndWait("Fail!", "Account or password is incorrect.\nPlease check again.");
