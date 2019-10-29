@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Customer">
+   <children>
+       <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
+          <children>
+             <Label id="welcomeLabel" text="WELCOME TO" />
+             <Label id="brandLabel" text="MILK TEA SHOP" />
+            <HBox id="functionHBox" styleClass="customHBox">
+               <children>
+                    <Button mnemonicParsing="false" onAction="#register" styleClass="customButton" text="Register">
+                     <graphic>
+                        <ImageView styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/icon/welcome/Register.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                    </Button>
+                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#order" styleClass="customButton" text="Order Food">
+                     <graphic>
+                        <ImageView styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/icon/welcome/Order.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                    </Button>
+                    <Button mnemonicParsing="false" onAction="#login" styleClass="customButton" text="Login">
+                     <graphic>
+                        <ImageView styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/icon/welcome/Login.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                    </Button>
+               </children>
+            </HBox>
+          </children>
+       </VBox>
+   </children>
+</HBox>

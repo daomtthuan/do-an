@@ -1,6 +1,6 @@
 package model;
 
-import library.ErrorAlert;
+import app.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class BillDetail {
             idFood = data.getInt("idFood");
             quantity = data.getInt("quantity");
         } catch (SQLException e) {
-            ErrorAlert.getInstance().showAndWait(e);
+            AlertError.getInstance().showAndWait(e);
         }
     }
 

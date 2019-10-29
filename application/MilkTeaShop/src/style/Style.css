@@ -1,0 +1,83 @@
+.root {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-start-margin: 0;
+    -fx-end-margin: 0;
+    -fx-font-size: 16;
+    -fx-text-fill: #181818;
+}
+
+.customBorderPane,
+.customPane,
+.customAnchorPane,
+.customVBox,
+.customHBox,
+.customGridPane,
+.customScrollPane {
+    -fx-padding: 5;
+    -fx-background-color: transparent;
+}
+
+.customVBox,
+.customHBox,
+.customGridPane {
+    -fx-spacing: 10;
+    -fx-alignment: center;
+
+}
+
+.customGridPane {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+/* Button ***********************************/
+
+.customButton {
+    -fx-text-fill: #F2F8FD;
+    -fx-background-color: #0078D7;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16;
+    -fx-text-alignment: center;
+    -fx-row-valignment: middle;
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    -fx-padding: 5 20;
+    -fx-content-display: top;
+    -fx-alignment: center;
+}
+
+.customButton:hover {
+    -fx-background-color: #00508F;
+}
+
+/* Field ************************************/
+
+.customField {
+    -fx-pref-width: 300;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 16;
+}
+
+.customDatePicker {
+    -fx-pref-width: 300;
+}
+
+/********************************************/
+
+#wrapper {
+    -fx-background-image: url("/asset/brand/Background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+#container {
+    -fx-background-color: rgba(225,225,225,0.6);
+    -fx-border-color: #00508F;
+    -fx-padding: 15;
+}
+
+#title {
+    -fx-font-size: 24;
+    -fx-text-fill: #00508F;
+}

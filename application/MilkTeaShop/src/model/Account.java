@@ -1,6 +1,6 @@
 package model;
 
-import library.ErrorAlert;
+import app.alert.AlertError;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,7 +41,7 @@ public class Account {
             phone = resultSet.getString("phone");
             email = resultSet.getString("email");
         } catch (SQLException e) {
-            ErrorAlert.getInstance().showAndWait(e);
+            AlertError.getInstance().showAndWait(e);
         }
     }
 

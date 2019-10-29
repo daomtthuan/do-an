@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+       <VBox styleClass="customVBox">
+          <children>
+              <Label styleClass="customTitle" text="ADD FOOD" />
+              <GridPane styleClass="customGridPane">
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="71.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="295.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                 <children>
+                     <Label prefHeight="20.0" prefWidth="57.0" styleClass="customLable" text="Name" />
+                     <Label styleClass="customLable" text="Catergory" textAlignment="CENTER" GridPane.rowIndex="1" />
+                     <TextField styleClass="customField" GridPane.columnIndex="1" />
+                     <ComboBox styleClass="customComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                 </children>
+              </GridPane>
+              <Button mnemonicParsing="false" styleClass="customButton" text="Submit" />
+          </children>
+       </VBox>
+   </children>
+</AnchorPane>
