@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class AccountApi {
+public final class AccountApi implements Api {
     private static AccountApi instance;
 
     @Contract(pure = true)
