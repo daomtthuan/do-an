@@ -1,8 +1,17 @@
-.menuButton {
-    -fx-background-size: 100 100;
+.categoryButton {
+    -fx-background-size: 150;
     -fx-background-repeat: no-repeat;
     -fx-background-position: top;
-    -fx-pref-height: 150;
     -fx-pref-width: 150;
+    -fx-pref-height: 190;
+    -fx-alignment: bottom_center;
+}
+
+.foodButton {
+    -fx-background-size: 150;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: top;
+    -fx-pref-width: 150;
+    -fx-pref-height: 200;
     -fx-alignment: bottom_center;
 }

@@ -17,18 +17,16 @@ import java.util.ResourceBundle;
 public final class Menu implements Controller, Initializable {
     @FXML
     private VBox container;
-
     @FXML
     private HBox categoryPane;
-
     @FXML
     private FlowPane foodPane;
 
     @NotNull
-    private Button createButton(String name, String urlImage) {
+    private Button createButton(String name, String image, String style) {
         Button button = new Button(name);
-        button.getStyleClass().add("menuButton");
-        button.setStyle("-fx-background-image: url('" + urlImage + "')");
+        button.getStyleClass().addAll("customButton", style);
+        button.setStyle("-fx-background-image: url('" + image + "')");
         return button;
     }
 
@@ -38,20 +36,16 @@ public final class Menu implements Controller, Initializable {
         AnchorPane.setRightAnchor(container, (double) 0);
         AnchorPane.setBottomAnchor(container, (double) 0);
         AnchorPane.setLeftAnchor(container, (double) 0);
-
         CategoryApi.getInstance().getList().forEach(category -> {
-            Button categoryButton = createButton(category.getName(), "/asset/food/" + category.getId() + ".png");
-
+            Button categoryButton = createButton(category.getName(), "/asset/food/" + category.getId() + ".png", "categoryButton");
             categoryButton.setOnAction(event -> {
                 foodPane.getChildren().clear();
-
                 FoodApi.getInstance().getList(category.getId()).forEach(food -> {
-                    Button foodButton = createButton(food.getName(), "/asset/food/" + food.getId() + ".png");
+                    Button foodButton = createButton(food.getName(), "/asset/food/" + food.getId() + ".png", "foodButton");
                     foodPane.getChildren().add(foodButton);
                 });
             });
             categoryPane.getChildren().add(categoryButton);
         });
-
     }
 }

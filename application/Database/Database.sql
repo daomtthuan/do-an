@@ -77,8 +77,8 @@ go
 
 insert into Category values('Milk Tea')
 insert into Category values('Fruit Tea')
-insert into Category values('Poppings Yogurt Tea')
-insert into Category values('Rock Salt Cheese')
+insert into Category values('Yogurt Tea')
+insert into Category values('Cheese')
 insert into Category values('Toppings')
 go
 
