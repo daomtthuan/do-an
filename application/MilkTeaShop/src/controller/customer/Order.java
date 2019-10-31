@@ -5,15 +5,12 @@ import app.stage.SecondaryStage;
 import controller.ChangePassword;
 import controller.Controller;
 import controller.Information;
-import controller.ViewFood;
+import controller.Menu;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import app.alert.AlertError;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -97,13 +94,6 @@ public final class Order implements Controller, Initializable {
             SecondaryStage.getInstance().setOrdering(false);
         });
 
-        try {
-            ViewFood controller = new ViewFood();
-            FXMLLoader view = new FXMLLoader(getClass().getResource("/view/ViewFood.fxml"));
-            view.setController(controller);
-            foodAnchorPane.getChildren().add(view.load());
-        } catch (IOException e) {
-            AlertError.getInstance().showAndWait(e);
-        }
+        foodAnchorPane.getChildren().add(SecondaryStage.getInstance().loadComponent("/view/Menu.fxml", new Menu()));
     }
 }

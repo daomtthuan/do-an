@@ -23,7 +23,7 @@ public final class CustomerLogin extends Login implements Controller, Initializa
                 if (account != null) {
                     SecondaryStage.getInstance().setAccount(account);
                     if (!SecondaryStage.getInstance().isOrdering()) {
-                        SecondaryStage.getInstance().setScene("/view/customer/Order.fxml");
+                        SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
                     }
                     DialogSecondaryStage.getInstance().getStage().hide();
                     SecondaryStage.getInstance().getStage().show();

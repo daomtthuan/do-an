@@ -1,4 +1,4 @@
 package api;
 
-public interface Api {
+interface Api {
 }

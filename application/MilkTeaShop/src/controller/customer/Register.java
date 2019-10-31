@@ -42,7 +42,7 @@ public final class Register extends Information implements Controller {
                     SecondaryStage.getInstance().setAccount(account);
 
                     if (!SecondaryStage.getInstance().isOrdering()) {
-                        SecondaryStage.getInstance().setScene("/view/customer/Order.fxml");
+                        SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
                     }
 
                     AlertInformation.getInstance().showAndWait("Success!",
