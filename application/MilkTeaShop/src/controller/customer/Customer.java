@@ -14,14 +14,14 @@ public final class Customer implements Controller, Initializable {
 
     @FXML
     private void login() {
-        DialogSecondaryStage.getInstance().setScene("/view/Login.fxml", new CustomerLogin());
-        DialogSecondaryStage.getInstance().getStage().show();
+        DialogSecondaryStage.getInstance().setScene("/view/general/Login.fxml", new Login());
+        DialogSecondaryStage.getInstance().show();
     }
 
     @FXML
     private void register() {
-        DialogSecondaryStage.getInstance().setScene("/view/Information.fxml", "/style/Information.css", new Register());
-        DialogSecondaryStage.getInstance().getStage().show();
+        DialogSecondaryStage.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+        DialogSecondaryStage.getInstance().show();
     }
 
     @FXML

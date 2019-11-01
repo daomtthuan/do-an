@@ -26,8 +26,7 @@ public final class EnterDiscount implements Controller, Initializable {
             if (discount != null) {
                 SecondaryStage.getInstance().setDiscount(discount);
                 AlertInformation.getInstance().showAndWait("Success!", "Your bill will be discounted " + discount.getSale() + "%.");
-                DialogSecondaryStage.getInstance().getStage().hide();
-                SecondaryStage.getInstance().getStage().show();
+                DialogSecondaryStage.getInstance().close();
             } else {
                 AlertWarning.getInstance().showAndWait("Fail!", "Discount Code is incorrect.\nPlease check again.");
             }
@@ -39,10 +38,5 @@ public final class EnterDiscount implements Controller, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SecondaryStage.getInstance().getStage().hide();
-        DialogSecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
-            windowEvent.consume();
-            DialogSecondaryStage.getInstance().getStage().hide();
-            SecondaryStage.getInstance().getStage().show();
-        });
     }
 }

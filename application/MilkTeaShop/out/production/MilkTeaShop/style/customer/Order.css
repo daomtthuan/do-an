@@ -1,17 +1,80 @@
+.functionButton {
+    -fx-pref-width: 200;
+    -fx-pref-height: 60;
+}
+
+.categoryButton,
+.foodButton {
+    -fx-background-color: #0000 !important;
+    -fx-border-color: #0000 !important;
+    -fx-effect: null !important;
+    -fx-text-fill: #0078D7;
+    -fx-min-width: 120;
+}
+
 .categoryButton {
-    -fx-background-size: 150;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: top;
-    -fx-pref-width: 150;
-    -fx-pref-height: 190;
+    -fx-pref-height: 155;
     -fx-alignment: bottom_center;
 }
 
 .foodButton {
-    -fx-background-size: 150;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: top;
-    -fx-pref-width: 150;
-    -fx-pref-height: 200;
+    -fx-pref-height: 210;
     -fx-alignment: bottom_center;
 }
+
+.categoryButton .image-view,
+.foodButton .image-view {
+    -fx-effect: dropshadow(three-pass-box, #00233F, 5, 0, 2, 2);
+}
+
+
+#container {
+    -fx-alignment: top_center;
+    -fx-pref-width: 1600;
+    -fx-max-width: 1600;
+    -fx-pref-height: 900;
+    -fx-max-height: 900;
+}
+
+#menuPane {
+    -fx-alignment: top_left;
+}
+
+#categoryScrollPane {
+    -fx-padding: 0;
+    -fx-border-color: #0078D7;
+    -fx-effect: innershadow(three-pass-box, #00233F, 15, 0, 3, 3);
+    -fx-background-color: #f3f9fe;
+    -fx-pref-width: 845;
+    -fx-pref-height: 190;
+}
+
+#categoryPane {
+    -fx-padding: 20 15 5 15;
+    -fx-spacing: 0;
+    -fx-alignment: top_left;
+    -fx-background-color: #f3f9fe;
+}
+
+#foodScrollPane {
+    -fx-padding: 0;
+    -fx-border-color: #0078D7;
+    -fx-effect: innershadow(three-pass-box, #00233F, 15, 0, 3, 3);
+    -fx-background-color: #f3f9fe;
+    -fx-pref-width: 845;
+    -fx-pref-height: 500;
+}
+
+#foodPane {
+    -fx-padding: 0 15;
+    -fx-alignment: top_left;
+    -fx-background-color: #f3f9fe;
+    -fx-vgap: 0;
+    -fx-hgap: 0;
+}
+
+
+#billPane {
+}
+
+

@@ -1,4 +1,4 @@
-package controller;
+package controller.general;
 
 import api.AccountApi;
 import app.alert.AlertInformation;
@@ -7,19 +7,20 @@ import app.stage.PrimaryStage;
 import app.stage.SecondaryStage;
 import app.string.Regex;
 import app.string.Tool;
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.Account;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class Information implements Controller, Initializable {
+public class Account implements Controller, Initializable {
     @FXML
-    private Button defaultButton;
+    private VBox container;
     @FXML
     private Label titleLabel;
     @FXML
@@ -36,13 +37,16 @@ public class Information implements Controller, Initializable {
     private TextField phoneTextField;
     @FXML
     private TextField emailTextField;
-    private Account account;
+    @FXML
+    private Button defaultButton;
+
+    private model.Account account;
 
     private int getId() {
         return account.getId();
     }
 
-    public void setAccount(Account account) {
+    public void setAccount(model.Account account) {
         this.account = account;
     }
 
@@ -50,10 +54,12 @@ public class Information implements Controller, Initializable {
         this.titleLabel.setText(titleLabel);
     }
 
-    protected void setDefaultButton(String defaultButton) { this.defaultButton.setText(defaultButton);}
-
     protected Button getDefaultButton() {
         return defaultButton;
+    }
+
+    protected void setDefaultButton(String defaultButton) {
+        this.defaultButton.setText(defaultButton);
     }
 
     protected String getName() {
@@ -90,15 +96,6 @@ public class Information implements Controller, Initializable {
         addressTextField.setDisable(false);
         phoneTextField.setDisable(false);
         emailTextField.setDisable(false);
-        nameTextField.setStyle("-fx-opacity: 100");
-        maleRadioButton.setStyle("-fx-opacity: 100");
-        femaleRadioButton.setStyle("-fx-opacity: 100");
-        birthdayDatePicker.setStyle("-fx-opacity: 100");
-        birthdayDatePicker.getEditor().setStyle("-fx-opacity: 100");
-        addressTextField.setStyle("-fx-opacity: 100");
-        phoneTextField.setStyle("-fx-opacity: 100");
-        emailTextField.setStyle("-fx-opacity: 100");
-
         defaultButton.setOnAction(event -> {
             String name = Tool.fixString(getName());
             boolean gender = isMale();
@@ -107,7 +104,7 @@ public class Information implements Controller, Initializable {
             String phone = getPhone();
             String email = getEmail().toLowerCase();
             if (name.matches(Regex.NAME) && address.matches(Regex.ADDRESS) && phone.matches(Regex.PHONE) && email.matches(Regex.EMAIL)) {
-                Account account = AccountApi.getInstance().update(getId(), name, gender, birthday, address, phone, email);
+                model.Account account = AccountApi.getInstance().update(getId(), name, gender, birthday, address, phone, email);
 
                 if (account != null) {
                     setAccount(account);
@@ -137,15 +134,13 @@ public class Information implements Controller, Initializable {
         addressTextField.setDisable(true);
         phoneTextField.setDisable(true);
         emailTextField.setDisable(true);
-        nameTextField.setStyle("-fx-opacity: 1");
-        maleRadioButton.setStyle("-fx-opacity: 1");
-        femaleRadioButton.setStyle("-fx-opacity: 1");
-        birthdayDatePicker.setStyle("-fx-opacity: 1");
-        birthdayDatePicker.getEditor().setStyle("-fx-opacity: 1");
-        addressTextField.setStyle("-fx-opacity: 1");
-        phoneTextField.setStyle("-fx-opacity: 1");
-        emailTextField.setStyle("-fx-opacity: 1");
-        defaultButton.setOnAction(event -> edit());
+
+        if (account.getRoll() == 3) {
+            defaultButton.setOnAction(event -> edit());
+        }
+        else {
+            container.getChildren().remove(defaultButton);
+        }
     }
 
     @Override

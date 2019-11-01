@@ -6,6 +6,10 @@ public final class DialogSecondaryStage extends Stage {
     private DialogSecondaryStage() {
         setStage(new javafx.stage.Stage());
         getStage().setTitle("Milk Tea Shop - Dialog");
+        getStage().setOnCloseRequest(windowEvent -> {
+            windowEvent.consume();
+            close();
+        });
     }
 
     public static DialogSecondaryStage getInstance() {
@@ -17,5 +21,10 @@ public final class DialogSecondaryStage extends Stage {
 
     private static void setInstance(DialogSecondaryStage instance) {
         DialogSecondaryStage.instance = instance;
+    }
+
+    public void close() {
+        getStage().hide();
+        SecondaryStage.getInstance().getStage().show();
     }
 }

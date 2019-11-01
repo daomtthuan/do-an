@@ -12,14 +12,15 @@
 .customVBox,
 .customHBox,
 .customGridPane,
-.customScrollPane {
+.customScrollPane,
+.customFlowPane {
     -fx-padding: 5;
-    -fx-background-color: transparent;
 }
 
 .customVBox,
 .customHBox,
-.customGridPane {
+.customGridPane,
+.customFlowPane {
     -fx-spacing: 10;
     -fx-alignment: center;
 
@@ -35,6 +36,7 @@
 .customButton {
     -fx-text-fill: #F2F8FD;
     -fx-background-color: #0078D7;
+    -fx-border-color: #0078D7;
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16;
     -fx-text-alignment: center;
@@ -44,10 +46,18 @@
     -fx-padding: 5 20;
     -fx-content-display: top;
     -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, #00233F, 15, 0, 5, 5);
+}
+
+.customButton:pressed {
+    -fx-background-color: #00508F;
+    -fx-border-color: #00508F;
+    -fx-effect: dropshadow(three-pass-box, #00233F, 10, 0, 3, 3);
 }
 
 .customButton:hover {
     -fx-background-color: #00508F;
+    -fx-border-color: #00508F;
 }
 
 /* Field ************************************/
@@ -63,6 +73,27 @@
 }
 
 /********************************************/
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-font-size: 0;
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.scroll-bar:horizontal .increment-arrow,
+.scroll-bar:horizontal .decrement-arrow {
+    -fx-font-size: 0;
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+/********************************************/
 
 #wrapper {
     -fx-background-image: url("/asset/brand/Background.png");
@@ -72,7 +103,7 @@
 }
 
 #container {
-    -fx-background-color: rgba(225,225,225,0.6);
+    -fx-background-color: #F2F8FDDD;
     -fx-border-color: #00508F;
     -fx-padding: 15;
 }

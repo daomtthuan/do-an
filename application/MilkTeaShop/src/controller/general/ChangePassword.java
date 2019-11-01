@@ -1,10 +1,11 @@
-package controller;
+package controller.general;
 
 import api.AccountApi;
 import app.stage.DialogPrimaryStage;
 import app.stage.DialogSecondaryStage;
 import app.stage.PrimaryStage;
 import app.stage.SecondaryStage;
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import model.Account;
@@ -41,8 +42,7 @@ public final class ChangePassword implements Controller {
                         AlertInformation.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
                         if (account.getRoll() == 1) {
                             SecondaryStage.getInstance().setAccount(newAccount);
-                            DialogSecondaryStage.getInstance().getStage().hide();
-                            SecondaryStage.getInstance().getStage().show();
+                            DialogSecondaryStage.getInstance().close();
                         } else {
                             PrimaryStage.getInstance().setAccount(newAccount);
                             DialogPrimaryStage.getInstance().getStage().hide();

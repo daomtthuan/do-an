@@ -93,4 +93,8 @@ abstract class Stage {
             return null;
         }
     }
+
+    public void show() {
+        stage.show();
+    }
 }

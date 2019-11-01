@@ -1,15 +1,16 @@
-package controller;
+package controller.general;
 
 import api.AccountApi;
+import app.alert.AlertWarning;
 import app.stage.PrimaryStage;
 import app.stage.SecondaryStage;
+import app.string.Regex;
+import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Account;
-import app.string.Regex;
-import app.alert.AlertWarning;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,8 +37,10 @@ public class Login implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        submitButton.setDefaultButton(true);
-        submitButton.setOnAction(actionEvent -> {
+        accountTextField.setText("dmtt1");
+        passwordTextField.setText("1");
+        getSubmitButton().setDefaultButton(true);
+        getSubmitButton().setOnAction(actionEvent -> {
             if (getAccount().matches(Regex.ACCOUNT) && getPassword().matches(Regex.PASSWORD)) {
                 Account account = AccountApi.getInstance().login("Admin", getAccount(), getPassword());
                 if (account != null) {

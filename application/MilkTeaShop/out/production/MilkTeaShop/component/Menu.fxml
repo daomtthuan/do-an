@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox id="menuPane" alignment="CENTER_LEFT" styleClass="customVBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <Label text="Category Food" />
+        <ScrollPane fx:id="categoryScrollPane" fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
+            <content>
+                <HBox fx:id="categoryPane" styleClass="customHBox" />
+            </content>
+        </ScrollPane>
+      <Label text="Food" />
+        <ScrollPane fx:id="foodScrollPane" fitToHeight="true" fitToWidth="true" styleClass="customScrollPane">
+            <content>
+                <FlowPane fx:id="foodPane" styleClass="customFlowPane" />
+            </content>
+        </ScrollPane>
+    </children>
+</VBox>

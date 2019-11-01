@@ -6,14 +6,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <VBox styleClass="customVBox">
+        <VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
             <children>
-                <Label fx:id="titleLabel" />
+                <Label id="title" fx:id="titleLabel" />
                 <GridPane styleClass="customGridPane">
                     <columnConstraints>
                         <ColumnConstraints />
@@ -55,4 +55,4 @@
             </children>
         </VBox>
     </children>
-</AnchorPane>
+</HBox>

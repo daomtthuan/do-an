@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.EnterDiscount">
-    <children>
-        <VBox styleClass="customVBox">
+<HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.EnterDiscount">
+   <children>
+        <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
             <children>
                 <Label styleClass="customTitle" text="ENTER DISCOUNT" />
                 <GridPane styleClass="customGridPane">
@@ -26,11 +26,11 @@
                     </rowConstraints>
                     <children>
                         <Label styleClass="customLable" text="Name" />
-                        <TextField fx:id="nameTextField" onAction="#submit" prefHeight="30.0" prefWidth="269.0" styleClass="customTextField" GridPane.columnIndex="1" />
+                        <TextField fx:id="nameTextField" onAction="#submit" styleClass="customTextField" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
                 <Button mnemonicParsing="false" onAction="#submit" styleClass="customButton" text="Submit" />
             </children>
         </VBox>
-    </children>
-</AnchorPane>
+   </children>
+</HBox>

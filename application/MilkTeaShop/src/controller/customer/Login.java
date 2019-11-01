@@ -1,19 +1,18 @@
 package controller.customer;
 
 import api.AccountApi;
+import app.alert.AlertWarning;
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
+import app.string.Regex;
 import controller.Controller;
-import controller.Login;
 import javafx.fxml.Initializable;
 import model.Account;
-import app.string.Regex;
-import app.alert.AlertWarning;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class CustomerLogin extends Login implements Controller, Initializable {
+public final class Login extends controller.general.Login implements Controller, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getSubmitButton().setDefaultButton(true);
@@ -25,8 +24,7 @@ public final class CustomerLogin extends Login implements Controller, Initializa
                     if (!SecondaryStage.getInstance().isOrdering()) {
                         SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
                     }
-                    DialogSecondaryStage.getInstance().getStage().hide();
-                    SecondaryStage.getInstance().getStage().show();
+                    DialogSecondaryStage.getInstance().close();
                 } else {
                     AlertWarning.getInstance().showAndWait("Fail!", "Account or password is incorrect.\nPlease check again.");
                 }
@@ -36,10 +34,5 @@ public final class CustomerLogin extends Login implements Controller, Initializa
         });
 
         SecondaryStage.getInstance().getStage().hide();
-        DialogSecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
-            windowEvent.consume();
-            DialogSecondaryStage.getInstance().getStage().hide();
-            SecondaryStage.getInstance().getStage().show();
-        });
     }
 }
