@@ -37,15 +37,15 @@
                         <TextField fx:id="nameTextField" styleClass="customField" GridPane.columnIndex="1" />
                         <HBox id="genderHBox" styleClass="customHBox" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <children>
-                                <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" text="Male">
+                                <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" styleClass="customRadioButton" text="Male">
                                     <toggleGroup>
                                         <ToggleGroup fx:id="gender" />
                                     </toggleGroup>
                                 </RadioButton>
-                                <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+                                <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" styleClass="customRadioButton" text="Female" toggleGroup="$gender" />
                             </children>
                         </HBox>
-                        <DatePicker fx:id="birthdayDatePicker" editable="false" styleClass="customDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="birthdayDatePicker" editable="false" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="addressTextField" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="phoneTextField" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="emailTextField" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="5" />

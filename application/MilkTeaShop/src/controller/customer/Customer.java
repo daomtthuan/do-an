@@ -20,7 +20,7 @@ public final class Customer implements Controller, Initializable {
 
     @FXML
     private void register() {
-        DialogSecondaryStage.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+        DialogSecondaryStage.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new Register());
         DialogSecondaryStage.getInstance().show();
     }
 

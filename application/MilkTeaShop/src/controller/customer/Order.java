@@ -4,7 +4,7 @@ import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
 import controller.general.ChangePassword;
 import controller.Controller;
-import controller.general.Account;
+import controller.general.WatchAccount;
 import controller.general.Menu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +30,7 @@ public final class Order implements Controller, Initializable {
         if (SecondaryStage.getInstance().getAccount() == null) {
             informationButton.setText("Register");
             informationButton.setOnAction(event -> {
-                DialogSecondaryStage.getInstance().setScene("/view/general/Account.fxml", new Register());
+                DialogSecondaryStage.getInstance().setScene("/view/general/WatchAccount.fxml", new Register());
                 DialogSecondaryStage.getInstance().show();
             });
 
@@ -43,9 +43,7 @@ public final class Order implements Controller, Initializable {
         } else {
             informationButton.setText("Account");
             informationButton.setOnAction(event -> {
-                Account controller = new Account();
-                controller.setAccount(SecondaryStage.getInstance().getAccount());
-                DialogSecondaryStage.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", controller);
+                DialogSecondaryStage.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(SecondaryStage.getInstance().getAccount()));
                 DialogSecondaryStage.getInstance().show();
                 SecondaryStage.getInstance().getStage().hide();
             });

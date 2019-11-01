@@ -1,4 +1,4 @@
-package controller.general;
+package controller.manager;
 
 import api.AccountApi;
 import app.alert.AlertInformation;
@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class Account implements Controller, Initializable {
+public class EditAccount implements Controller, Initializable {
     @FXML
     private VBox container;
     @FXML

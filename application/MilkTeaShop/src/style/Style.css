@@ -62,13 +62,13 @@
 
 /* Field ************************************/
 
-.customField {
-    -fx-pref-width: 300;
+.customField,
+.customRadioButton {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 16;
 }
 
-.customDatePicker {
+.customField {
     -fx-pref-width: 300;
 }
 

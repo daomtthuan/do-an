@@ -8,12 +8,12 @@ import app.stage.SecondaryStage;
 import app.string.Regex;
 import app.string.Tool;
 import controller.Controller;
-import controller.general.Account;
+import controller.general.WatchAccount;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class Register extends Account implements Controller {
+public final class Register implements Controller {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTitle("REGISTER");
