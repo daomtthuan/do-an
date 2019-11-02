@@ -2,14 +2,12 @@ package api;
 
 import app.alert.AlertError;
 import model.Category;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public final class CategoryApi {
+public class CategoryApi implements Api {
     private static CategoryApi instance;
 
     public static CategoryApi getInstance() {
@@ -23,8 +21,6 @@ public final class CategoryApi {
         CategoryApi.instance = instance;
     }
 
-    @NotNull
-    @Contract(pure = true)
     public ArrayList<Category> getList() {
         ArrayList<Category> categories = new ArrayList<>();
         try {

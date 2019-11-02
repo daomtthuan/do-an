@@ -2,5 +2,5 @@ package controller.employee;
 
 import controller.Controller;
 
-public final class Employee implements Controller {
+public class Employee implements Controller {
 }

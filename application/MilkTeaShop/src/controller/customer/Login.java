@@ -12,7 +12,7 @@ import model.Account;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class Login extends controller.general.Login implements Controller, Initializable {
+public class Login extends controller.general.Login implements Controller, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getSubmitButton().setDefaultButton(true);
@@ -24,7 +24,7 @@ public final class Login extends controller.general.Login implements Controller,
                     if (!SecondaryStage.getInstance().isOrdering()) {
                         SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
                     }
-                    DialogSecondaryStage.getInstance().close();
+                    DialogSecondaryStage.getInstance().getStage().close();
                 } else {
                     AlertWarning.getInstance().showAndWait("Fail!", "Account or password is incorrect.\nPlease check again.");
                 }

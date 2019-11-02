@@ -1,6 +1,6 @@
 package api;
 
-public final class TableFoodApi {
+public class TableFoodApi {
     private static TableFoodApi instance;
 
     public static TableFoodApi getInstance() {
@@ -13,8 +13,4 @@ public final class TableFoodApi {
     private static void setInstance(TableFoodApi instance) {
         TableFoodApi.instance = instance;
     }
-
-//    public ArrayList<TableFood> load() {
-//        ResultSet resultSet = DataProvider.getInstance().execute()
-//    }
 }

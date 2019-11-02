@@ -1,4 +1,6 @@
 package controller.general;
 
-public final class BillDetail {
+import controller.Controller;
+
+public class BillDetail implements Controller {
 }

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Category {
+public class Category implements Model{
     private int id;
     private String name;
 

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TableFood {
+public class TableFood implements Model {
     private int id;
     private boolean status;
     private int x;

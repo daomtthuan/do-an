@@ -3,8 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8"
-      fx:controller="controller.manager.EditAccount">
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8">
     <children>
         <VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
               styleClass="customVBox">
@@ -12,7 +11,7 @@
                 <Insets/>
             </opaqueInsets>
             <children>
-                <Label id="title" fx:id="titleLabel" text="Edit Account"/>
+                <Label id="title" fx:id="titleLabel" text="Register"/>
                 <GridPane styleClass="customGridPane">
                     <columnConstraints>
                         <ColumnConstraints/>
@@ -46,7 +45,7 @@
                                              styleClass="customRadioButton" text="Female" toggleGroup="$gender"/>
                             </children>
                         </HBox>
-                        <DatePicker fx:id="birthdayDatePicker" editable="false" styleClass="customField"
+                        <DatePicker fx:id="birthdayDatePicker" editable="false" styleClass="customDatePicker"
                                     GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                         <TextField fx:id="addressTextField" styleClass="customField" GridPane.columnIndex="1"
                                    GridPane.rowIndex="3"/>

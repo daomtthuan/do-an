@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class DiscountApi {
+public class DiscountApi implements Api {
     private static DiscountApi instance;
 
     public static DiscountApi getInstance() {
@@ -21,7 +21,6 @@ public final class DiscountApi {
         DiscountApi.instance = instance;
     }
 
-    @Nullable
     public Discount insert(String name, double sale) {
         try (ResultSet resultSet = DataProvider.getInstance().execute("exec InsertDiscount ?,?", new Object[]{name, sale})) {
             assert resultSet != null;
@@ -32,7 +31,6 @@ public final class DiscountApi {
         }
     }
 
-    @Nullable
     public Discount check(String name) {
         try {
             ResultSet resultSet = DataProvider.getInstance().execute("exec CheckDiscount ?", new Object[]{name});

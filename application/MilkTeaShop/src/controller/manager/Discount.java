@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 /**
  * The type Discount.
  */
-public final class Discount implements Controller {
+public class Discount implements Controller {
 
     @FXML
     private TextField name;

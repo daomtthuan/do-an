@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.manager.Discount">
-   <children>
-      <VBox styleClass="customVBox">
-         <children>
-            <Label alignment="CENTER" styleClass="customTitle" text="DISCOUNT" />
-            <GridPane styleClass="customGridPane">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="64.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="315.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label styleClass="customLable" text="Name" />
-                  <Label styleClass="customLable" text="Sale" GridPane.rowIndex="1" />
-                  <TextField styleClass="customField" GridPane.columnIndex="1" />
-                  <TextField styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-            <Button mnemonicParsing="false" styleClass="customButton" text="Submit" />
-         </children>
-      </VBox>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" styleClass="customAnchorPane" xmlns="http://javafx.com/javafx/8"
+            fx:controller="controller.manager.Discount">
+    <children>
+        <VBox styleClass="customVBox">
+            <children>
+                <Label alignment="CENTER" styleClass="customTitle" text="DISCOUNT"/>
+                <GridPane styleClass="customGridPane">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="64.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="315.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Label styleClass="customLable" text="Name"/>
+                        <Label styleClass="customLable" text="Sale" GridPane.rowIndex="1"/>
+                        <TextField styleClass="customField" GridPane.columnIndex="1"/>
+                        <TextField styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    </children>
+                </GridPane>
+                <Button mnemonicParsing="false" styleClass="customButton" text="Submit"/>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

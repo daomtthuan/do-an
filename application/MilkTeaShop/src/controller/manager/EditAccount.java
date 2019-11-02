@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class EditAccount implements Controller {
@@ -37,7 +38,9 @@ public class EditAccount implements Controller {
 
     @Contract(pure = true)
     public EditAccount(@NotNull model.Account account) {
-        this.account = account;
+        nameTextField.setText(account.getName());
+        maleRadioButton.setSelected(account.isMale());
+        femaleRadioButton.setSelected(account.isFemMale());
     }
 
     @FXML
@@ -49,19 +52,15 @@ public class EditAccount implements Controller {
         String address = Tool.fixString(addressTextField.getText());
         String phone = phoneTextField.getText();
         String email = emailTextField.getText().toLowerCase();
-        if (name.matches(Regex.NAME) && address.matches(Regex.ADDRESS) && phone.matches(Regex.PHONE) && email.matches(Regex.EMAIL)) {
+
+        if (name.matches(Regex.NAME) && address.matches(Regex.ADDRESS) && phone.matches(Regex.PHONE) && email.matches(Regex.EMAIL) && (maleRadioButton.isSelected() || femaleRadioButton.isSelected())) {
             model.Account account = AccountApi.getInstance().update(id, name, gender, birthday, address, phone, email);
 
             if (account != null) {
-                setAccount(account);
-                if (account.getRoll() == 1) {
-                    SecondaryStage.getInstance().setAccount(account);
-                } else {
-                    PrimaryStage.getInstance().setAccount(account);
-                }
-                AlertInformation.getInstance().showAndWait("Success!", "Your Information Account has been edited.");
+                // do some thing
+
             } else {
-                AlertWarning.getInstance().showAndWait("Fail!", "Can not edit Account Information.\nPlease notify staff.");
+                // fail do some thing
             }
         } else {
             AlertWarning.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");

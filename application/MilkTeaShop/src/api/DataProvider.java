@@ -1,20 +1,17 @@
 package api;
 
 import app.alert.AlertError;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
 
-public final class DataProvider {
+public class DataProvider implements Api {
     private static DataProvider instance;
     private Connection connection;
 
-    @Contract(pure = true)
     private DataProvider() {
         try (FileReader reader = new FileReader(new File("Config.properties"))) {
             Properties properties = new Properties();
@@ -25,7 +22,6 @@ public final class DataProvider {
         }
     }
 
-    @Contract(pure = true)
     public static DataProvider getInstance() {
         if (instance == null) {
             setInstance(new DataProvider());
@@ -37,7 +33,6 @@ public final class DataProvider {
         DataProvider.instance = instance;
     }
 
-    @Nullable
     ResultSet execute(String query) {
         try {
             Statement statement = connection.createStatement();
@@ -48,8 +43,7 @@ public final class DataProvider {
         }
     }
 
-    @Nullable
-    ResultSet execute(@NotNull String query, @NotNull Object[] parameters) {
+    ResultSet execute(String query, @NotNull Object[] parameters) {
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setEscapeProcessing(true);

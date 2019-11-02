@@ -2,14 +2,12 @@ package api;
 
 import app.alert.AlertError;
 import model.Food;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public final class FoodApi {
+public class FoodApi implements Api {
     private static FoodApi instance;
 
     public static FoodApi getInstance() {
@@ -23,8 +21,6 @@ public final class FoodApi {
         FoodApi.instance = instance;
     }
 
-    @NotNull
-    @Contract(pure = true)
     public ArrayList<Food> getList(int idCategory) {
         ArrayList<Food> foods = new ArrayList<>();
         try {

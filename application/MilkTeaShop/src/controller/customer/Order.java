@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class Order implements Controller, Initializable {
+public class Order implements Controller, Initializable {
     @FXML
     private AnchorPane menuComponent;
     @FXML
@@ -30,28 +30,30 @@ public final class Order implements Controller, Initializable {
         if (SecondaryStage.getInstance().getAccount() == null) {
             informationButton.setText("Register");
             informationButton.setOnAction(event -> {
-                DialogSecondaryStage.getInstance().setScene("/view/general/WatchAccount.fxml", new Register());
-                DialogSecondaryStage.getInstance().show();
+                DialogSecondaryStage.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+                DialogSecondaryStage.getInstance().getStage().show();
+                SecondaryStage.getInstance().getStage().hide();
             });
 
             accountButton.setText("Login");
             accountButton.setOnAction(event -> {
                 DialogSecondaryStage.getInstance().setScene("/view/general/Login.fxml", new Login());
-                DialogSecondaryStage.getInstance().show();
+                DialogSecondaryStage.getInstance().getStage().show();
+                SecondaryStage.getInstance().getStage().hide();
             });
 
         } else {
             informationButton.setText("Account");
             informationButton.setOnAction(event -> {
                 DialogSecondaryStage.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(SecondaryStage.getInstance().getAccount()));
-                DialogSecondaryStage.getInstance().show();
+                DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
             });
 
             accountButton.setText("Change Password");
             accountButton.setOnAction(event -> {
                 DialogSecondaryStage.getInstance().setScene("/view/general/ChangePassword.fxml", new ChangePassword(SecondaryStage.getInstance().getAccount()));
-                DialogSecondaryStage.getInstance().show();
+                DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
             });
         }
@@ -64,7 +66,7 @@ public final class Order implements Controller, Initializable {
 
         discountButton.setOnAction(event -> {
             DialogSecondaryStage.getInstance().setScene("/view/customer/EnterDiscount.fxml");
-            DialogSecondaryStage.getInstance().show();
+            DialogSecondaryStage.getInstance().getStage().show();
             SecondaryStage.getInstance().getStage().hide();
         });
     }

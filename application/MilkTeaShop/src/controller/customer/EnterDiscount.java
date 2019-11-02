@@ -15,7 +15,7 @@ import app.alert.AlertWarning;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class EnterDiscount implements Controller, Initializable {
+public class EnterDiscount implements Controller, Initializable {
     @FXML
     private TextField nameTextField;
 
@@ -26,7 +26,7 @@ public final class EnterDiscount implements Controller, Initializable {
             if (discount != null) {
                 SecondaryStage.getInstance().setDiscount(discount);
                 AlertInformation.getInstance().showAndWait("Success!", "Your bill will be discounted " + discount.getSale() + "%.");
-                DialogSecondaryStage.getInstance().close();
+                DialogSecondaryStage.getInstance().getStage().close();
             } else {
                 AlertWarning.getInstance().showAndWait("Fail!", "Discount Code is incorrect.\nPlease check again.");
             }

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BillDetail {
+public class BillDetail implements Model{
     private int id;
     private int idBill;
     private int idFood;

@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Account {
+public class Account implements Model {
     private int id;
     private String account;
     private String password;
@@ -19,7 +19,6 @@ public class Account {
     private String phone;
     private String email;
 
-    @Contract(pure = true)
     public Account(@NotNull ResultSet resultSet) {
         try {
             id = resultSet.getInt("id");

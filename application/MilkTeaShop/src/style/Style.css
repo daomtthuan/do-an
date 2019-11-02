@@ -63,16 +63,22 @@
 /* Field ************************************/
 
 .customField,
+.customDatePicker,
 .customRadioButton {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 16;
 }
 
-.customField {
+.customField,
+.customDatePicker {
     -fx-pref-width: 300;
 }
 
+.customField {
+    -fx-font-size: 16;
+}
+
 /********************************************/
+
 .scroll-bar:vertical .increment-button,
 .scroll-bar:vertical .decrement-button {
     -fx-font-size: 0;

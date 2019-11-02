@@ -14,7 +14,7 @@ import app.string.Regex;
 import app.alert.AlertInformation;
 import app.alert.AlertWarning;
 
-public final class ChangePassword implements Controller {
+public class ChangePassword implements Controller {
     private Account account;
     @FXML
     private PasswordField oldPasswordField;
@@ -42,7 +42,7 @@ public final class ChangePassword implements Controller {
                         AlertInformation.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
                         if (account.getRoll() == 1) {
                             SecondaryStage.getInstance().setAccount(newAccount);
-                            DialogSecondaryStage.getInstance().close();
+                            DialogSecondaryStage.getInstance().getStage().close();
                         } else {
                             PrimaryStage.getInstance().setAccount(newAccount);
                             DialogPrimaryStage.getInstance().getStage().hide();

@@ -6,6 +6,11 @@ public final class DialogPrimaryStage extends Stage {
     private DialogPrimaryStage() {
         setStage(new javafx.stage.Stage());
         getStage().setTitle("Milk Tea Shop - Dialog");
+        getStage().setOnCloseRequest(windowEvent -> {
+            windowEvent.consume();
+            PrimaryStage.getInstance().getStage().show();
+            getStage().hide();
+        });
     }
 
     public static DialogPrimaryStage getInstance() {

@@ -10,18 +10,20 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public final class Customer implements Controller, Initializable {
+public class Customer implements Controller, Initializable {
 
     @FXML
     private void login() {
         DialogSecondaryStage.getInstance().setScene("/view/general/Login.fxml", new Login());
-        DialogSecondaryStage.getInstance().show();
+        DialogSecondaryStage.getInstance().getStage().show();
+        SecondaryStage.getInstance().getStage().hide();
     }
 
     @FXML
     private void register() {
-        DialogSecondaryStage.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new Register());
-        DialogSecondaryStage.getInstance().show();
+        DialogSecondaryStage.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+        DialogSecondaryStage.getInstance().getStage().show();
+        SecondaryStage.getInstance().getStage().hide();
     }
 
     @FXML

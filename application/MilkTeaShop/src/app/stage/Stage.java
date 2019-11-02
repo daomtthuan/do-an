@@ -46,40 +46,30 @@ abstract class Stage {
         }
     }
 
-    public void setScene(String view, String stylePath) {
+    public void setScene(String view, String style) {
         try {
             FXMLLoader v = new FXMLLoader(getClass().getResource(view));
             Scene scene = new Scene(v.load());
             new JMetro(scene, Style.LIGHT);
             scene.getStylesheets().add("/style/Style.css");
-            scene.getStylesheets().add(stylePath);
+            scene.getStylesheets().add(style);
             stage.setScene(scene);
         } catch (IOException e) {
             AlertError.getInstance().showAndWait(e);
         }
     }
 
-    public void setScene(String view, String stylePath, Controller controller) {
+    public void setScene(String view, String style, Controller controller) {
         try {
             FXMLLoader v = new FXMLLoader(getClass().getResource(view));
             v.setController(controller);
             Scene scene = new Scene(v.load());
             new JMetro(scene, Style.LIGHT);
             scene.getStylesheets().add("/style/Style.css");
-            scene.getStylesheets().add(stylePath);
+            scene.getStylesheets().add(style);
             stage.setScene(scene);
         } catch (IOException e) {
             AlertError.getInstance().showAndWait(e);
-        }
-    }
-
-    public Node loadComponent(String view) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
-            return loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
         }
     }
 
@@ -92,9 +82,5 @@ abstract class Stage {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public void show() {
-        stage.show();
     }
 }

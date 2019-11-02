@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 
 import java.time.format.DateTimeFormatter;
 
-public final class Register implements Controller {
+public class Register implements Controller {
     @FXML
     private TextField nameTextField;
     @FXML
@@ -53,7 +53,7 @@ public final class Register implements Controller {
                 AlertInformation.getInstance().showAndWait("Success!",
                         "Your Customer Account: " + account.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n" +
                                 "Thanks for coming to our shop!");
-                DialogSecondaryStage.getInstance().close();
+                DialogSecondaryStage.getInstance().getStage().close();
             } else {
                 AlertWarning.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
             }
