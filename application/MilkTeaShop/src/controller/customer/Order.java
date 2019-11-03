@@ -118,7 +118,9 @@ public class Order implements Controller, Initializable {
 
     @FXML
     private void submit() {
-        SecondaryStage.getInstance().setScene("/view/customer/SelectTableFood.fxml", new SelectTableFood(billDetails));
+        if (billDetails.size() > 0) {
+            SecondaryStage.getInstance().setScene("/view/customer/SelectTableFood.fxml", "/style/customer/SelectTableFood.css",new SelectTableFood(billDetails));
+        }
     }
 
     @Override
