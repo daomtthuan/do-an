@@ -39,7 +39,6 @@ public class Login implements Controller, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         accountTextField.setText("dmtt1");
         passwordTextField.setText("1");
-        getSubmitButton().setDefaultButton(true);
         getSubmitButton().setOnAction(actionEvent -> {
             if (getAccount().matches(Regex.ACCOUNT) && getPassword().matches(Regex.PASSWORD)) {
                 Account account = AccountApi.getInstance().login("Admin", getAccount(), getPassword());
