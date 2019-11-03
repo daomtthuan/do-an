@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class Menu implements Controller, Initializable {
+public abstract class MenuPane implements Controller, Initializable {
     @FXML
     private ScrollPane categoryScrollPane;
     @FXML

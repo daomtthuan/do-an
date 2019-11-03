@@ -3,6 +3,8 @@ package controller.customer;
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
 import app.tool.Number;
+import component.controller.BillDetailPane;
+import component.controller.MenuPane;
 import controller.ChangePassword;
 import controller.Controller;
 import controller.WatchAccount;
@@ -38,6 +40,11 @@ public class Order implements Controller, Initializable {
     public Order() {
         SecondaryStage.getInstance().setOrdering(true);
         billDetails = new ArrayList<>();
+    }
+
+    @Contract(pure = true)
+    public Order(ArrayList<BillDetail> billDetails) {
+        this.billDetails = billDetails;
     }
 
     private double getTotalBefore() {
@@ -109,21 +116,23 @@ public class Order implements Controller, Initializable {
         });
     }
 
+    @FXML
+    private void submit() {
+        SecondaryStage.getInstance().setScene("/view/customer/SelectTableFood.fxml", new SelectTableFood(billDetails));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setup();
-        SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> setup());
-        SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
-            windowEvent.consume();
-            SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css");
-            SecondaryStage.getInstance().getStage().show();
-            SecondaryStage.getInstance().setAccount(null);
-            SecondaryStage.getInstance().setDiscount(null);
-            SecondaryStage.getInstance().setOrdering(false);
-        });
+        BillDetailPane billDetailPane = new BillDetailPane() {
+            @Override
+            public void calculate(double totalBefore, double sale, double total) {
+                setTotalBefore(Number.round(totalBefore, 2));
+                setSale(Number.round(sale, 2));
+                setTotal(Number.round(total, 2));
+            }
+        };
 
-        component.controller.BillDetail billDetailController = new component.controller.BillDetail();
-        component.controller.Menu menuController = new component.controller.Menu() {
+        MenuPane menuPane = new MenuPane() {
             @Override
             public void selectFood(@NotNull Food food) {
                 boolean found = false;
@@ -134,23 +143,34 @@ public class Order implements Controller, Initializable {
                         break;
                     }
                 }
-
                 if (!found) {
                     billDetails.add(new model.BillDetail(food.getId(), food.getName(), food.getPrice(), 1));
                 }
-
-                billDetailController.getBillDetailTableView().getItems().clear();
-                billDetailController.getBillDetailTableView().setItems(FXCollections.observableArrayList(billDetails));
-                billDetailController.setTotalBefore(Number.round(getTotalBefore(),2));
-                billDetailController.setSale(Number.round(getSale(),2));
-                billDetailController.setTotal(Number.round(getTotal(),2));
+                billDetailPane.getBillDetailTableView().getItems().clear();
+                billDetailPane.getBillDetailTableView().setItems(FXCollections.observableArrayList(billDetails));
+                billDetailPane.calculate(getTotalBefore(), getSale(), getTotal());
             }
         };
 
-        menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/Menu.fxml", menuController));
-        billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetail.fxml", billDetailController));
-        billDetailController.setTotalBefore(Number.round(getTotalBefore(),2));
-        billDetailController.setSale(Number.round(getSale(),2));
-        billDetailController.setTotal(Number.round(getTotal(),2));
+        menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/MenuPane.fxml", menuPane));
+        billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetailPane.fxml", billDetailPane));
+        if (billDetails.size() > 0) {
+            billDetailPane.getBillDetailTableView().setItems(FXCollections.observableArrayList(billDetails));
+        }
+        billDetailPane.calculate(getTotalBefore(), getSale(), getTotal());
+
+        setup();
+        SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+            windowEvent.consume();
+            SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css");
+            SecondaryStage.getInstance().setAccount(null);
+            SecondaryStage.getInstance().setDiscount(null);
+            SecondaryStage.getInstance().setOrdering(false);
+        });
+
+        SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> {
+            setup();
+            billDetailPane.calculate(getTotalBefore(), getSale(), getTotal());
+        });
     }
 }

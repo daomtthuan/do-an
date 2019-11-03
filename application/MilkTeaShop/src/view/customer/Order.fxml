@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Order">
+<HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
        <VBox id="container" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
@@ -42,7 +42,7 @@
                         <AnchorPane fx:id="billDetailComponent" styleClass="customAnchorPane" />
                         <HBox styleClass="customHBox">
                            <children>
-                              <Button mnemonicParsing="false" text="Submit">
+                              <Button defaultButton="true" mnemonicParsing="false" onAction="#submit" text="Submit">
                                  <styleClass>
                                     <String fx:value="customButton" />
                                     <String fx:value="functionButton" />

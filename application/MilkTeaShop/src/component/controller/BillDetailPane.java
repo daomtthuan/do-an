@@ -11,7 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BillDetail implements Controller, Initializable {
+public abstract class BillDetailPane implements Controller, Initializable {
     @FXML
     private Label totalBeforeLabel;
     @FXML
@@ -41,15 +41,17 @@ public class BillDetail implements Controller, Initializable {
         return billDetailTableView;
     }
 
-    public void setTotalBefore(double totalBefore) {
+    protected void setTotalBefore(double totalBefore) {
         totalBeforeLabel.setText("$" + totalBefore);
     }
 
-    public void setSale(double sale) {
+    protected void setSale(double sale) {
         saleLabel.setText("- " + sale + "%");
     }
 
-    public void setTotal(double total) {
+    protected void setTotal(double total) {
         totalLabel.setText("$" + total);
     }
+
+    public abstract void calculate(double totalBefore, double sale, double total);
 }
