@@ -253,6 +253,13 @@ insert into Discount (name, sale) values ('MA0061',11)
 insert into Discount (name, sale) values ('MA0071',5)
 insert into Discount (name, sale) values ('MA0081',2)
 go
+
+insert into TableFood (x, y) values (10, 20)
+insert into TableFood (x, y) values (55, 20)
+insert into TableFood (x, y) values (10, 55)
+insert into TableFood (x, y) values (60, 70)
+insert into TableFood (x, y) values (100, 100)
+
 ---------------------------------------------------------------------------------------
 -- create procedure
 

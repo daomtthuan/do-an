@@ -7,7 +7,7 @@
 }
 
 #tableFoodComponent {
-    -fx-padding: 0;
+    -fx-padding: 15;
     -fx-border-color: #0078D7;
     -fx-effect: innershadow(three-pass-box, #00233F, 15, 0, 3, 3);
     -fx-background-color: #f3f9fe;
@@ -16,5 +16,5 @@
 }
 
 #tableFoodPane {
-    -
+
 }
