@@ -315,15 +315,6 @@ as begin
 end
 go
 
-create proc UpdateRoll
-	@id int,
-	@roll int
-as begin
-	update Account set roll = @roll	where id = @id;
-	select * from Account where id = @id;
-end
-go
-
 create proc InsertCategory
 	@name varchar(50)
 as begin
