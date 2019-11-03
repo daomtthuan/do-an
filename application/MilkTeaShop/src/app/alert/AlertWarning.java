@@ -2,7 +2,7 @@ package app.alert;
 
 import javafx.scene.control.Alert;
 
-public final class AlertWarning {
+public class AlertWarning {
     private static AlertWarning instance;
     private Alert alert;
 

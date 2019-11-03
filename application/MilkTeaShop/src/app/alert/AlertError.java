@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public final class AlertError {
+public class AlertError {
     private static AlertError instance;
 
     private Alert alert;

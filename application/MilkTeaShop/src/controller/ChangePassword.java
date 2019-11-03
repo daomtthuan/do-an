@@ -1,4 +1,4 @@
-package controller.general;
+package controller;
 
 import api.AccountApi;
 import app.stage.DialogPrimaryStage;

@@ -3,7 +3,7 @@ package app.stage;
 import model.Account;
 import org.jetbrains.annotations.Contract;
 
-public final class PrimaryStage extends Stage {
+public class PrimaryStage extends Stage {
     private static PrimaryStage instance;
     private Account account;
 

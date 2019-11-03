@@ -3,7 +3,7 @@ package app;
 import api.DataProvider;
 import app.alert.AlertError;
 import app.stage.PrimaryStage;
-import controller.general.Login;
+import controller.Login;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -21,7 +21,7 @@ public final class Main extends Application {
             stage.setTitle("Milk Tea Shop");
 
             PrimaryStage.getInstance().setStage(stage);
-            PrimaryStage.getInstance().setScene("/view/general/Login.fxml", new Login());
+            PrimaryStage.getInstance().setScene("/view/Login.fxml", new Login());
 
             PrimaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
                 DataProvider.getInstance().closeConnection();

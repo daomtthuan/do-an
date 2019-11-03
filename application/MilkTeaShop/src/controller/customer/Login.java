@@ -12,7 +12,7 @@ import model.Account;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Login extends controller.general.Login implements Controller, Initializable {
+public class Login extends controller.Login implements Controller, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         getSubmitButton().setOnAction(actionEvent -> {

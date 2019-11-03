@@ -8,7 +8,7 @@
 
 <HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.Order">
    <children>
-       <VBox id="container" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+       <VBox id="container" fx:id="test" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <children>
               <Label id="title" styleClass="customTitle" text="ORDER FOOD" VBox.vgrow="ALWAYS" />
             <HBox styleClass="customHBox">
@@ -36,7 +36,21 @@
             <HBox styleClass="customHBox">
                <children>
                   <AnchorPane fx:id="menuComponent" styleClass="customAnchorPane" />
-                  <AnchorPane fx:id="billComponent" styleClass="customAnchorPane" />
+                  <VBox id="orderPane" styleClass="customVBox">
+                     <children>
+                        <Label text="Bill Details" />
+                        <AnchorPane fx:id="billDetailComponent" styleClass="customAnchorPane" />
+                        <HBox styleClass="customHBox">
+                           <children>
+                              <Button mnemonicParsing="false" text="Submit">
+                                 <styleClass>
+                                    <String fx:value="customButton" />
+                                    <String fx:value="functionButton" />
+                                 </styleClass></Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
           </children>

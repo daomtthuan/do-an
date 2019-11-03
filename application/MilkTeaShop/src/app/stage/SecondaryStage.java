@@ -4,7 +4,7 @@ import model.Account;
 import model.Discount;
 import org.jetbrains.annotations.Contract;
 
-public final class SecondaryStage extends Stage {
+public class SecondaryStage extends Stage {
     private static SecondaryStage instance;
     private Account account;
     private boolean ordering;

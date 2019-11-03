@@ -2,7 +2,7 @@ package app.alert;
 
 import javafx.scene.control.Alert;
 
-public final class AlertConfirmYesNo {
+public class AlertConfirmYesNo {
     private static AlertConfirmYesNo instance;
     private Alert alert;
 

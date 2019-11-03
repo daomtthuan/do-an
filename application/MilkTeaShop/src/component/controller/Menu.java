@@ -1,4 +1,4 @@
-package controller.general;
+package component.controller;
 
 import api.CategoryApi;
 import api.FoodApi;
@@ -10,12 +10,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import model.Food;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Menu implements Controller, Initializable {
+public abstract class Menu implements Controller, Initializable {
     @FXML
     private ScrollPane categoryScrollPane;
     @FXML
@@ -38,6 +39,7 @@ public class Menu implements Controller, Initializable {
     private int categoryScroll = 0;
     private final int MIN_CATEGORY_SCROLL = 0;
     private final int MAX_CATEGORY_SCROLL = 830;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         categoryScrollPane.setHmin(MIN_CATEGORY_SCROLL);
@@ -67,7 +69,7 @@ public class Menu implements Controller, Initializable {
         });
 
         foodScrollPane.setVmin(0);
-        foodScrollPane.setVmax(500);
+        foodScrollPane.setVmax(foodScrollPane.getHeight());
         foodScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         foodScrollPane.setPannable(true);
         foodScrollPane.setFitToWidth(true);
@@ -78,13 +80,13 @@ public class Menu implements Controller, Initializable {
                 foodPane.getChildren().clear();
                 FoodApi.getInstance().getList(category.getId()).forEach(food -> {
                     Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "/asset/food/" + food.getId() + ".png", "foodButton");
-                    foodButton.setOnAction(foodActionEvent -> {
-                        System.out.println(food.getId());
-                    });
+                    foodButton.setOnAction(foodActionEvent -> selectFood(food));
                     foodPane.getChildren().add(foodButton);
                 });
             });
             categoryPane.getChildren().add(categoryButton);
         });
     }
+
+    public abstract void selectFood(Food food);
 }

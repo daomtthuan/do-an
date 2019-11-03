@@ -2,7 +2,7 @@ package app.string;
 
 import org.jetbrains.annotations.NotNull;
 
-public final class Tool {
+public class Tool {
     @NotNull
     public static String fixString(@NotNull String string) {
         if (string.equals("")) return "";

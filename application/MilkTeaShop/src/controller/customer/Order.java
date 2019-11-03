@@ -2,23 +2,30 @@ package controller.customer;
 
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
-import controller.general.ChangePassword;
+import controller.ChangePassword;
 import controller.Controller;
-import controller.general.WatchAccount;
-import controller.general.Menu;
+import controller.WatchAccount;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import model.BillDetail;
+import model.Food;
+import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Order implements Controller, Initializable {
+    @FXML private VBox test;
     @FXML
     private AnchorPane menuComponent;
     @FXML
-    private AnchorPane billComponent;
+    private AnchorPane billDetailComponent;
     @FXML
     private Button discountButton;
     @FXML
@@ -26,33 +33,38 @@ public class Order implements Controller, Initializable {
     @FXML
     private Button accountButton;
 
+    private static ArrayList<BillDetail> billDetails;
+
+    public Order() {
+        billDetails = new ArrayList<>();
+    }
+
     private void setup() {
         if (SecondaryStage.getInstance().getAccount() == null) {
             informationButton.setText("Register");
             informationButton.setOnAction(event -> {
-                DialogSecondaryStage.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+                DialogSecondaryStage.getInstance().setScene("/view/Account.fxml", "/style/general/Account.css", new Register());
                 DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
             });
 
             accountButton.setText("Login");
             accountButton.setOnAction(event -> {
-                DialogSecondaryStage.getInstance().setScene("/view/general/Login.fxml", new Login());
+                DialogSecondaryStage.getInstance().setScene("/view/Login.fxml", new Login());
                 DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
             });
-
         } else {
             informationButton.setText("Account");
             informationButton.setOnAction(event -> {
-                DialogSecondaryStage.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(SecondaryStage.getInstance().getAccount()));
+                DialogSecondaryStage.getInstance().setScene("/view/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(SecondaryStage.getInstance().getAccount()));
                 DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
             });
 
             accountButton.setText("Change Password");
             accountButton.setOnAction(event -> {
-                DialogSecondaryStage.getInstance().setScene("/view/general/ChangePassword.fxml", new ChangePassword(SecondaryStage.getInstance().getAccount()));
+                DialogSecondaryStage.getInstance().setScene("/view/ChangePassword.fxml", new ChangePassword(SecondaryStage.getInstance().getAccount()));
                 DialogSecondaryStage.getInstance().getStage().show();
                 SecondaryStage.getInstance().getStage().hide();
             });
@@ -84,6 +96,29 @@ public class Order implements Controller, Initializable {
             SecondaryStage.getInstance().setOrdering(false);
         });
 
-        menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/Menu.fxml", new Menu()));
+        component.controller.BillDetail billDetailController = new component.controller.BillDetail();
+        component.controller.Menu menuController = new component.controller.Menu() {
+            @Override
+            public void selectFood(@NotNull Food food) {
+                boolean found = false;
+                for (model.BillDetail billDetail : billDetails) {
+                    if (billDetail.getIdFood() == food.getId()) {
+                        found = true;
+                        billDetail.setQuantity(billDetail.getQuantity() + 1);
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    billDetails.add(new model.BillDetail(food.getId(), food.getName(), food.getPrice(), 1));
+                }
+
+                billDetailController.getBillDetailTableView().getItems().clear();
+                billDetailController.getBillDetailTableView().setItems(FXCollections.observableArrayList(billDetails));
+            }
+        };
+
+        menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/Menu.fxml", menuController));
+        billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetail.fxml", billDetailController));
     }
 }

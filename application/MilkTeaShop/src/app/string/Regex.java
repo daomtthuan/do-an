@@ -1,6 +1,6 @@
 package app.string;
 
-public final class Regex {
+public class Regex {
     public static final String ACCOUNT = "^\\w{2,50}$";
     public static final String PASSWORD = "^\\w{1,50}$";
     public static final String NAME = "^[a-zA-Z ]{1,50}$";

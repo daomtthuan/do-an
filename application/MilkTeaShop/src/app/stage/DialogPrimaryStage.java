@@ -1,6 +1,6 @@
 package app.stage;
 
-public final class DialogPrimaryStage extends Stage {
+public class DialogPrimaryStage extends Stage {
     private static DialogPrimaryStage instance;
 
     private DialogPrimaryStage() {

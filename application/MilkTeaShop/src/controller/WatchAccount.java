@@ -1,6 +1,5 @@
-package controller.general;
+package controller;
 
-import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -13,17 +12,17 @@ import java.util.ResourceBundle;
 
 public class WatchAccount implements Controller, Initializable {
     @FXML
-    private Label name;
+    private Label nameLabel;
     @FXML
-    private Label gender;
+    private Label genderLabel;
     @FXML
-    private Label birthday;
+    private Label birthdayLabel;
     @FXML
-    private Label address;
+    private Label addressLabel;
     @FXML
-    private Label phone;
+    private Label phoneLabel;
     @FXML
-    private Label email;
+    private Label emailLabel;
 
     private Account account;
 
@@ -34,11 +33,11 @@ public class WatchAccount implements Controller, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        name.setText(account.getName());
-        gender.setText(account.isMale() ? "Male" : "Female");
-        birthday.setText(account.getBirthday());
-        address.setText(account.getAddress());
-        phone.setText(account.getPhone());
-        email.setText(account.getEmail());
+        nameLabel.setText(account.getName());
+        genderLabel.setText(account.isMale() ? "Male" : "Female");
+        birthdayLabel.setText(account.getBirthday());
+        addressLabel.setText(account.getAddress());
+        phoneLabel.setText(account.getPhone());
+        emailLabel.setText(account.getEmail());
     }
 }

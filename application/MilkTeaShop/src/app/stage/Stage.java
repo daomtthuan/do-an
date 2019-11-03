@@ -23,8 +23,8 @@ abstract class Stage {
 
     public void setScene(String view) {
         try {
-            FXMLLoader v = new FXMLLoader(getClass().getResource(view));
-            Scene scene = new Scene(v.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+            Scene scene = new Scene(loader.load());
             new JMetro(scene, Style.LIGHT);
             scene.getStylesheets().add("/style/Style.css");
             stage.setScene(scene);
@@ -35,9 +35,9 @@ abstract class Stage {
 
     public void setScene(String view, Controller controller) {
         try {
-            FXMLLoader v = new FXMLLoader(getClass().getResource(view));
-            v.setController(controller);
-            Scene scene = new Scene(v.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+            loader.setController(controller);
+            Scene scene = new Scene(loader.load());
             new JMetro(scene, Style.LIGHT);
             scene.getStylesheets().add("/style/Style.css");
             stage.setScene(scene);
@@ -48,8 +48,8 @@ abstract class Stage {
 
     public void setScene(String view, String style) {
         try {
-            FXMLLoader v = new FXMLLoader(getClass().getResource(view));
-            Scene scene = new Scene(v.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+            Scene scene = new Scene(loader.load());
             new JMetro(scene, Style.LIGHT);
             scene.getStylesheets().add("/style/Style.css");
             scene.getStylesheets().add(style);
@@ -61,9 +61,9 @@ abstract class Stage {
 
     public void setScene(String view, String style, Controller controller) {
         try {
-            FXMLLoader v = new FXMLLoader(getClass().getResource(view));
-            v.setController(controller);
-            Scene scene = new Scene(v.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+            loader.setController(controller);
+            Scene scene = new Scene(loader.load());
             new JMetro(scene, Style.LIGHT);
             scene.getStylesheets().add("/style/Style.css");
             scene.getStylesheets().add(style);
@@ -73,9 +73,19 @@ abstract class Stage {
         }
     }
 
-    public Node loadComponent(String view, Controller controller) {
+    public Node loadComponent(String component) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(view));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(component));
+            return loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Node loadComponent(String component, Controller controller) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(component));
             loader.setController(controller);
             return loader.load();
         } catch (IOException e) {
