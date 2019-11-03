@@ -1,6 +1,7 @@
 package model;
 
 import app.alert.AlertError;
+import app.tool.Number;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,15 +23,15 @@ public class BillDetail implements Model {
         this.foodName = foodName;
         this.foodPrice = foodPrice;
         this.quantity = quantity;
-        total = foodPrice*quantity;
+        total = foodPrice * quantity;
     }
 
-    public BillDetail(@NotNull ResultSet data) {
+    public BillDetail(@NotNull ResultSet resultSet) {
         try {
-            id = data.getInt("id");
-            idBill = data.getInt("idBill");
-            idFood = data.getInt("idFood");
-            quantity = data.getInt("quantity");
+            id = resultSet.getInt("id");
+            idBill = resultSet.getInt("idBill");
+            idFood = resultSet.getInt("idFood");
+            quantity = resultSet.getInt("quantity");
         } catch (SQLException e) {
             AlertError.getInstance().showAndWait(e);
         }
@@ -66,6 +67,6 @@ public class BillDetail implements Model {
     }
 
     public double getTotal() {
-        return total;
+        return Number.round(total,2);
     }
 }

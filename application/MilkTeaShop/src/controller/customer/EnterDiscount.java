@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import model.Discount;
-import app.string.Regex;
+import app.tool.Regex;
 import app.alert.AlertInformation;
 import app.alert.AlertWarning;
 
@@ -26,7 +26,7 @@ public class EnterDiscount implements Controller, Initializable {
             if (discount != null) {
                 SecondaryStage.getInstance().setDiscount(discount);
                 AlertInformation.getInstance().showAndWait("Success!", "Your bill will be discounted " + discount.getSale() + "%.");
-                DialogSecondaryStage.getInstance().getStage().close();
+                DialogSecondaryStage.getInstance().close();
             } else {
                 AlertWarning.getInstance().showAndWait("Fail!", "Discount Code is incorrect.\nPlease check again.");
             }

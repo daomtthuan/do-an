@@ -11,13 +11,15 @@ public class Food implements Model{
     private String name;
     private int idCategory;
     private double price;
+    private boolean enabled;
 
-    public Food(@NotNull ResultSet data) {
+    public Food(@NotNull ResultSet resultSet) {
         try {
-            id = data.getInt("id");
-            name = data.getString("name");
-            idCategory = data.getInt("idCategory");
-            price = data.getDouble("price");
+            id = resultSet.getInt("id");
+            name = resultSet.getString("name");
+            idCategory = resultSet.getInt("idCategory");
+            price = resultSet.getDouble("price");
+            enabled = resultSet.getBoolean("status");
         } catch (SQLException e) {
             AlertError.getInstance().showAndWait(e);
         }
@@ -37,5 +39,9 @@ public class Food implements Model{
 
     public double getPrice() {
         return price;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

@@ -34,7 +34,7 @@
             <Label fx:id="totalBeforeLabel" text="\$0" GridPane.columnIndex="1" />
             <Label text="Sale" GridPane.rowIndex="1" />
             <Label text="Total" GridPane.rowIndex="2" />
-            <Label fx:id="saleLabel" text="-0%" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="saleLabel" text="- 0%" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="totalLabel" text="\$0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>

@@ -29,7 +29,6 @@ public class Customer implements Controller, Initializable {
     @FXML
     private void order() {
         SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
-        SecondaryStage.getInstance().setOrdering(true);
     }
 
     @Override

@@ -9,11 +9,13 @@ import java.sql.SQLException;
 public class Category implements Model{
     private int id;
     private String name;
+    private boolean enabled;
 
-    public Category(@NotNull ResultSet data) {
+    public Category(@NotNull ResultSet resultSet) {
         try {
-            id = data.getInt("id");
-            name = data.getString("name");
+            id = resultSet.getInt("id");
+            name = resultSet.getString("name");
+            enabled = resultSet.getBoolean("status");
         } catch (SQLException e) {
             AlertError.getInstance().showAndWait(e);
         }
@@ -25,5 +27,9 @@ public class Category implements Model{
 
     public String getName() {
         return name;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

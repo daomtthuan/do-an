@@ -5,8 +5,8 @@ import app.alert.AlertInformation;
 import app.alert.AlertWarning;
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
-import app.string.Regex;
-import app.string.Tool;
+import app.tool.Regex;
+import app.tool.StringTool;
 import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -33,15 +33,15 @@ public class Register implements Controller {
 
     @FXML
     private void submit() {
-        String name = Tool.fixString(nameTextField.getText());
+        java.lang.String name = StringTool.fixString(nameTextField.getText());
         boolean gender = maleRadioButton.isSelected();
-        String birthday = birthdayDatePicker.getValue() == null ? "" : birthdayDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String address = Tool.fixString(addressTextField.getText());
-        String phone = phoneTextField.getText();
-        String email = emailTextField.getText().toLowerCase();
+        java.lang.String birthday = birthdayDatePicker.getValue() == null ? "" : birthdayDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        java.lang.String address = StringTool.fixString(addressTextField.getText());
+        java.lang.String phone = phoneTextField.getText();
+        java.lang.String email = emailTextField.getText().toLowerCase();
 
         if (name.matches(Regex.NAME) && address.matches(Regex.ADDRESS) && phone.matches(Regex.PHONE) && email.matches(Regex.EMAIL) && (maleRadioButton.isSelected() || femaleRadioButton.isSelected())) {
-            model.Account account = AccountApi.getInstance().insert(Tool.createAcronym(name), 1, name, gender, birthday, address, phone, email);
+            model.Account account = AccountApi.getInstance().insert(StringTool.createAcronym(name), 1, name, gender, birthday, address, phone, email);
 
             if (account != null) {
                 SecondaryStage.getInstance().setAccount(account);
@@ -53,7 +53,7 @@ public class Register implements Controller {
                 AlertInformation.getInstance().showAndWait("Success!",
                         "Your Customer Account: " + account.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n" +
                                 "Thanks for coming to our shop!");
-                DialogSecondaryStage.getInstance().getStage().close();
+                DialogSecondaryStage.getInstance().close();
             } else {
                 AlertWarning.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
             }

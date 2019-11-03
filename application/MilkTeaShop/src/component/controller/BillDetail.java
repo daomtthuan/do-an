@@ -40,4 +40,16 @@ public class BillDetail implements Controller, Initializable {
     public TableView<model.BillDetail> getBillDetailTableView() {
         return billDetailTableView;
     }
+
+    public void setTotalBefore(double totalBefore) {
+        totalBeforeLabel.setText("$" + totalBefore);
+    }
+
+    public void setSale(double sale) {
+        saleLabel.setText("- " + sale + "%");
+    }
+
+    public void setTotal(double total) {
+        totalLabel.setText("$" + total);
+    }
 }

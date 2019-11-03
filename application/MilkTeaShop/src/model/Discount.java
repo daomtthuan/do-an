@@ -10,12 +10,14 @@ public class Discount implements Model{
     private int id;
     private String name;
     private double sale;
+    private boolean enabled;
 
-    public Discount(@NotNull ResultSet data) {
+    public Discount(@NotNull ResultSet resultSet) {
         try {
-            id = data.getInt("id");
-            name = data.getString("name");
-            sale = data.getDouble("sale");
+            id = resultSet.getInt("id");
+            name = resultSet.getString("name");
+            sale = resultSet.getDouble("sale");
+            enabled = resultSet.getBoolean("status");
         } catch (SQLException e) {
             AlertError.getInstance().showAndWait(e);
         }
@@ -31,5 +33,9 @@ public class Discount implements Model{
 
     public double getSale() {
         return sale;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

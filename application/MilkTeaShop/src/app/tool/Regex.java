@@ -1,4 +1,6 @@
-package app.string;
+package app.tool;
+
+import org.jetbrains.annotations.Contract;
 
 public class Regex {
     public static final String ACCOUNT = "^\\w{2,50}$";
@@ -8,4 +10,8 @@ public class Regex {
     public static final String PHONE = "^(([+][0-9]{2}|0)[0-9]{9,12})$";
     public static final String EMAIL = "^([a-z][a-z0-9_.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4})+)?$";
     public static final String DISCOUNT = "^.{1,50}$";
+
+    @Contract(pure = true)
+    private Regex() {
+    }
 }

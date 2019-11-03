@@ -2,6 +2,7 @@ package controller.customer;
 
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
+import app.tool.Number;
 import controller.ChangePassword;
 import controller.Controller;
 import controller.WatchAccount;
@@ -10,10 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import model.BillDetail;
+import model.Discount;
 import model.Food;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Order implements Controller, Initializable {
-    @FXML private VBox test;
     @FXML
     private AnchorPane menuComponent;
     @FXML
@@ -32,11 +32,37 @@ public class Order implements Controller, Initializable {
     private Button informationButton;
     @FXML
     private Button accountButton;
+    private ArrayList<BillDetail> billDetails;
 
-    private static ArrayList<BillDetail> billDetails;
-
+    @Contract(pure = true)
     public Order() {
+        SecondaryStage.getInstance().setOrdering(true);
         billDetails = new ArrayList<>();
+    }
+
+    private double getTotalBefore() {
+        double total = 0;
+        for (BillDetail billDetail : billDetails) {
+            total += billDetail.getTotal();
+        }
+        return total;
+    }
+
+    private double getSale() {
+        double sale = 0;
+        Discount discount = SecondaryStage.getInstance().getDiscount();
+        if (SecondaryStage.getInstance().getAccount() != null) {
+            sale += 2;
+        }
+        if (discount != null) {
+            sale += discount.getSale();
+        }
+        return sale;
+    }
+
+    private double getTotal() {
+        double total = getTotalBefore();
+        return total - (total * getSale() / 100.0);
     }
 
     private void setup() {
@@ -115,10 +141,16 @@ public class Order implements Controller, Initializable {
 
                 billDetailController.getBillDetailTableView().getItems().clear();
                 billDetailController.getBillDetailTableView().setItems(FXCollections.observableArrayList(billDetails));
+                billDetailController.setTotalBefore(Number.round(getTotalBefore(),2));
+                billDetailController.setSale(Number.round(getSale(),2));
+                billDetailController.setTotal(Number.round(getTotal(),2));
             }
         };
 
         menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/Menu.fxml", menuController));
         billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetail.fxml", billDetailController));
+        billDetailController.setTotalBefore(Number.round(getTotalBefore(),2));
+        billDetailController.setSale(Number.round(getSale(),2));
+        billDetailController.setTotal(Number.round(getTotal(),2));
     }
 }

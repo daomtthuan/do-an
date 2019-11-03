@@ -8,8 +8,7 @@ public class DialogSecondaryStage extends Stage {
         getStage().setTitle("Milk Tea Shop - Dialog");
         getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
-            SecondaryStage.getInstance().getStage().show();
-            getStage().hide();
+            close();
         });
     }
 
@@ -22,5 +21,10 @@ public class DialogSecondaryStage extends Stage {
 
     private static void setInstance(DialogSecondaryStage instance) {
         DialogSecondaryStage.instance = instance;
+    }
+
+    public void close() {
+        SecondaryStage.getInstance().getStage().show();
+        getStage().hide();
     }
 }

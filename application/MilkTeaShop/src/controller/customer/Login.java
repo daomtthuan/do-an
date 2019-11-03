@@ -4,7 +4,7 @@ import api.AccountApi;
 import app.alert.AlertWarning;
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
-import app.string.Regex;
+import app.tool.Regex;
 import controller.Controller;
 import javafx.fxml.Initializable;
 import model.Account;
@@ -23,7 +23,7 @@ public class Login extends controller.Login implements Controller, Initializable
                     if (!SecondaryStage.getInstance().isOrdering()) {
                         SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
                     }
-                    DialogSecondaryStage.getInstance().getStage().close();
+                    DialogSecondaryStage.getInstance().close();
                 } else {
                     AlertWarning.getInstance().showAndWait("Fail!", "Account or password is incorrect.\nPlease check again.");
                 }

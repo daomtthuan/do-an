@@ -18,6 +18,7 @@ public class Account implements Model {
     private String address;
     private String phone;
     private String email;
+    private boolean enabled;
 
     public Account(@NotNull ResultSet resultSet) {
         try {
@@ -31,6 +32,7 @@ public class Account implements Model {
             address = resultSet.getString("address");
             phone = resultSet.getString("phone");
             email = resultSet.getString("email");
+            enabled = resultSet.getBoolean("status");
         } catch (SQLException e) {
             AlertError.getInstance().showAndWait(e);
         }
@@ -78,5 +80,9 @@ public class Account implements Model {
 
     public String getEmail() {
         return email;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }

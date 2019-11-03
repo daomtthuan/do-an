@@ -24,7 +24,7 @@ public class FoodApi implements Api {
     public ArrayList<Food> getList(int idCategory) {
         ArrayList<Food> foods = new ArrayList<>();
         try {
-            ResultSet resultSet = DataProvider.getInstance().execute("exec GetFood ?", new Object[]{idCategory});
+            ResultSet resultSet = DataProvider.getInstance().execute("exec GetEnabledFood ?", new Object[]{idCategory});
             assert resultSet != null;
             while (resultSet.next()) {
                 foods.add(new Food(resultSet));

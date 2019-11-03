@@ -1,6 +1,7 @@
 package model;
 
 import app.alert.AlertError;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -14,16 +15,26 @@ public class Bill implements Model {
     private int idDiscount;
     private String checkIn;
     private String checkOut;
+    private double total;
 
-    public Bill(@NotNull ResultSet data) {
+    @Contract(pure = true)
+    public Bill(int idCustomer, int idEmployee, int idDiscount, double total) {
+        this.idCustomer = idCustomer;
+        this.idEmployee = idEmployee;
+        this.idDiscount = idDiscount;
+        this.total = total;
+    }
+
+    public Bill(@NotNull ResultSet resultSet) {
         try {
-            id = data.getInt("id");
-            idTableFood = data.getInt("idTableFood");
-            idCustomer = data.getInt("idAccount");
-            idEmployee = data.getInt("idEmployee");
-            idDiscount = data.getInt("idDiscount");
-            checkIn = data.getString("checkIn");
-            checkOut = data.getString("checkOut");
+            id = resultSet.getInt("id");
+            idTableFood = resultSet.getInt("idTableFood");
+            idCustomer = resultSet.getInt("idAccount");
+            idEmployee = resultSet.getInt("idEmployee");
+            idDiscount = resultSet.getInt("idDiscount");
+            checkIn = resultSet.getString("checkIn");
+            checkOut = resultSet.getString("checkOut");
+            total = resultSet.getDouble("total");
         } catch (SQLException e) {
             AlertError.getInstance().showAndWait(e);
         }
@@ -55,5 +66,9 @@ public class Bill implements Model {
 
     public String getCheckOut() {
         return checkOut;
+    }
+
+    public double getTotal() {
+        return total;
     }
 }
