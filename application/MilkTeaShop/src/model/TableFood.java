@@ -8,16 +8,16 @@ import java.sql.SQLException;
 
 public class TableFood implements Model {
     private int id;
-    private int x;
-    private int y;
-    private boolean enabled;
+    private double x;
+    private double y;
+    private int status;
 
     public TableFood(@NotNull ResultSet data) {
         try {
             id = data.getInt("id");
-            x = data.getInt("x");
-            y = data.getInt("y");
-            enabled = data.getBoolean("status");
+            x = data.getDouble("x");
+            y = data.getDouble("y");
+            status = data.getInt("status");
         } catch (SQLException e) {
             AlertError.getInstance().showAndWait(e);
         }
@@ -27,15 +27,15 @@ public class TableFood implements Model {
         return id;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public int getStatus() {
+        return status;
     }
 }

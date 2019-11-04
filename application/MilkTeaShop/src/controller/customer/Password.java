@@ -2,5 +2,5 @@ package controller.customer;
 
 import controller.Controller;
 
-public class Password implements Controller {
+class Password implements Controller {
 }

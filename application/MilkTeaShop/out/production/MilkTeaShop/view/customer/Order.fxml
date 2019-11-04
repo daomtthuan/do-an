@@ -39,7 +39,7 @@
                   <VBox id="orderPane" styleClass="customVBox">
                      <children>
                         <Label text="Bill Details" />
-                        <AnchorPane fx:id="billDetailComponent" styleClass="customAnchorPane" />
+                        <VBox fx:id="billDetailComponent" styleClass="customVBox" />
                         <HBox styleClass="customHBox">
                            <children>
                               <Button defaultButton="true" mnemonicParsing="false" onAction="#submit" text="Submit">

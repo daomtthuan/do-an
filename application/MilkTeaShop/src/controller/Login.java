@@ -1,10 +1,9 @@
 package controller;
 
-import api.AccountApi;
 import app.alert.AlertWarning;
 import app.stage.PrimaryStage;
 import app.stage.SecondaryStage;
-import app.tool.Regex;
+import tool.Regex;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -40,7 +39,7 @@ public class Login implements Controller, Initializable {
         passwordTextField.setText("1");
         getSubmitButton().setOnAction(actionEvent -> {
             if (getAccount().matches(Regex.ACCOUNT) && getPassword().matches(Regex.PASSWORD)) {
-                Account account = AccountApi.getInstance().login("Admin", getAccount(), getPassword());
+                Account account = api.Account.getInstance().login("Admin", getAccount(), getPassword());
                 if (account != null) {
                     PrimaryStage.getInstance().setScene("/view/employee/Employee.fxml");
                     PrimaryStage.getInstance().setAccount(account);

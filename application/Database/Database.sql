@@ -26,20 +26,20 @@ create table Account ( id int identity primary key,
 	address varchar(100) not null,
 	phone varchar(15) not null,
 	email varchar(50),
-	status bit not null default 1 -- 0: disable, -- enable
+	status bit not null default 1 -- 0: disable, --1: enable
 )
 go
 
 create table TableFood ( id int identity primary key,
-	x int not null default 0,
-	y int not null default 0,
-	status bit not null default 1 -- 0: disable, -- enable
+	x float not null default 0,
+	y float not null default 0,
+	status int not null default 1 -- 0: disable, --1: enable; 2: busy
 )
 go
 
 create table Category ( id int identity primary key,
 	name varchar(50) not null unique,
-	status bit not null default 1 -- 0: disable, -- enable
+	status bit not null default 1 -- 0: disable, --1: enable
 )
 go
 
@@ -255,33 +255,67 @@ insert into Discount (name, sale) values ('MA0081',2)
 go
 
 insert into TableFood (x, y) values (10, 20)
-insert into TableFood (x, y) values (55, 20)
-insert into TableFood (x, y) values (10, 55)
-insert into TableFood (x, y) values (60, 70)
 insert into TableFood (x, y) values (100, 100)
+insert into TableFood (x, y) values (150, 50)
+insert into TableFood (x, y) values (250, 30)
+insert into TableFood (x, y) values (200, 100)
+go
+
+---------------------------------------------------------------------------------------
+-- create view
+create view EnabledAdmin as (
+	select * from Account where roll > 1 and status = 1
+)
+go
+
+-- create view
+create view EnabledCustomer as (
+	select * from Account where roll = 1 and status = 1
+)
+go
+
+create view EnabledDiscount as (
+	select * from Discount where status = 1
+)
+go
+
+create view EnabledCategory as (
+	select * from Category where status = 1
+)
+go
+
+create view EnabledFood as (
+	select * from Food where status = 1
+)
+go
+
+create view EnabledTableFood as (
+	select * from TableFood where status > 0
+)
+go
 
 ---------------------------------------------------------------------------------------
 -- create procedure
 
-create proc LoginAdmin
+create proc loginAdmin
 	@account varchar(50),
 	@password varchar(500)
 as begin
-	select * from Account
-	where account = @account and password = @password and roll > 1 and status = 1
+	select * from EnabledAdmin
+	where account = @account and password = @password;
 end
 go
 
-create proc LoginCustomer
+create proc loginCustomer
 	@account varchar(50),
 	@password varchar(500)
 as begin
-	select * from Account
-	where account = @account and password = @password and roll = 1 and status = 1
+	select * from EnabledCustomer
+	where account = @account and password = @password;
 end
 go
 
-create proc InsertAccount
+create proc insertAccount
 	@account varchar(50),
 	@roll int,
 	@name varchar(50),
@@ -297,7 +331,7 @@ as begin
 end
 go
 
-create proc UpdateAccount
+create proc updateAccount
 	@id int,
 	@password varchar(200),
 	@name varchar(50),
@@ -322,15 +356,15 @@ as begin
 end
 go
 
-create proc InsertCategory
+create proc insertCategory
 	@name varchar(50)
 as begin
-	insert into Category (name) values (@name)
+	insert into Category (name) values (@name);
 	select * from Category where id = scope_identity();
 end
 go
 
-create proc InsertDiscount
+create proc insertDiscount
 	@name varchar(50),
 	@sale float
 as begin
@@ -339,16 +373,16 @@ as begin
 end
 go
 
-create proc CheckDiscount
+create proc checkDiscount
 	@name varchar(50)
 as begin
-	select * from Discount where name = @name and status = 1;
+	select * from EnabledDiscount where name = @name;
 end
 go
 
-create proc GetEnabledFood
+create proc getEnabledFood
 	@idCategory int
 as begin
-	select * from Food where idCategory = @idCategory and status = 1;
+	select * from EnabledFood where idCategory = @idCategory;
 end
 go

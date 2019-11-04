@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.BillDetail;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,15 +20,15 @@ public abstract class BillDetailPane implements Controller, Initializable {
     @FXML
     private Label totalLabel;
     @FXML
-    private TableView<model.BillDetail> billDetailTableView;
+    private TableView<BillDetail> billDetailTableView;
     @FXML
-    private TableColumn<model.BillDetail, String> foodNameColumn;
+    private TableColumn<BillDetail, String> foodNameColumn;
     @FXML
-    private TableColumn<model.BillDetail, Double> foodPriceColumn;
+    private TableColumn<BillDetail, Double> foodPriceColumn;
     @FXML
-    private TableColumn<model.BillDetail, Integer> quantityColumn;
+    private TableColumn<BillDetail, Integer> quantityColumn;
     @FXML
-    private TableColumn<model.BillDetail, Double> totalColumn;
+    private TableColumn<BillDetail, Double> totalColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -37,7 +38,7 @@ public abstract class BillDetailPane implements Controller, Initializable {
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
     }
 
-    public TableView<model.BillDetail> getBillDetailTableView() {
+    public TableView<BillDetail> getBillDetailTableView() {
         return billDetailTableView;
     }
 
