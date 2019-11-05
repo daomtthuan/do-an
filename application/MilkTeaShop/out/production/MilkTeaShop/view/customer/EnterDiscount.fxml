@@ -1,36 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
-<HBox id="wrapper" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customer.EnterDiscount">
-   <children>
+<HBox id="wrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
         <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
             <children>
                 <Label styleClass="customTitle" text="ENTER DISCOUNT" />
                 <GridPane styleClass="customGridPane">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="50.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="277.0" />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
                     </rowConstraints>
                     <children>
                         <Label styleClass="customLable" text="Name" />
                         <TextField fx:id="nameTextField" onAction="#submit" styleClass="customTextField" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
-                <Button mnemonicParsing="false" onAction="#submit" styleClass="customButton" text="Submit" />
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#submit" styleClass="customButton" text="Submit" />
             </children>
         </VBox>
-   </children>
+    </children>
 </HBox>

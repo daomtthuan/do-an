@@ -6,4 +6,4 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<Pane fx:id="tableFoodPane" prefHeight="391.0" prefWidth="590.0" styleClass="customPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<Pane fx:id="tablePane" prefHeight="391.0" prefWidth="590.0" styleClass="customPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />

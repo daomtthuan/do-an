@@ -26,7 +26,7 @@ public final class Account implements Api {
 			String account, int roll, String name, boolean gender, String birthday,
 			String address, String phone, String email) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec insertAccount ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {account, roll, name, gender, birthday, address, phone, email});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertAccount] ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {account, roll, name, gender, birthday, address, phone, email});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Account(resultSet) : null;
 		} catch (SQLException e) {
@@ -40,7 +40,7 @@ public final class Account implements Api {
 			int id, String password, String name, boolean gender, String birthday,
 			String address, String phone, String email, boolean status) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec updateAccount ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {id, password, name, gender, birthday, address, phone, email, status});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {id, password, name, gender, birthday, address, phone, email, status});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Account(resultSet) : null;
 		} catch (SQLException e) {
@@ -53,7 +53,7 @@ public final class Account implements Api {
 	public model.Account login(@NotNull String who, String account, String password) {
 		if (who.equals("Admin") || who.equals("Customer")) {
 			try {
-				ResultSet resultSet = DataProvider.getInstance().execute("exec login" + who + " ? , ?", new Object[] {account, password});
+				ResultSet resultSet = DataProvider.getInstance().execute("exec [login" + who + "] ? , ?", new Object[] {account, password});
 				assert resultSet != null;
 				return resultSet.next() ? new model.Account(resultSet) : null;
 			} catch (SQLException e) {

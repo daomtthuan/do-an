@@ -4,14 +4,14 @@ import app.alert.AlertInformation;
 import app.alert.AlertWarning;
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
-import tool.Regex;
-import tool.Input;
 import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import model.Account;
+import tool.Input;
+import tool.Regex;
 
 import java.time.format.DateTimeFormatter;
 
@@ -46,8 +46,8 @@ class Register implements Controller {
 			if (account != null) {
 				SecondaryStage.getInstance().setAccount(account);
 
-				if (!SecondaryStage.getInstance().isOrdering()) {
-					SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
+				if (SecondaryStage.getInstance().isNotOrdering()) {
+					SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 				}
 
 				AlertInformation.getInstance().showAndWait("Success!",

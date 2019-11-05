@@ -25,7 +25,7 @@ public final class Category implements Api {
 	public ArrayList<model.Category> getEnabledList() {
 		ArrayList<model.Category> categories = new ArrayList<>();
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("select * from EnabledCategory");
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [EnabledCategory]");
 			assert resultSet != null;
 			while (resultSet.next()) {
 				categories.add(new model.Category(resultSet));

@@ -22,7 +22,7 @@ public final class Discount implements Api {
 
 	@Nullable
 	public model.Discount insert(String name, double sale) {
-		try (ResultSet resultSet = DataProvider.getInstance().execute("exec insertDiscount ?,?", new Object[] {name, sale})) {
+		try (ResultSet resultSet = DataProvider.getInstance().execute("exec [insertDiscount] ?,?", new Object[] {name, sale})) {
 			assert resultSet != null;
 			return resultSet.next() ? new model.Discount(resultSet) : null;
 		} catch (SQLException e) {
@@ -34,7 +34,7 @@ public final class Discount implements Api {
 	@Nullable
 	public model.Discount check(String name) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec checkDiscount ?", new Object[] {name});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [checkDiscount] ?", new Object[] {name});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Discount(resultSet) : null;
 		} catch (SQLException e) {

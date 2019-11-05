@@ -8,9 +8,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Customer implements Controller, Initializable {
+	public Customer() {
+		SecondaryStage.getInstance().setAccount(null);
+		SecondaryStage.getInstance().setOrdering(false);
+		SecondaryStage.getInstance().setDiscount(null);
+		SecondaryStage.getInstance().setBillDetails(new ArrayList<>());
+	}
+
 	@FXML
 	private void login() {
 		DialogSecondaryStage.getInstance().setScene("/view/Login.fxml", new Login());

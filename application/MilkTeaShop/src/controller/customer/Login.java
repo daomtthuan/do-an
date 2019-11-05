@@ -3,10 +3,10 @@ package controller.customer;
 import app.alert.AlertWarning;
 import app.stage.DialogSecondaryStage;
 import app.stage.SecondaryStage;
-import tool.Regex;
 import controller.Controller;
 import javafx.fxml.Initializable;
 import model.Account;
+import tool.Regex;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,8 +19,8 @@ class Login extends controller.Login implements Controller, Initializable {
 				Account account = api.Account.getInstance().login("Customer", getAccount(), getPassword());
 				if (account != null) {
 					SecondaryStage.getInstance().setAccount(account);
-					if (!SecondaryStage.getInstance().isOrdering()) {
-						SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css");
+					if (SecondaryStage.getInstance().isNotOrdering()) {
+						SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 					}
 					DialogSecondaryStage.getInstance().close();
 				} else {

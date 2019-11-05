@@ -25,7 +25,7 @@ public final class Food implements Api {
 	public ArrayList<model.Food> getEnabledList(int idCategory) {
 		ArrayList<model.Food> foods = new ArrayList<>();
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec GetEnabledFood ?", new Object[] {idCategory});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [GetEnabledFood] ?", new Object[] {idCategory});
 			assert resultSet != null;
 			while (resultSet.next()) {
 				foods.add(new model.Food(resultSet));

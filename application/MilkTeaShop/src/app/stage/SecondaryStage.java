@@ -1,56 +1,78 @@
 package app.stage;
 
 import model.Account;
+import model.BillDetail;
 import model.Discount;
-import org.jetbrains.annotations.Contract;
+import model.Table;
+
+import java.util.ArrayList;
 
 public class SecondaryStage extends Stage {
-    private static SecondaryStage instance;
-    private Account account;
-    private boolean ordering;
-    private Discount discount;
+	private static SecondaryStage instance;
+	private Account account;
+	private boolean ordering;
+	private Discount discount;
+	private ArrayList<BillDetail> billDetails;
+	private Table table;
 
-    private SecondaryStage() {
-        setStage(new javafx.stage.Stage());
-        getStage().setTitle("Milk Tea Shop - Customer");
-        ordering = false;
-    }
+	private SecondaryStage() {
+		setStage(new javafx.stage.Stage());
+		getStage().setTitle("Milk Tea Shop - Customer");
 
-    public static SecondaryStage getInstance() {
-        if (instance == null) {
-            setInstance(new SecondaryStage());
-        }
-        return instance;
-    }
+		account = null;
+		ordering = false;
+		discount = null;
+		billDetails = new ArrayList<>();
+	}
 
-    private static void setInstance(SecondaryStage instance) {
-        SecondaryStage.instance = instance;
-    }
+	public static SecondaryStage getInstance() {
+		if (instance == null) {
+			setInstance(new SecondaryStage());
+		}
+		return instance;
+	}
 
-    @Contract(pure = true)
-    public Account getAccount() {
-        return account;
-    }
+	private static void setInstance(SecondaryStage instance) {
+		SecondaryStage.instance = instance;
+	}
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+	public Account getAccount() {
+		return account;
+	}
 
-    @Contract(pure = true)
-    public Discount getDiscount() {
-        return discount;
-    }
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
-    public void setDiscount(Discount discount) {
-        this.discount = discount;
-    }
+	public Discount getDiscount() {
+		return discount;
+	}
 
-    @Contract(pure = true)
-    public boolean isOrdering() {
-        return ordering;
-    }
+	public void setDiscount(Discount discount) {
+		this.discount = discount;
+	}
 
-    public void setOrdering(boolean ordering) {
-        this.ordering = ordering;
-    }
+	public boolean isNotOrdering() {
+		return !ordering;
+	}
+
+	public void setOrdering(boolean ordering) {
+		this.ordering = ordering;
+	}
+
+	public ArrayList<BillDetail> getBillDetails() {
+		return billDetails;
+	}
+
+	public void setBillDetails(ArrayList<BillDetail> billDetails) {
+		this.billDetails = billDetails;
+	}
+
+	public Table getTable() {
+		return table;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
 }

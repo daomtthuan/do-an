@@ -85,4 +85,9 @@ public class Account implements Model {
     public boolean isEnabled() {
         return enabled;
     }
+
+    @Override
+    public String toString() {
+        return account + " - " + name;
+    }
 }

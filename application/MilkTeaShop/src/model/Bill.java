@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class Bill implements Model {
     private int id;
-    private int idTableFood;
+    private int idTable;
     private int idCustomer;
     private int idEmployee;
     private int idDiscount;
@@ -28,7 +28,7 @@ public class Bill implements Model {
     public Bill(@NotNull ResultSet resultSet) {
         try {
             id = resultSet.getInt("id");
-            idTableFood = resultSet.getInt("idTableFood");
+            idTable = resultSet.getInt("idTable");
             idCustomer = resultSet.getInt("idAccount");
             idEmployee = resultSet.getInt("idEmployee");
             idDiscount = resultSet.getInt("idDiscount");
@@ -44,8 +44,8 @@ public class Bill implements Model {
         return id;
     }
 
-    public int getIdTableFood() {
-        return idTableFood;
+    public int getIdTable() {
+        return idTable;
     }
 
     public int getIdCustomer() {
