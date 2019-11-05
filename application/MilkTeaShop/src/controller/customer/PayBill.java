@@ -27,7 +27,7 @@ class PayBill implements Controller, Initializable {
 				setCustomer(SecondaryStage.getInstance().getAccount() != null ? SecondaryStage.getInstance().getAccount().toString() : "Guest");
 				setEmployee(PrimaryStage.getInstance().getAccount().toString());
 				setDiscount(SecondaryStage.getInstance().getDiscount() != null ? SecondaryStage.getInstance().getDiscount().getName() : "-");
-				setCheckin(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now()));
+				setCheckin(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy").format(LocalDateTime.now()));
 				setCheckout("-");
 			}
 		};

@@ -42,7 +42,6 @@ public abstract class MenuPane implements Controller, Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		categoryScrollPane.setHmin(MIN_CATEGORY_SCROLL);
 		categoryScrollPane.setHmax(MAX_CATEGORY_SCROLL);
-		categoryScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		categoryScrollPane.setPannable(true);
 		categoryScrollPane.setFitToHeight(true);
 		categoryPane.setOnScroll(event -> {
@@ -62,12 +61,6 @@ public abstract class MenuPane implements Controller, Initializable {
 				}
 			}
 		});
-
-		foodScrollPane.setVmin(0);
-		foodScrollPane.setVmax(foodScrollPane.getHeight());
-		foodScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-		foodScrollPane.setPannable(true);
-		foodScrollPane.setFitToWidth(true);
 
 		Category.getInstance().getEnabledList().forEach(category -> {
 			Button categoryButton = createButton(category.getName(), "/asset/category/" + category.getId() + ".png", "categoryButton");

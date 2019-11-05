@@ -16,12 +16,11 @@
 
 #billDetailPane {
     -fx-alignment: top_left;
-    -fx-pref-width: 666;
+    -fx-pref-width: 670;
     -fx-padding: 30 30 20 30;
 }
 
 #billDetailTableView {
-    -fx-font-size: 14 !important;
     -fx-border-color: #0078D7;
     -fx-pref-height: 400;
     -fx-background-color: #FFF;

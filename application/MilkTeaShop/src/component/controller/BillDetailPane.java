@@ -57,14 +57,14 @@ public abstract class BillDetailPane implements Controller, Initializable {
 	}
 
 	protected void setTotalBefore(double totalBefore) {
-		totalBeforeLabel.setText("$" + Number.round(totalBefore,2));
+		totalBeforeLabel.setText("$" + Number.round(totalBefore, 2));
 	}
 
 	protected void setSale(double sale) {
-		saleLabel.setText("- " + Number.round(sale,2) + "%");
+		saleLabel.setText("- " + Number.round(sale, 2) + "%");
 	}
 
 	protected void setTotal(double total) {
-		totalLabel.setText("$" + Number.round(total,2));
+		totalLabel.setText("$" + Number.round(total, 2));
 	}
 }
