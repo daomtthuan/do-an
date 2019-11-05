@@ -38,7 +38,7 @@ class Order implements Controller, Initializable {
 		SecondaryStage.getInstance().setOrdering(true);
 	}
 
-	
+
 
 	private void setup() {
 		if (SecondaryStage.getInstance().getAccount() == null) {
