@@ -8,8 +8,7 @@
 
 <VBox id="billPane" styleClass="customVBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Bill" />
-      <GridPane styleClass="customGridPane">
+      <GridPane id="billInformationPane" styleClass="customGridPane">
         <columnConstraints>
           <ColumnConstraints />
           <ColumnConstraints />
