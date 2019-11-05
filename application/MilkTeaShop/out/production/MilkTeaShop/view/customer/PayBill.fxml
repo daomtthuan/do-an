@@ -11,7 +11,6 @@
          <children>
             <Label id="title" text="PAY BILL" />
             <VBox fx:id="billComponent" />
-            <Button defaultButton="true" mnemonicParsing="false" styleClass="customButton" text="Submit" />
          </children>
       </VBox>
    </children>
