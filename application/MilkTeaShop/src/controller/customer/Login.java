@@ -19,7 +19,7 @@ class Login extends controller.Login implements Controller, Initializable {
 				Account account = api.Account.getInstance().login("Customer", getAccount(), getPassword());
 				if (account != null) {
 					SecondaryStage.getInstance().setAccount(account);
-					if (SecondaryStage.getInstance().isNotOrdering()) {
+					if (!SecondaryStage.getInstance().isOrdering()) {
 						SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 					}
 					DialogSecondaryStage.getInstance().close();

@@ -24,21 +24,35 @@ public abstract class BillDetailPane implements Controller, Initializable {
 	@FXML
 	private TableView<BillDetail> billDetailTableView;
 	@FXML
-	private TableColumn<BillDetail, String> foodNameColumn;
+	private TableColumn<BillDetail, String> nameFoodColumn;
 	@FXML
-	private TableColumn<BillDetail, Double> foodPriceColumn;
+	private TableColumn<BillDetail, String> nameCategoryColumn;
 	@FXML
 	private TableColumn<BillDetail, Integer> quantityColumn;
 	@FXML
+	private TableColumn<BillDetail, Double> priceColumn;
+	@FXML
 	private TableColumn<BillDetail, Double> totalColumn;
+
+	public abstract void setup();
+
+	public void refresh() {
+		billDetailTableView.getItems().clear();
+		setup();
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		foodNameColumn.setCellValueFactory(new PropertyValueFactory<>("foodName"));
-		foodPriceColumn.setCellValueFactory(new PropertyValueFactory<>("foodPrice"));
+		nameFoodColumn.setCellValueFactory(new PropertyValueFactory<>("nameFood"));
+		nameCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("nameCategory"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 		quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 		totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 		setup();
+	}
+
+	protected void setBillDetails(ArrayList<BillDetail> billDetails) {
+		billDetailTableView.setItems(FXCollections.observableArrayList(billDetails));
 	}
 
 	protected void setTotalBefore(double totalBefore) {
@@ -51,11 +65,5 @@ public abstract class BillDetailPane implements Controller, Initializable {
 
 	protected void setTotal(double total) {
 		totalLabel.setText("$" + total);
-	}
-
-	public abstract void setup();
-
-	public void setBillDetails(ArrayList<BillDetail> billDetails) {
-		billDetailTableView.setItems(FXCollections.observableArrayList(billDetails));
 	}
 }

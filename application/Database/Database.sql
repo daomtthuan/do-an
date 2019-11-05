@@ -65,21 +65,31 @@ go
 
 create table [Bill] (
 	[id] int identity primary key,
+
 	[idTable] int not null references [Table]([id]),
 	[idCustomer] int references [Account]([id]),
 	[idEmployee] int not null references [Account]([id]),
-	[idDiscount] int not null default null references [discount]([id]),
+
+	[nameDiscount] varchar(50),
+	[sale] float not null default 0,
+
 	[checkin] datetime not null default getdate(),
-	[checkout] datetime not null default null,
-	[total] float not null
+	[checkout] datetime not null default null
 )
 go
 
 create table [BillDetail] (
 	[id] int identity primary key,
 	[idBill] int not null references [Bill]([id]),
-	[idFood] int not null references [Food]([id]),
-	[quantity] int not null
+
+	[idFood] int not null,
+	[nameFood] varchar(50) not null,
+
+	[idCategory] int not null,
+	[nameCategory] varchar(50) not null,
+
+	[quantity] int not null,
+	[price] float not null
 )
 go
 ---------------------------------------------------------------------------------------

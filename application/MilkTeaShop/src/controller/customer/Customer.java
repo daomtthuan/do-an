@@ -14,9 +14,9 @@ import java.util.ResourceBundle;
 public class Customer implements Controller, Initializable {
 	public Customer() {
 		SecondaryStage.getInstance().setAccount(null);
-		SecondaryStage.getInstance().setOrdering(false);
 		SecondaryStage.getInstance().setDiscount(null);
-		SecondaryStage.getInstance().setBillDetails(new ArrayList<>());
+		SecondaryStage.getInstance().setBillDetails(null);
+		SecondaryStage.getInstance().setTable(null);
 	}
 
 	@FXML
@@ -35,6 +35,7 @@ public class Customer implements Controller, Initializable {
 
 	@FXML
 	private void order() {
+		SecondaryStage.getInstance().setBillDetails(new ArrayList<>());
 		SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 	}
 

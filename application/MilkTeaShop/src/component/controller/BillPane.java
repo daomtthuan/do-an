@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import tool.Number;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,8 +56,11 @@ public abstract class BillPane implements Controller, Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		BillDetailPane billDetailPane = new BillDetailPane() {
 			@Override
-			public void calculate(double totalBefore, double sale, double total) {
-
+			public void setup() {
+				setBillDetails(SecondaryStage.getInstance().getBillDetails());
+				setTotalBefore(SecondaryStage.getInstance().getTotalBefore());
+				setSale(SecondaryStage.getInstance().getSale());
+				setTotal(SecondaryStage.getInstance().getTotal());
 			}
 		};
 

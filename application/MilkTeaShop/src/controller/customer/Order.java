@@ -7,17 +7,14 @@ import component.controller.MenuPane;
 import controller.ChangePassword;
 import controller.Controller;
 import controller.WatchAccount;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.BillDetail;
-import model.Discount;
+import model.Category;
 import model.Food;
-import org.jetbrains.annotations.NotNull;
-import tool.Number;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,12 +30,6 @@ class Order implements Controller, Initializable {
 	private Button informationButton;
 	@FXML
 	private Button accountButton;
-
-	Order() {
-		SecondaryStage.getInstance().setOrdering(true);
-	}
-
-
 
 	private void setup() {
 		if (SecondaryStage.getInstance().getAccount() == null) {
@@ -96,15 +87,16 @@ class Order implements Controller, Initializable {
 		BillDetailPane billDetailPane = new BillDetailPane() {
 			@Override
 			public void setup() {
-				setTotalBefore(Number.round(getTotalBefore(), 2));
-				setSale(Number.round(getSale(), 2));
-				setTotal(Number.round(getTotal(), 2));
+				setBillDetails(SecondaryStage.getInstance().getBillDetails());
+				setTotalBefore(SecondaryStage.getInstance().getTotalBefore());
+				setSale(SecondaryStage.getInstance().getSale());
+				setTotal(SecondaryStage.getInstance().getTotal());
 			}
 		};
 
 		MenuPane menuPane = new MenuPane() {
 			@Override
-			public void selectFood(@NotNull Food food) {
+			public void selectFood(Category category, Food food) {
 				boolean found = false;
 				for (BillDetail billDetail : SecondaryStage.getInstance().getBillDetails()) {
 					if (billDetail.getIdFood() == food.getId()) {
@@ -114,28 +106,20 @@ class Order implements Controller, Initializable {
 					}
 				}
 				if (!found) {
-					SecondaryStage.getInstance().getBillDetails().add(new BillDetail(food.getId(), food.getName(), food.getPrice(), 1));
+					SecondaryStage.getInstance().getBillDetails().add(new BillDetail(category, food));
 				}
-				billDetailPane.getBillDetailTableView().getItems().clear();
-				billDetailPane.getBillDetailTableView().setItems(FXCollections.observableArrayList(SecondaryStage.getInstance().getBillDetails()));
-				billDetailPane.calculatePrice();
+				billDetailPane.refresh();
 			}
 		};
 
 		menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/MenuPane.fxml", menuPane));
 		billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetailPane.fxml", billDetailPane));
 
-		billDetailPane.getBillDetailTableView().setItems(FXCollections.observableArrayList(SecondaryStage.getInstance().getBillDetails()));
-		billDetailPane.calculate(getTotalBefore(), getSale(), getTotal());
-
 		setup();
 		SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
 			windowEvent.consume();
 			SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
 		});
-		SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> {
-			setup();
-			billDetailPane.calculate(getTotalBefore(), getSale(), getTotal());
-		});
+		SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> billDetailPane.refresh());
 	}
 }

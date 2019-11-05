@@ -46,7 +46,7 @@ class Register implements Controller {
 			if (account != null) {
 				SecondaryStage.getInstance().setAccount(account);
 
-				if (SecondaryStage.getInstance().isNotOrdering()) {
+				if (!SecondaryStage.getInstance().isOrdering()) {
 					SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 				}
 
