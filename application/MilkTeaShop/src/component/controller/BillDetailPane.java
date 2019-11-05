@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.BillDetail;
+import tool.Number;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,14 +57,14 @@ public abstract class BillDetailPane implements Controller, Initializable {
 	}
 
 	protected void setTotalBefore(double totalBefore) {
-		totalBeforeLabel.setText("$" + totalBefore);
+		totalBeforeLabel.setText("$" + Number.round(totalBefore,2));
 	}
 
 	protected void setSale(double sale) {
-		saleLabel.setText("- " + sale + "%");
+		saleLabel.setText("- " + Number.round(sale,2) + "%");
 	}
 
 	protected void setTotal(double total) {
-		totalLabel.setText("$" + total);
+		totalLabel.setText("$" + Number.round(total,2));
 	}
 }

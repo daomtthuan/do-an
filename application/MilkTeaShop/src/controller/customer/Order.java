@@ -120,6 +120,9 @@ class Order implements Controller, Initializable {
 			windowEvent.consume();
 			SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
 		});
-		SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> billDetailPane.refresh());
+		SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> {
+			setup();
+			billDetailPane.refresh();
+		});
 	}
 }

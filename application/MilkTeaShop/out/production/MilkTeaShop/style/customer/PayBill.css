@@ -27,3 +27,12 @@
     -fx-background-color: #FFF;
     -fx-effect: dropshadow(three-pass-box, #00233F, 5, 0, 2, 2);
 }
+
+#totalPane {
+    -fx-padding: 0;
+}
+
+#totalLabel {
+    -fx-font-size: 24;
+    -fx-text-fill: #00508F;
+}

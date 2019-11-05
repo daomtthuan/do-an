@@ -11,7 +11,7 @@
     <children>
         <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
             <children>
-                <Label styleClass="customTitle" text="ENTER DISCOUNT" />
+                <Label id="title" text="ENTER DISCOUNT CODE" />
                 <GridPane styleClass="customGridPane">
                     <columnConstraints>
                         <ColumnConstraints />
@@ -21,8 +21,8 @@
                         <RowConstraints />
                     </rowConstraints>
                     <children>
-                        <Label styleClass="customLable" text="Name" />
-                        <TextField fx:id="nameTextField" onAction="#submit" styleClass="customTextField" GridPane.columnIndex="1" />
+                        <Label styleClass="customLable" text="Code" />
+                        <TextField fx:id="nameTextField" onAction="#submit" styleClass="customField" GridPane.columnIndex="1" />
                     </children>
                 </GridPane>
                 <Button defaultButton="true" mnemonicParsing="false" onAction="#submit" styleClass="customButton" text="Submit" />

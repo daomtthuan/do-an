@@ -257,14 +257,14 @@ insert into [Account] ([account], [password], [roll], [name], [gender], [birthda
 insert into [Account] ([account], [password], [roll], [name], [gender], [birthday], [address], [phone], [email]) values ('ad104', '1', 1, 'Anabela Domingues', 1, '1994-12-16', 'Av. Ines de Castro, 414', '0790191118', 'AnabelaDomingues@gmail.com')
 go
 
-insert into [Discount] ([name], [sale]) values ('MA0011',10)
-insert into [Discount] ([name], [sale]) values ('MA0021',5)
-insert into [Discount] ([name], [sale]) values ('MA0031',3)
-insert into [Discount] ([name], [sale]) values ('MA0041',7)
-insert into [Discount] ([name], [sale]) values ('MA0051',10)
-insert into [Discount] ([name], [sale]) values ('MA0061',11)
-insert into [Discount] ([name], [sale]) values ('MA0071',5)
-insert into [Discount] ([name], [sale]) values ('MA0081',2)
+insert into [Discount] ([name], [sale]) values ('MA0011',10.2)
+insert into [Discount] ([name], [sale]) values ('MA0021',5.5)
+insert into [Discount] ([name], [sale]) values ('MA0031',3.2)
+insert into [Discount] ([name], [sale]) values ('MA0041',7.1)
+insert into [Discount] ([name], [sale]) values ('MA0051',10.0)
+insert into [Discount] ([name], [sale]) values ('MA0061',11.3)
+insert into [Discount] ([name], [sale]) values ('MA0071',5.8)
+insert into [Discount] ([name], [sale]) values ('MA0081',2.9)
 go
 
 insert into [Table] ([x], [y]) values (10, 20)

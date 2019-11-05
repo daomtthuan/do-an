@@ -3,6 +3,7 @@ package model;
 import app.alert.AlertError;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import tool.Number;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +29,7 @@ public class BillDetail implements Model {
 			nameCategory = resultSet.getString("nameCategory");
 			quantity = resultSet.getInt("quantity");
 			price = resultSet.getDouble("price");
-			total = quantity * price;
+			total = Number.round(quantity * price,2);
 		} catch (SQLException e) {
 			AlertError.getInstance().showAndWait(e);
 		}
@@ -42,7 +43,7 @@ public class BillDetail implements Model {
 		nameCategory = category.getName();
 		quantity = 1;
 		price = food.getPrice();
-		total = quantity * price;
+		total = Number.round(quantity * price,2);
 	}
 
 	public int getId() {
@@ -75,7 +76,7 @@ public class BillDetail implements Model {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-		total = this.quantity * price;
+		total = Number.round(quantity * price,2);
 	}
 
 	public double getPrice() {
