@@ -1,11 +1,12 @@
-package controller;
+package controller.general;
 
 import app.alert.AlertInformation;
 import app.alert.AlertWarning;
-import app.stage.DialogPrimaryStage;
-import app.stage.DialogSecondaryStage;
-import app.stage.PrimaryStage;
-import app.stage.SecondaryStage;
+import app.primary.PrimaryDialog;
+import app.secondary.SecondaryDialog;
+import app.primary.PrimaryStage;
+import app.secondary.SecondaryStage;
+import app.Controller;
 import tool.Regex;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -40,10 +41,10 @@ public class ChangePassword implements Controller {
 						AlertInformation.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
 						if (account.getRoll() == 1) {
 							SecondaryStage.getInstance().setAccount(newAccount);
-							DialogSecondaryStage.getInstance().close();
+							SecondaryDialog.getInstance().close();
 						} else {
 							PrimaryStage.getInstance().setAccount(newAccount);
-							DialogPrimaryStage.getInstance().getStage().hide();
+							PrimaryDialog.getInstance().getStage().hide();
 							PrimaryStage.getInstance().getStage().show();
 						}
 					} else {

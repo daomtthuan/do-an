@@ -1,6 +1,6 @@
 package component.controller;
 
-import controller.Controller;
+import app.Controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

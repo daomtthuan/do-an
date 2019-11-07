@@ -1,7 +1,7 @@
 package component.controller;
 
-import app.stage.SecondaryStage;
-import controller.Controller;
+import app.secondary.SecondaryStage;
+import app.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

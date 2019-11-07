@@ -1,8 +1,9 @@
-package controller;
+package controller.general;
 
 import app.alert.AlertWarning;
-import app.stage.PrimaryStage;
-import app.stage.SecondaryStage;
+import app.primary.PrimaryStage;
+import app.secondary.SecondaryStage;
+import app.Controller;
 import controller.customer.Customer;
 import controller.employee.Employee;
 import javafx.fxml.FXML;

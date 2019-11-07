@@ -1,12 +1,12 @@
 package controller.customer;
 
-import app.stage.DialogSecondaryStage;
-import app.stage.SecondaryStage;
+import app.secondary.SecondaryDialog;
+import app.secondary.SecondaryStage;
 import component.controller.BillDetailPane;
 import component.controller.MenuPane;
-import controller.ChangePassword;
-import controller.Controller;
-import controller.WatchAccount;
+import controller.general.ChangePassword;
+import app.Controller;
+import controller.general.WatchAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -35,29 +35,29 @@ class Order implements Controller, Initializable {
 		if (SecondaryStage.getInstance().getAccount() == null) {
 			informationButton.setText("Register");
 			informationButton.setOnAction(event -> {
-				DialogSecondaryStage.getInstance().setScene("/view/Account.fxml", "/style/general/Account.css", new Register());
-				DialogSecondaryStage.getInstance().getStage().show();
+				SecondaryDialog.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+				SecondaryDialog.getInstance().getStage().show();
 				SecondaryStage.getInstance().getStage().hide();
 			});
 
 			accountButton.setText("Login");
 			accountButton.setOnAction(event -> {
-				DialogSecondaryStage.getInstance().setScene("/view/Login.fxml", new Login());
-				DialogSecondaryStage.getInstance().getStage().show();
+				SecondaryDialog.getInstance().setScene("/view/general/Login.fxml", new Login());
+				SecondaryDialog.getInstance().getStage().show();
 				SecondaryStage.getInstance().getStage().hide();
 			});
 		} else {
 			informationButton.setText("Account");
 			informationButton.setOnAction(event -> {
-				DialogSecondaryStage.getInstance().setScene("/view/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(SecondaryStage.getInstance().getAccount()));
-				DialogSecondaryStage.getInstance().getStage().show();
+				SecondaryDialog.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(SecondaryStage.getInstance().getAccount()));
+				SecondaryDialog.getInstance().getStage().show();
 				SecondaryStage.getInstance().getStage().hide();
 			});
 
 			accountButton.setText("Change Password");
 			accountButton.setOnAction(event -> {
-				DialogSecondaryStage.getInstance().setScene("/view/ChangePassword.fxml", new ChangePassword(SecondaryStage.getInstance().getAccount()));
-				DialogSecondaryStage.getInstance().getStage().show();
+				SecondaryDialog.getInstance().setScene("/view/general/ChangePassword.fxml", new ChangePassword(SecondaryStage.getInstance().getAccount()));
+				SecondaryDialog.getInstance().getStage().show();
 				SecondaryStage.getInstance().getStage().hide();
 			});
 		}
@@ -69,8 +69,8 @@ class Order implements Controller, Initializable {
 		}
 
 		discountButton.setOnAction(event -> {
-			DialogSecondaryStage.getInstance().setScene("/view/customer/EnterDiscount.fxml", new EnterDiscount());
-			DialogSecondaryStage.getInstance().getStage().show();
+			SecondaryDialog.getInstance().setScene("/view/customer/EnterDiscount.fxml", new EnterDiscount());
+			SecondaryDialog.getInstance().getStage().show();
 			SecondaryStage.getInstance().getStage().hide();
 		});
 	}

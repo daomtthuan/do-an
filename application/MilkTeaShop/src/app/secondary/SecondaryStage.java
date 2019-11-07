@@ -1,5 +1,6 @@
-package app.stage;
+package app.secondary;
 
+import app.Stage;
 import model.Account;
 import model.BillDetail;
 import model.Discount;

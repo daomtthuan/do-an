@@ -1,9 +1,9 @@
 package controller.customer;
 
 import app.alert.AlertWarning;
-import app.stage.DialogSecondaryStage;
-import app.stage.SecondaryStage;
-import controller.Controller;
+import app.secondary.SecondaryDialog;
+import app.secondary.SecondaryStage;
+import app.Controller;
 import javafx.fxml.Initializable;
 import model.Account;
 import tool.Regex;
@@ -11,7 +11,7 @@ import tool.Regex;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-class Login extends controller.Login implements Controller, Initializable {
+class Login extends controller.general.Login implements Controller, Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		getSubmitButton().setOnAction(actionEvent -> {
@@ -22,7 +22,7 @@ class Login extends controller.Login implements Controller, Initializable {
 					if (!SecondaryStage.getInstance().isOrdering()) {
 						SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 					}
-					DialogSecondaryStage.getInstance().close();
+					SecondaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Account or password is incorrect.\nPlease check again.");
 				}

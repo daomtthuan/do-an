@@ -1,12 +1,13 @@
 package model;
 
+import app.Model;
 import app.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Discount implements Model{
+public class Discount implements Model {
     private int id;
     private String name;
     private double sale;

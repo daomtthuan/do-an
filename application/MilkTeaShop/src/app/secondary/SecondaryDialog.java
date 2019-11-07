@@ -1,9 +1,11 @@
-package app.stage;
+package app.secondary;
 
-public class DialogSecondaryStage extends Stage {
-    private static DialogSecondaryStage instance;
+import app.Stage;
 
-    private DialogSecondaryStage() {
+public class SecondaryDialog extends Stage {
+    private static SecondaryDialog instance;
+
+    private SecondaryDialog() {
         setStage(new javafx.stage.Stage());
         getStage().setTitle("Milk Tea Shop - Dialog");
         getStage().setOnCloseRequest(windowEvent -> {
@@ -12,15 +14,15 @@ public class DialogSecondaryStage extends Stage {
         });
     }
 
-    public static DialogSecondaryStage getInstance() {
+    public static SecondaryDialog getInstance() {
         if (instance == null) {
-            setInstance(new DialogSecondaryStage());
+            setInstance(new SecondaryDialog());
         }
         return instance;
     }
 
-    private static void setInstance(DialogSecondaryStage instance) {
-        DialogSecondaryStage.instance = instance;
+    private static void setInstance(SecondaryDialog instance) {
+        SecondaryDialog.instance = instance;
     }
 
     public void close() {

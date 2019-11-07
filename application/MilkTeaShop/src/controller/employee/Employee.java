@@ -1,6 +1,6 @@
 package controller.employee;
 
-import controller.Controller;
+import app.Controller;
 
 public class Employee implements Controller {
 }

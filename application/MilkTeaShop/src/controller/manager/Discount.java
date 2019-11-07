@@ -1,6 +1,6 @@
 package controller.manager;
 
-import controller.Controller;
+import app.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

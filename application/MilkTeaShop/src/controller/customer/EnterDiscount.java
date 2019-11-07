@@ -2,10 +2,10 @@ package controller.customer;
 
 import app.alert.AlertInformation;
 import app.alert.AlertWarning;
-import app.stage.DialogSecondaryStage;
-import app.stage.SecondaryStage;
+import app.secondary.SecondaryDialog;
+import app.secondary.SecondaryStage;
 import tool.Regex;
-import controller.Controller;
+import app.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -25,7 +25,7 @@ class EnterDiscount implements Controller, Initializable {
 			if (discount != null) {
 				SecondaryStage.getInstance().setDiscount(discount);
 				AlertInformation.getInstance().showAndWait("Success!", "Your bill will be discounted " + discount.getSale() + "%.");
-				DialogSecondaryStage.getInstance().close();
+				SecondaryDialog.getInstance().close();
 			} else {
 				AlertWarning.getInstance().showAndWait("Fail!", "Discount Code is incorrect.\nPlease check again.");
 			}

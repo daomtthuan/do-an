@@ -1,8 +1,8 @@
 package controller.customer;
 
-import app.stage.DialogSecondaryStage;
-import app.stage.SecondaryStage;
-import controller.Controller;
+import app.secondary.SecondaryDialog;
+import app.secondary.SecondaryStage;
+import app.Controller;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,15 +21,15 @@ public class Customer implements Controller, Initializable {
 
 	@FXML
 	private void login() {
-		DialogSecondaryStage.getInstance().setScene("/view/Login.fxml", new Login());
-		DialogSecondaryStage.getInstance().getStage().show();
+		SecondaryDialog.getInstance().setScene("/view/general/Login.fxml", new Login());
+		SecondaryDialog.getInstance().getStage().show();
 		SecondaryStage.getInstance().getStage().hide();
 	}
 
 	@FXML
 	private void register() {
-		DialogSecondaryStage.getInstance().setScene("/view/Account.fxml", "/style/general/Account.css", new Register());
-		DialogSecondaryStage.getInstance().getStage().show();
+		SecondaryDialog.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+		SecondaryDialog.getInstance().getStage().show();
 		SecondaryStage.getInstance().getStage().hide();
 	}
 

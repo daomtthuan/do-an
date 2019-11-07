@@ -1,7 +1,7 @@
-package app.stage;
+package app;
 
+import app.Controller;
 import app.alert.AlertError;
-import controller.Controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -10,7 +10,7 @@ import jfxtras.styles.jmetro.Style;
 
 import java.io.IOException;
 
-abstract class Stage {
+public abstract class Stage {
 	private javafx.stage.Stage stage;
 
 	public javafx.stage.Stage getStage() {
@@ -27,7 +27,7 @@ abstract class Stage {
 			loader.setController(controller);
 			Scene scene = new Scene(loader.load());
 			new JMetro(scene, Style.LIGHT);
-			scene.getStylesheets().add("/style/Style.css");
+			scene.getStylesheets().add("/style/general/Style.css");
 			stage.setScene(scene);
 		} catch (IOException e) {
 			AlertError.getInstance().showAndWait(e);
@@ -40,7 +40,7 @@ abstract class Stage {
 			loader.setController(controller);
 			Scene scene = new Scene(loader.load());
 			new JMetro(scene, Style.LIGHT);
-			scene.getStylesheets().add("/style/Style.css");
+			scene.getStylesheets().add("/style/general/Style.css");
 			scene.getStylesheets().add(style);
 			stage.setScene(scene);
 		} catch (IOException e) {

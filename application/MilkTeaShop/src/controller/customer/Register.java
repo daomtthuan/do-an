@@ -2,9 +2,9 @@ package controller.customer;
 
 import app.alert.AlertInformation;
 import app.alert.AlertWarning;
-import app.stage.DialogSecondaryStage;
-import app.stage.SecondaryStage;
-import controller.Controller;
+import app.secondary.SecondaryDialog;
+import app.secondary.SecondaryStage;
+import app.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -53,7 +53,7 @@ class Register implements Controller {
 				AlertInformation.getInstance().showAndWait("Success!",
 						"Your Customer Account: " + account.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n" +
 								"Thanks for coming to our shop!");
-				DialogSecondaryStage.getInstance().close();
+				SecondaryDialog.getInstance().close();
 			} else {
 				AlertWarning.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
 			}

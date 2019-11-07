@@ -1,6 +1,6 @@
-package controller;
+package controller.general;
 
-import controller.Controller;
+import app.Controller;
 
 public class BillDetail implements Controller {
 }

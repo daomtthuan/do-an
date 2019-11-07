@@ -1,11 +1,11 @@
 package model;
 
+import app.Model;
 import app.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class Bill implements Model {
 	private int id;

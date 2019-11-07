@@ -1,12 +1,11 @@
 package controller.customer;
 
-import app.stage.PrimaryStage;
-import app.stage.SecondaryStage;
+import app.primary.PrimaryStage;
+import app.secondary.SecondaryStage;
 import component.controller.BillPane;
-import controller.Controller;
+import app.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
