@@ -1,0 +1,23 @@
+#container {
+    -fx-alignment: top_center;
+    -fx-min-width: 1600;
+    -fx-min-height: 900;
+    -fx-max-width: 1600;
+    -fx-max-height: 900;
+}
+
+#tableComponent {
+    -fx-padding: 20;
+    -fx-border-color: #0078D7;
+    -fx-effect: innershadow(three-pass-box, #00233F, 15, 0, 3, 3);
+    -fx-background-color: #f3f9fe;
+}
+
+#tablePane {
+    -fx-pref-width: 1520;
+    -fx-pref-height: 760;
+}
+
+.tableButton{
+    -fx-padding: 15 15 5 15;
+}

@@ -39,8 +39,6 @@ public class Login implements Controller, Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		accountTextField.setText("ttl3");
-		passwordTextField.setText("1");
 		getSubmitButton().setOnAction(actionEvent -> {
 			if (getAccount().matches(Regex.ACCOUNT) && getPassword().matches(Regex.PASSWORD)) {
 				Account account = api.Account.getInstance().login("Admin", getAccount(), getPassword());

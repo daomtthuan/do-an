@@ -1,9 +1,11 @@
 package controller.employee;
 
 import app.Controller;
+import app.primary.PrimaryDialog;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;
 import component.controller.BillPane;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -39,7 +41,17 @@ public class ManageOrder implements Controller, Initializable {
 			}
 		};
 		billComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillPane.fxml", billPane));
+		setupCustomerButton();
+		setupPayBillButton(true);
+
+		PrimaryDialog.getInstance().getStage().setOnCloseRequest(Event::consume);
+	}
+
+	public void setupPayBillButton(boolean isDisable) {
+		payBillButton.setDisable(isDisable);
+	}
+
+	public void setupCustomerButton() {
 		customerButton.setDisable(SecondaryStage.getInstance().getAccount() == null);
-		payBillButton.setDisable(true);
 	}
 }

@@ -118,6 +118,7 @@ class Order implements Controller, Initializable {
 
 		setup(billDetailPane);
 		manageOrder.getBillPane().setup();
+		manageOrder.setupCustomerButton();
 
 		SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
 			windowEvent.consume();
@@ -128,6 +129,7 @@ class Order implements Controller, Initializable {
 		SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> {
 			setup(billDetailPane);
 			manageOrder.getBillPane().setup();
+			manageOrder.setupCustomerButton();
 		});
 
 		PrimaryDialog.getInstance().getStage().show();

@@ -36,6 +36,7 @@ class SelectTable implements Controller, Initializable {
 				SecondaryStage.getInstance().setTable(table);
 				manageOrder.getBillPane().setTable(table.toString());
 				SecondaryStage.getInstance().setScene("/view/customer/PayBill.fxml", "/style/customer/PayBill.css", new PayBill());
+				manageOrder.setupPayBillButton(false);
 			}
 		};
 		tableComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/TablePane.fxml", tablePane));
