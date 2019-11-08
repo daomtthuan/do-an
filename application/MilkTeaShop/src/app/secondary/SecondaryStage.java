@@ -70,28 +70,4 @@ public class SecondaryStage extends Stage {
 	public void setTable(Table table) {
 		this.table = table;
 	}
-
-	public double getTotalBefore() {
-		double totalBefore = 0;
-		for (BillDetail billDetail : billDetails) {
-			totalBefore += billDetail.getTotal();
-		}
-		return totalBefore;
-	}
-
-	public double getSale() {
-		double sale = 0;
-		if (account != null) {
-			sale += 2;
-		}
-		if (discount != null) {
-			sale += discount.getSale();
-		}
-		return sale;
-	}
-
-	public double getTotal() {
-		double total = getTotalBefore();
-		return total - (total * getSale() / 100.0);
-	}
 }

@@ -8,14 +8,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.Account;
 import model.BillDetail;
+import model.Discount;
 import tool.Number;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public abstract class BillDetailPane implements Controller, Initializable {
+public class BillDetailPane implements Controller, Initializable {
 	@FXML
 	private Label totalBeforeLabel;
 	@FXML
@@ -35,13 +37,6 @@ public abstract class BillDetailPane implements Controller, Initializable {
 	@FXML
 	private TableColumn<BillDetail, Double> totalColumn;
 
-	public abstract void setup();
-
-	public void refresh() {
-		billDetailTableView.getItems().clear();
-		setup();
-	}
-
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nameFoodColumn.setCellValueFactory(new PropertyValueFactory<>("nameFood"));
@@ -49,22 +44,25 @@ public abstract class BillDetailPane implements Controller, Initializable {
 		priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 		quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 		totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
-		setup();
 	}
 
-	protected void setBillDetails(ArrayList<BillDetail> billDetails) {
+	public void setBillDetails(Account account, Discount discount, ArrayList<BillDetail> billDetails) {
+		billDetailTableView.getItems().clear();
 		billDetailTableView.setItems(FXCollections.observableArrayList(billDetails));
-	}
+		double totalBefore = 0, sale = 0, total = 0;
+		for (BillDetail billDetail : billDetails) {
+			totalBefore += billDetail.getTotal();
+		}
+		if (account != null) {
+			sale += 2;
+		}
+		if (discount != null) {
+			sale += discount.getSale();
+		}
+		total = totalBefore - (totalBefore * sale / 100.0);
 
-	protected void setTotalBefore(double totalBefore) {
 		totalBeforeLabel.setText("$" + Number.round(totalBefore, 2));
-	}
-
-	protected void setSale(double sale) {
 		saleLabel.setText("- " + Number.round(sale, 2) + "%");
-	}
-
-	protected void setTotal(double total) {
 		totalLabel.setText("$" + Number.round(total, 2));
 	}
 }

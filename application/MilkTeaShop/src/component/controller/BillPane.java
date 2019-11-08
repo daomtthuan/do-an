@@ -1,19 +1,27 @@
 package component.controller;
 
-import app.secondary.SecondaryStage;
 import app.Controller;
+import app.secondary.SecondaryStage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import model.Account;
+import model.BillDetail;
+import model.Discount;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public abstract class BillPane implements Controller, Initializable {
 	@FXML
 	private GridPane billInformationPane;
+	@FXML
+	private Label checkinNameLabel;
+	@FXML
+	private Label checkoutNameLabel;
 	@FXML
 	private Label tableLabel;
 	@FXML
@@ -28,12 +36,13 @@ public abstract class BillPane implements Controller, Initializable {
 	private Label checkoutLabel;
 	@FXML
 	private VBox billDetailComponent;
+	private BillDetailPane billDetailPane;
 
-	protected void setTable(String text) {
+	public void setTable(String text) {
 		this.tableLabel.setText(text);
 	}
 
-	protected void setCustomer(String text) {
+	public void setCustomer(String text) {
 		this.customerLabel.setText(text);
 	}
 
@@ -41,33 +50,35 @@ public abstract class BillPane implements Controller, Initializable {
 		this.employeeLabel.setText(text);
 	}
 
-	protected void setDiscount(String text) {
+	public void setDiscount(String text) {
 		this.discountLabel.setText(text);
 	}
 
-	protected void setCheckin(String text) {
+	public void setCheckin(String text) {
 		this.checkinLabel.setText(text);
 	}
 
-	protected void setCheckout(String text) {
+	public void setCheckout(String text) {
 		this.checkoutLabel.setText(text);
 	}
 
 	public abstract void setup();
 
+	public void setBillDetails(Account account, Discount discount, ArrayList<BillDetail> billDetails) {
+		billDetailPane.setBillDetails(account, discount, billDetails);
+	}
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		BillDetailPane billDetailPane = new BillDetailPane() {
-			@Override
-			public void setup() {
-				setBillDetails(SecondaryStage.getInstance().getBillDetails());
-				setTotalBefore(SecondaryStage.getInstance().getTotalBefore());
-				setSale(SecondaryStage.getInstance().getSale());
-				setTotal(SecondaryStage.getInstance().getTotal());
-			}
-		};
-
+		billDetailPane = new BillDetailPane();
 		billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetailPane.fxml", billDetailPane));
 		setup();
+	}
+
+	protected void removeCheck() {
+		billInformationPane.getChildren().remove(checkinNameLabel);
+		billInformationPane.getChildren().remove(checkinLabel);
+		billInformationPane.getChildren().remove(checkoutNameLabel);
+		billInformationPane.getChildren().remove(checkoutLabel);
 	}
 }

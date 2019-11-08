@@ -1,8 +1,8 @@
 package controller.customer;
 
+import app.Controller;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
-import app.Controller;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

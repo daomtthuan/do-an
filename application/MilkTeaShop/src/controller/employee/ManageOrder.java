@@ -1,4 +1,4 @@
-package controller.customer;
+package controller.employee;
 
 import app.Controller;
 import app.primary.PrimaryStage;
@@ -6,18 +6,28 @@ import app.secondary.SecondaryStage;
 import component.controller.BillPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-class PayBill implements Controller, Initializable {
+public class ManageOrder implements Controller, Initializable {
+	@FXML
+	private Button payBillButton;
+	@FXML
+	private Button customerButton;
 	@FXML
 	private VBox billComponent;
+	private BillPane billPane;
+
+	public BillPane getBillPane() {
+		return billPane;
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		BillPane billPane = new BillPane() {
+		billPane = new BillPane() {
 			@Override
 			public void setup() {
 				setTable(SecondaryStage.getInstance().getTable() != null ? SecondaryStage.getInstance().getTable().toString() : "-");
@@ -29,5 +39,7 @@ class PayBill implements Controller, Initializable {
 			}
 		};
 		billComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillPane.fxml", billPane));
+		customerButton.setDisable(SecondaryStage.getInstance().getAccount() == null);
+		payBillButton.setDisable(true);
 	}
 }

@@ -14,6 +14,7 @@ import tool.Input;
 import tool.Regex;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 class Register implements Controller {
 	@FXML
@@ -47,6 +48,7 @@ class Register implements Controller {
 				SecondaryStage.getInstance().setAccount(account);
 
 				if (!SecondaryStage.getInstance().isOrdering()) {
+					SecondaryStage.getInstance().setBillDetails(new ArrayList<>());
 					SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 				}
 

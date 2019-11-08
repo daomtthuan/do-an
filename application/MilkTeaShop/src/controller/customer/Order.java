@@ -1,11 +1,13 @@
 package controller.customer;
 
+import app.Controller;
+import app.primary.PrimaryDialog;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
 import component.controller.BillDetailPane;
 import component.controller.MenuPane;
+import controller.employee.ManageOrder;
 import controller.general.ChangePassword;
-import app.Controller;
 import controller.general.WatchAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,8 +32,10 @@ class Order implements Controller, Initializable {
 	private Button informationButton;
 	@FXML
 	private Button accountButton;
+	private BillDetailPane billDetailPane;
+	private ManageOrder manageOrder;
 
-	private void setup() {
+	private void setup(BillDetailPane billDetailPane) {
 		if (SecondaryStage.getInstance().getAccount() == null) {
 			informationButton.setText("Register");
 			informationButton.setOnAction(event -> {
@@ -73,27 +77,23 @@ class Order implements Controller, Initializable {
 			SecondaryDialog.getInstance().getStage().show();
 			SecondaryStage.getInstance().getStage().hide();
 		});
+
+		billDetailPane.setBillDetails(SecondaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), SecondaryStage.getInstance().getBillDetails());
 	}
 
 	@FXML
 	private void submit() {
 		if (SecondaryStage.getInstance().getBillDetails().size() > 0) {
-			SecondaryStage.getInstance().setScene("/view/customer/SelectTable.fxml", "/style/customer/SelectTable.css", new SelectTable());
+			SecondaryStage.getInstance().setScene("/view/customer/SelectTable.fxml", "/style/customer/SelectTable.css", new SelectTable(manageOrder));
 		}
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		BillDetailPane billDetailPane = new BillDetailPane() {
-			@Override
-			public void setup() {
-				setBillDetails(SecondaryStage.getInstance().getBillDetails());
-				setTotalBefore(SecondaryStage.getInstance().getTotalBefore());
-				setSale(SecondaryStage.getInstance().getSale());
-				setTotal(SecondaryStage.getInstance().getTotal());
-			}
-		};
+		manageOrder = new ManageOrder();
+		PrimaryDialog.getInstance().setScene("/view/employee/ManageOrder.fxml", "/style/employee/ManageOrder.css", manageOrder);
 
+		BillDetailPane billDetailPane = new BillDetailPane();
 		MenuPane menuPane = new MenuPane() {
 			@Override
 			public void selectFood(Category category, Food food) {
@@ -108,21 +108,28 @@ class Order implements Controller, Initializable {
 				if (!found) {
 					SecondaryStage.getInstance().getBillDetails().add(new BillDetail(category, food));
 				}
-				billDetailPane.refresh();
+				billDetailPane.setBillDetails(SecondaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), SecondaryStage.getInstance().getBillDetails());
+				manageOrder.getBillPane().setBillDetails(SecondaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), SecondaryStage.getInstance().getBillDetails());
 			}
 		};
 
 		menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/MenuPane.fxml", menuPane));
 		billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetailPane.fxml", billDetailPane));
 
-		setup();
+		setup(billDetailPane);
+		manageOrder.getBillPane().setup();
+
 		SecondaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
 			windowEvent.consume();
 			SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
+			PrimaryDialog.getInstance().getStage().hide();
 		});
+
 		SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> {
-			setup();
-			billDetailPane.refresh();
+			setup(billDetailPane);
+			manageOrder.getBillPane().setup();
 		});
+
+		PrimaryDialog.getInstance().getStage().show();
 	}
 }

@@ -7,7 +7,7 @@ public class SecondaryDialog extends Stage {
 
     private SecondaryDialog() {
         setStage(new javafx.stage.Stage());
-        getStage().setTitle("Milk Tea Shop - Dialog");
+        getStage().setTitle("Milk Tea Shop - Customer - Dialog");
         getStage().setOnCloseRequest(windowEvent -> {
             windowEvent.consume();
             close();

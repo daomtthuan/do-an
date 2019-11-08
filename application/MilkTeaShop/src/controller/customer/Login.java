@@ -1,14 +1,15 @@
 package controller.customer;
 
+import app.Controller;
 import app.alert.AlertWarning;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
-import app.Controller;
 import javafx.fxml.Initializable;
 import model.Account;
 import tool.Regex;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 class Login extends controller.general.Login implements Controller, Initializable {
@@ -20,6 +21,7 @@ class Login extends controller.general.Login implements Controller, Initializabl
 				if (account != null) {
 					SecondaryStage.getInstance().setAccount(account);
 					if (!SecondaryStage.getInstance().isOrdering()) {
+						SecondaryStage.getInstance().setBillDetails(new ArrayList<>());
 						SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
 					}
 					SecondaryDialog.getInstance().close();
