@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="wrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+      minHeight="-Infinity" minWidth="-Infinity" styleClass="customHBox"
+      xmlns="http://javafx.com/javafx/8">
+    <children>
+        <VBox id="container" styleClass="customVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label id="title" styleClass="customTitle" text="ORDER FOOD" VBox.vgrow="ALWAYS"/>
+                <HBox styleClass="customHBox">
+                    <children>
+                        <Button fx:id="discountButton" mnemonicParsing="false">
+                            <styleClass>
+                                <String fx:value="customButton"/>
+                                <String fx:value="functionButton"/>
+                            </styleClass>
+                        </Button>
+                        <Button fx:id="informationButton" mnemonicParsing="false">
+                            <styleClass>
+                                <String fx:value="customButton"/>
+                                <String fx:value="functionButton"/>
+                            </styleClass>
+                        </Button>
+                        <Button fx:id="accountButton" mnemonicParsing="false">
+                            <styleClass>
+                                <String fx:value="customButton"/>
+                                <String fx:value="functionButton"/>
+                            </styleClass>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </HBox>
+                <HBox styleClass="customHBox">
+                    <children>
+                        <AnchorPane fx:id="menuComponent" styleClass="customAnchorPane"/>
+                        <VBox id="orderPane" styleClass="customVBox">
+                            <children>
+                                <Label text="Bill Details"/>
+                                <VBox fx:id="billDetailComponent" styleClass="customVBox"/>
+                                <HBox styleClass="customHBox">
+                                    <children>
+                                        <Button defaultButton="true" mnemonicParsing="false" onAction="#submit"
+                                                text="Submit">
+                                            <styleClass>
+                                                <String fx:value="customButton"/>
+                                                <String fx:value="functionButton"/>
+                                            </styleClass>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</HBox>
