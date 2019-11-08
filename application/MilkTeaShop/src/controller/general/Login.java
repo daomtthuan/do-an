@@ -1,9 +1,9 @@
 package controller.general;
 
+import app.Controller;
 import app.alert.AlertWarning;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;
-import app.Controller;
 import controller.customer.Customer;
 import controller.employee.Employee;
 import controller.manager.Manager;
@@ -51,8 +51,7 @@ public class Login implements Controller, Initializable {
 
 						SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
 						SecondaryStage.getInstance().getStage().show();
-					}
-					else {
+					} else {
 						PrimaryStage.getInstance().setScene("/view/manager/Manager.fxml", new Manager());
 						PrimaryStage.getInstance().setAccount(account);
 					}
