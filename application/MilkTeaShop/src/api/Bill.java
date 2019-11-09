@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class Bill implements Api {
+public class Bill implements Api {
 	private static Bill instance;
 
 	public static Bill getInstance() {

@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class Discount implements Api {
+public class Discount implements Api {
 	private static Discount instance;
 
 	public static Discount getInstance() {

@@ -40,7 +40,7 @@ class Order implements Controller, Initializable {
 		if (SecondaryStage.getInstance().getAccount() == null) {
 			informationButton.setText("Register");
 			informationButton.setOnAction(event -> {
-				SecondaryDialog.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+				SecondaryDialog.getInstance().setScene("/view/customer/Register.fxml", "/style/general/Account.css", new Register());
 				SecondaryDialog.getInstance().getStage().show();
 				SecondaryStage.getInstance().getStage().hide();
 			});

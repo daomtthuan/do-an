@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
 
-public final class DataProvider {
+public class DataProvider {
 	private static DataProvider instance;
 	private Connection connection;
 

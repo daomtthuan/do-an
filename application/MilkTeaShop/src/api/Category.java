@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public final class Category implements Api {
+public class Category implements Api {
 	private static Category instance;
 
 	public static Category getInstance() {

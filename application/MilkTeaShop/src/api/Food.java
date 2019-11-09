@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public final class Food implements Api {
+public class Food implements Api {
 	private static Food instance;
 
 	public static Food getInstance() {

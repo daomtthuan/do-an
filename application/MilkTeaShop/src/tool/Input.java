@@ -3,7 +3,7 @@ package tool;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
-public final class Input {
+public class Input {
 	@NotNull
 	public static java.lang.String fixString(@NotNull java.lang.String string) {
         if (string.equals("")) {

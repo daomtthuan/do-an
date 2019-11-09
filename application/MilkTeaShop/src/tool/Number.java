@@ -2,7 +2,7 @@ package tool;
 
 import java.util.Random;
 
-public final class Number {
+public class Number {
 	public static double round(double value, int places) {
 		if (places < 0) {
 			throw new IllegalArgumentException();

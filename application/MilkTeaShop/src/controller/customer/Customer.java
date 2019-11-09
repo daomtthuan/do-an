@@ -28,7 +28,7 @@ public class Customer implements Controller, Initializable {
 
 	@FXML
 	private void register() {
-		SecondaryDialog.getInstance().setScene("/view/general/Account.fxml", "/style/general/Account.css", new Register());
+		SecondaryDialog.getInstance().setScene("/view/customer/Register.fxml", "/style/general/Account.css", new Register());
 		SecondaryDialog.getInstance().getStage().show();
 		SecondaryStage.getInstance().getStage().hide();
 	}

@@ -901,6 +901,7 @@ go
 
 create proc [insertAccount]
 	@account varchar(50),
+	@password varchar(200),
 	@roll int,
 	@name varchar(50),
 	@gender bit,
@@ -913,7 +914,7 @@ begin
 	insert into [Account]
 		([account], [password], [roll], [name], [gender], [birthday], [address], [phone], [email])
 	values
-		(@account + cast(ident_current('Account') as varchar), '1', @roll, @name, @gender, @birthday, @address, @phone, @email);
+		(@account + cast(ident_current('Account') as varchar), @password, @roll, @name, @gender, @birthday, @address, @phone, @email);
 	select *
 	from [Account]
 	where [id] = scope_identity();
