@@ -17,7 +17,7 @@ public abstract class Stage {
 		return stage;
 	}
 
-	public void setStage(javafx.stage.Stage stage) {
+	protected void setStage(javafx.stage.Stage stage) {
 		this.stage = stage;
 	}
 

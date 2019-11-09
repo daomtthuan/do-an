@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<HBox id="wrapper" maxHeight="1.7976931348623157E308"
-      maxWidth="1.7976931348623157E308"
-      minHeight="-Infinity" minWidth="-Infinity" styleClass="customHBox"
-      xmlns="http://javafx.com/javafx/8">
+
+<HBox id="wrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-              styleClass="customVBox">
+        <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
             <children>
-                <Label id="welcomeLabel" text="WELCOME TO"/>
-                <Label id="brandLabel" text="MILK TEA SHOP"/>
+                <Label id="welcomeLabel" text="WELCOME TO" />
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../asset/brand/Logo.png" />
+               </image>
+            </ImageView>
+            <Label id="brandLabel" text="MILK TEA SHOP" />
                 <HBox id="functionHBox" styleClass="customHBox">
                     <children>
                         <Button mnemonicParsing="false" onAction="#register" styleClass="customButton" text="Register">
                             <graphic>
                                 <ImageView styleClass="customImageView">
                                     <image>
-                                        <Image url="@../../asset/icon/welcome/Register.png"/>
+                                        <Image url="@../../asset/icon/welcome/Register.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#order"
-                                styleClass="customButton" text="Order Food">
+                        <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#order" styleClass="customButton" text="Order Food">
                             <graphic>
                                 <ImageView styleClass="customImageView">
                                     <image>
-                                        <Image url="@../../asset/icon/welcome/Order.png"/>
+                                        <Image url="@../../asset/icon/welcome/Order.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -39,7 +42,7 @@
                             <graphic>
                                 <ImageView styleClass="customImageView">
                                     <image>
-                                        <Image url="@../../asset/icon/welcome/Login.png"/>
+                                        <Image url="@../../asset/icon/welcome/Login.png" />
                                     </image>
                                 </ImageView>
                             </graphic>

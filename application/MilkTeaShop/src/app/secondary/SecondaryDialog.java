@@ -1,6 +1,7 @@
 package app.secondary;
 
 import app.Stage;
+import javafx.scene.image.Image;
 
 public class SecondaryDialog extends Stage {
     private static SecondaryDialog instance;
@@ -12,6 +13,7 @@ public class SecondaryDialog extends Stage {
             windowEvent.consume();
             close();
         });
+        getStage().getIcons().add(new Image(getClass().getResourceAsStream("/asset/brand/Logo.png")));
     }
 
     public static SecondaryDialog getInstance() {

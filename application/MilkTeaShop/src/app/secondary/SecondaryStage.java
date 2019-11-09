@@ -1,6 +1,7 @@
 package app.secondary;
 
 import app.Stage;
+import javafx.scene.image.Image;
 import model.Account;
 import model.BillDetail;
 import model.Discount;
@@ -18,10 +19,12 @@ public class SecondaryStage extends Stage {
 	private SecondaryStage() {
 		setStage(new javafx.stage.Stage());
 		getStage().setTitle("Milk Tea Shop - Customer");
+		getStage().getIcons().add(new Image(getClass().getResourceAsStream("/asset/brand/Logo.png")));
 
 		account = null;
 		discount = null;
 		billDetails = null;
+		table = null;
 	}
 
 	public static SecondaryStage getInstance() {

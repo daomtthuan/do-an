@@ -50,7 +50,7 @@ public class Login implements Controller, Initializable {
 						SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
 						SecondaryStage.getInstance().getStage().show();
 					} else {
-						PrimaryStage.getInstance().setScene("/view/manager/Manager.fxml", new Manager());
+						PrimaryStage.getInstance().setScene("/view/manager/Manager.fxml", "/style/manager/Manager.css", new Manager());
 						PrimaryStage.getInstance().setAccount(account);
 					}
 				} else {
