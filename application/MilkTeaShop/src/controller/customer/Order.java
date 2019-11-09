@@ -2,6 +2,7 @@ package controller.customer;
 
 import app.pattern.Controller;
 import app.primary.PrimaryDialog;
+import app.primary.PrimarySubDialog;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
 import component.controller.BillDetailPane;
@@ -124,6 +125,7 @@ class Order implements Controller, Initializable {
 			windowEvent.consume();
 			SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
 			PrimaryDialog.getInstance().getStage().hide();
+			PrimarySubDialog.getInstance().getStage().hide();
 		});
 
 		SecondaryStage.getInstance().getStage().setOnShowing(windowEvent -> {

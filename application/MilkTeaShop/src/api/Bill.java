@@ -3,6 +3,7 @@ package api;
 import app.alert.AlertError;
 import app.pattern.Api;
 import model.Account;
+import model.Discount;
 import model.Table;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,11 +26,9 @@ public final class Bill implements Api {
 	}
 
 	@Nullable
-	public model.Bill insert(@NotNull Table table, Account customer, Account employee, Discount discount, double sale){
+	public model.Bill insert(@NotNull Table table, Account customer, @NotNull Account employee, Discount discount, double sale) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBillWithCustomer] ? , ? , ? , ? , ?", new Object[] {
-					table.getId(), customer != null ? customer.getId() : null, idEmployee, nameDiscount, sale
-			});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBill] ? , ? , ? , ? , ?", new Object[] {table.getId(), customer != null ? customer.getId() : null, employee.getId(), discount != null ? discount.getName() : null, sale});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Bill(resultSet) : null;
 		} catch (SQLException e) {

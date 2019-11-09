@@ -21,7 +21,7 @@ public class Bill implements Model {
 		try {
 			id = resultSet.getInt("id");
 			idTable = resultSet.getInt("idTable");
-			idCustomer = resultSet.getInt("idAccount");
+			idCustomer = resultSet.getInt("idCustomer");
 			idEmployee = resultSet.getInt("idEmployee");
 			nameDiscount = resultSet.getString("nameDiscount");
 			sale = resultSet.getDouble("sale");
