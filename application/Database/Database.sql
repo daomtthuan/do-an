@@ -481,11 +481,13 @@ create proc [updateCategory]
 	@name varchar(50),
 	@status bit
 as begin
+	if exists (select * from [Category] where [name]= @name)
+		select 0;
 	update [Category] set
 		[name] = @name,
 		[status] = @status
 	where [id] = @id;
-	select * from [Table] where [id] = @id;
+	select * from [Category] where [id] = @id;
 end
 go
 
@@ -503,14 +505,7 @@ as begin
 		[price] = @price,
 		[status] = @status
 	where [id] = @id;
-	select * from [Table] where [id] = @id;
-end
-go
-
-create proc [checkUpdateFood]
-	@name varchar(50)
-as begin
-	select * from [EnabledFood] where [name] = @name;
+	select * from [Food] where [id] = @id;
 end
 go
 
@@ -520,17 +515,13 @@ create proc [updateDiscount]
 	@sale float,
 	@status bit
 as begin
+	if exists (select * from [Category] where [name]= @name)
+		select 0;
 	update [Discount] set
 		[name] = @name,
 		[sale] = @sale,
 		[status] = @status
 	where [id] = @id;
-	select * from [Table] where [id] = @id;
-end
-go
-create proc [checkUpdateDiscount]
-	@name varchar(50)
-as begin
-	select * from [EnabledDiscount] where [name] = @name;
+	select * from [Discount] where [id] = @id;
 end
 go
