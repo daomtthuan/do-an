@@ -1147,9 +1147,3 @@ begin
 	end
 end
 go
-
-select *
-from Bill
-select *
-from BillDetail
-where idBill = 2
