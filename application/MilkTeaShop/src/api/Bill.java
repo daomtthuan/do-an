@@ -4,6 +4,7 @@ import app.alert.AlertError;
 import app.pattern.Api;
 import model.Account;
 import model.Table;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public final class Bill implements Api {
 	}
 
 	@Nullable
-	public model.Bill insert(Table table, Account customer, Account employee, Discount discount, double sale){
+	public model.Bill insert(@NotNull Table table, Account customer, Account employee, Discount discount, double sale){
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBillWithCustomer] ? , ? , ? , ? , ?", new Object[] {
 					table.getId(), customer != null ? customer.getId() : null, idEmployee, nameDiscount, sale
