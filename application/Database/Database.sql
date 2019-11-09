@@ -460,3 +460,77 @@ as begin
 	select * from [BillDetail] where [id] = scope_identity();
 end
 go
+
+create proc [updateTable]
+	@id int,
+	@x float,
+	@y float,
+	@status bit
+as begin
+	update [Table] set
+		[x] = @x,
+		[y] = @y,
+		[status] = @status
+	where [id] = @id;
+	select * from [Table] where [id] = @id;
+end
+go
+
+create proc [updateCategory]
+	@id int,
+	@name varchar(50),
+	@status bit
+as begin
+	update [Category] set
+		[name] = @name,
+		[status] = @status
+	where [id] = @id;
+	select * from [Table] where [id] = @id;
+end
+go
+
+
+create proc [updateFood]
+	@id int,
+	@name varchar(50),
+	@idCategory int,
+	@price float,
+	@status bit
+as begin
+	update [Food] set
+		[name] = @name,
+		[idCategory] = @idCategory,
+		[price] = @price,
+		[status] = @status
+	where [id] = @id;
+	select * from [Table] where [id] = @id;
+end
+go
+
+create proc [checkUpdateFood]
+	@name varchar(50)
+as begin
+	select * from [EnabledFood] where [name] = @name;
+end
+go
+
+create proc [updateDiscount]
+	@id int,
+	@name varchar(50),
+	@sale float,
+	@status bit
+as begin
+	update [Discount] set
+		[name] = @name,
+		[sale] = @sale,
+		[status] = @status
+	where [id] = @id;
+	select * from [Table] where [id] = @id;
+end
+go
+create proc [checkUpdateDiscount]
+	@name varchar(50)
+as begin
+	select * from [EnabledDiscount] where [name] = @name;
+end
+go
