@@ -44,12 +44,15 @@ public final class DataProvider {
 		}
 	}
 
-	@Nullable ResultSet execute(String query, @NotNull Object[] parameters) {
+	@Nullable ResultSet execute(String query, Object[] parameters) {
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setEscapeProcessing(true);
 			for (int i = 0; i < parameters.length; i++) {
-				statement.setObject(i + 1, parameters[i]);
+				if (parameters[i] != null)
+					statement.setObject(i + 1, parameters[i]);
+				else
+					statement.setNu(i + 1, parameters[i]);
 			}
 			return statement.executeQuery();
 		} catch (SQLException e) {

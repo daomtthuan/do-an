@@ -2,6 +2,9 @@ package api;
 
 import app.alert.AlertError;
 import app.pattern.Api;
+import model.Account;
+import model.Table;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
@@ -22,21 +25,11 @@ public final class Bill implements Api {
 	}
 
 	@Nullable
-	public model.Bill insert(int idTable, int idEmployee, String nameDiscount, double sale){
+	public model.Bill insert(@NotNull Table table, Account customer, Account employee, Discount discount, double sale){
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBillWithoutCustomer] ? , ? , ? , ?", new Object[] {idTable, idEmployee, nameDiscount, sale});
-			assert resultSet != null;
-			return resultSet.next() ? new model.Bill(resultSet) : null;
-		} catch (SQLException e) {
-			AlertError.getInstance().showAndWait(e);
-			return null;
-		}
-	}
-
-	@Nullable
-	public model.Bill insert(int idTable, int idCustomer, int idEmployee, String nameDiscount, double sale){
-		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBillWithCustomer] ? , ? , ? , ? , ?", new Object[] {idTable, idCustomer, idEmployee, nameDiscount, sale});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBillWithCustomer] ? , ? , ? , ? , ?", new Object[] {
+					table.getId(), customer != null ? customer.getId() : null, idEmployee, nameDiscount, sale
+			});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Bill(resultSet) : null;
 		} catch (SQLException e) {
