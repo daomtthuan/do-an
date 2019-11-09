@@ -1,15 +1,18 @@
 package controller.employee;
 
-import app.Controller;
+import app.alert.AlertWarning;
+import app.pattern.Controller;
 import app.primary.PrimaryDialog;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;
 import component.controller.BillPane;
-import javafx.event.Event;
+import controller.customer.Customer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import model.Bill;
+import model.BillDetail;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,7 +47,10 @@ public class ManageOrder implements Controller, Initializable {
 		setupCustomerButton();
 		setupPayBillButton(true);
 
-		PrimaryDialog.getInstance().getStage().setOnCloseRequest(Event::consume);
+		PrimaryDialog.getInstance().getStage().setOnCloseRequest(windowEvent -> {
+			SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
+			PrimaryDialog.getInstance().getStage().hide();
+		});
 	}
 
 	public void setupPayBillButton(boolean isDisable) {
@@ -53,5 +59,32 @@ public class ManageOrder implements Controller, Initializable {
 
 	public void setupCustomerButton() {
 		customerButton.setDisable(SecondaryStage.getInstance().getAccount() == null);
+	}
+
+	@FXML
+	private void watchCustomerAccount() {
+
+	}
+
+	@FXML
+	private void payBill() {
+		Bill bill;
+		if (SecondaryStage.getInstance().getAccount() == null) {
+			bill = api.Bill.getInstance().insert(SecondaryStage.getInstance().getTable().getId(), PrimaryStage.getInstance().getAccount().getId(), SecondaryStage.getInstance().getDiscount().getName(), billPane.getSale());
+		}
+		else {
+			bill = api.Bill.getInstance().insert(SecondaryStage.getInstance().getTable().getId(), SecondaryStage.getInstance().getAccount().getId(), PrimaryStage.getInstance().getAccount().getId(), SecondaryStage.getInstance().getDiscount().getName(), billPane.getSale());
+		}
+
+		SecondaryStage.getInstance().getBillDetails().forEach(billDetail -> {
+			if (bill != null)
+				api.BillDetail.getInstance().insert(bill.getId(), billDetail.getIdFood(), billDetail.getNameFood(), billDetail.getIdCategory(), billDetail.getNameCategory(), billDetail.getQuantity(), billDetail.getPrice());
+			else {
+				AlertWarning.getInstance().showAndWait("Fail!", "Can not pay bill.\nPlease notify staff.");
+			}
+		});
+
+		SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
+		PrimaryDialog.getInstance().getStage().hide();
 	}
 }

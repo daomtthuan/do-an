@@ -1,5 +1,6 @@
 package api;
 
+import app.pattern.Api;
 import app.alert.AlertError;
 import org.jetbrains.annotations.Nullable;
 

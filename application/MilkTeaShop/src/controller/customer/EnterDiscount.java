@@ -5,7 +5,7 @@ import app.alert.AlertWarning;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
 import tool.Regex;
-import app.Controller;
+import app.pattern.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;

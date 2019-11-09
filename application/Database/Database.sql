@@ -399,3 +399,41 @@ as begin
 	select * from [EnabledFood] where [idCategory] = @idCategory;
 end
 go
+
+create proc [insertBillWithCustomer]
+	@idTable int,
+	@idCustomer int,
+	@idEmployee int,
+
+	@nameDiscount varchar(50),
+	@sale float
+as begin
+	insert into [Bill] ([idTable], [idCustomer], [idEmployee], [nameDiscount], [sale]) values(@idTable, @idCustomer, @idEmployee, @nameDiscount, @sale);
+	select * from [Bill] where [id] = scope_identity();
+end
+go
+
+create proc [insertBillWithoutCustomer]
+	@idTable int,
+	@idEmployee int,
+	@nameDiscount varchar(50),
+	@sale float
+as begin
+	insert into [Bill] ([idTable], [idEmployee], [nameDiscount], [sale]) values(@idTable, @idEmployee, @nameDiscount, @sale);
+	select * from [Bill] where [id] = scope_identity();
+end
+go
+
+create proc [insertBillDetail]
+	@idBill int,
+	@idFood int,
+	@nameFood varchar(50),
+	@idCategory int,
+	@nameCategory varchar(50),
+	@quantity int,
+	@price float
+as begin
+	insert into [BillDetail] ([idBill], [idFood], [nameFood], [idCategory], [nameCategory], [quantity], [price]) values(@idBill, @idFood, @nameFood, @idCategory, @nameCategory, @quantity, @price);
+	select * from [BillDetail] where [id] = scope_identity();
+end
+go

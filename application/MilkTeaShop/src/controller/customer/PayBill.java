@@ -1,6 +1,6 @@
 package controller.customer;
 
-import app.Controller;
+import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;
 import component.controller.BillPane;

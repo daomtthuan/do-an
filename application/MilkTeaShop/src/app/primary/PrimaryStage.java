@@ -1,6 +1,6 @@
 package app.primary;
 
-import app.Stage;
+import app.pattern.Stage;
 import model.Account;
 import org.jetbrains.annotations.Contract;
 

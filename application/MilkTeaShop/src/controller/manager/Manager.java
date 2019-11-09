@@ -1,6 +1,6 @@
 package controller.manager;
 
-import app.Controller;
+import app.pattern.Controller;
 
 public class Manager implements Controller {
 }
