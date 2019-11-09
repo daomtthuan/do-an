@@ -374,7 +374,7 @@ create proc [insertCategory]
 	@name varchar(50)
 as begin
 	if exists (select * from [Category] where [name]= @name)
-		select NULL;
+		select [id] = 0;
 	else
 		insert into [Category] ([name]) values (@name);
 		select * from [Category] where [id] = scope_identity();
@@ -385,8 +385,11 @@ create proc [insertDiscount]
 	@name varchar(50),
 	@sale float
 as begin
-	insert into [Discount] ([name], [sale]) values (@name, @sale);
-	select * from [Discount] where [id] = scope_identity();
+	if exists (select * from [Discount] where [name]= @name)
+		select [id] = 0;
+	else
+		insert into [Discount] ([name], [sale]) values (@name, @sale);
+		select * from [Discount] where [id] = scope_identity();
 end
 go
 
