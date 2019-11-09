@@ -6,7 +6,7 @@ import app.primary.PrimaryDialog;
 import app.secondary.SecondaryDialog;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;
-import app.Controller;
+import app.pattern.Controller;
 import tool.Regex;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;

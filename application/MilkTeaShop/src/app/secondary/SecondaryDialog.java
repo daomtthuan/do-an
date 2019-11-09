@@ -1,6 +1,6 @@
 package app.secondary;
 
-import app.Stage;
+import app.pattern.Stage;
 import javafx.scene.image.Image;
 
 public class SecondaryDialog extends Stage {

@@ -1,6 +1,6 @@
 package component.controller;
 
-import app.Controller;
+import app.pattern.Controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +36,7 @@ public class BillDetailPane implements Controller, Initializable {
 	private TableColumn<BillDetail, Double> priceColumn;
 	@FXML
 	private TableColumn<BillDetail, Double> totalColumn;
+	private double sale;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,7 +50,8 @@ public class BillDetailPane implements Controller, Initializable {
 	public void setBillDetails(Account account, Discount discount, ArrayList<BillDetail> billDetails) {
 		billDetailTableView.getItems().clear();
 		billDetailTableView.setItems(FXCollections.observableArrayList(billDetails));
-		double totalBefore = 0, sale = 0, total = 0;
+		double totalBefore = 0, total = 0;
+		sale = 0;
 		for (BillDetail billDetail : billDetails) {
 			totalBefore += billDetail.getTotal();
 		}
@@ -64,5 +66,9 @@ public class BillDetailPane implements Controller, Initializable {
 		totalBeforeLabel.setText("$" + Number.round(totalBefore, 2));
 		saleLabel.setText("- " + Number.round(sale, 2) + "%");
 		totalLabel.setText("$" + Number.round(total, 2));
+	}
+
+	public double getSale() {
+		return sale;
 	}
 }

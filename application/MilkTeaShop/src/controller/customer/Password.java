@@ -1,6 +1,6 @@
 package controller.customer;
 
-import app.Controller;
+import app.pattern.Controller;
 
 class Password implements Controller {
 }

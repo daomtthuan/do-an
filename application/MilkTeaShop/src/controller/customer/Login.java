@@ -1,6 +1,6 @@
 package controller.customer;
 
-import app.Controller;
+import app.pattern.Controller;
 import app.alert.AlertWarning;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;

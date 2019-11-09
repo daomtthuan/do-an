@@ -1,6 +1,6 @@
 package model;
 
-import app.Model;
+import app.pattern.Model;
 import app.alert.AlertError;
 import org.jetbrains.annotations.NotNull;
 

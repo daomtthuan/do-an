@@ -1,6 +1,6 @@
 package app.primary;
 
-import app.Stage;
+import app.pattern.Stage;
 import javafx.scene.image.Image;
 
 public class PrimaryDialog extends Stage {

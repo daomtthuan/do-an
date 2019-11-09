@@ -13,8 +13,8 @@
             <VBox fx:id="billComponent" />
             <HBox styleClass="customHBox">
                <children>
-                  <Button fx:id="customerButton" mnemonicParsing="false" styleClass="customButton" text="Customer Account" />
-                  <Button fx:id="payBillButton" defaultButton="true" mnemonicParsing="false" styleClass="customButton" text="Pay Bill" />
+                  <Button fx:id="customerButton" mnemonicParsing="false" onAction="#watchCustomerAccount" styleClass="customButton" text="Customer Account" />
+                  <Button fx:id="payBillButton" defaultButton="true" mnemonicParsing="false" onAction="#payBill" styleClass="customButton" text="Pay Bill" />
                </children>
             </HBox>
          </children>

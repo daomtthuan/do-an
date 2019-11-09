@@ -1,6 +1,6 @@
 package controller.general;
 
-import app.Controller;
+import app.pattern.Controller;
 import app.alert.AlertWarning;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;

@@ -425,3 +425,106 @@ as begin
 	select * from [EnabledFood] where [idCategory] = @idCategory;
 end
 go
+
+create proc [insertBillWithCustomer]
+	@idTable int,
+	@idCustomer int,
+	@idEmployee int,
+
+	@nameDiscount varchar(50),
+	@sale float
+as begin
+	insert into [Bill] ([idTable], [idCustomer], [idEmployee], [nameDiscount], [sale]) values(@idTable, @idCustomer, @idEmployee, @nameDiscount, @sale);
+	select * from [Bill] where [id] = scope_identity();
+end
+go
+
+create proc [insertBillWithoutCustomer]
+	@idTable int,
+	@idEmployee int,
+	@nameDiscount varchar(50),
+	@sale float
+as begin
+	insert into [Bill] ([idTable], [idEmployee], [nameDiscount], [sale]) values(@idTable, @idEmployee, @nameDiscount, @sale);
+	select * from [Bill] where [id] = scope_identity();
+end
+go
+
+create proc [insertBillDetail]
+	@idBill int,
+	@idFood int,
+	@nameFood varchar(50),
+	@idCategory int,
+	@nameCategory varchar(50),
+	@quantity int,
+	@price float
+as begin
+	insert into [BillDetail] ([idBill], [idFood], [nameFood], [idCategory], [nameCategory], [quantity], [price]) values(@idBill, @idFood, @nameFood, @idCategory, @nameCategory, @quantity, @price);
+	select * from [BillDetail] where [id] = scope_identity();
+end
+go
+
+create proc [updateTable]
+	@id int,
+	@x float,
+	@y float,
+	@status bit
+as begin
+	update [Table] set
+		[x] = @x,
+		[y] = @y,
+		[status] = @status
+	where [id] = @id;
+	select * from [Table] where [id] = @id;
+end
+go
+
+create proc [updateCategory]
+	@id int,
+	@name varchar(50),
+	@status bit
+as begin
+	if exists (select * from [Category] where [name]= @name)
+		select 0;
+	update [Category] set
+		[name] = @name,
+		[status] = @status
+	where [id] = @id;
+	select * from [Category] where [id] = @id;
+end
+go
+
+
+create proc [updateFood]
+	@id int,
+	@name varchar(50),
+	@idCategory int,
+	@price float,
+	@status bit
+as begin
+	update [Food] set
+		[name] = @name,
+		[idCategory] = @idCategory,
+		[price] = @price,
+		[status] = @status
+	where [id] = @id;
+	select * from [Food] where [id] = @id;
+end
+go
+
+create proc [updateDiscount]
+	@id int,
+	@name varchar(50),
+	@sale float,
+	@status bit
+as begin
+	if exists (select * from [Category] where [name]= @name)
+		select 0;
+	update [Discount] set
+		[name] = @name,
+		[sale] = @sale,
+		[status] = @status
+	where [id] = @id;
+	select * from [Discount] where [id] = @id;
+end
+go

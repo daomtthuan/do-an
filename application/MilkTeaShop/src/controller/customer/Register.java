@@ -4,7 +4,7 @@ import app.alert.AlertInformation;
 import app.alert.AlertWarning;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
-import app.Controller;
+import app.pattern.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;

@@ -1,6 +1,6 @@
 package component.controller;
 
-import app.Controller;
+import app.pattern.Controller;
 import app.secondary.SecondaryStage;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,6 +37,10 @@ public abstract class BillPane implements Controller, Initializable {
 	@FXML
 	private VBox billDetailComponent;
 	private BillDetailPane billDetailPane;
+
+	public double getSale() {
+		return billDetailPane.getSale();
+	}
 
 	public void setTable(String text) {
 		this.tableLabel.setText(text);

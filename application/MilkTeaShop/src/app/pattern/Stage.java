@@ -1,6 +1,5 @@
-package app;
+package app.pattern;
 
-import app.Controller;
 import app.alert.AlertError;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,7 +16,7 @@ public abstract class Stage {
 		return stage;
 	}
 
-	protected void setStage(javafx.stage.Stage stage) {
+	public void setStage(javafx.stage.Stage stage) {
 		this.stage = stage;
 	}
 

@@ -1,6 +1,6 @@
 package app.secondary;
 
-import app.Stage;
+import app.pattern.Stage;
 import javafx.scene.image.Image;
 import model.Account;
 import model.BillDetail;
