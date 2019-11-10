@@ -16,7 +16,11 @@
       <TableView fx:id="tableView">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy></TableView>
+         </columnResizePolicy>
+         <styleClass>
+            <String fx:value="customTableView" />
+            <String fx:value="tableView" />
+         </styleClass></TableView>
    </children>
    <styleClass>
       <String fx:value="customVBox" />
