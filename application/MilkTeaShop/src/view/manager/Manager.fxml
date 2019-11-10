@@ -14,47 +14,83 @@
               <tabs>
                 <Tab fx:id="incomeTab" styleClass="customTab" text="Income">
                      <content>
-                        <VBox fx:id="incomeComponent" styleClass="customVBox" />
+                        <VBox fx:id="incomeComponent">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                 </Tab>
                 <Tab fx:id="billTab" styleClass="customTab" text="Bill">
                      <content>
-                        <VBox fx:id="billComponent" styleClass="customVBox" />
+                        <VBox fx:id="billComponent">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                 </Tab>
                   <Tab fx:id="tableTab" styleClass="customTab" text="Table">
                      <content>
-                        <VBox fx:id="tableComponent" prefHeight="200.0" prefWidth="100.0" styleClass="customVBox" />
+                        <VBox fx:id="tableComponent" prefHeight="200.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                   </Tab>
                   <Tab fx:id="categoryTab" styleClass="customTab" text="Category">
                      <content>
-                        <VBox fx:id="categoryComponent" prefHeight="200.0" prefWidth="100.0" styleClass="customVBox" />
+                        <VBox fx:id="categoryComponent" prefHeight="200.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                   </Tab>
                   <Tab fx:id="foodTab" styleClass="customTab" text="Food">
                      <content>
-                        <VBox fx:id="foodComponent" prefHeight="200.0" prefWidth="100.0" styleClass="customVBox" />
+                        <VBox fx:id="foodComponent" prefHeight="200.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                   </Tab>
                   <Tab fx:id="discountTab" styleClass="customTab" text="Discount">
                      <content>
-                        <VBox fx:id="discountComponent" prefHeight="200.0" prefWidth="100.0" styleClass="customVBox" />
+                        <VBox fx:id="discountComponent" prefHeight="200.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                   </Tab>
                   <Tab fx:id="customerTab" styleClass="customTab" text="Customer">
                      <content>
-                        <VBox fx:id="customerComponent" prefHeight="200.0" prefWidth="100.0" styleClass="customVBox" />
+                        <VBox fx:id="customerComponent" prefHeight="200.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                   </Tab>
                   <Tab fx:id="employeeTab" styleClass="customTab" text="Employee">
                      <content>
-                        <VBox fx:id="employeeComponent" prefHeight="200.0" prefWidth="100.0" styleClass="customVBox" />
+                        <VBox fx:id="employeeComponent" prefHeight="200.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                   </Tab>
                   <Tab fx:id="managerTab" styleClass="customTab" text="Manager">
                      <content>
-                        <VBox fx:id="managerComponent" prefHeight="200.0" prefWidth="100.0" styleClass="customVBox" />
+                        <VBox fx:id="managerComponent" prefHeight="200.0" prefWidth="100.0">
+                           <styleClass>
+                              <String fx:value="customVBox" />
+                              <String fx:value="manageComponent" />
+                           </styleClass></VBox>
                      </content>
                   </Tab>
               </tabs>

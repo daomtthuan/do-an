@@ -20,7 +20,7 @@ public abstract class TablePane implements Controller, Initializable {
 
 	@NotNull
 	private Button createButton(@NotNull Table table) {
-		ImageView imageView = new ImageView("/asset/table/" + Number.random(13) + ".png");
+		ImageView imageView = new ImageView("/asset/table/" + Number.random(12) + ".png");
 		Button button = new Button("Table " + table.getId(), imageView);
 		button.getStyleClass().addAll("customButton", "tableButton");
 		button.setOnAction(actionEvent -> selectTable(table));
