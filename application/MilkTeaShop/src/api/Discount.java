@@ -1,7 +1,7 @@
 package api;
 
-import app.pattern.Api;
 import app.alert.AlertError;
+import app.pattern.Api;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
@@ -22,15 +22,15 @@ public class Discount implements Api {
 		Discount.instance = instance;
 	}
 
-	public ArrayList<model.Discount> getDiscounts(){
+	public ArrayList<model.Discount> getDiscounts() {
 		ArrayList<model.Discount> discounts = new ArrayList<>();
-		try{
-			ResultSet resultSet =  DataProvider.getInstance().execute("select * from [Discount]");
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Discount]");
 			assert resultSet != null;
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				discounts.add(new model.Discount(resultSet));
 			}
-		} catch(SQLException e){
+		} catch (SQLException e) {
 			AlertError.getInstance().showAndWait(e);
 		}
 		return discounts;
