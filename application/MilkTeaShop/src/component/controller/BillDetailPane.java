@@ -68,7 +68,7 @@ public class BillDetailPane implements Controller, Initializable {
 		totalLabel.setText("$" + Number.round(total, 2));
 	}
 
-	public double getSale() {
+	double getSale() {
 		return sale;
 	}
 }

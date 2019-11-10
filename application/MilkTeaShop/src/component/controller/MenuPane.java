@@ -62,11 +62,11 @@ public abstract class MenuPane implements Controller, Initializable {
 			}
 		});
 
-		Category.getInstance().getEnabledList().forEach(category -> {
+		Category.getInstance().getEnabledCategories().forEach(category -> {
 			Button categoryButton = createButton(category.getName(), "/asset/category/" + category.getId() + ".png", "categoryButton");
 			categoryButton.setOnAction(categoryActionEvent -> {
 				foodPane.getChildren().clear();
-				api.Food.getInstance().getEnabledList(category.getId()).forEach(food -> {
+				api.Food.getInstance().getEnabledFoods(category.getId()).forEach(food -> {
 					Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "/asset/food/" + food.getId() + ".png", "foodButton");
 					foodButton.setOnAction(foodActionEvent -> selectFood(category, food));
 					foodPane.getChildren().add(foodButton);

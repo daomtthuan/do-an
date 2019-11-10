@@ -340,6 +340,10 @@ values
 insert into [Account]
 	([account], [password], [roll], [name], [gender], [birthday], [address], [phone], [email])
 values
+	('dmtt4', '1', 2, 'Dao Minh Trung Thuan', 1, '1999-09-18', 'Can Tho', '0939908568', 'DmtthuanA18088@cusc.ctu.edu.vn')
+insert into [Account]
+	([account], [password], [roll], [name], [gender], [birthday], [address], [phone], [email])
+values
 	('ma5', '1', 1, 'Maria Anders', 0, '1988-01-21', 'Obere Str. 57', '0845625627', 'MariaAnders@gmail.com')
 insert into [Account]
 	([account], [password], [roll], [name], [gender], [birthday], [address], [phone], [email])

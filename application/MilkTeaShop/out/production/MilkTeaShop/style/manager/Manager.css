@@ -1,4 +1,10 @@
-#sideMenuPane {
-    -fx-pref-width: 250;
-    -fx-alignment: top_left;
+#container {
+    -fx-pref-width: 1600;
+    -fx-pref-height: 900;
+    -fx-alignment: top_center;
+}
+
+#tableView {
+    -fx-pref-width: 1500;
+    -fx-pref-height: 700;
 }

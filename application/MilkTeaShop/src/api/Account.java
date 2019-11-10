@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Account implements Api {
 	private static Account instance;
@@ -20,6 +21,20 @@ public class Account implements Api {
 
 	private static void setInstance(Account instance) {
 		Account.instance = instance;
+	}
+
+	public ArrayList<model.Account> getAccounts(int roll) {
+		ArrayList<model.Account> accounts = new ArrayList<>();
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Account] where [roll] = " + roll);
+			assert resultSet != null;
+			while (resultSet.next()) {
+				accounts.add(new model.Account(resultSet));
+			}
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+		}
+		return accounts;
 	}
 
 	@Nullable

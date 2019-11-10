@@ -23,7 +23,7 @@ public class Food implements Api {
 	}
 
 	@NotNull
-	public ArrayList<model.Food> getEnabledList(int idCategory) {
+	public ArrayList<model.Food> getEnabledFoods(int idCategory) {
 		ArrayList<model.Food> foods = new ArrayList<>();
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [GetEnabledFood] ?", new Object[] {idCategory});

@@ -31,7 +31,7 @@ public abstract class TablePane implements Controller, Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		ArrayList<Table> tables = api.Table.getInstance().getEnabledList();
+		ArrayList<Table> tables = api.Table.getInstance().getEnabledTables();
 		tables.forEach(table -> tablePane.getChildren().add(createButton(table)));
 	}
 

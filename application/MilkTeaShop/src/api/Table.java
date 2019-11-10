@@ -23,7 +23,7 @@ public class Table implements Api {
 	}
 
 	@NotNull
-	public ArrayList<model.Table> getEnabledList() {
+	public ArrayList<model.Table> getEnabledTables() {
 		ArrayList<model.Table> tables = new ArrayList<>();
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("select * from [EnabledTable]");

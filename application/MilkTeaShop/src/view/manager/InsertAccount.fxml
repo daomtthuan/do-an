@@ -13,7 +13,7 @@
                 <Insets />
             </opaqueInsets>
             <children>
-                <Label id="title" fx:id="titleLabel" text="Register" />
+                <Label id="title" fx:id="titleLabel" text="INSERT ACCOUNT" />
                 <GridPane styleClass="customGridPane">
                     <columnConstraints>
                         <ColumnConstraints />

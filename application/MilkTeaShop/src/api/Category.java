@@ -23,7 +23,7 @@ public class Category implements Api {
 	}
 
 	@NotNull
-	public ArrayList<model.Category> getEnabledList() {
+	public ArrayList<model.Category> getEnabledCategories() {
 		ArrayList<model.Category> categories = new ArrayList<>();
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("select * from [EnabledCategory]");
