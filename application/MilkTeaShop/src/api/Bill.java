@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Bill implements Api {
 	private static Bill instance;
@@ -23,6 +24,20 @@ public class Bill implements Api {
 
 	private static void setInstance(Bill instance) {
 		Bill.instance = instance;
+	}
+
+	public ArrayList<model.Bill> getBills() {
+		ArrayList<model.Bill> bills = new ArrayList<>();
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Bill]");
+			assert resultSet != null;
+			while (resultSet.next()) {
+				bills.add(new model.Bill(resultSet));
+			}
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+		}
+		return bills;
 	}
 
 	@Nullable

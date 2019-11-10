@@ -30,7 +30,7 @@ public class ManageCustomer extends ManagePane implements Controller {
 
 	ManageCustomer(Manager manager) {
 		super(manager);
-		idColumn = new TableColumn<>("Id");
+		idColumn = new TableColumn<>("Id Customer");
 		accountColumn = new TableColumn<>("Account");
 		nameColumn = new TableColumn<>("Name");
 		genderColumn = new TableColumn<>("Male");
@@ -38,7 +38,7 @@ public class ManageCustomer extends ManagePane implements Controller {
 		addressColumn = new TableColumn<>("Address");
 		phoneColumn = new TableColumn<>("Phone");
 		emailColumn = new TableColumn<>("Email");
-		statusColumn = new TableColumn<>("Status");
+		statusColumn = new TableColumn<>("Enabled");
 
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 		accountColumn.setCellValueFactory(new PropertyValueFactory<>("account"));
