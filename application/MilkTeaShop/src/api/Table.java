@@ -36,4 +36,19 @@ public class Table implements Api {
 		}
 		return tables;
 	}
+
+	@NotNull
+	public ArrayList<model.Table> getTables(){
+		ArrayList<model.Table> tables = new ArrayList<>();
+		try{
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Table]");
+			assert resultSet != null;
+			while(resultSet.next()){
+				tables.add(new model.Table(resultSet));
+			}
+		} catch(SQLException e){
+			AlertError.getInstance().showAndWait(e);
+		}
+		return tables;
+	}
 }
