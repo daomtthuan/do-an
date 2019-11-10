@@ -22,6 +22,20 @@ public class Food implements Api {
 		Food.instance = instance;
 	}
 
+	public ArrayList<model.Food> getFoods(){
+		ArrayList<model.Food> foods = new ArrayList<>();
+		try{
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Food]");
+			assert resultSet != null;
+			while (resultSet.next()){
+				foods.add(new model.Food(resultSet));
+			}
+		} catch(SQLException e){
+			AlertError.getInstance().showAndWait(e);
+		}
+		return foods;
+	}
+
 	@NotNull
 	public ArrayList<model.Food> getEnabledFoods(int idCategory) {
 		ArrayList<model.Food> foods = new ArrayList<>();

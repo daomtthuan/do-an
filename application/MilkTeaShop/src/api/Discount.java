@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Discount implements Api {
 	private static Discount instance;
@@ -19,6 +20,20 @@ public class Discount implements Api {
 
 	private static void setInstance(Discount instance) {
 		Discount.instance = instance;
+	}
+
+	public ArrayList<model.Discount> getDiscounts(){
+		ArrayList<model.Discount> discounts = new ArrayList<>();
+		try{
+			ResultSet resultSet =  DataProvider.getInstance().execute("select * from [Discount]");
+			assert resultSet != null;
+			while(resultSet.next()){
+				discounts.add(new model.Discount(resultSet));
+			}
+		} catch(SQLException e){
+			AlertError.getInstance().showAndWait(e);
+		}
+		return discounts;
 	}
 
 	@Nullable
