@@ -3,6 +3,7 @@ package controller.customer;
 import app.pattern.Controller;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
+import controller.general.Login;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +22,7 @@ public class Customer implements Controller, Initializable {
 
 	@FXML
 	private void login() {
-		SecondaryDialog.getInstance().setScene("/view/general/Login.fxml", new Login());
+		SecondaryDialog.getInstance().setScene("/view/general/Login.fxml", new Login("Customer"));
 		SecondaryDialog.getInstance().getStage().show();
 		SecondaryStage.getInstance().getStage().hide();
 	}

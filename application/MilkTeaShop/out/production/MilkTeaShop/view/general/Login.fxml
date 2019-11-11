@@ -25,7 +25,7 @@
                         <PasswordField fx:id="passwordTextField" styleClass="customField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     </children>
                 </GridPane>
-                <Button fx:id="submitButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" styleClass="customButton" text="Login" />
+                <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#submit" styleClass="customButton" text="Login" />
             </children>
         </VBox>
     </children>

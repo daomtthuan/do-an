@@ -9,6 +9,7 @@ import component.controller.BillDetailPane;
 import component.controller.MenuPane;
 import controller.employee.ManageOrder;
 import controller.general.ChangePassword;
+import controller.general.Login;
 import controller.general.WatchAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,7 +23,7 @@ import model.Food;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-class Order implements Controller, Initializable {
+public class Order implements Controller, Initializable {
 	@FXML
 	private AnchorPane menuComponent;
 	@FXML
@@ -47,7 +48,7 @@ class Order implements Controller, Initializable {
 
 			accountButton.setText("Login");
 			accountButton.setOnAction(event -> {
-				SecondaryDialog.getInstance().setScene("/view/general/Login.fxml", new Login());
+				SecondaryDialog.getInstance().setScene("/view/general/Login.fxml", new Login("Customer"));
 				SecondaryDialog.getInstance().getStage().show();
 				SecondaryStage.getInstance().getStage().hide();
 			});

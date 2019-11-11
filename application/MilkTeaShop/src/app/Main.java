@@ -22,7 +22,7 @@ public class Main extends Application {
 			stage.getIcons().add(new Image(getClass().getResourceAsStream("/asset/brand/Logo.png")));
 
 			PrimaryStage.getInstance().setStage(stage);
-			PrimaryStage.getInstance().setScene("/view/general/Login.fxml", new Login());
+			PrimaryStage.getInstance().setScene("/view/general/Login.fxml", new Login("Admin"));
 
 			PrimaryStage.getInstance().getStage().setOnCloseRequest(windowEvent -> {
 				DataProvider.getInstance().closeConnection();
