@@ -21,6 +21,7 @@ import model.Category;
 import model.Food;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Order implements Controller, Initializable {
@@ -98,20 +99,35 @@ public class Order implements Controller, Initializable {
 		BillDetailPane billDetailPane = new BillDetailPane();
 		MenuPane menuPane = new MenuPane() {
 			@Override
-			public void selectFood(Category category, Food food) {
-				boolean found = false;
-				for (BillDetail billDetail : SecondaryStage.getInstance().getBillDetails()) {
-					if (billDetail.getIdFood() == food.getId()) {
-						found = true;
-						billDetail.setQuantity(billDetail.getQuantity() + 1);
-						break;
-					}
-				}
-				if (!found) {
-					SecondaryStage.getInstance().getBillDetails().add(new BillDetail(category, food));
-				}
-				billDetailPane.setBillDetails(SecondaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), SecondaryStage.getInstance().getBillDetails());
-				manageOrder.getBillPane().setBillDetails(SecondaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), SecondaryStage.getInstance().getBillDetails());
+			protected void setup() {
+				ArrayList<Category> categories = api.Category.getInstance().getEnabledCategories();
+				categories.forEach(category -> {
+					Button categoryButton = createButton(category.getName(), "/asset/category/" + category.getId() + ".png", "categoryButton");
+					categoryButton.setOnAction(categoryActionEvent -> {
+						getFoodPane().getChildren().clear();
+						ArrayList<Food> foods = api.Food.getInstance().getEnabledFoods(category.getId());
+						foods.forEach(food -> {
+							Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "/asset/food/" + food.getId() + ".png", "foodButton");
+							foodButton.setOnAction(foodActionEvent -> {
+								boolean found = false;
+								for (BillDetail billDetail : SecondaryStage.getInstance().getBillDetails()) {
+									if (billDetail.getIdFood() == food.getId()) {
+										found = true;
+										billDetail.setQuantity(billDetail.getQuantity() + 1);
+										break;
+									}
+								}
+								if (!found) {
+									SecondaryStage.getInstance().getBillDetails().add(new BillDetail(category, food));
+								}
+								billDetailPane.setBillDetails(SecondaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), SecondaryStage.getInstance().getBillDetails());
+								manageOrder.getBillPane().setBillDetails(SecondaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), SecondaryStage.getInstance().getBillDetails());
+							});
+							getFoodPane().getChildren().add(foodButton);
+						});
+					});
+					getCategoryPane().getChildren().add(categoryButton);
+				});
 			}
 		};
 

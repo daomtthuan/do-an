@@ -62,8 +62,7 @@ class Register implements Controller {
 					}
 
 					AlertInformation.getInstance().showAndWait("Success!",
-							"Your Customer Account: " + account.getAccount() + "\nYour default Password: 1\nPlease change your Password at next Login times.\n" +
-									"Thanks for coming to our shop!");
+							"Your Customer Account: " + account.getAccount() + "\nThanks for coming to our shop!");
 					SecondaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
