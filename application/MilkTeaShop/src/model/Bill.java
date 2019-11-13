@@ -1,8 +1,7 @@
 package model;
 
-import app.pattern.Model;
 import app.alert.AlertError;
-import org.jetbrains.annotations.NotNull;
+import app.pattern.Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,17 +11,19 @@ public class Bill implements Model {
 	private int idTable;
 	private int idCustomer;
 	private int idEmployee;
+	private int idDiscount;
 	private String nameDiscount;
 	private double sale;
 	private String checkIn;
 	private String checkOut;
 
-	public Bill(@NotNull ResultSet resultSet) {
+	public Bill(ResultSet resultSet) {
 		try {
 			id = resultSet.getInt("id");
 			idTable = resultSet.getInt("idTable");
 			idCustomer = resultSet.getInt("idCustomer");
 			idEmployee = resultSet.getInt("idEmployee");
+			idDiscount = resultSet.getInt("idDiscount");
 			nameDiscount = resultSet.getString("nameDiscount");
 			sale = resultSet.getDouble("sale");
 			checkIn = resultSet.getString("checkIn");
@@ -46,6 +47,10 @@ public class Bill implements Model {
 
 	public int getIdEmployee() {
 		return idEmployee;
+	}
+
+	public int getIdDiscount() {
+		return idDiscount;
 	}
 
 	public String getNameDiscount() {

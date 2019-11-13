@@ -65,12 +65,14 @@
 
 .customField,
 .customDatePicker,
-.customRadioButton {
+.customRadioButton,
+.customComboBox {
     -fx-font-family: "Segoe UI";
 }
 
 .customField,
-.customDatePicker {
+.customDatePicker,
+.customComboBox {
     -fx-pref-width: 300;
 }
 

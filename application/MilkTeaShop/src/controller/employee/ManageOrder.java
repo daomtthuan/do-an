@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import model.Bill;
+import model.BillDetail;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -72,7 +73,15 @@ public class ManageOrder implements Controller, Initializable {
 	private void payBill() {
 		Bill bill = api.Bill.getInstance().insert(SecondaryStage.getInstance().getTable(), SecondaryStage.getInstance().getAccount(), PrimaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), billPane.getSale());
 		if (bill != null) {
-			SecondaryStage.getInstance().getBillDetails().forEach(billDetail -> api.BillDetail.getInstance().insert(bill.getId(), billDetail.getIdFood(), billDetail.getNameFood(), billDetail.getIdCategory(), billDetail.getNameCategory(), billDetail.getQuantity(), billDetail.getPrice()));
+			for (BillDetail billDetail : SecondaryStage.getInstance().getBillDetails()) {
+				if (api.BillDetail.getInstance().insert(bill.getId(), billDetail.getIdFood(), billDetail.getNameFood(), billDetail.getIdCategory(), billDetail.getNameCategory(), billDetail.getQuantity(), billDetail.getPrice()) == null) {
+					AlertWarning.getInstance().showAndWait("Fail!", "Can not pay bill.\nPlease notify staff.");
+					return;
+				}
+			}
+			SecondaryStage.getInstance().getBillDetails().forEach(billDetail -> {
+
+			});
 		} else {
 			AlertWarning.getInstance().showAndWait("Fail!", "Can not pay bill.\nPlease notify staff.");
 		}

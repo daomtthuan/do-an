@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import model.Account;
-import org.jetbrains.annotations.Contract;
 import tool.Regex;
 
 import java.util.ArrayList;
@@ -27,7 +26,6 @@ public class Login implements Controller {
 	private Button submitButton;
 	private String who;
 
-	@Contract(pure = true)
 	public Login(String who) {
 		this.who = who;
 	}

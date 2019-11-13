@@ -84,6 +84,7 @@ create table [Bill]
 	[idTable] int not null references [Table]([id]),
 	[idCustomer] int references [Account]([id]),
 	[idEmployee] int not null references [Account]([id]),
+	[idDiscount] int references [Discount]([id]),
 
 	[nameDiscount] varchar(50),
 	[sale] float not null default 0,
@@ -108,63 +109,6 @@ create table [BillDetail]
 	[price] float not null
 )
 go
----------------------------------------------------------------------------------------
-
--- create view
-create view [EnabledAdmin]
-as
-	(
-	select *
-	from [Account]
-	where [roll] > 1 and [status] = 1
-)
-go
-
--- create view
-create view [EnabledCustomer]
-as
-	(
-	select *
-	from [Account]
-	where [roll] = 1 and [status] = 1
-)
-go
-
-create view [EnabledDiscount]
-as
-	(
-	select *
-	from [Discount]
-	where [status] = 1
-)
-go
-
-create view [EnabledCategory]
-as
-	(
-	select *
-	from [Category]
-	where [status] = 1
-)
-go
-
-create view [EnabledFood]
-as
-	(
-	select *
-	from [Food]
-	where [status] = 1
-)
-go
-
-create view [EnabledTable]
-as
-	(
-	select *
-	from [Table]
-	where [status] > 0
-)
-go
 
 ---------------------------------------------------------------------------------------
 -- create procedure
@@ -175,8 +119,8 @@ create proc [loginAdmin]
 as
 begin
 	select *
-	from [EnabledAdmin]
-	where [account] = @account and [password] = @password;
+	from [Account]
+	where [account] = @account and [password] = @password and [roll] > 1 and [status] = 1;
 end
 go
 
@@ -186,8 +130,8 @@ create proc [loginCustomer]
 as
 begin
 	select *
-	from [EnabledCustomer]
-	where [account] = @account and [password] = @password;
+	from [Account]
+	where [account] = @account and [password] = @password and [roll] = 1 and [status] = 1;
 end
 go
 
@@ -196,18 +140,8 @@ create proc [checkDiscount]
 as
 begin
 	select *
-	from [EnabledDiscount]
-	where [name] = @name;
-end
-go
-
-create proc [getEnabledFood]
-	@idCategory int
-as
-begin
-	select *
-	from [EnabledFood]
-	where [idCategory] = @idCategory;
+	from [Discount]
+	where [name] = @name and [status] = 1;
 end
 go
 
@@ -312,13 +246,14 @@ create proc [insertBill]
 	@idTable int,
 	@idCustomer int,
 	@idEmployee int,
+	@idDiscount int,
 	@nameDiscount varchar(50),
 	@sale float
 as
 begin
 	insert into [Bill]
-		([idTable], [idCustomer], [idEmployee], [nameDiscount], [sale])
-	values(@idTable, @idCustomer, @idEmployee, @nameDiscount, @sale);
+		([idTable], [idCustomer], [idEmployee], [idDiscount], [nameDiscount], [sale])
+	values(@idTable, @idCustomer, @idEmployee,@idDiscount, @nameDiscount, @sale);
 	select *
 	from [Bill]
 	where [id] = scope_identity();
@@ -355,8 +290,7 @@ create proc [updateAccount]
 	@birthday date,
 	@address varchar(100),
 	@phone varchar(15),
-	@email varchar(50),
-	@status bit
+	@email varchar(50)
 as
 begin
 	update [Account] set
@@ -366,8 +300,7 @@ begin
 		[birthday] = @birthday,
 		[address] = @address,
 		[phone] = @phone,
-		[email] = @email,
-		[status] = @status
+		[email] = @email
 	where [id] = @id;
 	select *
 	from [Account]
@@ -378,14 +311,12 @@ go
 create proc [updateTable]
 	@id int,
 	@x float,
-	@y float,
-	@status bit
+	@y float
 as
 begin
 	update [Table] set
 		[x] = @x,
-		[y] = @y,
-		[status] = @status
+		[y] = @y
 	where [id] = @id;
 	select *
 	from [Table]
@@ -395,8 +326,7 @@ go
 
 create proc [updateCategory]
 	@id int,
-	@name varchar(50),
-	@status bit
+	@name varchar(50)
 as
 begin
 	if exists (select *
@@ -407,8 +337,7 @@ begin
 	where [id] = 0;
 	else begin
 		update [Category] set
-			[name] = @name,
-			[status] = @status
+			[name] = @name
 		where [id] = @id;
 		select *
 		from [Category]
@@ -421,15 +350,13 @@ create proc [updateFood]
 	@id int,
 	@name varchar(50),
 	@idCategory int,
-	@price float,
-	@status bit
+	@price float
 as
 begin
 	update [Food] set
 		[name] = @name,
 		[idCategory] = @idCategory,
-		[price] = @price,
-		[status] = @status
+		[price] = @price
 	where [id] = @id;
 	select *
 	from [Food]
@@ -440,8 +367,7 @@ go
 create proc [updateDiscount]
 	@id int,
 	@name varchar(50),
-	@sale float,
-	@status bit
+	@sale float
 as
 begin
 	if exists (select *
@@ -453,12 +379,155 @@ begin
 	else begin
 		update [Discount] set
 			[name] = @name,
-			[sale] = @sale,
-			[status] = @status
+			[sale] = @sale
 		where [id] = @id;
 		select *
 		from [Discount]
 		where [id] = @id;
 	end
+end
+go
+
+-- change status
+
+create proc [statusAccount]
+	@id int,
+	@status bit
+as
+begin
+	update [Account] set
+		[status] = @status
+	where [id] = @id;
+	select *
+	from [Account]
+	where [id] = @id;
+end
+go
+
+create proc [statusTable]
+	@id int,
+	@status int
+as
+begin
+	update [Table] set
+		[status] = @status
+	where [id] = @id;
+	select *
+	from [Table]
+	where [id] = @id;
+end
+go
+
+create proc [statusCategory]
+	@id int,
+	@status bit
+as
+begin	
+	update [Category] set
+		[status] = @status
+	where [id] = @id;
+	select *
+	from [Category]
+	where [id] = @id;
+end
+go
+
+create proc [statusFood]
+	@id int,
+	@status bit
+as
+begin
+	update [Food] set
+		[status] = @status
+	where [id] = @id;
+	select *
+	from [Food]
+	where [id] = @id;
+end
+go
+
+create proc [statusDiscount]
+	@id int,
+	@status bit
+as
+begin
+	update [Discount] set
+		[status] = @status
+	where [id] = @id;
+	select *
+	from [Discount]
+	where [id] = @id;
+end
+go
+
+-- delete
+
+create proc [deleteAccount]
+	@id int
+as
+begin
+	begin try
+		delete [Account] where [id] = @id;
+		select * from [Account] where [id] = 0;
+	end try
+	begin catch
+		select * from [Account] where [id] = @id;
+	end catch
+end
+go
+
+create proc [deleteTable]
+	@id int
+as
+begin
+	begin try
+		delete [Table] where [id] = @id;
+		select * from [Table] where [id] = 0;
+	end try
+	begin catch
+		select * from [Table] where [id] = @id;
+	end catch
+end
+go
+
+create proc [deleteCategory]
+	@id int
+as
+begin	
+	begin try
+		delete [Category] where [id] = @id;
+		select * from [Category] where [id] = 0;
+	end try
+	begin catch
+		select * from [Category] where [id] = @id;
+	end catch
+end
+go
+
+create proc [deleteFood]
+	@id int
+as
+begin
+	begin try
+		delete [Food] where [id] = @id;
+		select * from [Food] where [id] = 0;
+	end try
+	begin catch
+		select * from [Food] where [id] = @id;
+	end catch
+end
+go
+
+create proc [deleteDiscount]
+	@id int
+as
+begin
+	begin try
+		delete [Discount] where [id] = @id;
+		select * from [Discount] where [id] = 0;
+	end try
+	begin catch
+		select * from [Discount] where [id] = @id;
+	end catch
 end
 go

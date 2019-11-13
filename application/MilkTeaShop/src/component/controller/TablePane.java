@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Table;
-import org.jetbrains.annotations.NotNull;
 import tool.Number;
 
 import java.net.URL;
@@ -18,8 +17,7 @@ public abstract class TablePane implements Controller, Initializable {
 	@FXML
 	private Pane tablePane;
 
-	@NotNull
-	private Button createButton(@NotNull Table table) {
+	private Button createButton(Table table) {
 		ImageView imageView = new ImageView("/asset/table/" + Number.random(12) + ".png");
 		Button button = new Button("Table " + table.getId(), imageView);
 		button.getStyleClass().addAll("customButton", "tableButton");

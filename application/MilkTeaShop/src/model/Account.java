@@ -2,12 +2,12 @@ package model;
 
 import app.alert.AlertError;
 import app.pattern.Model;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Account implements Model {
+public class
+Account implements Model {
 	private int id;
 	private String account;
 	private String password;
@@ -20,7 +20,7 @@ public class Account implements Model {
 	private String email;
 	private boolean status;
 
-	public Account(@NotNull ResultSet resultSet) {
+	public Account(ResultSet resultSet) {
 		try {
 			id = resultSet.getInt("id");
 			account = resultSet.getString("account");

@@ -2,8 +2,6 @@ package api;
 
 import app.alert.AlertError;
 import app.pattern.Api;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,7 +35,6 @@ public class Account implements Api {
 		return accounts;
 	}
 
-	@Nullable
 	public model.Account insert(String account, String password, int roll, String name, boolean gender, String birthday, String address, String phone, String email) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {account, password, roll, name, gender, birthday, address, phone, email});
@@ -49,7 +46,6 @@ public class Account implements Api {
 		}
 	}
 
-	@Nullable
 	public model.Account update(int id, String password, String name, boolean gender, String birthday, String address, String phone, String email, boolean status) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {id, password, name, gender, birthday, address, phone, email, status});
@@ -61,8 +57,7 @@ public class Account implements Api {
 		}
 	}
 
-	@Nullable
-	public model.Account login(@NotNull String who, String account, String password) {
+	public model.Account login(String who, String account, String password) {
 		if (who.equals("Admin") || who.equals("Customer")) {
 			try {
 				ResultSet resultSet = DataProvider.getInstance().execute("exec [login" + who + "] ? , ?", new Object[] {account, password});

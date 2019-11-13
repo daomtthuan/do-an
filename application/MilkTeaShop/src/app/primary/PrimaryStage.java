@@ -2,7 +2,6 @@ package app.primary;
 
 import app.pattern.Stage;
 import model.Account;
-import org.jetbrains.annotations.Contract;
 
 public class PrimaryStage extends Stage {
 	private static PrimaryStage instance;
@@ -19,7 +18,6 @@ public class PrimaryStage extends Stage {
 		PrimaryStage.instance = instance;
 	}
 
-	@Contract(pure = true)
 	public Account getAccount() {
 		return account;
 	}

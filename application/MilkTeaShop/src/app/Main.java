@@ -8,7 +8,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import org.jetbrains.annotations.NotNull;
 
 public class Main extends Application {
 	public static void main(String[] args) {
@@ -16,7 +15,7 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(@NotNull Stage stage) {
+	public void start(Stage stage) {
 		try {
 			stage.setTitle("Milk Tea Shop");
 			stage.getIcons().add(new Image(getClass().getResourceAsStream("/asset/brand/Logo.png")));

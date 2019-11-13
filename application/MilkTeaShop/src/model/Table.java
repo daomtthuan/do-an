@@ -1,8 +1,7 @@
 package model;
 
-import app.pattern.Model;
 import app.alert.AlertError;
-import org.jetbrains.annotations.NotNull;
+import app.pattern.Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +12,7 @@ public class Table implements Model {
 	private double y;
 	private int status;
 
-	public Table(@NotNull ResultSet data) {
+	public Table(ResultSet data) {
 		try {
 			id = data.getInt("id");
 			x = data.getDouble("x");
@@ -40,8 +39,8 @@ public class Table implements Model {
 		return status;
 	}
 
-    @Override
-    public String toString() {
-        return id + " - Table " + id;
-    }
+	@Override
+	public String toString() {
+		return id + " - Table " + id;
+	}
 }

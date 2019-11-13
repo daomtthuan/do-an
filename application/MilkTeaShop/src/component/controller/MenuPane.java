@@ -1,18 +1,19 @@
 package component.controller;
 
-import api.Category;
 import app.pattern.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import model.Category;
 import model.Food;
-import org.jetbrains.annotations.NotNull;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public abstract class MenuPane implements Controller, Initializable {
@@ -28,9 +29,13 @@ public abstract class MenuPane implements Controller, Initializable {
 	private FlowPane foodPane;
 	private int categoryScroll = 0;
 
-	@NotNull
 	private Button createButton(String name, String image, String style) {
-		ImageView imageView = new ImageView(image);
+		ImageView imageView = new ImageView();
+		try {
+			imageView.setImage(new Image(image));
+		} catch (Exception e) {
+			imageView.setImage(new Image("/asset/null.png"));
+		}
 		imageView.setFitHeight(120);
 		imageView.setFitWidth(120);
 		Button button = new Button(name, imageView);
@@ -62,11 +67,13 @@ public abstract class MenuPane implements Controller, Initializable {
 			}
 		});
 
-		Category.getInstance().getEnabledCategories().forEach(category -> {
+		ArrayList<Category> categories = api.Category.getInstance().getEnabledCategories();
+		categories.forEach(category -> {
 			Button categoryButton = createButton(category.getName(), "/asset/category/" + category.getId() + ".png", "categoryButton");
 			categoryButton.setOnAction(categoryActionEvent -> {
 				foodPane.getChildren().clear();
-				api.Food.getInstance().getEnabledFoods(category.getId()).forEach(food -> {
+				ArrayList<Food> foods = api.Food.getInstance().getEnabledFoods(category.getId());
+				foods.forEach(food -> {
 					Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "/asset/food/" + food.getId() + ".png", "foodButton");
 					foodButton.setOnAction(foodActionEvent -> selectFood(category, food));
 					foodPane.getChildren().add(foodButton);

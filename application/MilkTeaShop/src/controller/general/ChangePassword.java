@@ -2,16 +2,15 @@ package controller.general;
 
 import app.alert.AlertInformation;
 import app.alert.AlertWarning;
-import app.primary.PrimaryDialog;
-import app.secondary.SecondaryDialog;
-import app.primary.PrimaryStage;
-import app.secondary.SecondaryStage;
 import app.pattern.Controller;
-import tool.Regex;
+import app.primary.PrimaryDialog;
+import app.primary.PrimaryStage;
+import app.secondary.SecondaryDialog;
+import app.secondary.SecondaryStage;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import model.Account;
-import org.jetbrains.annotations.Contract;
+import tool.Regex;
 
 public class ChangePassword implements Controller {
 	private Account account;
@@ -22,7 +21,6 @@ public class ChangePassword implements Controller {
 	@FXML
 	private PasswordField repeatPasswordField;
 
-	@Contract(pure = true)
 	public ChangePassword(Account account) {
 		this.account = account;
 	}

@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import model.Table;
-import org.jetbrains.annotations.Contract;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +17,6 @@ class SelectTable implements Controller, Initializable {
 	private VBox tableComponent;
 	private ManageOrder manageOrder;
 
-	@Contract(pure = true)
 	SelectTable(ManageOrder manageOrder) {
 		this.manageOrder = manageOrder;
 	}

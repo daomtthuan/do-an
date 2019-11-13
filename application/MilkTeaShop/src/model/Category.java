@@ -1,36 +1,40 @@
 package model;
 
-import app.pattern.Model;
 import app.alert.AlertError;
-import org.jetbrains.annotations.NotNull;
+import app.pattern.Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Category implements Model {
-    private int id;
-    private String name;
-    private boolean enabled;
+	private int id;
+	private String name;
+	private boolean enabled;
 
-    public Category(@NotNull ResultSet resultSet) {
-        try {
-            id = resultSet.getInt("id");
-            name = resultSet.getString("name");
-            enabled = resultSet.getBoolean("status");
-        } catch (SQLException e) {
-            AlertError.getInstance().showAndWait(e);
-        }
-    }
+	public Category(ResultSet resultSet) {
+		try {
+			id = resultSet.getInt("id");
+			name = resultSet.getString("name");
+			enabled = resultSet.getBoolean("status");
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+		}
+	}
 
-    public int getId() {
-        return id;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

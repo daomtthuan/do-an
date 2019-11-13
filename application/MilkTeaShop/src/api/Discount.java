@@ -2,7 +2,6 @@ package api;
 
 import app.alert.AlertError;
 import app.pattern.Api;
-import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +35,6 @@ public class Discount implements Api {
 		return discounts;
 	}
 
-	@Nullable
 	public model.Discount insert(String name, double sale) {
 		try (ResultSet resultSet = DataProvider.getInstance().execute("exec [insertDiscount] ?,?", new Object[] {name, sale})) {
 			assert resultSet != null;
@@ -47,7 +45,6 @@ public class Discount implements Api {
 		}
 	}
 
-	@Nullable
 	public model.Discount check(String name) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [checkDiscount] ?", new Object[] {name});

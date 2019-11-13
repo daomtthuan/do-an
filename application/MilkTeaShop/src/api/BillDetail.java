@@ -2,7 +2,6 @@ package api;
 
 import app.alert.AlertError;
 import app.pattern.Api;
-import org.jetbrains.annotations.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,8 +20,7 @@ public class BillDetail implements Api {
 		BillDetail.instance = instance;
 	}
 
-	@Nullable
-	public model.BillDetail insert(int idBill, int idFood, String nameFood, int idCategory, String nameCategory, int quantity, double price){
+	public model.BillDetail insert(int idBill, int idFood, String nameFood, int idCategory, String nameCategory, int quantity, double price) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBillDetail] ? , ? , ? , ? , ? , ? , ?", new Object[] {idBill, idFood, nameFood, idCategory, nameCategory, quantity, price});
 			assert resultSet != null;

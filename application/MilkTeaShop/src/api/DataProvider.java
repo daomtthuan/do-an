@@ -1,7 +1,6 @@
 package api;
 
 import app.alert.AlertError;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileReader;
@@ -33,7 +32,7 @@ public class DataProvider {
 		DataProvider.instance = instance;
 	}
 
-	@Nullable ResultSet execute(String query) {
+	ResultSet execute(String query) {
 		try {
 			Statement statement = connection.createStatement();
 			return statement.executeQuery(query);
@@ -43,7 +42,7 @@ public class DataProvider {
 		}
 	}
 
-	@Nullable ResultSet execute(String query, Object[] parameters) {
+	ResultSet execute(String query, Object[] parameters) {
 		try {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setEscapeProcessing(true);

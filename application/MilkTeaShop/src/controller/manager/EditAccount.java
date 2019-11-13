@@ -1,16 +1,13 @@
 package controller.manager;
 
 import app.alert.AlertWarning;
-import tool.Regex;
-import tool.Input;
 import app.pattern.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import model.Account;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import tool.Input;
+import tool.Regex;
 
 import java.time.format.DateTimeFormatter;
 
@@ -29,10 +26,9 @@ public class EditAccount implements Controller {
 	private TextField phoneTextField;
 	@FXML
 	private TextField emailTextField;
-	private Account account;
+	private model.Account account;
 
-	@Contract(pure = true)
-	public EditAccount(@NotNull Account account) {
+	public EditAccount(model.Account account) {
 		nameTextField.setText(account.getName());
 		maleRadioButton.setSelected(account.isMale());
 		femaleRadioButton.setSelected(account.isFemMale());
