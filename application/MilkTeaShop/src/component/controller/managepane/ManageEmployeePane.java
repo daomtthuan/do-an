@@ -13,7 +13,7 @@ import model.Account;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ManageManager implements Controller, Initializable {
+public class ManageEmployeePane implements Controller, Initializable {
 	@FXML
 	private Label nameTableView;
 	@FXML
@@ -28,7 +28,7 @@ public class ManageManager implements Controller, Initializable {
 	private TableColumn<Account, String> emailColumn;
 	private TableColumn<Account, String> statusColumn;
 
-	ManageManager() {
+	public ManageEmployeePane() {
 		idColumn = new TableColumn<>("Id Customer");
 		accountColumn = new TableColumn<>("Account");
 		nameColumn = new TableColumn<>("Name");
@@ -62,6 +62,6 @@ public class ManageManager implements Controller, Initializable {
 		tableView.getColumns().add(emailColumn);
 		tableView.getColumns().add(statusColumn);
 
-		tableView.setItems(FXCollections.observableArrayList(api.Account.getInstance().getAccounts(3)));
+		tableView.setItems(FXCollections.observableArrayList(api.Account.getInstance().getAccounts(2)));
 	}
 }

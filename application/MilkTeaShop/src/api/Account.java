@@ -46,9 +46,31 @@ public class Account implements Api {
 		}
 	}
 
-	public model.Account update(int id, String password, String name, boolean gender, String birthday, String address, String phone, String email, boolean status) {
+	public model.Account update(int id, String password, String name, boolean gender, String birthday, String address, String phone, String email) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {id, password, name, gender, birthday, address, phone, email, status});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateAccount] ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {id, password, name, gender, birthday, address, phone, email});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Account(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Account changeStatus(int id, boolean enabled) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [statusAccount] ? , ?", new Object[] {id, enabled});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Account(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Account delete(int id) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [deleteAccount] ? ", new Object[] {id});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Account(resultSet) : null;
 		} catch (SQLException e) {

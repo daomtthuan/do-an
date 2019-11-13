@@ -45,14 +45,14 @@ public class ManageCategoryPane implements Controller, Initializable {
 
 		MenuItem insertMenuItem = new MenuItem("Insert");
 		insertMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/Category.fxml", new EditCategory(this));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditCategory.fxml", new EditCategory(this));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});
 
 		MenuItem updateMenuItem = new MenuItem("Update");
 		updateMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/Category.fxml", new EditCategory(this, tableView.getSelectionModel().getSelectedItem()));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditCategory.fxml", new EditCategory(this, tableView.getSelectionModel().getSelectedItem()));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});

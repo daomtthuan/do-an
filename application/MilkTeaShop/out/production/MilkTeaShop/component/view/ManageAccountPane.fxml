@@ -7,26 +7,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="managePane" fx:id="manageMenuPane" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="managePane" fx:id="manageAccountPane" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox>
          <children>
-            <Button mnemonicParsing="false" onAction="#manageMenu" text="Menu">
+            <Button mnemonicParsing="false" onAction="#manageCustomer" text="Customer">
                <styleClass>
                   <String fx:value="customButton" />
-                  <String fx:value="manageMenuButton" />
+                  <String fx:value="manageAccountButton" />
                </styleClass>
             </Button>
-            <Button mnemonicParsing="false" onAction="#manageCategory" text="Category">
+            <Button mnemonicParsing="false" onAction="#manageEmployee" text="Employee">
                <styleClass>
                   <String fx:value="customButton" />
-                  <String fx:value="manageMenuButton" />
+                  <String fx:value="manageAccountButton" />
                </styleClass>
             </Button>
-            <Button mnemonicParsing="false" onAction="#manageFood" text="Food">
+            <Button mnemonicParsing="false" onAction="#manageManager" text="Manager">
                <styleClass>
                   <String fx:value="customButton" />
-                  <String fx:value="manageMenuButton" />
+                  <String fx:value="manageAccountButton" />
                </styleClass>
             </Button>
          </children>

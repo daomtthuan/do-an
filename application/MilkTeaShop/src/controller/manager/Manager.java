@@ -2,6 +2,7 @@ package controller.manager;
 
 import app.pattern.Controller;
 import app.primary.PrimaryStage;
+import component.controller.ManageAccountPane;
 import component.controller.ManageMenuPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
@@ -28,7 +29,8 @@ public class Manager implements Controller {
 
 	@FXML
 	private void manageAccount() {
-
+		manageComponent.getChildren().clear();
+		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/ManageAccountPane.fxml", new ManageAccountPane()));
 	}
 
 //	@FXML

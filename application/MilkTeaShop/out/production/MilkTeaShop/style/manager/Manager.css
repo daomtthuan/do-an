@@ -26,6 +26,11 @@
     -fx-effect: dropshadow(three-pass-box, #00233F, 5, 0, 2, 2);
 }
 
+.manageButtonPane {
+    -fx-alignment: top_left;
+    -fx-padding: 50 10 10 10;
+}
+
 /*Manage Menu--------------------------------------------------*/
 #categoryComboBoxPane {
     -fx-alignment: center_left;
@@ -34,11 +39,6 @@
 
 #manageMenuPane {
     -fx-alignment: top_left !important;
-}
-
-#manageMenuButtonPane {
-    -fx-alignment: top_left;
-    -fx-padding: 50 10 10 10;
 }
 
 .manageMenuButton {
@@ -108,4 +108,10 @@
 .categoryButton .image-view,
 .foodButton .image-view {
     -fx-effect: dropshadow(three-pass-box, #00233F, 5, 0, 2, 2);
+}
+
+/* Manage Account -------------*/
+
+.manageAccountButton {
+    -fx-pref-width: 150;
 }

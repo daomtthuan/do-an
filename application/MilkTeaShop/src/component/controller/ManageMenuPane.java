@@ -5,11 +5,15 @@ import app.primary.PrimaryStage;
 import component.controller.managepane.ManageCategoryPane;
 import component.controller.managepane.ManageFoodPane;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 import model.Category;
 import model.Food;
 
-public class ManageMenuPane implements Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ManageMenuPane implements Controller, Initializable {
 	@FXML
 	private VBox subManageComponent;
 
@@ -34,5 +38,10 @@ public class ManageMenuPane implements Controller {
 	private void manageFood() {
 		subManageComponent.getChildren().clear();
 		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/managepane/ManageFoodPane.fxml", new ManageFoodPane()));
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		manageMenu();
 	}
 }

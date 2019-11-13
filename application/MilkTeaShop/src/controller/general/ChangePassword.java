@@ -34,7 +34,7 @@ public class ChangePassword implements Controller {
 		if (oldPassword.matches(Regex.PASSWORD) && newPassword.matches(Regex.PASSWORD) && repeatPassword.matches(Regex.PASSWORD)) {
 			if (oldPassword.equals(account.getPassword())) {
 				if (newPassword.equals(repeatPassword)) {
-					Account newAccount = api.Account.getInstance().update(account.getId(), newPassword, account.getName(), account.isMale(), account.getBirthday(), account.getAddress(), account.getPhone(), account.getEmail(), account.isEnabled());
+					Account newAccount = api.Account.getInstance().update(account.getId(), newPassword, account.getName(), account.isMale(), account.getBirthday(), account.getAddress(), account.getPhone(), account.getEmail());
 					if (newAccount != null) {
 						AlertInformation.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
 						if (account.getRoll() == 1) {
