@@ -6,10 +6,12 @@ import component.controller.TablePane;
 import controller.employee.ManageOrder;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import model.Table;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 class SelectTable implements Controller, Initializable {
@@ -30,11 +32,18 @@ class SelectTable implements Controller, Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		TablePane tablePane = new TablePane() {
 			@Override
-			public void selectTable(Table table) {
-				SecondaryStage.getInstance().setTable(table);
-				manageOrder.getBillPane().setTable(table.toString());
-				SecondaryStage.getInstance().setScene("/view/customer/PayBill.fxml", "/style/customer/PayBill.css", new PayBill());
-				manageOrder.setupPayBillButton(false);
+			public void setup() {
+				ArrayList<Table> tables = api.Table.getInstance().getEnabledTables();
+				tables.forEach(table -> {
+					Button tableButton = createButton(table);
+					tableButton.setOnAction(actionEvent -> {
+						SecondaryStage.getInstance().setTable(table);
+						manageOrder.getBillPane().setTable(table.toString());
+						SecondaryStage.getInstance().setScene("/view/customer/PayBill.fxml", "/style/customer/PayBill.css", new PayBill());
+						manageOrder.setupPayBillButton(false);
+					});
+					getTablePane().getChildren().add(tableButton);
+				});
 			}
 		};
 		tableComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/TablePane.fxml", tablePane));

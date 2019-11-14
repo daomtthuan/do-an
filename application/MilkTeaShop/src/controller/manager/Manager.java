@@ -4,6 +4,7 @@ import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import component.controller.ManageAccountPane;
 import component.controller.ManageMenuPane;
+import component.controller.ManageShopPane;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
@@ -18,7 +19,8 @@ public class Manager implements Controller {
 
 	@FXML
 	private void manageShop() {
-
+		manageComponent.getChildren().clear();
+		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/ManageShopPane.fxml", new ManageShopPane()));
 	}
 
 	@FXML

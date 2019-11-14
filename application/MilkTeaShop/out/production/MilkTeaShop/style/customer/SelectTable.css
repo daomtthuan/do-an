@@ -1,9 +1,5 @@
 #container {
     -fx-alignment: top_center;
-    -fx-min-width: 1600;
-    -fx-min-height: 900;
-    -fx-max-width: 1600;
-    -fx-max-height: 900;
 }
 
 #tableComponent {
@@ -14,7 +10,7 @@
 }
 
 #tablePane {
-    -fx-pref-width: 1520;
+    -fx-pref-width: 1350;
     -fx-pref-height: 760;
 }
 

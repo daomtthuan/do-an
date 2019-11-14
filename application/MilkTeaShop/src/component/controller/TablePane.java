@@ -17,11 +17,10 @@ public abstract class TablePane implements Controller, Initializable {
 	@FXML
 	private Pane tablePane;
 
-	private Button createButton(Table table) {
+	protected Button createButton(Table table) {
 		ImageView imageView = new ImageView("/asset/table/" + Number.random(12) + ".png");
 		Button button = new Button("Table " + table.getId(), imageView);
 		button.getStyleClass().addAll("customButton", "tableButton");
-		button.setOnAction(actionEvent -> selectTable(table));
 		button.setLayoutX(table.getX());
 		button.setLayoutY(table.getY());
 		return button;
@@ -29,9 +28,12 @@ public abstract class TablePane implements Controller, Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		ArrayList<Table> tables = api.Table.getInstance().getEnabledTables();
-		tables.forEach(table -> tablePane.getChildren().add(createButton(table)));
+		setup();
 	}
 
-	public abstract void selectTable(Table table);
+	protected Pane getTablePane() {
+		return tablePane;
+	}
+
+	protected abstract void setup();
 }
