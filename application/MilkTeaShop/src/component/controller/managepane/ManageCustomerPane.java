@@ -69,14 +69,14 @@ public class ManageCustomerPane implements Controller, Initializable {
 
 		MenuItem insertMenuItem = new MenuItem("Insert");
 		insertMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css" ,new EditAccount(this));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});
 
 		MenuItem updateMenuItem = new MenuItem("Update");
 		updateMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css" ,new EditAccount(this, tableView.getSelectionModel().getSelectedItem()));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this, tableView.getSelectionModel().getSelectedItem()));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});
@@ -94,8 +94,8 @@ public class ManageCustomerPane implements Controller, Initializable {
 		MenuItem deleteMenuItem = new MenuItem("Delete");
 		deleteMenuItem.setOnAction(actionEvent -> {
 			Account account = tableView.getSelectionModel().getSelectedItem();
-			if (api.Category.getInstance().delete(account.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete category.\nBecause some foods are belonged this category.");
+			if (api.Account.getInstance().delete(account.getId()) != null) {
+				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete account.\nBecause some bills are using information of this account.");
 			} else {
 				refresh();
 			}

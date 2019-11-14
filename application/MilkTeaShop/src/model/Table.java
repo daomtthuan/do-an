@@ -35,6 +35,14 @@ public class Table implements Model {
 		return y;
 	}
 
+	public boolean isEnabled() {
+		return status > 0;
+	}
+
+	public boolean isBusy() {
+		return status == 2;
+	}
+
 	public int getStatus() {
 		return status;
 	}

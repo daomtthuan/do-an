@@ -11,9 +11,14 @@
 
 #tablePane {
     -fx-pref-width: 1350;
-    -fx-pref-height: 760;
+    -fx-pref-height: 650;
 }
 
 .tableButton{
     -fx-padding: 15 15 5 15;
+    -fx-min-width: 80;
+}
+
+#tablePositionPane {
+    -fx-alignment: top_left;
 }

@@ -10,7 +10,6 @@ import model.Table;
 import tool.Number;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public abstract class TablePane implements Controller, Initializable {
@@ -19,10 +18,11 @@ public abstract class TablePane implements Controller, Initializable {
 
 	protected Button createButton(Table table) {
 		ImageView imageView = new ImageView("/asset/table/" + Number.random(12) + ".png");
-		Button button = new Button("Table " + table.getId(), imageView);
+		Button button = new Button(String.valueOf(table.getId()), imageView);
 		button.getStyleClass().addAll("customButton", "tableButton");
 		button.setLayoutX(table.getX());
 		button.setLayoutY(table.getY());
+		button.setDisable(table.isBusy());
 		return button;
 	}
 

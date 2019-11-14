@@ -126,7 +126,7 @@
 
 #tablePane {
     -fx-pref-width: 1350;
-    -fx-pref-height: 760;
+    -fx-pref-height: 650;
 
     -fx-padding: 20;
     -fx-border-color: #0078D7;
@@ -134,6 +134,12 @@
     -fx-background-color: #f3f9fe;
 }
 
-.tableButton{
+.tableButton {
     -fx-padding: 15 15 5 15;
+    -fx-min-width: 80;
 }
+
+#tablePositionPane {
+    -fx-alignment: top_left;
+}
+

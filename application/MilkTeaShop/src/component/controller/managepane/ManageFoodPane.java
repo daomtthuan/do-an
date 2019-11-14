@@ -82,7 +82,7 @@ public class ManageFoodPane implements Controller, Initializable {
 		deleteMenuItem.setOnAction(actionEvent -> {
 			Food food = tableView.getSelectionModel().getSelectedItem();
 			if (api.Food.getInstance().delete(food.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete category.\nBecause some foods are belonged this category.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete category.\nPlease notify staff.");
 			} else {
 				refresh();
 			}

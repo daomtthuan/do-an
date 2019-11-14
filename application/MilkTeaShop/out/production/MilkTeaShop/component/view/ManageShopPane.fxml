@@ -11,12 +11,18 @@
     <children>
         <VBox>
             <children>
-                <Button mnemonicParsing="false" onAction="#manageTable" text="Table">
+                <Button mnemonicParsing="false" onAction="#managePositionTable" text="Position Table">
                     <styleClass>
                         <String fx:value="customButton" />
                         <String fx:value="manageMenuButton" />
                     </styleClass>
                 </Button>
+            <Button mnemonicParsing="false" onAction="#manageTable" text="Table">
+               <styleClass>
+                  <String fx:value="customButton" />
+                  <String fx:value="manageMenuButton" />
+               </styleClass>
+            </Button>
                 <Button mnemonicParsing="false" onAction="#manageBill" text="Bill">
                     <styleClass>
                         <String fx:value="customButton" />

@@ -145,6 +145,22 @@ begin
 end
 go
 
+create proc [checkoutBill]
+	@id int
+as
+begin
+	update [Bill] set
+		[checkout] = getdate()
+	where [id] = @id;
+
+	update [Table] set
+		[status] = 1
+	where [id] = (select [idTable] from [Bill] where [id] = @id);
+
+	select * from [Bill] where [id] = @id;
+end
+go
+
 -- insert
 
 create proc [insertAccount]
@@ -254,6 +270,11 @@ begin
 	insert into [Bill]
 		([idTable], [idCustomer], [idEmployee], [idDiscount], [nameDiscount], [sale])
 	values(@idTable, @idCustomer, @idEmployee,@idDiscount, @nameDiscount, @sale);
+
+	update [Table] set
+		[status] = 2
+	where [id] = @idTable;
+
 	select *
 	from [Bill]
 	where [id] = scope_identity();
@@ -412,6 +433,12 @@ begin
 	update [Table] set
 		[status] = @status
 	where [id] = @id;
+
+	if (@status = 0)
+		update [Bill] set
+			[checkout] = getdate()
+		where [idTable] = @id;
+
 	select *
 	from [Table]
 	where [id] = @id;

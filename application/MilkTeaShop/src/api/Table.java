@@ -48,5 +48,47 @@ public class Table implements Api {
 		return tables;
 	}
 
-	//public ArrayList
+	public model.Table insert(double x, double y) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertTable] ? , ?", new Object[] {x, y});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Table(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Table update(int id, double x, double y) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateTable] ? , ? , ?", new Object[] {id, x, y});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Table(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Table changeStatus(int id, int status) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [statusTable] ? , ?", new Object[] {id, status});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Table(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Table delete(int id) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [deleteTable] ? ", new Object[] {id});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Table(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
 }
