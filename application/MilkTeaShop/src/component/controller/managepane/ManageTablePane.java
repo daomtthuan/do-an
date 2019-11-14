@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import model.Table;
 
 import java.net.URL;
@@ -73,7 +74,7 @@ public class ManageTablePane implements Controller, Initializable {
 			}
 		});
 
-		ContextMenu contextMenuTableView = new ContextMenu(insertMenuItem, statusMenuItem, deleteMenuItem);
+		ContextMenu contextMenu = new ContextMenu(insertMenuItem, statusMenuItem, deleteMenuItem);
 		tableView.setOnContextMenuRequested(contextMenuEvent -> {
 			if (tableView.getSelectionModel().isEmpty()) {
 				statusMenuItem.setDisable(true);
@@ -82,7 +83,12 @@ public class ManageTablePane implements Controller, Initializable {
 				statusMenuItem.setDisable(false);
 				deleteMenuItem.setDisable(false);
 			}
-			contextMenuTableView.show(tableView, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
+			contextMenu.show(tableView, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
+		});
+		tableView.setOnMouseClicked(mouseEvent -> {
+			if (contextMenu.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
+				contextMenu.hide();
+			}
 		});
 	}
 

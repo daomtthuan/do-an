@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import model.Table;
 import tool.Delta;
@@ -79,13 +80,19 @@ public class ManageShopPane implements Controller, Initializable {
 						}
 					});
 
-					ContextMenu contextMenuTableButton = new ContextMenu(insertMenuItem, deleteMenuItem);
-					contextMenuTableButton.setOnHidden(windowEvent -> show.set(false));
+					ContextMenu contextMenu = new ContextMenu(insertMenuItem, deleteMenuItem);
+					contextMenu.setOnHidden(windowEvent -> show.set(false));
 					tableButton.setOnContextMenuRequested(contextMenuEvent -> {
 						show.set(true);
 						contextMenuTablePane.hide();
-						contextMenuTableButton.show(tableButton, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
+						contextMenu.show(tableButton, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
 					});
+					tableButton.setOnMouseClicked(mouseEvent -> {
+						if (contextMenu.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
+							contextMenu.hide();
+						}
+					});
+
 					getTablePane().getChildren().add(tableButton);
 				});
 			}
@@ -95,6 +102,11 @@ public class ManageShopPane implements Controller, Initializable {
 		tablePane.getTablePane().setOnContextMenuRequested(contextMenuEvent -> {
 			if (!show.get()) {
 				contextMenuTablePane.show(tablePane.getTablePane(), contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
+			}
+		});
+		tablePane.getTablePane().setOnMouseClicked(mouseEvent -> {
+			if (contextMenuTablePane.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
+				contextMenuTablePane.hide();
 			}
 		});
 	}

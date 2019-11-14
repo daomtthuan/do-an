@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import model.Category;
@@ -58,7 +59,13 @@ public class ManageMenuPane implements Controller, Initializable {
 									}
 								}
 							});
-							foodButton.setOnContextMenuRequested(contextMenuEvent -> new ContextMenu(changeImageFood).show(foodButton, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
+							ContextMenu contextMenu = new ContextMenu(changeImageFood);
+							foodButton.setOnContextMenuRequested(contextMenuEvent -> contextMenu.show(foodButton, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
+							foodButton.setOnMouseClicked(mouseEvent -> {
+								if (contextMenu.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
+									contextMenu.hide();
+								}
+							});
 							getFoodPane().getChildren().add(foodButton);
 						});
 					});
@@ -80,7 +87,13 @@ public class ManageMenuPane implements Controller, Initializable {
 							}
 						}
 					});
-					categoryButton.setOnContextMenuRequested(contextMenuEvent -> new ContextMenu(changeImageCategory).show(categoryButton, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
+					ContextMenu contextMenu = new ContextMenu(changeImageCategory);
+					categoryButton.setOnContextMenuRequested(contextMenuEvent -> contextMenu.show(categoryButton, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY()));
+					categoryButton.setOnMouseClicked(mouseEvent -> {
+						if (contextMenu.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
+							contextMenu.hide();
+						}
+					});
 					getCategoryPane().getChildren().add(categoryButton);
 				});
 			}
