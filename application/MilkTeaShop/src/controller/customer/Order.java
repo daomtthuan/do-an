@@ -5,8 +5,8 @@ import app.primary.PrimaryDialog;
 import app.primary.PrimarySubDialog;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
-import component.controller.BillDetailPane;
-import component.controller.MenuPane;
+import component.controller.general.BillDetailPane;
+import component.controller.general.MenuPane;
 import controller.employee.ManageOrder;
 import controller.general.ChangePassword;
 import controller.general.Login;
@@ -131,8 +131,8 @@ public class Order implements Controller, Initializable {
 			}
 		};
 
-		menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/MenuPane.fxml", menuPane));
-		billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillDetailPane.fxml", billDetailPane));
+		menuComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/general/MenuPane.fxml", menuPane));
+		billDetailComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/general/BillDetailPane.fxml", billDetailPane));
 
 		setup(billDetailPane);
 		manageOrder.getBillPane().setup();

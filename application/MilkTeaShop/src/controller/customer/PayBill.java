@@ -3,7 +3,7 @@ package controller.customer;
 import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;
-import component.controller.BillPane;
+import component.controller.general.BillPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -28,6 +28,6 @@ class PayBill implements Controller, Initializable {
 				removeCheck();
 			}
 		};
-		billComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillPane.fxml", billPane));
+		billComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/general/BillPane.fxml", billPane));
 	}
 }

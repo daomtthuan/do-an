@@ -46,7 +46,7 @@
     -fx-effect: innershadow(three-pass-box, #00233F, 15, 0, 3, 3);
     -fx-background-color: #f3f9fe;
     -fx-pref-width: 865;
-    -fx-pref-height: 190;
+    -fx-pref-height: 210;
 }
 
 #categoryPane {

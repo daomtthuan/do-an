@@ -3,7 +3,9 @@ package controller.manager;
 import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryDialog;
-import component.controller.managepane.ManageFoodPane;
+import component.controller.general.MenuPane;
+import component.controller.manager.managepane.ManageFoodPane;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +18,7 @@ import tool.Input;
 import tool.Regex;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EditFood implements Controller, Initializable {
@@ -28,20 +31,40 @@ public class EditFood implements Controller, Initializable {
 	private model.Food food;
 	private boolean edit;
 	private ObservableList<Category> categories;
-	private SingleSelectionModel<Category> category;
-	private ManageFoodPane manageFoodPane;
+	private int selectedIndex;
+	private Category selectedCategory;
+	private Runnable refresh;
 
 	public EditFood(ManageFoodPane manageFoodPane, ObservableList<Category> categories, SingleSelectionModel<Category> category) {
-		this.manageFoodPane = manageFoodPane;
+		this.refresh = manageFoodPane::refresh;
 		this.categories = categories;
-		this.category = category;
+		this.selectedIndex = category.getSelectedIndex();
+		this.selectedCategory = category.getSelectedItem();
 		edit = false;
 	}
 
 	public EditFood(ManageFoodPane manageFoodPane, ObservableList<Category> categories, SingleSelectionModel<Category> category, Food food) {
-		this.manageFoodPane = manageFoodPane;
+		this.refresh = manageFoodPane::refresh;
 		this.categories = categories;
-		this.category = category;
+		this.selectedIndex = category.getSelectedIndex();
+		this.selectedCategory = category.getSelectedItem();
+		this.food = food;
+		edit = true;
+	}
+
+	public EditFood(MenuPane manageMenuPane, ArrayList<Category> categories, int selectedIndex, Category selectedCategory) {
+		this.refresh = manageMenuPane.getRefresh();
+		this.categories = FXCollections.observableArrayList(categories);
+		this.selectedIndex = selectedIndex;
+		this.selectedCategory = selectedCategory;
+		edit = false;
+	}
+
+	public EditFood(MenuPane manageMenuPane, ArrayList<Category> categories, int selectedIndex, Category selectedCategory, Food food) {
+		this.refresh = manageMenuPane.getRefresh();
+		this.categories = FXCollections.observableArrayList(categories);
+		this.selectedIndex = selectedIndex;
+		this.selectedCategory = selectedCategory;
 		this.food = food;
 		edit = true;
 	}
@@ -52,15 +75,15 @@ public class EditFood implements Controller, Initializable {
 		String price = priceTextField.getText();
 		if (name.matches(Regex.NAME) && price.matches(Regex.MONEY)) {
 			if (edit) {
-				if (api.Food.getInstance().update(category.getSelectedItem().getId(), name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
-					manageFoodPane.refresh();
+				if (api.Food.getInstance().update(food.getId(), name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
+					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not update food.\nPlease check again.");
 				}
 			} else {
 				if (api.Food.getInstance().insert(name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
-					manageFoodPane.refresh();
+					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not insert food.\nPlease check again.");
@@ -74,7 +97,7 @@ public class EditFood implements Controller, Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		categoryComboBox.setItems(categories);
-		categoryComboBox.getSelectionModel().select(category.getSelectedIndex());
+		categoryComboBox.getSelectionModel().select(selectedIndex);
 		if (edit) {
 			nameTextField.setText(food.getName());
 			priceTextField.setText(String.valueOf(food.getPrice()));

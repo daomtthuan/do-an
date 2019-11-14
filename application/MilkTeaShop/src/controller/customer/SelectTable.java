@@ -2,7 +2,7 @@ package controller.customer;
 
 import app.pattern.Controller;
 import app.secondary.SecondaryStage;
-import component.controller.TablePane;
+import component.controller.general.TablePane;
 import controller.employee.ManageOrder;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +46,6 @@ class SelectTable implements Controller, Initializable {
 				});
 			}
 		};
-		tableComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/TablePane.fxml", tablePane));
+		tableComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/general/TablePane.fxml", tablePane));
 	}
 }

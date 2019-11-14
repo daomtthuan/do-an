@@ -6,7 +6,7 @@ import app.primary.PrimaryDialog;
 import app.primary.PrimaryStage;
 import app.primary.PrimarySubDialog;
 import app.secondary.SecondaryStage;
-import component.controller.BillPane;
+import component.controller.general.BillPane;
 import controller.customer.Customer;
 import controller.general.WatchAccount;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class ManageOrder implements Controller, Initializable {
 				removeCheck();
 			}
 		};
-		billComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/BillPane.fxml", billPane));
+		billComponent.getChildren().add(SecondaryStage.getInstance().loadComponent("/component/view/general/BillPane.fxml", billPane));
 		setupCustomerButton();
 		setupPayBillButton(true);
 

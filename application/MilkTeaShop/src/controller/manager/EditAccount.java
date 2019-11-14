@@ -3,7 +3,7 @@ package controller.manager;
 import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryDialog;
-import component.controller.managepane.ManageCustomerPane;
+import component.controller.manager.managepane.ManageCustomerPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
