@@ -49,23 +49,25 @@ public class BillDetailPane implements Controller, Initializable {
 
 	public void setBillDetails(Account account, Discount discount, ArrayList<BillDetail> billDetails) {
 		billDetailTableView.getItems().clear();
-		billDetailTableView.setItems(FXCollections.observableArrayList(billDetails));
-		double totalBefore = 0, total = 0;
-		sale = 0;
-		for (BillDetail billDetail : billDetails) {
-			totalBefore += billDetail.getTotal();
-		}
-		if (account != null) {
-			sale += 2;
-		}
-		if (discount != null) {
-			sale += discount.getSale();
-		}
-		total = totalBefore - (totalBefore * sale / 100.0);
+		if (billDetails != null) {
+			billDetailTableView.setItems(FXCollections.observableArrayList(billDetails));
+			double totalBefore = 0, total = 0;
+			sale = 0;
+			for (BillDetail billDetail : billDetails) {
+				totalBefore += billDetail.getTotal();
+			}
+			if (account != null) {
+				sale += 2;
+			}
+			if (discount != null) {
+				sale += discount.getSale();
+			}
+			total = totalBefore - (totalBefore * sale / 100.0);
 
-		totalBeforeLabel.setText("$" + Number.round(totalBefore, 2));
-		saleLabel.setText("- " + Number.round(sale, 2) + "%");
-		totalLabel.setText("$" + Number.round(total, 2));
+			totalBeforeLabel.setText("$" + Number.round(totalBefore, 2));
+			saleLabel.setText("- " + Number.round(sale, 2) + "%");
+			totalLabel.setText("$" + Number.round(total, 2));
+		}
 	}
 
 	double getSale() {

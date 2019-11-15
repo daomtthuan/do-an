@@ -77,16 +77,14 @@ public class ManageOrder implements Controller, Initializable {
 				if (api.BillDetail.getInstance().insert(bill.getId(), billDetail.getIdFood(), billDetail.getNameFood(), billDetail.getIdCategory(), billDetail.getNameCategory(), billDetail.getQuantity(), billDetail.getPrice()) == null) {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not pay bill.\nPlease notify staff.");
 					return;
+				} else {
+					SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
+					PrimaryDialog.getInstance().getStage().hide();
+					PrimarySubDialog.getInstance().getStage().hide();
 				}
 			}
-			SecondaryStage.getInstance().getBillDetails().forEach(billDetail -> {
-
-			});
 		} else {
 			AlertWarning.getInstance().showAndWait("Fail!", "Can not pay bill.\nPlease notify staff.");
 		}
-		SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
-		PrimaryDialog.getInstance().getStage().hide();
-		PrimarySubDialog.getInstance().getStage().hide();
 	}
 }
