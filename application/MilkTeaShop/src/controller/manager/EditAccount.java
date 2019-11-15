@@ -36,7 +36,7 @@ public class EditAccount implements Controller, Initializable {
 	private model.Account account;
 	private boolean edit;
 
-	public EditAccount(ManageCustomerPane manageCustomerPane){
+	public EditAccount(ManageCustomerPane manageCustomerPane) {
 		this.manageCustomerPane = manageCustomerPane;
 		edit = false;
 	}
@@ -58,7 +58,7 @@ public class EditAccount implements Controller, Initializable {
 
 		if (name.matches(Regex.NAME) && address.matches(Regex.ADDRESS) && phone.matches(Regex.PHONE) && email.matches(Regex.EMAIL) && (maleRadioButton.isSelected() || femaleRadioButton.isSelected())) {
 			if (edit) {
-				if (api.Account.getInstance().update(account.getId(), account.getPassword(),name, gender, birthday, address, phone, email) != null) {
+				if (api.Account.getInstance().update(account.getId(), account.getPassword(), account.getRoll(), name, gender, birthday, address, phone, email) != null) {
 					manageCustomerPane.refresh();
 					PrimaryDialog.getInstance().close();
 				} else {

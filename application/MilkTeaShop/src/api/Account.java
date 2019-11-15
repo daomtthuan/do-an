@@ -2,6 +2,7 @@ package api;
 
 import app.alert.AlertError;
 import app.pattern.Api;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,7 +38,7 @@ public class Account implements Api {
 
 	public model.Account insert(String account, String password, int roll, String name, boolean gender, String birthday, String address, String phone, String email) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {account, password, roll, name, gender, birthday, address, phone, email});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {account, BCrypt.hashpw(password, BCrypt.gensalt(10)), roll, name, gender, birthday, address, phone, email});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Account(resultSet) : null;
 		} catch (SQLException e) {
@@ -46,9 +47,9 @@ public class Account implements Api {
 		}
 	}
 
-	public model.Account update(int id, String password, String name, boolean gender, String birthday, String address, String phone, String email) {
+	public model.Account update(int id, String password, int roll, String name, boolean gender, String birthday, String address, String phone, String email) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateAccount] ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {id, password, name, gender, birthday, address, phone, email});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {id, BCrypt.hashpw(password, BCrypt.gensalt(10)), roll, name, gender, birthday, address, phone, email});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Account(resultSet) : null;
 		} catch (SQLException e) {
@@ -79,12 +80,17 @@ public class Account implements Api {
 		}
 	}
 
-	public model.Account login(String who, String account, String password) {
+	public model.Account login(String who, String accountName, String password) {
 		if (who.equals("Admin") || who.equals("Customer")) {
 			try {
-				ResultSet resultSet = DataProvider.getInstance().execute("exec [login" + who + "] ? , ?", new Object[] {account, password});
+				ResultSet resultSet = DataProvider.getInstance().execute("exec [login" + who + "] ?", new Object[] {accountName});
 				assert resultSet != null;
-				return resultSet.next() ? new model.Account(resultSet) : null;
+				if (resultSet.next()) {
+					model.Account account = new model.Account(resultSet);
+					return BCrypt.checkpw(password, account.getPassword()) ? account : null;
+				} else {
+					return null;
+				}
 			} catch (SQLException e) {
 				AlertError.getInstance().showAndWait(e);
 				return null;
@@ -92,5 +98,9 @@ public class Account implements Api {
 		} else {
 			return null;
 		}
+	}
+
+	public boolean isMatchPassword(String password, model.Account account) {
+		return BCrypt.checkpw(password, account.getPassword());
 	}
 }

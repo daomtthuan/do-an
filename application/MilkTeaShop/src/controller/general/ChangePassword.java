@@ -32,9 +32,9 @@ public class ChangePassword implements Controller {
 		String repeatPassword = repeatPasswordField.getText();
 
 		if (oldPassword.matches(Regex.PASSWORD) && newPassword.matches(Regex.PASSWORD) && repeatPassword.matches(Regex.PASSWORD)) {
-			if (oldPassword.equals(account.getPassword())) {
+			if (api.Account.getInstance().isMatchPassword(oldPassword, account)) {
 				if (newPassword.equals(repeatPassword)) {
-					Account newAccount = api.Account.getInstance().update(account.getId(), newPassword, account.getName(), account.isMale(), account.getBirthday(), account.getAddress(), account.getPhone(), account.getEmail());
+					Account newAccount = api.Account.getInstance().update(account.getId(), newPassword, account.getRoll(), account.getName(), account.isMale(), account.getBirthday(), account.getAddress(), account.getPhone(), account.getEmail());
 					if (newAccount != null) {
 						AlertInformation.getInstance().showAndWait("Success!", "Please remember your new password carefully.");
 						if (account.getRoll() == 1) {

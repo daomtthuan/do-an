@@ -114,24 +114,22 @@ go
 -- create procedure
 
 create proc [loginAdmin]
-	@account varchar(50),
-	@password varchar(500)
+	@account varchar(50)
 as
 begin
 	select *
 	from [Account]
-	where [account] = @account and [password] = @password and [roll] > 1 and [status] = 1;
+	where [account] = @account and [roll] > 1 and [status] = 1;
 end
 go
 
 create proc [loginCustomer]
-	@account varchar(50),
-	@password varchar(500)
+	@account varchar(50)
 as
 begin
 	select *
 	from [Account]
-	where [account] = @account and [password] = @password and [roll] = 1 and [status] = 1;
+	where [account] = @account and [roll] = 1 and [status] = 1;
 end
 go
 
@@ -306,6 +304,7 @@ go
 create proc [updateAccount]
 	@id int,
 	@password varchar(200),
+	@roll int,
 	@name varchar(50),
 	@gender bit,
 	@birthday date,
@@ -316,6 +315,7 @@ as
 begin
 	update [Account] set
 		[password] = @password,
+		[roll] = @roll,
 		[name] = @name,
 		[gender] = @gender,
 		[birthday] = @birthday,
