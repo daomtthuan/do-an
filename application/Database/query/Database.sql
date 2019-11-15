@@ -70,7 +70,7 @@ go
 create table [Discount]
 (
 	[id] int identity primary key,
-	[name] varchar(50) not null unique,
+	[name] uniqueidentifier,
 	[sale] float not null,
 	[status] bit not null default 1
 	-- 0: disable, -- enable
@@ -85,8 +85,6 @@ create table [Bill]
 	[idCustomer] int references [Account]([id]),
 	[idEmployee] int not null references [Account]([id]),
 	[idDiscount] int references [Discount]([id]),
-
-	[nameDiscount] varchar(50),
 	[sale] float not null default 0,
 
 	[checkin] datetime not null default getdate(),
@@ -107,6 +105,43 @@ create table [BillDetail]
 
 	[quantity] int not null,
 	[price] float not null
+)
+go
+
+---------------------------------------------------------------------------------------
+-- create view
+
+create view [BillList] as (
+	select
+		[Bill].[id],
+		[Bill].[idTable],
+		[Bill].[idCustomer],
+		[Customer].[name] as [nameCustomer],
+		[Bill].[idEmployee],
+		[Employee].[name] as [nameEmployee],
+		[Bill].[idDiscount],
+		[Discount].[name] as [nameDiscount],
+		[Bill].[sale],
+		[Bill].[checkIn],
+		[Bill].[checkOut],
+		sum([BillDetail].[price] * [BillDetail].[quantity]) - [Bill].[sale] as [total]
+	from [Bill] 
+	left outer join [Account] as [Customer] on [Customer].[id] =[Bill].[idCustomer]
+	left outer join [Account] as [Employee] on [Employee].[id] =[Bill].[idEmployee]
+	left outer join [Discount] on [Discount].[id] =[Bill].[idDiscount]
+	join [BillDetail] on [BillDetail].[idBill] = [Bill].[id]
+	group by 
+		[Bill].[id],
+		[Bill].[idTable],
+		[Bill].[idCustomer],
+		[Customer].[name],
+		[Bill].[idEmployee],
+		[Employee].[name],
+		[Bill].[idDiscount],
+		[Discount].[name],
+		[Bill].[sale],
+		[Bill].[checkIn],
+		[Bill].[checkOut]
 )
 go
 
@@ -205,20 +240,14 @@ begin
 end
 go
 
-create proc [insertDiscount]
-	@name varchar(50),
+create proc [insertDiscount]	
 	@sale float
 as
 begin
-	if exists (select *
-	from [Discount]
-	where [name]= @name)
-		select [id] = 0;
-	else
-		insert into [Discount]
+	insert into [Discount]
 		([name], [sale])
 	values
-		(@name, @sale);
+		(NEWID(), @sale);
 	select *
 	from [Discount]
 	where [id] = scope_identity();
@@ -261,13 +290,12 @@ create proc [insertBill]
 	@idCustomer int,
 	@idEmployee int,
 	@idDiscount int,
-	@nameDiscount varchar(50),
 	@sale float
 as
 begin
 	insert into [Bill]
-		([idTable], [idCustomer], [idEmployee], [idDiscount], [nameDiscount], [sale])
-	values(@idTable, @idCustomer, @idEmployee,@idDiscount, @nameDiscount, @sale);
+		([idTable], [idCustomer], [idEmployee], [idDiscount], [sale])
+	values(@idTable, @idCustomer, @idEmployee,@idDiscount, @sale);
 
 	update [Table] set
 		[status] = 2
@@ -387,25 +415,15 @@ go
 
 create proc [updateDiscount]
 	@id int,
-	@name varchar(50),
 	@sale float
 as
 begin
-	if exists (select *
-	from [Category]
-	where [name]= @name)
-		select *
+	update [Discount] set
+		[sale] = @sale
+	where [id] = @id;
+	select *
 	from [Discount]
-	where [id] = 0;
-	else begin
-		update [Discount] set
-			[name] = @name,
-			[sale] = @sale
-		where [id] = @id;
-		select *
-		from [Discount]
-		where [id] = @id;
-	end
+	where [id] = @id;
 end
 go
 

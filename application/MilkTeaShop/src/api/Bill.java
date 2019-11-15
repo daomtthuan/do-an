@@ -24,10 +24,10 @@ public class Bill implements Api {
 		Bill.instance = instance;
 	}
 
-	public ArrayList<model.Bill> getBills() {
+	public ArrayList<model.Bill> getBills(int idTable, String from, String to) {
 		ArrayList<model.Bill> bills = new ArrayList<>();
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Bill]");
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [BillList] where [idTable] = " + idTable + " and '" + from + " 00:00:00.000' <= [checkIn] and [checkIn] <= '" + to + " 23:59:59.999' ");
 			assert resultSet != null;
 			while (resultSet.next()) {
 				bills.add(new model.Bill(resultSet));
@@ -40,7 +40,7 @@ public class Bill implements Api {
 
 	public model.Bill insert(Table table, Account customer, Account employee, Discount discount, double sale) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBill] ? , ? , ? , ? , ? , ?", new Object[] {table.getId(), customer != null ? customer.getId() : null, employee.getId(), discount != null ? discount.getId() : null, discount != null ? discount.getName() : null, sale});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBill] ? , ? , ? , ? , ?", new Object[] {table.getId(), customer != null ? customer.getId() : null, employee.getId(), discount != null ? discount.getId() : null, sale});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Bill(resultSet) : null;
 		} catch (SQLException e) {

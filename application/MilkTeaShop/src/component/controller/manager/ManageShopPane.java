@@ -4,6 +4,7 @@ import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import component.controller.general.TablePane;
+import component.controller.manager.managepane.ManageBillPane;
 import component.controller.manager.managepane.ManageTablePane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,15 +48,19 @@ public class ManageShopPane implements Controller, Initializable {
 					Delta oldDelta = new Delta(tableButton.getLayoutX(), tableButton.getLayoutY());
 					Delta newDelta = new Delta();
 					tableButton.setOnMousePressed(mouseEvent -> {
-						newDelta.setX(tableButton.getLayoutX() - mouseEvent.getSceneX());
-						newDelta.setY(tableButton.getLayoutY() - mouseEvent.getSceneY());
+						if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+							newDelta.setX(tableButton.getLayoutX() - mouseEvent.getSceneX());
+							newDelta.setY(tableButton.getLayoutY() - mouseEvent.getSceneY());
+						}
 					});
 					tableButton.setOnMouseDragged(mouseEvent -> {
-						tableButton.setLayoutX(mouseEvent.getSceneX() + newDelta.getX());
-						tableButton.setLayoutY(mouseEvent.getSceneY() + newDelta.getY());
+						if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+							tableButton.setLayoutX(mouseEvent.getSceneX() + newDelta.getX());
+							tableButton.setLayoutY(mouseEvent.getSceneY() + newDelta.getY());
+						}
 					});
 					tableButton.setOnMouseReleased(mouseEvent -> {
-						if (oldDelta.getX() != newDelta.getX() || oldDelta.getY() != newDelta.getY()) {
+						if ((oldDelta.getX() != newDelta.getX() || oldDelta.getY() != newDelta.getY()) && mouseEvent.getButton() == MouseButton.PRIMARY) {
 							if (api.Table.getInstance().update(table.getId(), tableButton.getLayoutX(), tableButton.getLayoutY()) == null) {
 								AlertWarning.getInstance().showAndWait("Fail!", "Can not update table.\nPlease notify staff.");
 							}
@@ -121,7 +126,8 @@ public class ManageShopPane implements Controller, Initializable {
 
 	@FXML
 	private void manageBill() {
-
+		subManageComponent.getChildren().clear();
+		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/managepane/ManageBillPane.fxml", new ManageBillPane()));
 	}
 
 	@FXML

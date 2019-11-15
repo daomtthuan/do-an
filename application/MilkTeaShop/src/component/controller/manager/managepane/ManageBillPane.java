@@ -4,57 +4,83 @@ import app.pattern.Controller;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Bill;
+import model.Table;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ManageBillPane implements Controller, Initializable {
 	@FXML
+	private ComboBox<Table> tableComboBox;
+	@FXML
+	private DatePicker fromDatePicker;
+	@FXML
+	private DatePicker toDatePicker;
+	@FXML
 	private TableView<Bill> tableView;
 	private TableColumn<Bill, Integer> idColumn;
-	private TableColumn<Bill, Integer> idTableColumn;
-	private TableColumn<Bill, Integer> idCustomerColumn;
-	private TableColumn<Bill, Integer> idEmployeeColumn;
-	private TableColumn<Bill, String> nameDiscountColumn;
-	private TableColumn<Bill, Double> saleColumn;
 	private TableColumn<Bill, String> checkInColumn;
 	private TableColumn<Bill, String> checkOutColumn;
+	private TableColumn<Bill, Integer> customerColumn;
+	private TableColumn<Bill, Integer> employeeColumn;
+	private TableColumn<Bill, String> discountColumn;
+	private TableColumn<Bill, Double> saleColumn;
+	private TableColumn<Bill, Double> totalColumn;
 
-	ManageBillPane() {
+	public ManageBillPane() {
 		idColumn = new TableColumn<>("Id Bill");
-		idTableColumn = new TableColumn<>("Id Table");
-		idCustomerColumn = new TableColumn<>("Id Customer");
-		idEmployeeColumn = new TableColumn<>("Id Employee");
-		nameDiscountColumn = new TableColumn<>("Discount Code");
-		saleColumn = new TableColumn<>("Sale");
 		checkInColumn = new TableColumn<>("Check In");
 		checkOutColumn = new TableColumn<>("Check Out");
+		customerColumn = new TableColumn<>("Customer");
+		employeeColumn = new TableColumn<>("Employee");
+		discountColumn = new TableColumn<>("Discount Code");
+		saleColumn = new TableColumn<>("Sale");
+		totalColumn = new TableColumn<>("Total");
 
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-		idTableColumn.setCellValueFactory(new PropertyValueFactory<>("idTable"));
-		idCustomerColumn.setCellValueFactory(new PropertyValueFactory<>("idCustomer"));
-		idEmployeeColumn.setCellValueFactory(new PropertyValueFactory<>("idEmployee"));
-		nameDiscountColumn.setCellValueFactory(new PropertyValueFactory<>("nameDiscount"));
-		saleColumn.setCellValueFactory(new PropertyValueFactory<>("sale"));
 		checkInColumn.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
 		checkOutColumn.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
+		customerColumn.setCellValueFactory(new PropertyValueFactory<>("nameCustomer"));
+		employeeColumn.setCellValueFactory(new PropertyValueFactory<>("nameEmployee"));
+		discountColumn.setCellValueFactory(new PropertyValueFactory<>("nameDiscount"));
+		saleColumn.setCellValueFactory(new PropertyValueFactory<>("sale"));
+		totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		tableView.setPrefSize(1350, 610);
 		tableView.getColumns().add(idColumn);
-		tableView.getColumns().add(idTableColumn);
-		tableView.getColumns().add(idCustomerColumn);
-		tableView.getColumns().add(idEmployeeColumn);
-		tableView.getColumns().add(nameDiscountColumn);
-		tableView.getColumns().add(saleColumn);
 		tableView.getColumns().add(checkInColumn);
 		tableView.getColumns().add(checkOutColumn);
+		tableView.getColumns().add(customerColumn);
+		tableView.getColumns().add(employeeColumn);
+		tableView.getColumns().add(discountColumn);
+		tableView.getColumns().add(saleColumn);
+		tableView.getColumns().add(totalColumn);
 
-		tableView.setItems(FXCollections.observableArrayList(api.Bill.getInstance().getBills()));
+		tableComboBox.setItems(FXCollections.observableArrayList(api.Table.getInstance().getTables()));
+		tableComboBox.setOnAction(actionEvent -> loadBillList());
+		fromDatePicker.setOnAction(actionEvent -> loadBillList());
+		toDatePicker.setOnAction(actionEvent -> loadBillList());
+		tableComboBox.getSelectionModel().select(0);
+		fromDatePicker.setValue(LocalDate.now());
+		toDatePicker.setValue(LocalDate.now());
+		loadBillList();
+	}
+
+	private void loadBillList() {
+		int id = tableComboBox.getSelectionModel().getSelectedItem().getId();
+		String from = fromDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String to = toDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		tableView.setItems(FXCollections.observableArrayList(api.Bill.getInstance().getBills(id, from, to)));
 	}
 }

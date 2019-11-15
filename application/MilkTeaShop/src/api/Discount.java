@@ -35,8 +35,8 @@ public class Discount implements Api {
 		return discounts;
 	}
 
-	public model.Discount insert(String name, double sale) {
-		try (ResultSet resultSet = DataProvider.getInstance().execute("exec [insertDiscount] ?,?", new Object[] {name, sale})) {
+	public model.Discount insert(double sale) {
+		try (ResultSet resultSet = DataProvider.getInstance().execute("exec [insertDiscount] ?", new Object[] {sale})) {
 			assert resultSet != null;
 			return resultSet.next() ? new model.Discount(resultSet) : null;
 		} catch (SQLException e) {
