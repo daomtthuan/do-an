@@ -69,6 +69,13 @@ public class EditFood implements Controller, Initializable {
 		edit = true;
 	}
 
+	public EditFood(MenuPane manageMenuPane, ArrayList<Category> categories) {
+		this.refresh = manageMenuPane.getRefresh();
+		this.categories = FXCollections.observableArrayList(categories);
+		this.selectedIndex = -1;
+		edit = false;
+	}
+
 	@FXML
 	private void submit() {
 		String name = Input.fixString(nameTextField.getText());
@@ -97,7 +104,9 @@ public class EditFood implements Controller, Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		categoryComboBox.setItems(categories);
-		categoryComboBox.getSelectionModel().select(selectedIndex);
+		if (selectedIndex > -1) {
+			categoryComboBox.getSelectionModel().select(selectedIndex);
+		}
 		if (edit) {
 			nameTextField.setText(food.getName());
 			priceTextField.setText(String.valueOf(food.getPrice()));

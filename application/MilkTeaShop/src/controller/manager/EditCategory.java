@@ -3,10 +3,12 @@ package controller.manager;
 import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryDialog;
+import component.controller.general.MenuPane;
 import component.controller.manager.managepane.ManageCategoryPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import model.Category;
 import tool.Input;
 import tool.Regex;
 
@@ -18,16 +20,26 @@ public class EditCategory implements Controller, Initializable {
 	private TextField nameTextField;
 	private model.Category category;
 	private boolean edit;
-	private ManageCategoryPane manageCategoryPane;
+	private Runnable refresh;
 
 	public EditCategory(ManageCategoryPane manageCategoryPane) {
-		this.manageCategoryPane = manageCategoryPane;
+		this.refresh = manageCategoryPane::refresh;
 		edit = false;
 	}
 
 	public EditCategory(ManageCategoryPane manageCategoryPane, model.Category category) {
 		this.category = category;
-		this.manageCategoryPane = manageCategoryPane;
+		edit = true;
+	}
+
+	public EditCategory(MenuPane menuPane) {
+		this.refresh = menuPane.getRefresh();
+		edit = false;
+	}
+
+	public EditCategory(MenuPane menuPane, Category category) {
+		this.refresh = menuPane.getRefresh();
+		this.category = category;
 		edit = true;
 	}
 
@@ -37,7 +49,7 @@ public class EditCategory implements Controller, Initializable {
 		if (name.matches(Regex.NAME)) {
 			if (edit) {
 				if (api.Category.getInstance().update(category.getId(), name) != null) {
-					manageCategoryPane.refresh();
+					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not update category.\nExisted name category.");
@@ -45,7 +57,7 @@ public class EditCategory implements Controller, Initializable {
 			} else {
 
 				if (api.Category.getInstance().insert(name) != null) {
-					manageCategoryPane.refresh();
+					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not insert category.\nExisted name category.");

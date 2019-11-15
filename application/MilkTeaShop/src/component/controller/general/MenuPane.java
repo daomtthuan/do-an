@@ -77,6 +77,14 @@ public abstract class MenuPane implements Controller, Initializable {
 		return categoryPane;
 	}
 
+	protected ScrollPane getCategoryScrollPane() {
+		return categoryScrollPane;
+	}
+
+	protected ScrollPane getFoodScrollPane() {
+		return foodScrollPane;
+	}
+
 	protected FlowPane getFoodPane() {
 		return foodPane;
 	}

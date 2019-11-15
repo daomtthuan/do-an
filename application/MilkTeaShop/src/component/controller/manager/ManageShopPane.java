@@ -89,6 +89,7 @@ public class ManageShopPane implements Controller, Initializable {
 						contextMenu.show(tableButton, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
 					});
 					tableButton.setOnMouseClicked(mouseEvent -> {
+						contextMenuTablePane.hide();
 						if (contextMenu.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
 							contextMenu.hide();
 						}
