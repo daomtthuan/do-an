@@ -1,13 +1,11 @@
 package component.controller.manager.managepane;
 
 import app.pattern.Controller;
+import app.primary.PrimaryDialog;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Bill;
 import model.Table;
@@ -82,5 +80,14 @@ public class ManageBillPane implements Controller, Initializable {
 		String from = fromDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String to = toDatePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		tableView.setItems(FXCollections.observableArrayList(api.Bill.getInstance().getBills(id, from, to)));
+
+//		MenuItem billDetailMenuItem = new MenuItem("Bill details");
+//		billDetailMenuItem.setOnAction(actionEvent -> {
+//			PrimaryDialog.getInstance().setScene("/view/", new EditFood(this, categories));
+//			PrimaryDialog.getInstance().getStage().show();
+//			PrimaryStage.getInstance().getStage().hide();
+//		});
+//
+//		ContextMenu categoryContextMenu = new ContextMenu(insertCategoryMenuItem);
 	}
 }
