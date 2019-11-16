@@ -124,7 +124,7 @@ create view [BillList] as (
 		[Bill].[sale],
 		[Bill].[checkIn],
 		[Bill].[checkOut],
-		sum([BillDetail].[price] * [BillDetail].[quantity]) - [Bill].[sale] as [total]
+		sum([BillDetail].[price] * [BillDetail].[quantity]) as [totalBefore]
 	from [Bill] 
 	left outer join [Account] as [Customer] on [Customer].[id] =[Bill].[idCustomer]
 	left outer join [Account] as [Employee] on [Employee].[id] =[Bill].[idEmployee]
