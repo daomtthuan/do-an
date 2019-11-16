@@ -53,7 +53,7 @@ public abstract class Stage {
 			loader.setController(controller);
 			return loader.load();
 		} catch (IOException e) {
-			e.printStackTrace();
+			AlertError.getInstance().showAndWait(e);
 			return null;
 		}
 	}

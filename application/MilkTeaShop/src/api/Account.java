@@ -36,6 +36,17 @@ public class Account implements Api {
 		return accounts;
 	}
 
+	public model.Account getAccount(int id) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Account] where [id] = " + id);
+			assert resultSet != null;
+			return resultSet.next() ? new model.Account(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
 	public model.Account insert(String account, String password, int roll, String name, boolean gender, String birthday, String address, String phone, String email) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertAccount] ? , ? , ? , ? , ? , ? , ? , ? , ?", new Object[] {account, BCrypt.hashpw(password, BCrypt.gensalt(10)), roll, name, gender, birthday, address, phone, email});

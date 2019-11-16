@@ -72,6 +72,10 @@ public abstract class BillPane implements Controller, Initializable {
 		billDetailPane.setBillDetails(account, discount, billDetails);
 	}
 
+	public void setBillDetails(ArrayList<BillDetail> billDetails, double totalBefore, double sale, double total) {
+		billDetailPane.setBillDetails(billDetails, totalBefore, sale, total);
+	}
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		billDetailPane = new BillDetailPane();

@@ -21,6 +21,7 @@ public class Bill implements Model {
 	private double sale;
 	private String checkIn;
 	private String checkOut;
+	private double totalBefore;
 	private double total;
 
 	public Bill(ResultSet resultSet) {
@@ -36,7 +37,8 @@ public class Bill implements Model {
 			sale = resultSet.getDouble("sale");
 			checkIn = resultSet.getString("checkIn");
 			checkOut = resultSet.getString("checkOut");
-			total = resultSet.getDouble("total");
+			totalBefore = resultSet.getDouble("totalBefore");
+			total = totalBefore - totalBefore * (sale / 100.0);
 		} catch (SQLException e) {
 			AlertError.getInstance().showAndWait(e);
 		}
@@ -84,6 +86,10 @@ public class Bill implements Model {
 
 	public String getCheckOut() throws ParseException {
 		return checkOut != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(checkOut)) : "-";
+	}
+
+	public double getTotalBefore() {
+		return Number.round(totalBefore, 2);
 	}
 
 	public double getTotal() {

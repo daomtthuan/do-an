@@ -5,6 +5,7 @@ import app.pattern.Api;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BillDetail implements Api {
 	private static BillDetail instance;
@@ -18,6 +19,20 @@ public class BillDetail implements Api {
 
 	private static void setInstance(BillDetail instance) {
 		BillDetail.instance = instance;
+	}
+
+	public ArrayList<model.BillDetail> getBillDetails(int idBill) {
+		ArrayList<model.BillDetail> billDetails = new ArrayList<>();
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [BillDetail] where [idBill] = " + idBill);
+			assert resultSet != null;
+			while (resultSet.next()) {
+				billDetails.add(new model.BillDetail(resultSet));
+			}
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+		}
+		return billDetails;
 	}
 
 	public model.BillDetail insert(int idBill, int idFood, String nameFood, int idCategory, String nameCategory, int quantity, double price) {
