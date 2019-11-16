@@ -56,7 +56,7 @@ public class ManageManagerPane implements Controller, Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nameTableView.setText("Manager List");
-		tableView.setPrefSize(1350, 650);
+		tableView.setPrefSize(1345, 650);
 		tableView.getColumns().add(idColumn);
 		tableView.getColumns().add(accountColumn);
 		tableView.getColumns().add(nameColumn);

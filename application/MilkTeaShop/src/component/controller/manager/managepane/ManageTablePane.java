@@ -38,7 +38,7 @@ public class ManageTablePane implements Controller, Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nameTableView.setText("Table List");
-		tableView.setPrefSize(1350, 650);
+		tableView.setPrefSize(1345, 650);
 		tableView.getColumns().add(idColumn);
 		tableView.getColumns().add(xColumn);
 		tableView.getColumns().add(yColumn);

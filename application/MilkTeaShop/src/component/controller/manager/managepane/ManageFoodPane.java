@@ -43,7 +43,7 @@ public class ManageFoodPane implements Controller, Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		tableView.setPrefSize(1350, 610);
+		tableView.setPrefSize(1345, 610);
 		tableView.getColumns().add(idColumn);
 		tableView.getColumns().add(nameColumn);
 		tableView.getColumns().add(priceColumn);

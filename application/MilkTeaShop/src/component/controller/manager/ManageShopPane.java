@@ -5,6 +5,7 @@ import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import component.controller.general.TablePane;
 import component.controller.manager.managepane.ManageBillPane;
+import component.controller.manager.managepane.ManageDiscountPane;
 import component.controller.manager.managepane.ManageTablePane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -132,6 +133,8 @@ public class ManageShopPane implements Controller, Initializable {
 
 	@FXML
 	private void manageDiscount() {
+		subManageComponent.getChildren().clear();
+		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/managepane/ManagePane.fxml", new ManageDiscountPane()));
 	}
 
 	@Override

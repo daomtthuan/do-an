@@ -29,7 +29,7 @@
                         <String fx:value="manageMenuButton" />
                     </styleClass>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#manageDiscount" text="Discount">
+                <Button mnemonicParsing="false" onAction="#manageDiscount" text="Discount Code">
                     <styleClass>
                         <String fx:value="customButton" />
                         <String fx:value="manageMenuButton" />

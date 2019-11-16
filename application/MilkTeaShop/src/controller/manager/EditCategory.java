@@ -28,6 +28,7 @@ public class EditCategory implements Controller, Initializable {
 	}
 
 	public EditCategory(ManageCategoryPane manageCategoryPane, model.Category category) {
+		this.refresh = manageCategoryPane::refresh;
 		this.category = category;
 		edit = true;
 	}

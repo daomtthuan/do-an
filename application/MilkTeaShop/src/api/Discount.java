@@ -35,6 +35,17 @@ public class Discount implements Api {
 		return discounts;
 	}
 
+	public model.Discount check(String name) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [checkDiscount] ?", new Object[] {name});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Discount(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
 	public model.Discount insert(double sale) {
 		try (ResultSet resultSet = DataProvider.getInstance().execute("exec [insertDiscount] ?", new Object[] {sale})) {
 			assert resultSet != null;
@@ -45,9 +56,31 @@ public class Discount implements Api {
 		}
 	}
 
-	public model.Discount check(String name) {
+	public model.Discount update(int id, double sale) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [checkDiscount] ?", new Object[] {name});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [updateDiscount] ? , ?", new Object[] {id, sale});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Discount(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Discount changeStatus(int id, boolean enabled) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [statusDiscount] ? , ?", new Object[] {id, enabled});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Discount(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Discount delete(int id) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [deleteDiscount] ? ", new Object[] {id});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Discount(resultSet) : null;
 		} catch (SQLException e) {

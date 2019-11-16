@@ -8,5 +8,5 @@ public class Regex {
 	public static final String PHONE = "^(([+][0-9]{2})|0)[0-9]{9,12}$";
 	public static final String EMAIL = "^([a-z][a-z0-9_.]{2,30}@[a-z0-9]{2,}(.[a-z0-9]{2,4})+)?$";
 	public static final String DISCOUNT = "^.{1,50}$";
-	public static final String MONEY = "^\\d+(.\\d+)?$";
+	public static final String NUMBER = "^\\d+(.\\d+)?$";
 }
