@@ -70,14 +70,14 @@ public class ManageCustomerPane implements Controller, Initializable {
 
 		MenuItem insertMenuItem = new MenuItem("Insert");
 		insertMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, 1));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});
 
 		MenuItem updateMenuItem = new MenuItem("Update");
 		updateMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this, tableView.getSelectionModel().getSelectedItem()));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, tableView.getSelectionModel().getSelectedItem()));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});
@@ -122,7 +122,7 @@ public class ManageCustomerPane implements Controller, Initializable {
 		});
 	}
 
-	public void refresh() {
+	private void refresh() {
 		tableView.getItems().clear();
 		tableView.setItems(FXCollections.observableArrayList(api.Account.getInstance().getAccounts(1)));
 	}

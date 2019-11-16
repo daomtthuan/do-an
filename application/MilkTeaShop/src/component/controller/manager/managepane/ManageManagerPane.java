@@ -55,6 +55,8 @@ public class ManageManagerPane implements Controller, Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
+		nameTableView.setText("Manager List");
+		tableView.setPrefSize(1350, 650);
 		tableView.getColumns().add(idColumn);
 		tableView.getColumns().add(accountColumn);
 		tableView.getColumns().add(nameColumn);
@@ -68,14 +70,14 @@ public class ManageManagerPane implements Controller, Initializable {
 
 		MenuItem insertMenuItem = new MenuItem("Insert");
 		insertMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, 3));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});
 
 		MenuItem updateMenuItem = new MenuItem("Update");
 		updateMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this, tableView.getSelectionModel().getSelectedItem()));
+			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, tableView.getSelectionModel().getSelectedItem()));
 			PrimaryDialog.getInstance().getStage().show();
 			PrimaryStage.getInstance().getStage().hide();
 		});
@@ -123,6 +125,5 @@ public class ManageManagerPane implements Controller, Initializable {
 	public void refresh() {
 		tableView.getItems().clear();
 		tableView.setItems(FXCollections.observableArrayList(api.Account.getInstance().getAccounts(3)));
-	}
 	}
 }

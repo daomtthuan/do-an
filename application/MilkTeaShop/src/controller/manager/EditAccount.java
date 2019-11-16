@@ -3,7 +3,6 @@ package controller.manager;
 import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryDialog;
-import component.controller.manager.managepane.ManageCustomerPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -32,17 +31,19 @@ public class EditAccount implements Controller, Initializable {
 	private TextField phoneTextField;
 	@FXML
 	private TextField emailTextField;
-	private ManageCustomerPane manageCustomerPane;
+	private int roll;
+	private Runnable refresh;
 	private model.Account account;
 	private boolean edit;
 
-	public EditAccount(ManageCustomerPane manageCustomerPane) {
-		this.manageCustomerPane = manageCustomerPane;
+	public EditAccount(Runnable refresh, int roll) {
+		this.refresh = refresh;
+		this.roll = roll;
 		edit = false;
 	}
 
-	public EditAccount(ManageCustomerPane manageCustomerPane, model.Account account) {
-		this.manageCustomerPane = manageCustomerPane;
+	public EditAccount(Runnable refresh, model.Account account) {
+		this.refresh = refresh;
 		this.account = account;
 		edit = true;
 	}
@@ -59,14 +60,14 @@ public class EditAccount implements Controller, Initializable {
 		if (name.matches(Regex.NAME) && address.matches(Regex.ADDRESS) && phone.matches(Regex.PHONE) && email.matches(Regex.EMAIL) && (maleRadioButton.isSelected() || femaleRadioButton.isSelected())) {
 			if (edit) {
 				if (api.Account.getInstance().update(account.getId(), account.getPassword(), account.getRoll(), name, gender, birthday, address, phone, email) != null) {
-					manageCustomerPane.refresh();
+					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not update account.\nlease notify staff.");
 				}
 			} else {
-				if (api.Account.getInstance().insert(Input.createAcronym(name), "1", 1, name, gender, birthday, address, phone, email) != null) {
-					manageCustomerPane.refresh();
+				if (api.Account.getInstance().insert(Input.createAcronym(name), "1", roll, name, gender, birthday, address, phone, email) != null) {
+					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Can not insert account.\nlease notify staff.");
