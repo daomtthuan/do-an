@@ -9,24 +9,10 @@ public class File {
 		if (!destFile.exists()) {
 			destFile.createNewFile();
 		}
-
-		FileChannel source = null;
-		FileChannel destination = null;
-		try {
-			source = new RandomAccessFile(sourceFile, "rw").getChannel();
-			destination = new RandomAccessFile(destFile, "rw").getChannel();
-
-			long position = 0;
-			long count = source.size();
-
-			source.transferTo(position, count, destination);
-		} finally {
-			if (source != null) {
-				source.close();
-			}
-			if (destination != null) {
-				destination.close();
-			}
-		}
+		FileChannel source = new RandomAccessFile(sourceFile, "rw").getChannel();
+		FileChannel destination = new RandomAccessFile(destFile, "rw").getChannel();
+		source.transferTo(0, source.size(), destination);
+		source.close();
+		destination.close();
 	}
 }
