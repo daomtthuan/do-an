@@ -53,7 +53,7 @@ public class EditCategory implements Controller, Initializable {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Can not update category.\nExisted name category.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot update category.\nExisted name category.");
 				}
 			} else {
 
@@ -61,7 +61,7 @@ public class EditCategory implements Controller, Initializable {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Can not insert category.\nExisted name category.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert category.\nExisted name category.");
 				}
 			}
 		} else {

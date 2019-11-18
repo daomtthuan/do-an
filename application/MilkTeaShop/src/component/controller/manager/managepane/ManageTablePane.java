@@ -50,7 +50,7 @@ public class ManageTablePane implements Controller, Initializable {
 			if (api.Table.getInstance().insert(10, 10) != null) {
 				refresh();
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not insert table.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert table.\nPlease notify staff.");
 			}
 		});
 
@@ -60,7 +60,7 @@ public class ManageTablePane implements Controller, Initializable {
 			if (api.Table.getInstance().changeStatus(table.getId(), table.getStatus() > 0 ? 0 : 1) != null) {
 				refresh();
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not change status.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
 			}
 		});
 
@@ -68,7 +68,7 @@ public class ManageTablePane implements Controller, Initializable {
 		deleteMenuItem.setOnAction(actionEvent -> {
 			Table table = tableView.getSelectionModel().getSelectedItem();
 			if (api.Table.getInstance().delete(table.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete table.\nBecause some bills are using information of this table.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete table.\nBecause some bills are using information of this table.");
 			} else {
 				refresh();
 			}

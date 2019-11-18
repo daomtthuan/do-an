@@ -65,7 +65,7 @@ class Register implements Controller {
 							"Your Customer Account: " + account.getAccount() + "\nThanks for coming to our shop!");
 					SecondaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Can not register.\nPlease notify staff.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot register.\nPlease notify staff.");
 				}
 			} else {
 				AlertWarning.getInstance().showAndWait("Fail!", "Re-Password not match.\nPlease check again.");

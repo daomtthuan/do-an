@@ -35,7 +35,7 @@ public class ManageShopPane implements Controller, Initializable {
 			if (api.Table.getInstance().insert(10, 10) != null) {
 				managePositionTable();
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not insert table.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert table.\nPlease notify staff.");
 			}
 		});
 		ContextMenu contextMenuTablePane = new ContextMenu(insertMenuItem);
@@ -63,7 +63,7 @@ public class ManageShopPane implements Controller, Initializable {
 					tableButton.setOnMouseReleased(mouseEvent -> {
 						if ((oldDelta.getX() != newDelta.getX() || oldDelta.getY() != newDelta.getY()) && mouseEvent.getButton() == MouseButton.PRIMARY) {
 							if (api.Table.getInstance().update(table.getId(), tableButton.getLayoutX(), tableButton.getLayoutY()) == null) {
-								AlertWarning.getInstance().showAndWait("Fail!", "Can not update table.\nPlease notify staff.");
+								AlertWarning.getInstance().showAndWait("Fail!", "Cannot update table.\nPlease notify staff.");
 							}
 						}
 					});
@@ -74,14 +74,14 @@ public class ManageShopPane implements Controller, Initializable {
 						if (api.Table.getInstance().insert(10, 10) != null) {
 							managePositionTable();
 						} else {
-							AlertWarning.getInstance().showAndWait("Fail!", "Can not insert table.\nPlease notify staff.");
+							AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert table.\nPlease notify staff.");
 						}
 					});
 
 					MenuItem deleteMenuItem = new MenuItem("Delete");
 					deleteMenuItem.setOnAction(actionEvent -> {
 						if (api.Table.getInstance().delete(table.getId()) != null) {
-							AlertWarning.getInstance().showAndWait("Fail!", "Can not delete table.\nBecause some bills are using information of this table.");
+							AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete table.\nBecause some bills are using information of this table.");
 						} else {
 							managePositionTable();
 						}

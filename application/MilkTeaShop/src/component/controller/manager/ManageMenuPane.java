@@ -110,7 +110,7 @@ public class ManageMenuPane implements Controller, Initializable {
 										imageView.setFitWidth(120);
 										foodButton.setGraphic(imageView);
 									} catch (IOException e) {
-										AlertWarning.getInstance().showAndWait("Fail!", "Can not change image.\nPlease notify staff.");
+										AlertWarning.getInstance().showAndWait("Fail!", "Cannot change image.\nPlease notify staff.");
 									}
 								}
 							});
@@ -118,7 +118,7 @@ public class ManageMenuPane implements Controller, Initializable {
 							MenuItem deleteMenuItem = new MenuItem("Delete");
 							deleteMenuItem.setOnAction(actionEvent -> {
 								if (api.Food.getInstance().delete(food.getId()) != null) {
-									AlertWarning.getInstance().showAndWait("Fail!", "Can not delete category.\nPlease notify staff.");
+									AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete category.\nPlease notify staff.");
 								} else {
 									categoryButton.fire();
 								}
@@ -182,7 +182,7 @@ public class ManageMenuPane implements Controller, Initializable {
 								imageView.setFitWidth(120);
 								categoryButton.setGraphic(imageView);
 							} catch (IOException e) {
-								AlertWarning.getInstance().showAndWait("Fail!", "Can not change image.\nPlease notify staff.");
+								AlertWarning.getInstance().showAndWait("Fail!", "Cannot change image.\nPlease notify staff.");
 							}
 						}
 					});
@@ -190,7 +190,7 @@ public class ManageMenuPane implements Controller, Initializable {
 					MenuItem deleteMenuItem = new MenuItem("Delete");
 					deleteMenuItem.setOnAction(actionEvent -> {
 						if (api.Category.getInstance().delete(category.getId()) != null) {
-							AlertWarning.getInstance().showAndWait("Fail!", "Can not delete category.\nBecause some foods are belonged this category.");
+							AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete category.\nBecause some foods are belonged this category.");
 						} else {
 							manageMenu();
 						}

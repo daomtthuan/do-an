@@ -68,7 +68,7 @@ public class ManageDiscountPane implements Controller, Initializable {
 			if (api.Discount.getInstance().changeStatus(discount.getId(), !discount.isEnabled()) != null) {
 				refresh();
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not change status.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
 			}
 		});
 
@@ -76,7 +76,7 @@ public class ManageDiscountPane implements Controller, Initializable {
 		deleteMenuItem.setOnAction(actionEvent -> {
 			Discount category = tableView.getSelectionModel().getSelectedItem();
 			if (api.Discount.getInstance().delete(category.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete discount code.\nBecause some bills used this code.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete discount code.\nBecause some bills used this code.");
 			} else {
 				refresh();
 			}

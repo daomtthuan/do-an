@@ -86,14 +86,14 @@ public class EditFood implements Controller, Initializable {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Can not update food.\nPlease check again.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot update food.\nPlease check again.");
 				}
 			} else {
 				if (api.Food.getInstance().insert(name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Can not insert food.\nPlease check again.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert food.\nPlease check again.");
 				}
 			}
 		} else {

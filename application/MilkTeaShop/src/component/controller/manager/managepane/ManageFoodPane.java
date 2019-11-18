@@ -75,7 +75,7 @@ public class ManageFoodPane implements Controller, Initializable {
 			if (api.Food.getInstance().changeStatus(food.getId(), !food.isEnabled()) != null) {
 				refresh();
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not change status.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
 			}
 		});
 
@@ -83,7 +83,7 @@ public class ManageFoodPane implements Controller, Initializable {
 		deleteMenuItem.setOnAction(actionEvent -> {
 			Food food = tableView.getSelectionModel().getSelectedItem();
 			if (api.Food.getInstance().delete(food.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete category.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete category.\nPlease notify staff.");
 			} else {
 				refresh();
 			}

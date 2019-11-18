@@ -88,7 +88,7 @@ public class ManageCustomerPane implements Controller, Initializable {
 			if (api.Account.getInstance().changeStatus(account.getId(), !account.isEnabled()) != null) {
 				refresh();
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not change status.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
 			}
 		});
 
@@ -96,7 +96,7 @@ public class ManageCustomerPane implements Controller, Initializable {
 		deleteMenuItem.setOnAction(actionEvent -> {
 			Account account = tableView.getSelectionModel().getSelectedItem();
 			if (api.Account.getInstance().delete(account.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete account.\nBecause some bills are using information of this account.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete account.\nBecause some bills are using information of this account.");
 			} else {
 				refresh();
 			}

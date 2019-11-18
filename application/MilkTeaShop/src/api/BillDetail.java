@@ -35,11 +35,11 @@ public class BillDetail implements Api {
 		return billDetails;
 	}
 
-	public model.BillDetail insert(int idBill, int idFood, String nameFood, int idCategory, String nameCategory, int quantity, double price) {
+	public model.Bill insert(int idBill, int idFood, String nameFood, int idCategory, String nameCategory, int quantity, double price) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBillDetail] ? , ? , ? , ? , ? , ? , ?", new Object[] {idBill, idFood, nameFood, idCategory, nameCategory, quantity, price});
 			assert resultSet != null;
-			return resultSet.next() ? new model.BillDetail(resultSet) : null;
+			return resultSet.next() ? new model.Bill(resultSet) : null;
 		} catch (SQLException e) {
 			AlertError.getInstance().showAndWait(e);
 			return null;

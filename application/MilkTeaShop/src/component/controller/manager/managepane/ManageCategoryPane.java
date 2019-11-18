@@ -64,7 +64,7 @@ public class ManageCategoryPane implements Controller, Initializable {
 			if (api.Category.getInstance().changeStatus(category.getId(), !category.isEnabled()) != null) {
 				refresh();
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not change status.\nPlease notify staff.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
 			}
 		});
 
@@ -72,7 +72,7 @@ public class ManageCategoryPane implements Controller, Initializable {
 		deleteMenuItem.setOnAction(actionEvent -> {
 			Category category = tableView.getSelectionModel().getSelectedItem();
 			if (api.Category.getInstance().delete(category.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Can not delete category.\nBecause some foods are belonged this category.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete category.\nBecause some foods are belonged this category.");
 			} else {
 				refresh();
 			}

@@ -46,7 +46,7 @@ public class ChangePassword implements Controller {
 							PrimaryStage.getInstance().getStage().show();
 						}
 					} else {
-						AlertWarning.getInstance().showAndWait("Fail!", "Can not change Password.\nPlease notify staff.");
+						AlertWarning.getInstance().showAndWait("Fail!", "Cannot change Password.\nPlease notify staff.");
 					}
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Repeat Password does not match.");

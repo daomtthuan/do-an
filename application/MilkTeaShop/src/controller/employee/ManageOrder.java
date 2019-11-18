@@ -6,6 +6,7 @@ import app.primary.PrimaryDialog;
 import app.primary.PrimaryStage;
 import app.primary.PrimarySubDialog;
 import app.secondary.SecondaryStage;
+import com.itextpdf.text.DocumentException;
 import component.controller.general.BillPane;
 import controller.customer.Customer;
 import controller.general.WatchAccount;
@@ -15,8 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import model.Bill;
 import model.BillDetail;
+import tool.Printer;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class ManageOrder implements Controller, Initializable {
@@ -74,17 +78,22 @@ public class ManageOrder implements Controller, Initializable {
 		Bill bill = api.Bill.getInstance().insert(SecondaryStage.getInstance().getTable(), SecondaryStage.getInstance().getAccount(), PrimaryStage.getInstance().getAccount(), SecondaryStage.getInstance().getDiscount(), billPane.getSale());
 		if (bill != null) {
 			for (BillDetail billDetail : SecondaryStage.getInstance().getBillDetails()) {
-				if (api.BillDetail.getInstance().insert(bill.getId(), billDetail.getIdFood(), billDetail.getNameFood(), billDetail.getIdCategory(), billDetail.getNameCategory(), billDetail.getQuantity(), billDetail.getPrice()) == null) {
-					AlertWarning.getInstance().showAndWait("Fail!", "Can not pay bill.\nPlease notify staff.");
+				bill = api.BillDetail.getInstance().insert(bill.getId(), billDetail.getIdFood(), billDetail.getNameFood(), billDetail.getIdCategory(), billDetail.getNameCategory(), billDetail.getQuantity(), billDetail.getPrice());
+				if (bill == null) {
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot pay bill.\nPlease notify staff.");
 					return;
-				} else {
-					SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
-					PrimaryDialog.getInstance().getStage().hide();
-					PrimarySubDialog.getInstance().getStage().hide();
 				}
 			}
+			try {
+				Printer.printPayBill(bill);
+			} catch (FileNotFoundException | DocumentException | ParseException e) {
+				AlertWarning.getInstance().showAndWait("Fail!", "Cannot print bill.\nPlease notify staff.");
+			}
+			SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
+			PrimaryDialog.getInstance().getStage().hide();
+			PrimarySubDialog.getInstance().getStage().hide();
 		} else {
-			AlertWarning.getInstance().showAndWait("Fail!", "Can not pay bill.\nPlease notify staff.");
+			AlertWarning.getInstance().showAndWait("Fail!", "Cannot pay bill.\nPlease notify staff.");
 		}
 	}
 }
