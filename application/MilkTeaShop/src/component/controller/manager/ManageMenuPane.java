@@ -5,8 +5,8 @@ import app.pattern.Controller;
 import app.primary.PrimaryDialog;
 import app.primary.PrimaryStage;
 import component.controller.general.MenuPane;
-import component.controller.manager.managepane.ManageCategoryPane;
-import component.controller.manager.managepane.ManageFoodPane;
+import component.controller.general.managepane.ManageCategoryPane;
+import component.controller.general.managepane.ManageFoodPane;
 import controller.manager.EditCategory;
 import controller.manager.EditFood;
 import javafx.fxml.FXML;
@@ -220,13 +220,13 @@ public class ManageMenuPane implements Controller, Initializable {
 	@FXML
 	private void manageCategory() {
 		subManageComponent.getChildren().clear();
-		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/managepane/ManagePane.fxml", new ManageCategoryPane()));
+		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/managepane/ManagePane.fxml", new ManageCategoryPane()));
 	}
 
 	@FXML
 	private void manageFood() {
 		subManageComponent.getChildren().clear();
-		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/managepane/ManageFoodPane.fxml", new ManageFoodPane()));
+		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/managepane/ManageFoodPane.fxml", new ManageFoodPane()));
 	}
 
 	@Override

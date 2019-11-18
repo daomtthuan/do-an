@@ -20,13 +20,13 @@ public class Manager implements Controller {
 	@FXML
 	private void manageShop() {
 		manageComponent.getChildren().clear();
-		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/ManageShopPane.fxml", new ManageShopPane()));
+		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/ManageShopPane.fxml", new ManageShopPane()));
 	}
 
 	@FXML
 	private void manageMenu() {
 		manageComponent.getChildren().clear();
-		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/ManageMenuPane.fxml", new ManageMenuPane()));
+		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/ManageMenuPane.fxml", new ManageMenuPane()));
 	}
 
 	@FXML

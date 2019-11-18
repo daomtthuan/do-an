@@ -85,7 +85,7 @@ public class ManageOrder implements Controller, Initializable {
 				}
 			}
 			try {
-				Printer.printPayBill(bill);
+				Printer.printBill(bill);
 			} catch (FileNotFoundException | DocumentException | ParseException e) {
 				AlertWarning.getInstance().showAndWait("Fail!", "Cannot print bill.\nPlease notify staff.");
 			}

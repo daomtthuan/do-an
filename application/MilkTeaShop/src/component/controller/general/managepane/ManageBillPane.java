@@ -1,4 +1,4 @@
-package component.controller.manager.managepane;
+package component.controller.general.managepane;
 
 import api.Account;
 import app.pattern.Controller;
@@ -60,7 +60,7 @@ public class ManageBillPane implements Controller, Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		tableView.setPrefSize(1345, 610);
+		tableView.setPrefSize(1350, 610);
 		tableView.getColumns().add(idColumn);
 		tableView.getColumns().add(checkInColumn);
 		tableView.getColumns().add(checkOutColumn);

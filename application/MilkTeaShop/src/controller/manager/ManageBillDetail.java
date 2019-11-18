@@ -1,15 +1,19 @@
 package controller.manager;
 
 import app.alert.AlertError;
+import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.secondary.SecondaryStage;
+import com.itextpdf.text.DocumentException;
 import component.controller.general.BillPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import model.Bill;
+import tool.Printer;
 
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
@@ -25,6 +29,15 @@ public class ManageBillDetail implements Controller, Initializable {
 
 	public ManageBillDetail(Bill bill) {
 		this.bill = bill;
+	}
+
+	@FXML
+	private void print() {
+		try {
+			Printer.printBill(bill);
+		} catch (FileNotFoundException | DocumentException | ParseException e) {
+			AlertWarning.getInstance().showAndWait("Fail!", "Cannot print bill.\nPlease notify staff.");
+		}
 	}
 
 	@Override

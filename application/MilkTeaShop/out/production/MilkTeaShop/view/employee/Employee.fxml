@@ -1,8 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="customAnchorPane"
-            xmlns="http://javafx.com/javafx/8">
-
-</AnchorPane>
+<HBox id="wrapper" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="customVBox">
+         <children>
+            <Label id="title" text="MILK TEA SHOP" />
+            <HBox styleClass="customHBox">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#manageShop" text="Manage Shop">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/manager/shop.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="customButton" />
+                        <String fx:value="functionButton" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#manageMenu" text="Manage Menu">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/manager/menu.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="customButton" />
+                        <String fx:value="functionButton" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#manageAccount" text="Customer Account">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/manager/account.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="customButton" />
+                        <String fx:value="functionButton" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox fx:id="manageComponent" styleClass="customVBox" />
+         </children></VBox>
+   </children>
+</HBox>

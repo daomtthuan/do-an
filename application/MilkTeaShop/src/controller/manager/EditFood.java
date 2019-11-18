@@ -4,7 +4,7 @@ import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryDialog;
 import component.controller.general.MenuPane;
-import component.controller.manager.managepane.ManageFoodPane;
+import component.controller.general.managepane.ManageFoodPane;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

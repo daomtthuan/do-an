@@ -1,4 +1,4 @@
-package component.controller.manager.managepane;
+package component.controller.general.managepane;
 
 import app.alert.AlertWarning;
 import app.pattern.Controller;
@@ -56,7 +56,7 @@ public class ManageCustomerPane implements Controller, Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nameTableView.setText("Customer List");
-		tableView.setPrefSize(1345, 650);
+		tableView.setPrefSize(1350, 650);
 		tableView.getColumns().add(idColumn);
 		tableView.getColumns().add(accountColumn);
 		tableView.getColumns().add(nameColumn);
@@ -68,58 +68,60 @@ public class ManageCustomerPane implements Controller, Initializable {
 		tableView.getColumns().add(statusColumn);
 		tableView.setItems(FXCollections.observableArrayList(api.Account.getInstance().getAccounts(1)));
 
-		MenuItem insertMenuItem = new MenuItem("Insert");
-		insertMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, 1));
-			PrimaryDialog.getInstance().getStage().show();
-			PrimaryStage.getInstance().getStage().hide();
-		});
+		if (PrimaryStage.getInstance().getAccount().getRoll() == 3) {
+			MenuItem insertMenuItem = new MenuItem("Insert");
+			insertMenuItem.setOnAction(actionEvent -> {
+				PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, 1));
+				PrimaryDialog.getInstance().getStage().show();
+				PrimaryStage.getInstance().getStage().hide();
+			});
 
-		MenuItem updateMenuItem = new MenuItem("Update");
-		updateMenuItem.setOnAction(actionEvent -> {
-			PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, tableView.getSelectionModel().getSelectedItem()));
-			PrimaryDialog.getInstance().getStage().show();
-			PrimaryStage.getInstance().getStage().hide();
-		});
+			MenuItem updateMenuItem = new MenuItem("Update");
+			updateMenuItem.setOnAction(actionEvent -> {
+				PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, tableView.getSelectionModel().getSelectedItem()));
+				PrimaryDialog.getInstance().getStage().show();
+				PrimaryStage.getInstance().getStage().hide();
+			});
 
-		MenuItem statusMenuItem = new MenuItem("Change status");
-		statusMenuItem.setOnAction(actionEvent -> {
-			Account account = tableView.getSelectionModel().getSelectedItem();
-			if (api.Account.getInstance().changeStatus(account.getId(), !account.isEnabled()) != null) {
-				refresh();
-			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
-			}
-		});
+			MenuItem statusMenuItem = new MenuItem("Change status");
+			statusMenuItem.setOnAction(actionEvent -> {
+				Account account = tableView.getSelectionModel().getSelectedItem();
+				if (api.Account.getInstance().changeStatus(account.getId(), !account.isEnabled()) != null) {
+					refresh();
+				} else {
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
+				}
+			});
 
-		MenuItem deleteMenuItem = new MenuItem("Delete");
-		deleteMenuItem.setOnAction(actionEvent -> {
-			Account account = tableView.getSelectionModel().getSelectedItem();
-			if (api.Account.getInstance().delete(account.getId()) != null) {
-				AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete account.\nBecause some bills are using information of this account.");
-			} else {
-				refresh();
-			}
-		});
+			MenuItem deleteMenuItem = new MenuItem("Delete");
+			deleteMenuItem.setOnAction(actionEvent -> {
+				Account account = tableView.getSelectionModel().getSelectedItem();
+				if (api.Account.getInstance().delete(account.getId()) != null) {
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot delete account.\nBecause some bills are using information of this account.");
+				} else {
+					refresh();
+				}
+			});
 
-		ContextMenu contextMenu = new ContextMenu(insertMenuItem, updateMenuItem, statusMenuItem, deleteMenuItem);
-		tableView.setOnContextMenuRequested(contextMenuEvent -> {
-			if (tableView.getSelectionModel().isEmpty()) {
-				updateMenuItem.setDisable(true);
-				statusMenuItem.setDisable(true);
-				deleteMenuItem.setDisable(true);
-			} else {
-				updateMenuItem.setDisable(false);
-				statusMenuItem.setDisable(false);
-				deleteMenuItem.setDisable(false);
-			}
-			contextMenu.show(tableView, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
-		});
-		tableView.setOnMouseClicked(mouseEvent -> {
-			if (contextMenu.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
-				contextMenu.hide();
-			}
-		});
+			ContextMenu contextMenu = new ContextMenu(insertMenuItem, updateMenuItem, statusMenuItem, deleteMenuItem);
+			tableView.setOnContextMenuRequested(contextMenuEvent -> {
+				if (tableView.getSelectionModel().isEmpty()) {
+					updateMenuItem.setDisable(true);
+					statusMenuItem.setDisable(true);
+					deleteMenuItem.setDisable(true);
+				} else {
+					updateMenuItem.setDisable(false);
+					statusMenuItem.setDisable(false);
+					deleteMenuItem.setDisable(false);
+				}
+				contextMenu.show(tableView, contextMenuEvent.getScreenX(), contextMenuEvent.getScreenY());
+			});
+			tableView.setOnMouseClicked(mouseEvent -> {
+				if (contextMenu.isShowing() && mouseEvent.getButton() != MouseButton.SECONDARY) {
+					contextMenu.hide();
+				}
+			});
+		}
 	}
 
 	private void refresh() {

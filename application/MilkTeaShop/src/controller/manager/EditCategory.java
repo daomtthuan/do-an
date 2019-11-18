@@ -4,7 +4,7 @@ import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryDialog;
 import component.controller.general.MenuPane;
-import component.controller.manager.managepane.ManageCategoryPane;
+import component.controller.general.managepane.ManageCategoryPane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;

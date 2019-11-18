@@ -1,4 +1,4 @@
-package component.controller.manager.managepane;
+package component.controller.manager;
 
 import app.pattern.Controller;
 import javafx.fxml.Initializable;

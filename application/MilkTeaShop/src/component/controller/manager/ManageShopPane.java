@@ -4,9 +4,9 @@ import app.alert.AlertWarning;
 import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import component.controller.general.TablePane;
-import component.controller.manager.managepane.ManageBillPane;
-import component.controller.manager.managepane.ManageDiscountPane;
-import component.controller.manager.managepane.ManageTablePane;
+import component.controller.general.managepane.ManageBillPane;
+import component.controller.general.managepane.ManageDiscountPane;
+import component.controller.general.managepane.ManageTablePane;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -122,19 +122,19 @@ public class ManageShopPane implements Controller, Initializable {
 	@FXML
 	private void manageTable() {
 		subManageComponent.getChildren().clear();
-		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/managepane/ManagePane.fxml", new ManageTablePane()));
+		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/managepane/ManagePane.fxml", new ManageTablePane()));
 	}
 
 	@FXML
 	private void manageBill() {
 		subManageComponent.getChildren().clear();
-		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/managepane/ManageBillPane.fxml", new ManageBillPane()));
+		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/managepane/ManageBillPane.fxml", new ManageBillPane()));
 	}
 
 	@FXML
 	private void manageDiscount() {
 		subManageComponent.getChildren().clear();
-		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/managepane/ManagePane.fxml", new ManageDiscountPane()));
+		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/managepane/ManagePane.fxml", new ManageDiscountPane()));
 	}
 
 	@Override

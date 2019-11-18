@@ -13,7 +13,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Printer {
-	public static void printPayBill(Bill bill) throws FileNotFoundException, DocumentException, ParseException {
+	public static void printBill(Bill bill) throws FileNotFoundException, DocumentException, ParseException {
 		ArrayList<BillDetail> billDetails = api.BillDetail.getInstance().getBillDetails(bill.getId());
 		Document document = new Document(PageSize.A6, 5, 5, 5, 5);
 		PdfWriter.getInstance(document, new FileOutputStream("./bill/" + bill.getId() + ".pdf"));

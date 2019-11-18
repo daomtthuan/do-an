@@ -37,7 +37,7 @@ public class Login implements Controller {
 			if (account != null) {
 				if (who.equals("Admin")) {
 					if (account.getRoll() == 2) {
-						PrimaryStage.getInstance().setScene("/view/employee/Employee.fxml", new Employee());
+						PrimaryStage.getInstance().setScene("/view/employee/Employee.fxml", "/style/employee/Employee.css", new Employee());
 						PrimaryStage.getInstance().setAccount(account);
 
 						SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
