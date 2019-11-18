@@ -67,7 +67,6 @@ public class ManageShopPane implements Controller, Initializable {
 							}
 						}
 					});
-					tableButton.setDisable(false);
 
 					MenuItem insertMenuItem = new MenuItem("Insert");
 					insertMenuItem.setOnAction(actionEvent -> {

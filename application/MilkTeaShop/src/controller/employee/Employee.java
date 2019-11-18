@@ -6,9 +6,13 @@ import component.controller.employee.ManageAccountPane;
 import component.controller.employee.ManageMenuPane;
 import component.controller.employee.ManageShopPane;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
-public class Employee implements Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Employee implements Controller, Initializable {
 	@FXML
 	private VBox manageComponent;
 
@@ -28,5 +32,10 @@ public class Employee implements Controller {
 	private void manageAccount() {
 		manageComponent.getChildren().clear();
 		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/employee/ManageAccountPane.fxml", new ManageAccountPane()));
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		manageShop();
 	}
 }

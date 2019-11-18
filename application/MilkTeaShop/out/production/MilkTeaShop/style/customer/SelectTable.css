@@ -23,6 +23,11 @@
     -fx-min-width: 80;
 }
 
+.busy {
+    -fx-background-color: #00233F;
+    -fx-border-color: #00233F;
+}
+
 #tablePositionPane {
     -fx-alignment: top_left;
 }

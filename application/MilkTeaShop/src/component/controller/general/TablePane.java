@@ -22,7 +22,9 @@ public abstract class TablePane implements Controller, Initializable {
 		button.getStyleClass().addAll("customButton", "tableButton");
 		button.setLayoutX(table.getX());
 		button.setLayoutY(table.getY());
-		button.setDisable(table.isBusy());
+		if (table.isBusy()) {
+			button.getStyleClass().add("busy");
+		}
 		return button;
 	}
 

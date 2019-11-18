@@ -36,12 +36,16 @@ class SelectTable implements Controller, Initializable {
 				ArrayList<Table> tables = api.Table.getInstance().getEnabledTables();
 				tables.forEach(table -> {
 					Button tableButton = createButton(table);
-					tableButton.setOnAction(actionEvent -> {
-						SecondaryStage.getInstance().setTable(table);
-						manageOrder.getBillPane().setTable(table.toString());
-						SecondaryStage.getInstance().setScene("/view/customer/PayBill.fxml", "/style/customer/PayBill.css", new PayBill());
-						manageOrder.setupPayBillButton(false);
-					});
+					if (table.isBusy()) {
+						tableButton.getStyleClass().add("busy");
+					} else {
+						tableButton.setOnAction(actionEvent -> {
+							SecondaryStage.getInstance().setTable(table);
+							manageOrder.getBillPane().setTable(table.toString());
+							SecondaryStage.getInstance().setScene("/view/customer/PayBill.fxml", "/style/customer/PayBill.css", new PayBill());
+							manageOrder.setupPayBillButton(false);
+						});
+					}
 					getTablePane().getChildren().add(tableButton);
 				});
 			}
