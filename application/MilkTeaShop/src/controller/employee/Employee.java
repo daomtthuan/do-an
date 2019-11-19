@@ -2,9 +2,11 @@ package controller.employee;
 
 import app.pattern.Controller;
 import app.primary.PrimaryStage;
+import app.primary.PrimarySubDialog;
 import component.controller.employee.ManageAccountPane;
 import component.controller.employee.ManageMenuPane;
 import component.controller.employee.ManageShopPane;
+import controller.general.WatchAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -32,6 +34,13 @@ public class Employee implements Controller, Initializable {
 	private void manageAccount() {
 		manageComponent.getChildren().clear();
 		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/employee/ManageAccountPane.fxml", new ManageAccountPane()));
+	}
+
+	@FXML
+	private void watchAccount() {
+		PrimarySubDialog.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(PrimaryStage.getInstance().getAccount()));
+		PrimarySubDialog.getInstance().getStage().show();
+		PrimaryStage.getInstance().getStage().hide();
 	}
 
 	@Override

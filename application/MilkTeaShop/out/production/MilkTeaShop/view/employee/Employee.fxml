@@ -53,6 +53,19 @@
                         <String fx:value="functionButton" />
                      </styleClass>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#watchAccount" text="Employee Account">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/manager/account.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="customButton" />
+                        <String fx:value="functionButton" />
+                     </styleClass>
+                  </Button>
                </children>
             </HBox>
             <VBox fx:id="manageComponent" styleClass="customVBox" />
