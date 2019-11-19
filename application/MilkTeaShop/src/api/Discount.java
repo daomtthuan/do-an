@@ -35,6 +35,20 @@ public class Discount implements Api {
 		return discounts;
 	}
 
+	public ArrayList<model.Discount> getGiveOutDiscounts() {
+		ArrayList<model.Discount> discounts = new ArrayList<>();
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Discount] where [status] = 2");
+			assert resultSet != null;
+			while (resultSet.next()) {
+				discounts.add(new model.Discount(resultSet));
+			}
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+		}
+		return discounts;
+	}
+
 	public model.Discount check(String name) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [checkDiscount] ?", new Object[] {name});
@@ -67,9 +81,9 @@ public class Discount implements Api {
 		}
 	}
 
-	public model.Discount changeStatus(int id, boolean enabled) {
+	public model.Discount changeStatus(int id, int status) {
 		try {
-			ResultSet resultSet = DataProvider.getInstance().execute("exec [statusDiscount] ? , ?", new Object[] {id, enabled});
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [statusDiscount] ? , ?", new Object[] {id, status});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Discount(resultSet) : null;
 		} catch (SQLException e) {

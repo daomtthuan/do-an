@@ -63,14 +63,14 @@ public class EditAccount implements Controller, Initializable {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Cannot update account.\nlease notify staff.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot update account.\nPlease notify staff.");
 				}
 			} else {
 				if (api.Account.getInstance().insert(Input.createAcronym(name), "1", roll, name, gender, birthday, address, phone, email) != null) {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert account.\nlease notify staff.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert account.\nPlease notify staff.");
 				}
 			}
 		} else {

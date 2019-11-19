@@ -25,17 +25,20 @@ public class ManageDiscountPane implements Controller, Initializable {
 	private TableColumn<Discount, String> nameColumn;
 	private TableColumn<Discount, Double> saleColumn;
 	private TableColumn<Discount, Boolean> enabledColumn;
+	private TableColumn<Discount, Boolean> giveOutColumn;
 
 	public ManageDiscountPane() {
 		idColumn = new TableColumn<>("Id Discount");
 		nameColumn = new TableColumn<>("Code");
 		saleColumn = new TableColumn<>("Sale");
 		enabledColumn = new TableColumn<>("Enabled");
+		giveOutColumn = new TableColumn<>("Give out");
 
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 		saleColumn.setCellValueFactory(new PropertyValueFactory<>("sale"));
 		enabledColumn.setCellValueFactory(new PropertyValueFactory<>("enabled"));
+		giveOutColumn.setCellValueFactory(new PropertyValueFactory<>("giveOut"));
 	}
 
 	@Override
@@ -46,6 +49,7 @@ public class ManageDiscountPane implements Controller, Initializable {
 		tableView.getColumns().add(nameColumn);
 		tableView.getColumns().add(saleColumn);
 		tableView.getColumns().add(enabledColumn);
+		tableView.getColumns().add(giveOutColumn);
 		tableView.setItems(FXCollections.observableArrayList(api.Discount.getInstance().getDiscounts()));
 
 		if (PrimaryStage.getInstance().getAccount().getRoll() == 3) {
@@ -54,6 +58,16 @@ public class ManageDiscountPane implements Controller, Initializable {
 				PrimaryDialog.getInstance().setScene("/view/manager/EditDiscount.fxml", new EditDiscount(this::refresh));
 				PrimaryDialog.getInstance().getStage().show();
 				PrimaryStage.getInstance().getStage().hide();
+			});
+
+			MenuItem giveOutMenuItem = new MenuItem("Change giving out");
+			giveOutMenuItem.setOnAction(actionEvent -> {
+				Discount discount = tableView.getSelectionModel().getSelectedItem();
+				if (api.Discount.getInstance().changeStatus(discount.getId(), discount.isGiveOut() ? 1 : 2) != null) {
+					refresh();
+				} else {
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot change giving out.\nPlease notify staff.");
+				}
 			});
 
 			MenuItem updateMenuItem = new MenuItem("Update");
@@ -66,7 +80,7 @@ public class ManageDiscountPane implements Controller, Initializable {
 			MenuItem statusMenuItem = new MenuItem("Change status");
 			statusMenuItem.setOnAction(actionEvent -> {
 				Discount discount = tableView.getSelectionModel().getSelectedItem();
-				if (api.Discount.getInstance().changeStatus(discount.getId(), !discount.isEnabled()) != null) {
+				if (api.Discount.getInstance().changeStatus(discount.getId(), discount.isEnabled() ? 0 : 1) != null) {
 					refresh();
 				} else {
 					AlertWarning.getInstance().showAndWait("Fail!", "Cannot change status.\nPlease notify staff.");
@@ -83,13 +97,15 @@ public class ManageDiscountPane implements Controller, Initializable {
 				}
 			});
 
-			ContextMenu contextMenu = new ContextMenu(insertMenuItem, updateMenuItem, statusMenuItem, deleteMenuItem);
+			ContextMenu contextMenu = new ContextMenu(insertMenuItem, giveOutMenuItem, updateMenuItem, statusMenuItem, deleteMenuItem);
 			tableView.setOnContextMenuRequested(contextMenuEvent -> {
 				if (tableView.getSelectionModel().isEmpty()) {
+					giveOutMenuItem.setDisable(true);
 					updateMenuItem.setDisable(true);
 					statusMenuItem.setDisable(true);
 					deleteMenuItem.setDisable(true);
 				} else {
+					giveOutMenuItem.setDisable(false);
 					updateMenuItem.setDisable(false);
 					statusMenuItem.setDisable(false);
 					deleteMenuItem.setDisable(false);

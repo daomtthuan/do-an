@@ -63,7 +63,7 @@ create table [Food]
 	[idCategory] int not null references [Category]([id]),
 	[price] float not null,
 	[status] bit not null default 1
-	-- 0: disable, -- enable
+	-- 0: disable, --1: enable
 )
 go
 
@@ -72,8 +72,8 @@ create table [Discount]
 	[id] int identity primary key,
 	[name] uniqueidentifier,
 	[sale] float not null,
-	[status] bit not null default 1
-	-- 0: disable, -- enable
+	[status] int not null default 1
+	-- 0: disable, --1: enable, --2: giving out
 )
 go
 
@@ -212,7 +212,7 @@ as
 begin
 	select *
 	from [Discount]
-	where [name] = @name and [status] = 1;
+	where [name] = @name and [status] > 0;
 end
 go
 
@@ -555,7 +555,7 @@ go
 
 create proc [statusDiscount]
 	@id int,
-	@status bit
+	@status int
 as
 begin
 	update [Discount] set

@@ -40,14 +40,14 @@ public class EditDiscount implements Controller, Initializable {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Cannot update discount code.\nlease notify staff.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot update discount code.\nPlease notify staff.");
 				}
 			} else {
 				if (api.Discount.getInstance().insert(sale) != null) {
 					refresh.run();
 					PrimaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert discount code.\nlease notify staff.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert discount code.\nPlease notify staff.");
 				}
 			}
 		} else {

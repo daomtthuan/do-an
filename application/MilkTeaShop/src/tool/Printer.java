@@ -1,11 +1,13 @@
 package tool;
 
+import app.alert.AlertWarning;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import model.Bill;
 import model.BillDetail;
+import model.Discount;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -46,28 +48,40 @@ public class Printer {
 		detailTable.setWidthPercentage(100);
 		detailTable.addCell(createCell("Food\n ", font));
 		detailTable.addCell(createCell("Category\n ", font));
-		detailTable.addCell(createCell("Quantity\n ", font));
-		detailTable.addCell(createCell("Price\n ", font));
-		detailTable.addCell(createCell("Total\n ", font, Element.ALIGN_RIGHT));
+		detailTable.addCell(createNumberCell("Quantity\n ", font));
+		detailTable.addCell(createNumberCell("Price\n ", font));
+		detailTable.addCell(createNumberCell("Total\n ", font));
 		billDetails.forEach(billDetail -> {
 			detailTable.addCell(createCell(billDetail.getNameFood(), font));
 			detailTable.addCell(createCell(billDetail.getNameCategory(), font));
-			detailTable.addCell(createCell(String.valueOf(billDetail.getQuantity()), font));
-			detailTable.addCell(createCell(String.valueOf(billDetail.getPrice()), font));
-			detailTable.addCell(createCell(String.valueOf(billDetail.getTotal()), font, Element.ALIGN_RIGHT));
+			detailTable.addCell(createNumberCell(String.valueOf(billDetail.getQuantity()), font));
+			detailTable.addCell(createNumberCell(String.valueOf(billDetail.getPrice()), font));
+			detailTable.addCell(createNumberCell(String.valueOf(billDetail.getTotal()), font));
 		});
 		billDetailParagraph.add(detailTable);
 
 		PdfPTable totalTable = new PdfPTable(2);
 		totalTable.setWidthPercentage(100);
 		totalTable.addCell(createCell("\n\nTotal before sale", font));
-		totalTable.addCell(createCell("\n\n$" + bill.getTotalBefore(), font, Element.ALIGN_RIGHT));
+		totalTable.addCell(createNumberCell("\n\n$" + bill.getTotalBefore(), font));
 		totalTable.addCell(createCell("Sale", font));
-		totalTable.addCell(createCell(bill.getSale() + "%", font, Element.ALIGN_RIGHT));
+		totalTable.addCell(createNumberCell(bill.getSale() + "%", font));
 		totalTable.addCell(createCell("Total", font));
-		totalTable.addCell(createCell("$" + bill.getTotal(), font, Element.ALIGN_RIGHT));
+		totalTable.addCell(createNumberCell("$" + bill.getTotal(), font));
 		billDetailParagraph.add(totalTable);
 		document.add(billDetailParagraph);
+
+		ArrayList<Discount> discounts = api.Discount.getInstance().getGiveOutDiscounts();
+		if (discounts != null) {
+			Paragraph discountParagraph = new Paragraph();
+			discountParagraph.setFont(font);
+			discountParagraph.setAlignment(Element.ALIGN_JUSTIFIED);
+			discountParagraph.add("\nDiscount code for customer:\n");
+			discounts.forEach(discount -> discountParagraph.add("Sale " + discount.getSale() + "%: " + discount.getName() + "\n"));
+			document.add(discountParagraph);
+		} else {
+			AlertWarning.getInstance().showAndWait("Fail!", "Cannot print discount code.\nPlease notify staff.");
+		}
 
 		document.close();
 	}
@@ -78,9 +92,9 @@ public class Printer {
 		return cell;
 	}
 
-	private static PdfPCell createCell(String content, Font font, int align) {
+	private static PdfPCell createNumberCell(String content, Font font) {
 		PdfPCell cell = createCell(content, font);
-		cell.setHorizontalAlignment(align);
+		cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
 		return cell;
 	}
 }
