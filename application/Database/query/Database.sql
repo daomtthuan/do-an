@@ -145,6 +145,44 @@ create view [BillList] as (
 )
 go
 
+create view [DateIncome] as (
+	select 
+		cast([checkIn] as date) as [date],
+		sum([totalBefore] - [totalBefore] * ([sale] / 100.0)) as [income]
+	from  [BillList]
+	group by cast([checkIn] as date)
+)
+go
+
+/*
+-- Tim thang mua nhieu nhat
+select top(1) 
+	[idCustomer],
+	[nameCustomer],
+	sum([totalBefore] - [totalBefore] * ([sale] / 100.0)) as [income]
+from  [BillList]
+where [idCustomer] is not null
+group by [idCustomer], [nameCustomer]
+order by sum([totalBefore] - [totalBefore] * ([sale] / 100.0)) desc
+
+-- tim mon mua nhieu nhat
+with [Sell] as (
+	select 
+		[idFood],
+		[nameFood],
+		[idCategory],
+		[nameCategory],
+		sum([price]*[quantity]) as [income],
+		sum([quantity]) as [quantity]
+	from [BillDetail] 
+	group by [idFood], [nameFood], [idCategory], [nameCategory]
+)
+select top(1) * from [Sell] 
+order by [quantity] desc, [income] desc
+
+-- tim doanh thu theo ngay
+select * from [DateIncome] where '2019-11-14 00:00:00' <= [date] and [date] <= '2019-11-16 23:59:59.999'
+*/
 ---------------------------------------------------------------------------------------
 -- create procedure
 
@@ -182,7 +220,7 @@ create proc [checkoutBill]
 	@idTable int
 as
 begin
-	declare @idBill int = (select [id] from [Bill] where [idTable] = @idTable and [checkout] = null);
+	declare @idBill int = (select [id] from [Bill] where [idTable] = @idTable and [checkout] is null);
 
 	update [Bill] set
 		[checkout] = getdate()
@@ -203,7 +241,7 @@ as
 begin
 	update [Bill] set
 		[idTable] = @idNewTable
-	where [idTable] = @idOldTable and [checkout] = null;
+	where [idTable] = @idOldTable and [checkout] is null;
 		
 	update [Table] set
 		[status] = 1
