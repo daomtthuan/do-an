@@ -1,5 +1,7 @@
 #container {
     -fx-alignment: top_center;
+    -fx-min-width: 1600;
+    -fx-min-height: 900;
 }
 
 .functionButton {

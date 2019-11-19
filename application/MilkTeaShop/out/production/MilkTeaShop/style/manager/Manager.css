@@ -1,5 +1,7 @@
 #container {
     -fx-alignment: top_center;
+    -fx-min-width: 1600;
+    -fx-min-height: 900;
 }
 
 .functionButton {
@@ -144,6 +146,10 @@
 }
 
 /*-- Income ---------------------------------*/
+#manageIncomePane {
+    -fx-padding: 30;
+}
+
 .topTitle {
     -fx-text-fill: #0078D7;
 }

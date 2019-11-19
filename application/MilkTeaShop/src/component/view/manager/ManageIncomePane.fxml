@@ -31,5 +31,6 @@
             <Label fx:id="totalSellLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
+      <VBox fx:id="chartPane" styleClass="customVBox" />
    </children>
 </VBox>
