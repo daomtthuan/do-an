@@ -145,7 +145,7 @@ create view [BillList] as (
 )
 go
 
-create view [DateIncome] as (
+create view [Income] as (
 	select 
 		cast([checkIn] as date) as [date],
 		sum([totalBefore] - [totalBefore] * ([sale] / 100.0)) as [income]
@@ -154,35 +154,31 @@ create view [DateIncome] as (
 )
 go
 
-/*
--- Tim thang mua nhieu nhat
-select top(1) 
-	[idCustomer],
-	[nameCustomer],
-	sum([totalBefore] - [totalBefore] * ([sale] / 100.0)) as [income]
-from  [BillList]
-where [idCustomer] is not null
-group by [idCustomer], [nameCustomer]
-order by sum([totalBefore] - [totalBefore] * ([sale] / 100.0)) desc
+create view [Buy] as (
+	select
+		[idCustomer] as [id],
+		[nameCustomer] as [name],
+		sum([totalBefore] - [totalBefore] * ([sale] / 100.0)) as [income]
+	from  [BillList]
+	where [idCustomer] is not null
+	group by [idCustomer], [nameCustomer]	
+)
+go
 
 -- tim mon mua nhieu nhat
-with [Sell] as (
+create view [Sell] as (
 	select 
 		[idFood],
 		[nameFood],
 		[idCategory],
 		[nameCategory],
-		sum([price]*[quantity]) as [income],
-		sum([quantity]) as [quantity]
+		sum([quantity]) as [quantity],
+		sum([price]*[quantity]) as [income]		
 	from [BillDetail] 
 	group by [idFood], [nameFood], [idCategory], [nameCategory]
 )
-select top(1) * from [Sell] 
-order by [quantity] desc, [income] desc
+go
 
--- tim doanh thu theo ngay
-select * from [DateIncome] where '2019-11-14 00:00:00' <= [date] and [date] <= '2019-11-16 23:59:59.999'
-*/
 ---------------------------------------------------------------------------------------
 -- create procedure
 

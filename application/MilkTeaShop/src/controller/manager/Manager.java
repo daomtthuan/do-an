@@ -3,18 +3,24 @@ package controller.manager;
 import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import component.controller.manager.ManageAccountPane;
+import component.controller.manager.ManageIncomePane;
 import component.controller.manager.ManageMenuPane;
 import component.controller.manager.ManageShopPane;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
-public class Manager implements Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Manager implements Controller, Initializable {
 	@FXML
 	private VBox manageComponent;
 
 	@FXML
 	private void manageIncome() {
-
+		manageComponent.getChildren().clear();
+		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/ManageIncomePane.fxml", new ManageIncomePane()));
 	}
 
 	@FXML
@@ -33,5 +39,10 @@ public class Manager implements Controller {
 	private void manageAccount() {
 		manageComponent.getChildren().clear();
 		manageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/manager/ManageAccountPane.fxml", new ManageAccountPane()));
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		manageIncome();
 	}
 }
