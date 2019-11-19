@@ -129,7 +129,7 @@ create view [BillList] as (
 	left outer join [Account] as [Customer] on [Customer].[id] =[Bill].[idCustomer]
 	left outer join [Account] as [Employee] on [Employee].[id] =[Bill].[idEmployee]
 	left outer join [Discount] on [Discount].[id] =[Bill].[idDiscount]
-	join [BillDetail] on [BillDetail].[idBill] = [Bill].[id]
+	left outer join [BillDetail] on [BillDetail].[idBill] = [Bill].[id]
 	group by 
 		[Bill].[id],
 		[Bill].[idTable],
@@ -179,18 +179,41 @@ end
 go
 
 create proc [checkoutBill]
-	@id int
+	@idTable int
 as
 begin
+	declare @idBill int = (select [id] from [Bill] where [idTable] = @idTable and [checkout] = null);
+
 	update [Bill] set
 		[checkout] = getdate()
-	where [id] = @id;
+	where [id] = @idBill;
 
 	update [Table] set
 		[status] = 1
-	where [id] = (select [idTable] from [Bill] where [id] = @id);
+	where [id] = @idTable;
 
-	select * from [Bill] where [id] = @id;
+	select * from [BillList] where [id] = @idBill;
+end
+go
+
+create proc [changeTable]
+	@idOldTable int,
+	@idNewTable int
+as
+begin
+	update [Bill] set
+		[idTable] = @idNewTable
+	where [idTable] = @idOldTable and [checkout] = null;
+		
+	update [Table] set
+		[status] = 1
+	where [id] = @idOldTable;
+
+	update [Table] set
+		[status] = 2
+	where [id] = @idNewTable;
+
+	select * from [Table] where [id] = @idNewTable;
 end
 go
 
@@ -301,8 +324,8 @@ begin
 		[status] = 2
 	where [id] = @idTable;
 
-	select *
-	from [Bill]
+	select * 
+	from [BillList]
 	where [id] = scope_identity();
 end
 go
@@ -321,9 +344,10 @@ begin
 		([idBill], [idFood], [nameFood], [idCategory], [nameCategory], [quantity], [price])
 	values
 		(@idBill, @idFood, @nameFood, @idCategory, @nameCategory, @quantity, @price);
+
 	select *
-	from [BillDetail]
-	where [id] = scope_identity();
+	from [BillList]
+	where [id] = @idBill;
 end
 go
 

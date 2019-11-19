@@ -34,6 +34,19 @@ public class Table implements Api {
 		return tables;
 	}
 
+	public ArrayList<model.Table> getNotBusyTables() {
+		ArrayList<model.Table> tables = new ArrayList<>();
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [Table] where [status] = 1");
+			while (resultSet.next()) {
+				tables.add(new model.Table(resultSet));
+			}
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+		}
+		return tables;
+	}
+
 	public ArrayList<model.Table> getTables() {
 		ArrayList<model.Table> tables = new ArrayList<>();
 		try {
@@ -84,6 +97,17 @@ public class Table implements Api {
 	public model.Table delete(int id) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [deleteTable] ? ", new Object[] {id});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Table(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Table changeTable(int idOldTable, int idNewTable) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [changeTable] ? , ?", new Object[] {idOldTable, idNewTable});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Table(resultSet) : null;
 		} catch (SQLException e) {

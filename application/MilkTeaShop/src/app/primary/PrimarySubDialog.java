@@ -11,7 +11,7 @@ public class PrimarySubDialog extends Stage {
 		getStage().setTitle("Milk Tea Shop - Dialog");
 		getStage().setOnCloseRequest(windowEvent -> {
 			windowEvent.consume();
-			getStage().hide();
+			close();
 		});
 		getStage().getIcons().add(new Image(getClass().getResourceAsStream("/asset/brand/Logo.png")));
 	}
@@ -25,5 +25,10 @@ public class PrimarySubDialog extends Stage {
 
 	private static void setInstance(PrimarySubDialog instance) {
 		PrimarySubDialog.instance = instance;
+	}
+
+	public void close() {
+		PrimaryStage.getInstance().getStage().show();
+		getStage().hide();
 	}
 }

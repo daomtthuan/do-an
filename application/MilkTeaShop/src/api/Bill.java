@@ -38,9 +38,31 @@ public class Bill implements Api {
 		return bills;
 	}
 
+	public model.Bill getNotCheckoutBill(int idTable) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("select * from [BillList] where [idTable] = " + idTable + " and [checkOut] is null");
+			assert resultSet != null;
+			return resultSet.next() ? new model.Bill(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
 	public model.Bill insert(Table table, Account customer, Account employee, Discount discount, double sale) {
 		try {
 			ResultSet resultSet = DataProvider.getInstance().execute("exec [insertBill] ? , ? , ? , ? , ?", new Object[] {table.getId(), customer != null ? customer.getId() : null, employee.getId(), discount != null ? discount.getId() : null, sale});
+			assert resultSet != null;
+			return resultSet.next() ? new model.Bill(resultSet) : null;
+		} catch (SQLException e) {
+			AlertError.getInstance().showAndWait(e);
+			return null;
+		}
+	}
+
+	public model.Bill checkOut(int idTable) {
+		try {
+			ResultSet resultSet = DataProvider.getInstance().execute("exec [checkoutBill] ?", new Object[] {idTable});
 			assert resultSet != null;
 			return resultSet.next() ? new model.Bill(resultSet) : null;
 		} catch (SQLException e) {

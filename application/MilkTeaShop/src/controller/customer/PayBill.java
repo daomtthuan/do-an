@@ -4,6 +4,7 @@ import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import app.secondary.SecondaryStage;
 import component.controller.general.BillPane;
+import controller.employee.ManageOrder;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -14,6 +15,18 @@ import java.util.ResourceBundle;
 class PayBill implements Controller, Initializable {
 	@FXML
 	private VBox billComponent;
+	private ManageOrder manageOrder;
+
+	PayBill(ManageOrder manageOrder) {
+		this.manageOrder = manageOrder;
+	}
+
+	@FXML
+	private void back() {
+		if (SecondaryStage.getInstance().getBillDetails().size() > 0) {
+			SecondaryStage.getInstance().setScene("/view/customer/SelectTable.fxml", "/style/customer/SelectTable.css", new SelectTable(manageOrder));
+		}
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
