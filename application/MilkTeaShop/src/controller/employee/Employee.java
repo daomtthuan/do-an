@@ -6,6 +6,7 @@ import app.primary.PrimarySubDialog;
 import component.controller.employee.ManageAccountPane;
 import component.controller.employee.ManageMenuPane;
 import component.controller.employee.ManageShopPane;
+import controller.general.ChangePassword;
 import controller.general.WatchAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,6 +40,13 @@ public class Employee implements Controller, Initializable {
 	@FXML
 	private void watchAccount() {
 		PrimarySubDialog.getInstance().setScene("/view/general/WatchAccount.fxml", "/style/general/Account.css", new WatchAccount(PrimaryStage.getInstance().getAccount()));
+		PrimarySubDialog.getInstance().getStage().show();
+		PrimaryStage.getInstance().getStage().hide();
+	}
+
+	@FXML
+	private void changePassword() {
+		PrimarySubDialog.getInstance().setScene("/view/general/ChangePassword.fxml", new ChangePassword(PrimaryStage.getInstance().getAccount()));
 		PrimarySubDialog.getInstance().getStage().show();
 		PrimaryStage.getInstance().getStage().hide();
 	}

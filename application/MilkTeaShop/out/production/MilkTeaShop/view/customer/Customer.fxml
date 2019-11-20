@@ -24,7 +24,7 @@
                             <graphic>
                                 <ImageView styleClass="customImageView">
                                     <image>
-                                        <Image url="@../../asset/welcome/Register.png" />
+                                        <Image url="@../../asset/button/Register.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -33,7 +33,7 @@
                             <graphic>
                                 <ImageView styleClass="customImageView">
                                     <image>
-                                        <Image url="@../../asset/welcome/Order.png" />
+                                        <Image url="@../../asset/button/Order.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -42,7 +42,7 @@
                             <graphic>
                                 <ImageView styleClass="customImageView">
                                     <image>
-                                        <Image url="@../../asset/welcome/Login.png" />
+                                        <Image url="@../../asset/button/Login.png" />
                                     </image>
                                 </ImageView>
                             </graphic>

@@ -18,7 +18,7 @@
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
-                              <Image url="@../../asset/manager/income.png" />
+                              <Image url="@../../asset/button/income.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -31,7 +31,7 @@
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
-                              <Image url="@../../asset/manager/shop.png" />
+                              <Image url="@../../asset/button/shop.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -44,7 +44,7 @@
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
-                              <Image url="@../../asset/manager/menu.png" />
+                              <Image url="@../../asset/button/menu.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -57,7 +57,20 @@
                      <graphic>
                         <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
                            <image>
-                              <Image url="@../../asset/manager/account.png" />
+                              <Image url="@../../asset/button/account.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="customButton" />
+                        <String fx:value="functionButton" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#changePassword" text="Change Password">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/button/password.png" />
                            </image>
                         </ImageView>
                      </graphic>
