@@ -38,10 +38,10 @@ public class ManageIncomePane implements Controller, Initializable {
 		Sell topSell = api.Income.getInstance().getTopSell();
 		idCustomerLabel.setText("Id Customer:\t\t" + (topBuy != null ? topBuy.getId() : "-"));
 		nameCustomerLabel.setText("Name Customer:\t" + (topBuy != null ? topBuy.getName() : "-"));
-		totalBuyLabel.setText("Total buy:\t\t$" + (topBuy != null ? Number.round(topBuy.getIncome(),2) : "-"));
+		totalBuyLabel.setText("Total buy:\t\t$" + (topBuy != null ? Number.round(topBuy.getIncome(), 2) : "-"));
 		nameFoodLabel.setText("Food - Category:\t" + (topSell != null ? topSell.getNameFood() + " - " + topSell.getNameCategory() : "-"));
 		totalQuantityLabel.setText("Total quantity:\t\t" + (topSell != null ? topSell.getQuantity() : "-"));
-		totalSellLabel.setText("Total sell:\t\t\t$" + (topSell != null ? Number.round(topSell.getIncome(),2) : "-"));
+		totalSellLabel.setText("Total sell:\t\t\t$" + (topSell != null ? Number.round(topSell.getIncome(), 2) : "-"));
 		AreaChart chart = Chart.create();
 		chart.setPrefHeight(545);
 		chartPane.getChildren().add(chart);

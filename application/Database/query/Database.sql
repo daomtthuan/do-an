@@ -203,7 +203,7 @@ end
 go
 
 create proc [checkDiscount]
-	@name varchar(50)
+	@name uniqueidentifier
 as
 begin
 	select *
