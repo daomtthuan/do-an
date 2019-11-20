@@ -3,6 +3,8 @@ package controller.employee;
 import app.pattern.Controller;
 import app.primary.PrimaryStage;
 import app.primary.PrimarySubDialog;
+import app.secondary.SecondaryDialog;
+import app.secondary.SecondaryStage;
 import component.controller.employee.ManageAccountPane;
 import component.controller.employee.ManageMenuPane;
 import component.controller.employee.ManageShopPane;
@@ -49,6 +51,19 @@ public class Employee implements Controller, Initializable {
 		PrimarySubDialog.getInstance().setScene("/view/general/ChangePassword.fxml", new ChangePassword(PrimaryStage.getInstance().getAccount()));
 		PrimarySubDialog.getInstance().getStage().show();
 		PrimaryStage.getInstance().getStage().hide();
+	}
+
+	@FXML
+	private void openShop() {
+		SecondaryStage.getInstance().getStage().setMaximized(true);
+		SecondaryStage.getInstance().setX(SecondaryStage.getInstance().getStage().getX());
+		SecondaryStage.getInstance().setY(SecondaryStage.getInstance().getStage().getY());
+		SecondaryStage.getInstance().setWidth(SecondaryStage.getInstance().getStage().getWidth());
+		SecondaryStage.getInstance().setHeight(SecondaryStage.getInstance().getStage().getHeight());
+		SecondaryDialog.getInstance().setX(SecondaryStage.getInstance().getStage().getX());
+		SecondaryDialog.getInstance().setY(SecondaryStage.getInstance().getStage().getY());
+		SecondaryDialog.getInstance().setWidth(SecondaryStage.getInstance().getStage().getWidth());
+		SecondaryDialog.getInstance().setHeight(SecondaryStage.getInstance().getStage().getHeight());
 	}
 
 	@Override

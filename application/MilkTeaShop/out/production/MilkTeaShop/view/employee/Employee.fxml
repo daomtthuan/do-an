@@ -79,6 +79,19 @@
                         <String fx:value="functionButton" />
                      </styleClass>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#openShop" text="Open Shop">
+                     <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="customImageView">
+                           <image>
+                              <Image url="@../../asset/button/open.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="customButton" />
+                        <String fx:value="functionButton" />
+                     </styleClass>
+                  </Button>
                </children>
             </HBox>
             <VBox fx:id="manageComponent" styleClass="customVBox" />

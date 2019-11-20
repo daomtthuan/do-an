@@ -56,7 +56,6 @@ public class ManageCustomerPane implements Controller, Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nameTableView.setText("Customer List");
-		tableView.setPrefSize(1350, 650);
 		tableView.getColumns().add(idColumn);
 		tableView.getColumns().add(accountColumn);
 		tableView.getColumns().add(nameColumn);
@@ -69,6 +68,7 @@ public class ManageCustomerPane implements Controller, Initializable {
 		tableView.setItems(FXCollections.observableArrayList(api.Account.getInstance().getAccounts(1)));
 
 		if (PrimaryStage.getInstance().getAccount().getRoll() == 3) {
+			tableView.setPrefSize(1350, 650);
 			MenuItem insertMenuItem = new MenuItem("Insert");
 			insertMenuItem.setOnAction(actionEvent -> {
 				PrimaryDialog.getInstance().setScene("/view/manager/EditAccount.fxml", "/style/general/Account.css", new EditAccount(this::refresh, 1));
@@ -121,6 +121,9 @@ public class ManageCustomerPane implements Controller, Initializable {
 					contextMenu.hide();
 				}
 			});
+		}
+		else {
+			tableView.setPrefSize(1540, 650);
 		}
 	}
 
