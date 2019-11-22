@@ -30,9 +30,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ManageMenuPane implements Controller, Initializable {
 	@FXML
 	private VBox subManageComponent;
+	private int selectedIndexCategory;
+	private Category selectedCategory;
 
 	@FXML
 	private void manageMenu() {
+		this.selectedIndexCategory = 0;
+		this.selectedCategory = null;
 		subManageComponent.getChildren().clear();
 		MenuPane menuPane = new MenuPane() {
 			@Override
@@ -53,7 +57,11 @@ public class ManageMenuPane implements Controller, Initializable {
 
 				MenuItem insertFoodMenuItem = new MenuItem("Insert");
 				insertFoodMenuItem.setOnAction(actionEvent -> {
-					PrimaryDialog.getInstance().setScene("/view/manager/EditFood.fxml", new EditFood(this, categories));
+					if (selectedCategory != null) {
+						PrimaryDialog.getInstance().setScene("/view/manager/EditFood.fxml", new EditFood(this, categories, selectedIndexCategory, selectedCategory));
+					} else {
+						PrimaryDialog.getInstance().setScene("/view/manager/EditFood.fxml", new EditFood(this, categories));
+					}
 					PrimaryDialog.getInstance().getStage().show();
 					PrimaryStage.getInstance().getStage().hide();
 				});
@@ -77,6 +85,8 @@ public class ManageMenuPane implements Controller, Initializable {
 					Button categoryButton = createButton(category.getName(), "/asset/category/" + category.getId() + ".png", "categoryButton");
 
 					categoryButton.setOnAction(categoryActionEvent -> {
+						selectedCategory = category;
+						selectedIndexCategory = categories.indexOf(category);
 						getFoodPane().getChildren().clear();
 						api.Food.getInstance().getEnabledFoods(category.getId()).forEach(food -> {
 							Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "/asset/food/" + food.getId() + ".png", "foodButton");
@@ -84,7 +94,7 @@ public class ManageMenuPane implements Controller, Initializable {
 							MenuItem insertMenuItem = new MenuItem("Insert");
 							insertMenuItem.setOnAction(actionEvent -> {
 								refresh = categoryButton::fire;
-								PrimaryDialog.getInstance().setScene("/view/manager/EditFood.fxml", new EditFood(this, categories, categories.indexOf(category), category));
+								PrimaryDialog.getInstance().setScene("/view/manager/EditFood.fxml", new EditFood(this, categories, selectedIndexCategory, selectedCategory));
 								PrimaryDialog.getInstance().getStage().show();
 								PrimaryStage.getInstance().getStage().hide();
 							});
@@ -92,7 +102,7 @@ public class ManageMenuPane implements Controller, Initializable {
 							MenuItem updateMenuItem = new MenuItem("Update");
 							updateMenuItem.setOnAction(actionEvent -> {
 								refresh = categoryButton::fire;
-								PrimaryDialog.getInstance().setScene("/view/manager/EditFood.fxml", new EditFood(this, categories, categories.indexOf(category), category, food));
+								PrimaryDialog.getInstance().setScene("/view/manager/EditFood.fxml", new EditFood(this, categories, selectedIndexCategory, selectedCategory, food));
 								PrimaryDialog.getInstance().getStage().show();
 								PrimaryStage.getInstance().getStage().hide();
 							});
@@ -219,12 +229,16 @@ public class ManageMenuPane implements Controller, Initializable {
 
 	@FXML
 	private void manageCategory() {
+		this.selectedIndexCategory = 0;
+		this.selectedCategory = null;
 		subManageComponent.getChildren().clear();
 		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/managepane/ManagePane.fxml", new ManageCategoryPane()));
 	}
 
 	@FXML
 	private void manageFood() {
+		this.selectedIndexCategory = 0;
+		this.selectedCategory = null;
 		subManageComponent.getChildren().clear();
 		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/managepane/ManageFoodPane.fxml", new ManageFoodPane()));
 	}

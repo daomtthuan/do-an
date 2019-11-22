@@ -80,7 +80,7 @@ public class EditFood implements Controller, Initializable {
 	private void submit() {
 		String name = Input.fixString(nameTextField.getText());
 		String price = priceTextField.getText();
-		if (name.matches(Regex.NAME) && price.matches(Regex.NUMBER)) {
+		if (!categoryComboBox.getSelectionModel().isEmpty() && name.matches(Regex.NAME) && price.matches(Regex.NUMBER)) {
 			if (edit) {
 				if (api.Food.getInstance().update(food.getId(), name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
 					refresh.run();
