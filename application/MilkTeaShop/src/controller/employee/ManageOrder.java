@@ -89,6 +89,9 @@ public class ManageOrder implements Controller, Initializable {
 			} catch (FileNotFoundException | DocumentException | ParseException e) {
 				AlertWarning.getInstance().showAndWait("Fail!", "Cannot print bill.\nPlease notify staff.");
 			}
+			if (PrimaryStage.getInstance().getRefresh() != null) {
+				PrimaryStage.getInstance().getRefresh().run();
+			}
 			SecondaryStage.getInstance().setScene("/view/customer/Customer.fxml", "/style/customer/Customer.css", new Customer());
 			PrimaryDialog.getInstance().getStage().hide();
 			PrimarySubDialog.getInstance().getStage().hide();

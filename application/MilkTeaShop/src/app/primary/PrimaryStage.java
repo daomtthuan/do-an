@@ -6,6 +6,7 @@ import model.Account;
 public class PrimaryStage extends Stage {
 	private static PrimaryStage instance;
 	private Account account;
+	private Runnable refresh;
 
 	public static PrimaryStage getInstance() {
 		if (instance == null) {
@@ -24,5 +25,13 @@ public class PrimaryStage extends Stage {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public Runnable getRefresh() {
+		return refresh;
+	}
+
+	public void setRefresh(Runnable refresh) {
+		this.refresh = refresh;
 	}
 }

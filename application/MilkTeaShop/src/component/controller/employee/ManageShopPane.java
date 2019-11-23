@@ -27,6 +27,10 @@ public class ManageShopPane implements Controller, Initializable {
 	@FXML
 	private VBox subManageComponent;
 
+	public ManageShopPane() {
+		PrimaryStage.getInstance().setRefresh(this::managePositionTable);
+	}
+
 	@FXML
 	private void managePositionTable() {
 		subManageComponent.getChildren().clear();
