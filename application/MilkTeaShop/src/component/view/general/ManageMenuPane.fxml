@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="managePane" fx:id="manageMenuPane" styleClass="customHBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox>
+         <children>
+            <Button mnemonicParsing="false" onAction="#manageMenu" text="Menu">
+               <styleClass>
+                  <String fx:value="customButton" />
+                  <String fx:value="manageMenuButton" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#manageCategory" text="Category">
+               <styleClass>
+                  <String fx:value="customButton" />
+                  <String fx:value="manageMenuButton" />
+               </styleClass>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#manageFood" text="Food">
+               <styleClass>
+                  <String fx:value="customButton" />
+                  <String fx:value="manageMenuButton" />
+               </styleClass>
+            </Button>
+         </children>
+         <styleClass>
+            <String fx:value="customVBox" />
+            <String fx:value="manageButtonPane" />
+         </styleClass>
+      </VBox>
+      <VBox fx:id="subManageComponent" styleClass="customVBox" />
+   </children>
+</HBox>
