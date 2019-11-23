@@ -1,6 +1,7 @@
 package api;
 
 import app.alert.AlertError;
+import javafx.application.Platform;
 
 import java.io.File;
 import java.io.FileReader;
@@ -18,6 +19,7 @@ public class DataProvider {
 			connection = DriverManager.getConnection(properties.getProperty("url"));
 		} catch (Exception e) {
 			AlertError.getInstance().showAndWait(e);
+			Platform.exit();
 		}
 	}
 
