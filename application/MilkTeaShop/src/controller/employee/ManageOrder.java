@@ -18,7 +18,7 @@ import model.Bill;
 import model.BillDetail;
 import tool.Printer;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
@@ -86,7 +86,7 @@ public class ManageOrder implements Controller, Initializable {
 			}
 			try {
 				Printer.printBill(bill);
-			} catch (FileNotFoundException | DocumentException | ParseException e) {
+			} catch (ParseException | IOException | DocumentException e) {
 				AlertWarning.getInstance().showAndWait("Fail!", "Cannot print bill.\nPlease notify staff.");
 			}
 			if (PrimaryStage.getInstance().getRefresh() != null) {
