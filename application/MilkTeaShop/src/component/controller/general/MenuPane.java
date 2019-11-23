@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,11 +32,13 @@ public abstract class MenuPane implements Controller, Initializable {
 
 	protected Button createButton(String name, String image, String style) {
 		ImageView imageView = new ImageView();
-		try {
-			imageView.setImage(new Image(image));
-		} catch (Exception e) {
-			imageView.setImage(new Image("/asset/null.png"));
+		File file = new File(image);
+		if (file.exists()) {
+			imageView.setImage(new Image("file:///" + new File(image).getAbsolutePath()));
+		} else {
+			imageView.setImage(new Image("asset/null.png"));
 		}
+
 		imageView.setFitHeight(120);
 		imageView.setFitWidth(120);
 		Button button = new Button(name, imageView);

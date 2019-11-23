@@ -82,14 +82,14 @@ public class ManageMenuPane implements Controller, Initializable {
 				});
 
 				categories.forEach(category -> {
-					Button categoryButton = createButton(category.getName(), "/asset/category/" + category.getId() + ".png", "categoryButton");
+					Button categoryButton = createButton(category.getName(), "asset/category/" + category.getId() + ".png", "categoryButton");
 
 					categoryButton.setOnAction(categoryActionEvent -> {
 						selectedCategory = category;
 						selectedIndexCategory = categories.indexOf(category);
 						getFoodPane().getChildren().clear();
 						api.Food.getInstance().getEnabledFoods(category.getId()).forEach(food -> {
-							Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "/asset/food/" + food.getId() + ".png", "foodButton");
+							Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "asset/food/" + food.getId() + ".png", "foodButton");
 
 							MenuItem insertMenuItem = new MenuItem("Insert");
 							insertMenuItem.setOnAction(actionEvent -> {
@@ -112,9 +112,8 @@ public class ManageMenuPane implements Controller, Initializable {
 								File file = fileChooser.showOpenDialog(PrimaryStage.getInstance().getStage());
 								if (file != null) {
 									try {
-										File image = new File("./src/asset/food/" + food.getId() + ".png").getCanonicalFile();
+										File image = new File("asset/food/" + food.getId() + ".png").getAbsoluteFile();
 										tool.File.copy(file.getAbsoluteFile(), image);
-										tool.File.copy(file.getAbsoluteFile(), new File("./out/production/MilkTeaShop/asset/food/" + food.getId() + ".png").getCanonicalFile());
 										ImageView imageView = new ImageView(image.toURI().toURL().toExternalForm());
 										imageView.setFitHeight(120);
 										imageView.setFitWidth(120);
@@ -184,9 +183,8 @@ public class ManageMenuPane implements Controller, Initializable {
 						File file = fileChooser.showOpenDialog(PrimaryStage.getInstance().getStage());
 						if (file != null) {
 							try {
-								File image = new File("./src/asset/category/" + category.getId() + ".png").getCanonicalFile();
+								File image = new File("asset/category/" + category.getId() + ".png").getAbsoluteFile();
 								tool.File.copy(file.getAbsoluteFile(), image);
-								tool.File.copy(file.getAbsoluteFile(), new File("./out/production/MilkTeaShop/asset/category/" + category.getId() + ".png").getCanonicalFile());
 								ImageView imageView = new ImageView(image.toURI().toURL().toExternalForm());
 								imageView.setFitHeight(120);
 								imageView.setFitWidth(120);

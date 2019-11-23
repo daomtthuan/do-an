@@ -11,19 +11,11 @@ import model.Discount;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Printer {
 	public static void printBill(Bill bill) throws IOException, DocumentException, ParseException {
-		Path dir = Paths.get("./bill");
-		if (!Files.exists(dir)) {
-			Files.createDirectories(dir);
-		}
-
 		ArrayList<BillDetail> billDetails = api.BillDetail.getInstance().getBillDetails(bill.getId());
 		Document document = new Document(PageSize.A6, 5, 5, 5, 5);
 		PdfWriter.getInstance(document, new FileOutputStream("./bill/" + bill.getId() + ".pdf"));

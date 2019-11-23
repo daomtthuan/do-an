@@ -20,6 +20,7 @@ import model.BillDetail;
 import model.Category;
 import model.Food;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -102,12 +103,12 @@ public class Order implements Controller, Initializable {
 			protected void setup() {
 				ArrayList<Category> categories = api.Category.getInstance().getEnabledCategories();
 				categories.forEach(category -> {
-					Button categoryButton = createButton(category.getName(), "/asset/category/" + category.getId() + ".png", "categoryButton");
+					Button categoryButton = createButton(category.getName(), "asset/category/" + category.getId() + ".png", "categoryButton");
 					categoryButton.setOnAction(categoryActionEvent -> {
 						getFoodPane().getChildren().clear();
 						ArrayList<Food> foods = api.Food.getInstance().getEnabledFoods(category.getId());
 						foods.forEach(food -> {
-							Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "/asset/food/" + food.getId() + ".png", "foodButton");
+							Button foodButton = createButton(food.getName() + "\n$" + food.getPrice(), "asset/food/" + food.getId() + ".png", "foodButton");
 							foodButton.setOnAction(foodActionEvent -> {
 								boolean found = false;
 								for (BillDetail billDetail : SecondaryStage.getInstance().getBillDetails()) {
