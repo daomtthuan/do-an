@@ -1,0 +1,34 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Milk Tea Shop">
+    <output-path>$PROJECT_DIR$/../../release</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="app.Main" />
+        <option name="description" value="" />
+        <option name="height" value="1080" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="icons">
+          <JavaFxApplicationIcons>
+            <option name="windowsIcon" value="$PROJECT_DIR$/src/asset/brand/icon.ico" />
+          </JavaFxApplicationIcons>
+        </option>
+        <option name="title" value="Milk Tea Shop" />
+        <option name="vendor" value="" />
+        <option name="version" value="1.0.0" />
+        <option name="width" value="1920" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Milk Tea Shop.jar">
+        <element id="module-output" name="Milk Tea Shop" />
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/Config.properties" />
+      <element id="directory" name="asset">
+        <element id="dir-copy" path="$PROJECT_DIR$/asset" />
+      </element>
+    </root>
+  </artifact>
+</component>
