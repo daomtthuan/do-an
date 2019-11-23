@@ -3,15 +3,18 @@
     <output-path>$PROJECT_DIR$/../../release</output-path>
     <properties id="javafx-properties">
       <options>
+        <option name="alias" value="" />
         <option name="appClass" value="app.Main" />
         <option name="description" value="" />
         <option name="height" value="1080" />
         <option name="htmlPlaceholderId" value="" />
         <option name="icons">
           <JavaFxApplicationIcons>
+            <option name="linuxIcon" value="$PROJECT_DIR$/src/asset/brand/Logo.png" />
             <option name="windowsIcon" value="$PROJECT_DIR$/src/asset/brand/icon.ico" />
           </JavaFxApplicationIcons>
         </option>
+        <option name="keystore" value="" />
         <option name="title" value="Milk Tea Shop" />
         <option name="vendor" value="" />
         <option name="version" value="1.0.0" />
@@ -28,6 +31,9 @@
       <element id="file-copy" path="$PROJECT_DIR$/Config.properties" />
       <element id="directory" name="asset">
         <element id="dir-copy" path="$PROJECT_DIR$/asset" />
+      </element>
+      <element id="directory" name="database">
+        <element id="dir-copy" path="$PROJECT_DIR$/../Database" />
       </element>
     </root>
   </artifact>
