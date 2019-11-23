@@ -56,8 +56,10 @@ public class ManageShopPane implements Controller, Initializable {
 					});
 					tableButton.setOnMouseDragged(mouseEvent -> {
 						if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-							tableButton.setLayoutX(mouseEvent.getSceneX() + newDelta.getX());
-							tableButton.setLayoutY(mouseEvent.getSceneY() + newDelta.getY());
+							double x = mouseEvent.getSceneX() + newDelta.getX();
+							double y = mouseEvent.getSceneY() + newDelta.getY();
+							tableButton.setLayoutX(x > 0 ? x : 0);
+							tableButton.setLayoutY(y > 0 ? y : 0);
 						}
 					});
 					tableButton.setOnMouseReleased(mouseEvent -> {
