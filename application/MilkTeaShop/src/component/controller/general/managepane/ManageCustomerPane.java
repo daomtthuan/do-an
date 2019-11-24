@@ -83,6 +83,14 @@ public class ManageCustomerPane implements Controller, Initializable {
 				PrimaryStage.getInstance().getStage().hide();
 			});
 
+			MenuItem resetPasswordMenuItem = new MenuItem("Reset Password");
+			resetPasswordMenuItem.setOnAction(actionEvent -> {
+				Account account = tableView.getSelectionModel().getSelectedItem();
+				if (api.Account.getInstance().update(account.getId(), "1", account.getRoll(), account.getName(), account.isMale(), account.getBirthday(), account.getAddress(), account.getPhone(), account.getEmail()) == null) {
+					AlertWarning.getInstance().showAndWait("Fail!", "Cannot reset Password.\nPlease notify staff.");
+				}
+			});
+
 			MenuItem statusMenuItem = new MenuItem("Change status");
 			statusMenuItem.setOnAction(actionEvent -> {
 				Account account = tableView.getSelectionModel().getSelectedItem();
@@ -103,7 +111,7 @@ public class ManageCustomerPane implements Controller, Initializable {
 				}
 			});
 
-			ContextMenu contextMenu = new ContextMenu(insertMenuItem, updateMenuItem, statusMenuItem, deleteMenuItem);
+			ContextMenu contextMenu = new ContextMenu(insertMenuItem, updateMenuItem, resetPasswordMenuItem, statusMenuItem, deleteMenuItem);
 			tableView.setOnContextMenuRequested(contextMenuEvent -> {
 				if (tableView.getSelectionModel().isEmpty()) {
 					updateMenuItem.setDisable(true);
@@ -121,8 +129,7 @@ public class ManageCustomerPane implements Controller, Initializable {
 					contextMenu.hide();
 				}
 			});
-		}
-		else {
+		} else {
 			tableView.setPrefSize(1540, 650);
 		}
 	}
