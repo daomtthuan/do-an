@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="javafx" name="Milk Tea Shop">
-    <output-path>$PROJECT_DIR$/../../release</output-path>
+    <output-path>$PROJECT_DIR$/../../MilkTeaShop</output-path>
     <properties id="javafx-properties">
       <options>
         <option name="alias" value="" />
@@ -35,6 +35,7 @@
       <element id="directory" name="database">
         <element id="dir-copy" path="$PROJECT_DIR$/../Database" />
       </element>
+      <element id="directory" name="bill" />
     </root>
   </artifact>
 </component>
