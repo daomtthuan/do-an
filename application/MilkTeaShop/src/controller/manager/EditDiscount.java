@@ -51,7 +51,7 @@ public class EditDiscount implements Controller, Initializable {
 				}
 			}
 		} else {
-			AlertWarning.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
+			AlertWarning.getInstance().showAndWait("Fail!", "Invalid sale number.\nPlease check again.");
 		}
 	}
 

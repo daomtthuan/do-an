@@ -65,7 +65,7 @@ public class EditCategory implements Controller, Initializable {
 				}
 			}
 		} else {
-			AlertWarning.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
+			AlertWarning.getInstance().showAndWait("Fail!", "Invalid name category.\nPlease check again.");
 		}
 	}
 

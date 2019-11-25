@@ -48,30 +48,57 @@ class Register implements Controller {
 		String password = passwordField.getText();
 		String re = rePasswordField.getText();
 
-		if (name.matches(Regex.NAME) && address.matches(Regex.ADDRESS) && phone.matches(Regex.PHONE) && email.matches(Regex.EMAIL) && (maleRadioButton.isSelected() || femaleRadioButton.isSelected()) &&
-				password.matches(Regex.PASSWORD) && re.matches(Regex.PASSWORD) && email.length() <= 50) {
-			if (password.equals(re)) {
-				Account account = api.Account.getInstance().insert(Input.createAcronym(name), password, 1, name, gender, birthday, address, phone, email);
+		if (name.matches(Regex.NAME)) {
+			if (!birthday.equals("")) {
+				if (address.matches(Regex.ADDRESS)) {
+					if (phone.matches(Regex.PHONE)) {
+						if (email.matches(Regex.EMAIL)) {
+							if ((maleRadioButton.isSelected() || femaleRadioButton.isSelected())) {
+								if (password.matches(Regex.PASSWORD)) {
+									if (email.length() <= 50) {
+										if (password.equals(re)) {
+											Account account = api.Account.getInstance().insert(Input.createAcronym(name), password, 1, name, gender, birthday, address, phone, email);
 
-				if (account != null) {
-					SecondaryStage.getInstance().setAccount(account);
+											if (account != null) {
+												SecondaryStage.getInstance().setAccount(account);
 
-					if (SecondaryStage.getInstance().isNotOrdering()) {
-						SecondaryStage.getInstance().setBillDetails(new ArrayList<>());
-						SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
+												if (SecondaryStage.getInstance().isNotOrdering()) {
+													SecondaryStage.getInstance().setBillDetails(new ArrayList<>());
+													SecondaryStage.getInstance().setScene("/view/customer/Order.fxml", "/style/customer/Order.css", new Order());
+												}
+
+												AlertInformation.getInstance().showAndWait("Success!",
+														"Your Customer Account: " + account.getAccount() + "\nThanks for coming to our shop!");
+												SecondaryDialog.getInstance().close();
+											} else {
+												AlertWarning.getInstance().showAndWait("Fail!", "Cannot register.\nPlease notify staff.");
+											}
+										} else {
+											AlertWarning.getInstance().showAndWait("Fail!", "Re-Password not match.\nPlease check again.");
+										}
+									} else {
+										AlertWarning.getInstance().showAndWait("Fail!", "Invalid email.\nPlease check again.");
+									}
+								} else {
+									AlertWarning.getInstance().showAndWait("Fail!", "Invalid password.\nPlease check again.");
+								}
+							} else {
+								AlertWarning.getInstance().showAndWait("Fail!", "Please choose gender.");
+							}
+						} else {
+							AlertWarning.getInstance().showAndWait("Fail!", "Invalid email.\nPlease check again.");
+						}
+					} else {
+						AlertWarning.getInstance().showAndWait("Fail!", "Invalid phone.\nPlease check again.");
 					}
-
-					AlertInformation.getInstance().showAndWait("Success!",
-							"Your Customer Account: " + account.getAccount() + "\nThanks for coming to our shop!");
-					SecondaryDialog.getInstance().close();
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Cannot register.\nPlease notify staff.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Invalid address.\nPlease check again.");
 				}
 			} else {
-				AlertWarning.getInstance().showAndWait("Fail!", "Re-Password not match.\nPlease check again.");
+				AlertWarning.getInstance().showAndWait("Fail!", "Please enter birthday.");
 			}
 		} else {
-			AlertWarning.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
+			AlertWarning.getInstance().showAndWait("Fail!", "Invalid name.\nPlease check again.");
 		}
 	}
 }

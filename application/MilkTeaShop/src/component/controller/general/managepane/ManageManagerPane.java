@@ -86,8 +86,13 @@ public class ManageManagerPane implements Controller, Initializable {
 			MenuItem resetPasswordMenuItem = new MenuItem("Reset Password");
 			resetPasswordMenuItem.setOnAction(actionEvent -> {
 				Account account = tableView.getSelectionModel().getSelectedItem();
-				if (api.Account.getInstance().update(account.getId(), "1", account.getRoll(), account.getName(), account.isMale(), account.getBirthday(), account.getAddress(), account.getPhone(), account.getEmail()) == null) {
+				Account newAccount = api.Account.getInstance().update(account.getId(), "1", account.getRoll(), account.getName(), account.isMale(), account.getBirthday(), account.getAddress(), account.getPhone(), account.getEmail());
+				if (newAccount == null) {
 					AlertWarning.getInstance().showAndWait("Fail!", "Cannot reset Password.\nPlease notify staff.");
+				} else {
+					if (newAccount.getId() == PrimaryStage.getInstance().getAccount().getId()) {
+						PrimaryStage.getInstance().setAccount(newAccount);
+					}
 				}
 			});
 

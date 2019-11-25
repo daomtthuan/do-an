@@ -80,24 +80,32 @@ public class EditFood implements Controller, Initializable {
 	private void submit() {
 		String name = Input.fixString(nameTextField.getText());
 		String price = priceTextField.getText();
-		if (!categoryComboBox.getSelectionModel().isEmpty() && name.matches(Regex.NAME) && price.matches(Regex.NUMBER)) {
-			if (edit) {
-				if (api.Food.getInstance().update(food.getId(), name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
-					refresh.run();
-					PrimaryDialog.getInstance().close();
+		if (!categoryComboBox.getSelectionModel().isEmpty()) {
+			if (name.matches(Regex.NAME)) {
+				if (price.matches(Regex.NUMBER)) {
+					if (edit) {
+						if (api.Food.getInstance().update(food.getId(), name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
+							refresh.run();
+							PrimaryDialog.getInstance().close();
+						} else {
+							AlertWarning.getInstance().showAndWait("Fail!", "Cannot update food.\nPlease check again.");
+						}
+					} else {
+						if (api.Food.getInstance().insert(name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
+							refresh.run();
+							PrimaryDialog.getInstance().close();
+						} else {
+							AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert food.\nPlease check again.");
+						}
+					}
 				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Cannot update food.\nPlease check again.");
+					AlertWarning.getInstance().showAndWait("Fail!", "Invalid price food.\nPlease check again.");
 				}
 			} else {
-				if (api.Food.getInstance().insert(name, categoryComboBox.getSelectionModel().getSelectedItem().getId(), Double.parseDouble(price)) != null) {
-					refresh.run();
-					PrimaryDialog.getInstance().close();
-				} else {
-					AlertWarning.getInstance().showAndWait("Fail!", "Cannot insert food.\nPlease check again.");
-				}
+				AlertWarning.getInstance().showAndWait("Fail!", "Invalid name food.\nPlease check again.");
 			}
 		} else {
-			AlertWarning.getInstance().showAndWait("Fail!", "Invalid information.\nPlease check again.");
+			AlertWarning.getInstance().showAndWait("Fail!", "Please choose category of food.");
 		}
 	}
 
