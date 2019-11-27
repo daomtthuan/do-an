@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Milk_Tea_Shop.jnlp">
+  <information>
+    <title>Milk Tea Shop</title>
+    <vendor>Unknown</vendor>
+    <description>Milk Tea Shop</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Milk_Tea_Shop.jar" size="19705458" download="eager" />
+    <jar href="lib\itextpdf-5.5.13.1.jar" size="2330916" download="eager" />
+    <jar href="lib\jbcrypt-0.4.jar" size="17429" download="eager" />
+    <jar href="lib\jmetro-8.5.11.jar" size="68923" download="eager" />
+    <jar href="lib\mssql-jdbc-7.4.1.jre8.jar" size="1209659" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="1920" height="1080" main-class="app.Main"  name="Milk Tea Shop" />
+  <update check="background"/>
+</jnlp>
