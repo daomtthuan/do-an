@@ -203,12 +203,12 @@ end
 go
 
 create proc [checkDiscount]
-	@name uniqueidentifier
+	@name varchar(50)
 as
 begin
 	select *
 	from [Discount]
-	where [name] = @name and [status] > 0;
+	where convert(nvarchar(50), [name]) = @name and [status] > 0;
 end
 go
 

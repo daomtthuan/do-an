@@ -21,10 +21,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ManageShopPane implements Controller, Initializable {
 	@FXML
 	private VBox subManageComponent;
+	private AtomicReference<Double> withTablePane;
+	private AtomicReference<Double> heightTablePane;
 
 	@FXML
 	private void managePositionTable() {
@@ -58,8 +61,9 @@ public class ManageShopPane implements Controller, Initializable {
 						if (mouseEvent.getButton() == MouseButton.PRIMARY) {
 							double x = mouseEvent.getSceneX() + newDelta.getX();
 							double y = mouseEvent.getSceneY() + newDelta.getY();
-							tableButton.setLayoutX(x > 0 ? x : 0);
-							tableButton.setLayoutY(y > 0 ? y : 0);
+
+							tableButton.setLayoutX(x < 10 ? 10 : (x > 1260 ? 1260 : x));
+							tableButton.setLayoutY(y < 10 ? 10 : (y > 560 ? 560 : y));
 						}
 					});
 					tableButton.setOnMouseReleased(mouseEvent -> {
@@ -107,6 +111,8 @@ public class ManageShopPane implements Controller, Initializable {
 			}
 		};
 		subManageComponent.getChildren().add(PrimaryStage.getInstance().loadComponent("/component/view/general/TablePane.fxml", tablePane));
+		withTablePane = new AtomicReference<>(tablePane.getTablePane().getWidth());
+		heightTablePane = new AtomicReference<>(tablePane.getTablePane().getHeight());
 
 		tablePane.getTablePane().setOnContextMenuRequested(contextMenuEvent -> {
 			if (!show.get()) {

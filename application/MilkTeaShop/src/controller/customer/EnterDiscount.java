@@ -2,14 +2,14 @@ package controller.customer;
 
 import app.alert.AlertInformation;
 import app.alert.AlertWarning;
+import app.pattern.Controller;
 import app.secondary.SecondaryDialog;
 import app.secondary.SecondaryStage;
-import tool.Regex;
-import app.pattern.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import model.Discount;
+import tool.Regex;
 
 import java.net.URL;
 import java.util.ResourceBundle;
