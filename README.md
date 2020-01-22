@@ -1,22 +1,22 @@
 # milk-tea-shop
 Milk Tea Shop - Java appilcation project Aptech CUSC
-<h2>1 PROJECT TEAM INTRODUCTION</h2>
-Project manager<br>
+<h2>1. PROJECT TEAM INTRODUCTION</h2>
+<b>Project manager<br></b>
 • Teacher. Luong The Anh<br>
 • Email: ltanh@ctu.edu.vn<br><br>
-Team Leader/Analyst/Designer/Tester<br>
+<b>Team Leader/Analyst/Designer/Tester<br></b>
 • Student. Dao Minh Trung Thuan<br>
 • Student ID: Student1153187<br>
 • Email: dmtthuana18088@cusc.ctu.edu.vn<br>
-Team Member/Coder<br>
+<b>Team Member/Coder<br></b>
 • Student. Ha Thi Hong Tham<br>
 • Student ID: Student1138919<br>
 • Email: hththama18124@cusc.ctu.edu.vn<br>
-Team Member/Coder<br>
+<b>Team Member/Coder<br></b>
 • Student. Tan Tan Lap<br>
 • Student ID: Student1146966<br>
 • Email: ttlapa18081@cusc.ctu.edu.vn<br><br>
-<h2>2 PROBLEM DEFINITION OF MILK TEA SHOP</h2>
+<h2>2. PROBLEM DEFINITION OF MILK TEA SHOP</h2>
 Milk Tea Shop is a milk tea shop specializing in selling milk tea and fast food. The main
 customers that it serves are students. When customers come to the shop, they order food
 and choose their own seat that they like then pay for bill at cashier.<br>
