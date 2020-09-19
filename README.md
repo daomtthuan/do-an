@@ -1,7 +1,8 @@
 # milk-tea-shop
 Milk Tea Shop - Java appilcation project Aptech CUSC
 <h2>1. PROJECT TEAM INTRODUCTION</h2>
-<b>Documentaion: </b>[Milk Tea Shop - Java appilcation project Aptech CUSC](https://github.com/daomtthuan/milk-tea-shop/blob/master/Documentaion.pdf)
+<b>Documentaion: </b>
+[Milk Tea Shop - Java appilcation project Aptech CUSC](https://github.com/daomtthuan/milk-tea-shop/blob/master/Documentaion.pdf)
 <p>
 <b>Project manager<br></b>
 • Teacher. Luong The Anh<br>
