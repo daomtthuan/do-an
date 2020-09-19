@@ -1,5 +1,5 @@
 # milk-tea-shop
-Milk Tea Shop - Java appilcation project Aptech CUSC
+Milk Tea Shop - Java appilcation project Aptech CUSC<br>
 <b>Documentaion: </b>https://github.com/daomtthuan/milk-tea-shop/blob/master/Documentaion.pdf
 <h2>1. PROJECT TEAM INTRODUCTION</h2>
 <p>
